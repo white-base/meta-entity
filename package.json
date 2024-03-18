@@ -1,11 +1,29 @@
 {
   "name": "logic-entity",
-  "version": "1.0.0",
-  "description": ".",
+  "version": "0.0.1",
+  "description": "logic framwork entity",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:c": "jest --coverage",
+    "test:u": "jest --updateSnapshot",
+    "test:v": "jest --verbose",
+    "doc:j": "jsdoc -c jaguar.json",
+    "doc:2": "jsdoc -c jsdoc.json",
+    "http": "npx http-server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "docdash": "github:white-base/docdash",
+    "jaguarjs-jsdoc": "github:white-base/jaguarjs-jsdoc",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^24.0.0",
+    "telejson": "^7.2.0"
+  },
+  "dependencies": {
+    "logic-core": "github:white-base/core"
+  }
 }
