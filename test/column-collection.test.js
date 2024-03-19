@@ -16,6 +16,8 @@ const { MetaView }              = require('../src/meta-view');
 const { MetaViewCollection }    = require('../src/meta-view');
 const { MetaRow }               = require('../src/meta-row');
 const { BaseColumnCollection }  = require('../src/collection-column');
+const { MetaViewColumnCollection }      = require('../src/collection-column');
+const { MetaTableColumnCollection }     = require('../src/collection-column');
 const { MetaColumn }            = require('../src/meta-column');
 
 //==============================================================
@@ -37,6 +39,17 @@ describe("[target: meta-column.js]", () => {
                 expect(view1.columns.count).toBe(2);
                 expect(view1.columns['i1'].value).toBe('');
                 expect(view1.columns['i2'].value).toBe('');   // REVIEW: default 값을 기준으로 초기화?
+            });
+            it("- initValue(entity) : 컬렉션 전체값 초기화, 빈 컬렉션 ", () => {
+                var view1 = new MetaViewColumnCollection();
+                view1.addValue('i1', 'V1');
+                view1.addValue('i2', 'V2');
+                view1.initValue();
+        
+                // view1
+                expect(view1.count).toBe(2);
+                expect(view1['i1'].value).toBe('');
+                expect(view1['i2'].value).toBe('');
             });
         });
 

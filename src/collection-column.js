@@ -59,7 +59,7 @@
     //==============================================================
     // 4. module implementation
     //--------------------------------------------------------------
-    // implementation   
+    // implementation
     var BaseColumnCollection  = (function (_super) {
         /**
          * 컬럼 컬렉션 (최상위)
@@ -102,6 +102,14 @@
 
 
         /**
+         * this._onwer 이 엔티티 여부를 확인합니다.
+         * @returns {boolean}
+         */
+        BaseColumnCollection.prototype._ownerIsEntity = function() {
+            return this._owner instanceof MetaElement && this._owner.instanceOf('BaseEntity');
+        };
+
+        /**
          * 컬럼을 컬렉션에 추가
          * @param {string} p_name 컬럼명
          * @param {any} p_value 컬럼객체
@@ -109,7 +117,7 @@
          */
         BaseColumnCollection.prototype.add = function(p_name, p_value) {
             
-            if (this._owner.rows.count > 0) throw new ExtendError(/EL05143/, null, [this._owner.rows.count]);
+            if (this._ownerIsEntity() && this._owner.rows.count > 0) throw new ExtendError(/EL05143/, null, [this._owner.rows.count]);
             if (this.existColumnName(p_name)) throw new ExtendError(/EL05144/, null, [this.constructor.name, p_name]);
             if (this.existAlias(p_name)) throw new ExtendError(/EL05145/, null, [this.constructor.name, p_name]); 
             
@@ -208,10 +216,14 @@
 
             if (typeof p_any === 'string') {      
                 key  = p_any;
-                column = new this._baseType(key, this._owner);
+                if (this._ownerIsEntity()) column = new this._baseType(key, this._owner);
+                else column = new this._baseType(key);
+                
             } else if (p_any instanceof this._baseType) {
                 key  = p_any.columnName;
-                column = p_any.clone(this._owner);
+                if (this._ownerIsEntity()) column = p_any.clone(this._owner);
+                else column = p_any.clone();
+                
             } else {
                 throw new ExtendError(/EL05151/, null, [typeof p_any]); 
             }
@@ -358,7 +370,8 @@
                     column = collection[key];
                 }
             }
-            if (!column._entity) column._entity = this._owner;
+            if (!column._entity && this._ownerIsEntity()) column._entity = this._owner;
+            // if (!column._entity) column._entity = this._owner;
 
             return _super.prototype.add.call(this, key, column);
         };

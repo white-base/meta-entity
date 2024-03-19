@@ -296,11 +296,13 @@
             if (typeof p_obj === 'string') {      
                 key  = p_obj;
                 view = new this._baseType(key, p_baseEntity);
-                view._metaSet = this._owner;
+                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) view._metaSet = this._owner;
+                // view._metaSet = this._owner;
             } else if (p_obj instanceof MetaView) {
                 key  = p_obj.viewName;
                 view = p_obj;
-                p_obj._metaSet = this._owner;
+                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) p_obj._metaSet = this._owner;
+                // p_obj._metaSet = this._owner;
             } else throw new ExtendError(/EL05445/, null, [typeof p_obj]);
 
             if (this.existViewName(key)) throw new ExtendError(/EL05446/, null, [key]);

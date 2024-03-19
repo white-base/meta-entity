@@ -18,6 +18,7 @@
         var _ExtendError                = require('logic-core').ExtendError;
         var _Type                       = require('logic-core').Type;
         var _Util                       = require('logic-core').Util;
+        var _MetaObject                 = require('logic-core').MetaObject;
         var _BaseEntity                 = require('./base-entity').BaseEntity;
         var _ITransaction               = require('./i-transaction').ITransaction;
         var _PropertyCollection         = require('logic-core').PropertyCollection;
@@ -31,6 +32,7 @@
         var $MetaRegistry               = _global._L.MetaRegistry;
         var $ITransaction               = _global._L.ITransaction;
         var $PropertyCollection         = _global._L.PropertyCollection;
+        var $MetaObject                 = _global._L.MetaObject;
         var $BaseEntity                 = _global._L.BaseEntity;
         var $MetaTableColumnCollection  = _global._L.MetaTableColumnCollection;
         var $ExtendError                = _global._L.ExtendError;
@@ -41,6 +43,7 @@
     var Util                    = _Util                 || $Util;
     var ITransaction            = _ITransaction         || $ITransaction;
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
+    var MetaObject              = _MetaObject           || $MetaObject;
     var BaseEntity              = _BaseEntity           || $BaseEntity;
     var PropertyCollection      = _PropertyCollection   || $PropertyCollection;
     var MetaTableColumnCollection   = _MetaTableColumnCollection    || $MetaTableColumnCollection;
@@ -52,6 +55,7 @@
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
     if (typeof ITransaction === 'undefined') throw new Error(Message.get('ES011', ['ITransaction', 'i-transaction']));
     if (typeof MetaRegistry === 'undefined') throw new Error(Message.get('ES011', ['MetaRegistry', 'meta-registry']));
+    if (typeof MetaObject === 'undefined') throw new Error(Message.get('ES011', ['MetaObject', 'meta-object']));
     if (typeof PropertyCollection === 'undefined') throw new Error(Message.get('ES011', ['PropertyCollection', 'collection-property']));
     if (typeof BaseEntity === 'undefined') throw new Error(Message.get('ES011', ['BaseEntity', 'base-entity']));
     if (typeof MetaTableColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['MetaTableColumnCollection', 'meta-column']));
@@ -279,11 +283,14 @@
             if (typeof p_any === 'string' && p_any.length > 0) {      
                 key  = p_any;
                 table = new this._baseType(key);
-                table._metaSet = this._owner;
+                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) table._metaSet = this._owner;
+                // table._metaSet = this._owner;
+
             } else if (p_any instanceof MetaTable) {
                 key  = p_any.tableName;
                 table = p_any;
-                p_any._metaSet = this._owner;
+                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) p_any._metaSet = this._owner;
+                // p_any._metaSet = this._owner;
             } else throw new ExtendError(/EL05423/, null, [typeof any]);
 
             if (this.existTableName(key)) throw new ExtendError(/EL05424/, null, [key]);

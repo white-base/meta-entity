@@ -457,6 +457,13 @@ describe("[L.*]", () => {
 
                 expect(() => require('../src/meta-table')).toThrow(/MetaRegistry/);
             });
+            it("- 예외 : MetaObject 로딩이 안 된 경우", () => {
+                require('logic-core');
+                require('../src/i-transaction');
+                delete global._L.MetaObject;
+
+                expect(() => require('../src/meta-table')).toThrow(/MetaObject/);
+            });
             it("- 예외 : PropertyCollection 로딩이 안 된 경우", () => {
                 require('logic-core');
                 require('../src/i-transaction');

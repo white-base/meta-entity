@@ -2060,9 +2060,9 @@ describe("[target: meta-table.js]", () => {
                 const set2 = new MetaSet('S2');
                 const view = new MetaView('V');
                 set2.load(str, parse);
-                const vv1 = set1.views['V1'];
-                const vv2 = set1.views['V2'];
-                const vv3 = set1.views['V3'];              
+                const vv1 = set2.views['V1'];
+                const vv2 = set2.views['V2'];
+                const vv3 = set2.views['V3'];              
 
                 expect(()=> view.load(v1.output(0, stringify, '\t'))).toThrow('EL05435')
                 expect(()=> view.load(v2.output(0, stringify, '\t'))).toThrow('EL05435')
@@ -2073,9 +2073,9 @@ describe("[target: meta-table.js]", () => {
                 expect(vv1.columns.count).toBe(3)
                 expect(vv2.columns.count).toBe(2)
                 expect(vv3.columns.count).toBe(1)
-                expect(vv1._metaSet === set1).toBe(true)
-                expect(vv2._metaSet === set1).toBe(true)
-                expect(vv3._metaSet === set1).toBe(true)
+                expect(vv1._metaSet === set2).toBe(true)
+                expect(vv2._metaSet === set2).toBe(true)
+                expect(vv3._metaSet === set2).toBe(true)
                 expect(vv1.columns['c1']._entity === vv1).toBe(true)
                 expect(vv2.columns['c2']._entity === vv1).toBe(true)
                 expect(vv3.columns['c3']._entity === vv1).toBe(true)
