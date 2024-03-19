@@ -53,18 +53,18 @@
          * @constructs _L.Meta.Entity.MetaColumn
          * @extends _L.Meta.Entity.BaseColumn
          * @param {string} p_name 속성명
-         * @param {BaseEntity?} p_entity 소유 BaseEntity
-         * @param {object?} p_property 
-         * @param {object?} p_property.default 기본값
-         * @param {object?} p_property.caption 설명
-         * @param {boolean?} p_property.isNotNull 필수 유무
-         * @param {boolean?} p_property.isNullPass null 통과 유무
-         * @param {array<object.function>?} p_property.constraints 제약조건
-         * @param {(string | number | boolean)?} p_property.value value 값
-         * @param {function?} p_property.getter 겟터
-         * @param {function?} p_property.setter 셋터
-         * @param {string?} p_property.alias 별칭
-         * @param {function?} p_property.onChanged value 변경 후 이벤트
+         * @param {BaseEntity} [p_entity] 소유 BaseEntity
+         * @param {object} [p_property] 
+         * @param {object} p_property.default 기본값
+         * @param {object} p_property.caption 설명
+         * @param {boolean} p_property.isNotNull 필수 유무
+         * @param {boolean} p_property.isNullPass null 통과 유무
+         * @param {array<object.function>} p_property.constraints 제약조건
+         * @param {string | number | boolean} p_property.value value 값
+         * @param {function} p_property.getter 겟터
+         * @param {function} p_property.setter 셋터
+         * @param {string} p_property.alias 별칭
+         * @param {function} p_property.onChanged value 변경 후 이벤트
          */
         function MetaColumn(p_name, p_entity, p_property) {
             _super.call(this, p_name, p_entity);
@@ -303,7 +303,7 @@
          * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
          * 객체 비교 : equal(a, b)  
          * a.getObject(2) == b.getObject(2)   
-         * @param {(object | array<object>)?} p_owned 현재 객체를 소유하는 상위 객체들
+         * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
          * @returns {object}  
          */
         MetaColumn.prototype.getObject = function(p_vOpt, p_owned) {
@@ -326,7 +326,7 @@
         /**
          * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
          * @param {object} p_oGuid guid 타입의 객체
-         * @param {object?} p_origin 현재 객체를 설정하는 원본 guid 객체  
+         * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
          * 기본값은 p_oGuid 객체와 동일
          */
         MetaColumn.prototype.setObject  = function(p_oGuid, p_origin) {
@@ -348,7 +348,7 @@
 
         /**
          * 컬럼 복제
-         * @param {BaseEntity?} p_entity 지정한 엔티티로 복제
+         * @param {BaseEntity} [p_entity] 지정한 엔티티로 복제
          * @returns {MetaColumn}
          */
         MetaColumn.prototype.clone = function(p_entity) {
@@ -376,11 +376,11 @@
          * REVIEW: 정규식으로 반대 조건을 모두 나열 할수 있으므로, 항상 실패조건을 하는게 맞을지? 검토
          * @param {Regexp} p_regex 정규표현식
          * @param {string} p_msg  regexp 입력시
-         * @param {string?} p_code regexp 입력시
-         * @param {boolean?} p_condition <기본값 false> 성공/실패 조건
-         * @param {boolean?} p_condition.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
-         * @param {boolean?} p_condition.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
-         * @returns {object?} 리턴값이 없으면 검사 성공
+         * @param {string} [p_code] regexp 입력시
+         * @param {boolean} [p_condition] <기본값 false> 성공/실패 조건
+         * @param {boolean} p_condition.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
+         * @param {boolean} p_condition.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
+         * @returns {object | undefined} 리턴값이 없으면 검사 성공
          */
         MetaColumn.prototype.addConstraint = function(p_regex, p_msg, p_code, p_condition) {
             p_condition = p_condition || false;

@@ -65,12 +65,12 @@
          * @constructs _L.Meta.Entity.ObjectColumn
          * @extends _L.Meta.Entity.BaseColumn
          * @param {string} p_name 객체컬럼명
-         * @param {BaseEntity?} p_entity 소유 BaseEntity
-         * @param {object?} p_property 
-         * @param {object?} p_property.default 기본값
-         * @param {string?} p_property.caption 설명
-         * @param {object?} p_property.value value 값
-         * @param {string?} p_property.alias 별칭
+         * @param {BaseEntity} [p_entity] 소유 BaseEntity
+         * @param {object} [p_property] 
+         * @param {object} p_property.default 기본값
+         * @param {string} p_property.caption 설명
+         * @param {object} p_property.value value 값
+         * @param {string} p_property.alias 별칭
          */
         function ObjectColumn(p_name, p_entity, p_property) {
             _super.call(this, p_name, p_entity);
@@ -109,7 +109,7 @@
          * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
          * 객체 비교 : equal(a, b)  
          * a.getObject(2) == b.getObject(2)   
-         * @param {(object | array<object>)?} p_owned 현재 객체를 소유하는 상위 객체들
+         * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
          * @returns {object}  
          */
         ObjectColumn.prototype.getObject = function(p_vOpt, p_owned) {
@@ -178,7 +178,7 @@
         /**
          * 객체 복제
          * override
-         * @param {BaseEntity?} p_entity 지정한 엔티티로 복제
+         * @param {BaseEntity} [p_entity] 지정한 엔티티로 복제
          * @returns {ObjectColumn}
          */
         ObjectColumn.prototype.clone = function(p_entity) {

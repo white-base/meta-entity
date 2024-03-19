@@ -284,7 +284,7 @@
          * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
          * 객체 비교 : equal(a, b)  
          * a.getObject(2) == b.getObject(2)   
-         * @param {(object | array<object>)?} p_owned 현재 객체를 소유하는 상위 객체들
+         * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
          * @returns {object}  
          */
         MetaRow.prototype.getObject = function(p_vOpt, p_owned) {
@@ -318,7 +318,7 @@
         /**
          * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
          * @param {object} p_oGuid guid 타입의 객체
-         * @param {object?} p_origin 현재 객체를 설정하는 원본 guid 객체  
+         * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
          * 기본값은 p_oGuid 객체와 동일
          */
         MetaRow.prototype.setObject  = function(p_oGuid, p_origin) {
@@ -348,7 +348,7 @@
 
        /**
          * 객체 복제
-         * @param {BaseEntity?} p_entity 대상의 엔티티 기준으로 생성
+         * @param {BaseEntity} [p_entity] 대상의 엔티티 기준으로 생성
          * @returns {MetaRow}
          */
         MetaRow.prototype.clone  = function(p_entity) {
@@ -373,7 +373,7 @@
          * 로우 컬렉션
          * @constructs _L.Meta.Entity.MetaRowCollection
          * @extends _L.Collection.TransactionCollection
-         * @param {object?} p_owner 소유자 
+         * @param {object} [p_owner] 소유자 
          */
         function MetaRowCollection(p_owner) {
             _super.call(this, p_owner);
@@ -408,7 +408,7 @@
         /**
          * MetaRow 추가 idx 를 기준으로 검사한다.
          * @param {MetaRow} p_row 
-         * @param {boolean?} p_isCheck true: 검사 진행, false: 검사 안함
+         * @param {boolean} [p_isCheck] true: 검사 진행, false: 검사 안함
          * @returns {number}
          */
         MetaRowCollection.prototype.add  = function(p_row, p_isCheck) {
@@ -419,7 +419,7 @@
          * pos 위치에 추가
          * @param {number} p_pos 
          * @param {MetaRow} p_row 
-         * @param {boolean?} p_isCheck 유효성 검사 여부 
+         * @param {boolean} [p_isCheck] 유효성 검사 여부 
          * @returns {boolean}
          */
         MetaRowCollection.prototype.insertAt  = function(p_pos, p_row, p_isCheck) {

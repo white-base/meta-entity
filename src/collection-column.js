@@ -67,7 +67,7 @@
          * @constructs _L.Meta.Entity.BaseColumnCollection
          * @extends _L.Collection.PropertyCollection
          * @param {object} p_owner 소유자 
-         * @param {BaseColumn?} p_baseType 기본 컬럼 타입
+         * @param {BaseColumn} [p_baseType] 기본 컬럼 타입
          */
         function BaseColumnCollection(p_owner, p_baseType) {
             _super.call(this, p_owner);
@@ -162,7 +162,7 @@
         /**
          * 별칭에 대한 컬럼 객체 얻기
          * @param {string} p_key 
-         * @returns {BaseColumn?}
+         * @returns {BaseColumn | undefined}
          */
         BaseColumnCollection.prototype.alias  = function(p_key) {
             for (var i = 0; this.count > i; i++) {
@@ -291,7 +291,7 @@
          * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
          * 객체 비교 : equal(a, b)  
          * a.getObject(2) == b.getObject(2)   
-         * @param {(object | array<object>)?} p_owned 현재 객체를 소유하는 상위 객체들
+         * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
          * @returns {object}  
          */
         MetaViewColumnCollection.prototype.getObject = function(p_vOpt, p_owned) {
@@ -323,7 +323,7 @@
          * - collection에 컬럼이 존재할 경우 : columns 객체는 무시되고, 리턴한 객체의 참조를 등록한다.
          * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)
          * @param {string | MetaColumn} p_any 
-         * @param {BaseColumnCollection?} p_refCollection
+         * @param {BaseColumnCollection} [p_refCollection]
          */
         MetaViewColumnCollection.prototype.add  = function(p_any, p_refCollection) {
             var collection;
@@ -367,7 +367,7 @@
          *  이름과 값으로 컬럼 생성하여 컬렉션에 추가
          * @param {string} p_name 컬럼명
          * @param {any} p_value 
-         * @param {BaseColumnCollection?} p_refCollection
+         * @param {BaseColumnCollection} [p_refCollection]
          * @returns {MetaColumn}
          */
         MetaViewColumnCollection.prototype.addValue  = function(p_name, p_value, p_refCollection) {
