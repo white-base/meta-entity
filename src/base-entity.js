@@ -773,6 +773,7 @@
         };
         
         /**
+         * 객체(직렬화) 로드
          * 불러오기/가져오기 (!! 병합용도가 아님)
          * 기존을 초기화 하고 불러오는 역활
          * @param {object | string} p_obj 불러오기 대상
@@ -816,7 +817,7 @@
         };
 
         /**
-         * object 로 로딩하기   
+         * object 로 읽기   
          * JSON 스키마 규칙   
          * { table: { columns: {}, rows: {} }}   
          * { columns: {...}, rows: {} }
