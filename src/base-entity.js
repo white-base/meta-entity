@@ -58,7 +58,7 @@
     var MetaRow                 = _MetaRow              || $MetaRow;
     var BaseColumnCollection    = _BaseColumnCollection || $BaseColumnCollection;
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
-
+    
     //==============================================================
     // 3. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
