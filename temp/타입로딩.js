@@ -8,8 +8,10 @@ var Message                     = require('logic-core').Message;
 
 var MetaObject                  = require('logic-core').MetaObject;
 var IObject                     = require('logic-core').IObject;
+var IElement                    = require('logic-core').IElement;
 var ExtendError                 = require('logic-core').ExtendError;
-var PropertyCollection                 = require('logic-core').PropertyCollection;
+var PropertyCollection          = require('logic-core').PropertyCollection;
+var MetaRegistry                = require('logic-core').MetaRegistry;
 
 var MetaElement                 = require('logic-core').MetaElement;
 var MetaTable                   = require('../src/meta-table').MetaTable;
@@ -25,7 +27,10 @@ var iii = new MetaTable('ff')
 
 var i5 = new MetaObject()
 var i6 = new IObject()
-var i7 = new PropertyCollection()
+var i7 = new PropertyCollection({})
+
+
+// MetaRegistry.setMetaObject
 
 // i7.add('a', null, {get: aa})
 
