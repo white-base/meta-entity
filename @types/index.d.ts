@@ -61,6 +61,8 @@ import Observer = require("./observer");
 import Util = require("./util");
 import Message = require("./message");
 
+import IElement = require("logic-core/i-element");      // POINT: 상위 타입 가져오기
+// import IElement = require("logic-core/IElement");
 
 // declare class Message {
 //     static init(): void;
