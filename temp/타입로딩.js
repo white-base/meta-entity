@@ -1,5 +1,5 @@
 
-// @ts-check
+// ts-check
 
 var Util                        = require('logic-core').Util;
 var Observer                    = require('logic-core').Observer;
