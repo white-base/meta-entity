@@ -70,7 +70,7 @@
             /**
              * 컬럼 컬렉션의 키
              * @readonly
-             * @member {BaseEntity} _L.Meta.Entity.BaseColumn#__key
+             * @member {string} _L.Meta.Entity.BaseColumn#__key
              */
             Object.defineProperty(this, '__key', 
             {
