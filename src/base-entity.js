@@ -831,7 +831,6 @@
             var entity = null;
             var opt = typeof p_option === 'undefined' ? 3 : p_option;
 
-            
             try {
                 if (!_isObject(p_obj)) throw new ExtendError(/EL05354/, null, [typeof p_obj]);
                 if (typeof opt !== 'number') throw new ExtendError(/EL05355/, null, [typeof opt]);
@@ -840,11 +839,16 @@
                 if (p_obj instanceof BaseEntity) {
                     this._readEntity(p_obj, p_option);
                 } else{
-                    if (p_obj.viewName) this.viewName = p_obj.viewName;
-                    if (p_obj.tableName) this.tableName = p_obj.tableName;
+                    if (p_obj['entity']) entity = p_obj['entity'];
+                    else if (p_obj['table']) entity = p_obj['table'];
+                    else entity = p_obj;
+
+                    if (entity.viewName) this.viewName = entity.viewName;
+                    if (entity.tableName) this.tableName = entity.tableName;
+                    
                     // 스키마 및 데이터 읽기
-                    if (opt % 2 === 1) this.readSchema(p_obj, opt === 3 ? true : false); // opt: 1, 3
-                    if (Math.floor(opt / 2) >= 1) this.readData(p_obj); // opt: 2, 3
+                    if (opt % 2 === 1) this.readSchema(entity, opt === 3 ? true : false); // opt: 1, 3
+                    if (Math.floor(opt / 2) >= 1) this.readData(entity); // opt: 2, 3
                 }
                 
             } catch (error) {
@@ -860,7 +864,6 @@
          */
         BaseEntity.prototype.readSchema  = function(p_obj, p_createRow) {
             var obj = p_obj;
-            
             
             try {
                 if (!_isObject(p_obj)) throw new ExtendError(/EL05358/, null, [typeof p_obj]);
