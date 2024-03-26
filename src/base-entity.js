@@ -392,7 +392,7 @@
             var _this = this;
             var obj = p_obj;
             var columns;
-            var rows;
+            var rows = [];
             var Column = this.columns._baseType;
             var origin = p_origin ? p_origin : p_obj;
             
@@ -418,15 +418,19 @@
 
                 }
                 // opt
-                if (p_isCreateRow === true) {
-                    rows = obj['rows'];
-                    if (Array.isArray(rows) && rows.length > 0)
-                    for (var key in rows[0]) {    // rows[0] 기준
-                        if (Object.prototype.hasOwnProperty.call(rows[0], key) && !this.columns.existAlias(key)) {
-                            var prop = rows[0][key];
-                            if (!this.columns.exist(key)) {
-                                var column = new Column(key, this);
-                                this.columns.add(column);
+                if (p_isCreateRow === true && obj['rows']) {
+                    // rows = obj['rows'];
+                    if (Array.isArray(obj['rows'])) rows = obj['rows'];
+                    else rows.push(obj['rows']);
+
+                    if (Array.isArray(rows) && rows.length > 0 && typeof rows[0] === 'object') {
+                        for (var key in rows[0]) {    // rows[0] 기준
+                            if (Object.prototype.hasOwnProperty.call(rows[0], key) && !this.columns.existAlias(key)) {
+                                var prop = rows[0][key];
+                                if (!this.columns.exist(key)) {
+                                    var column = new Column(key, this);
+                                    this.columns.add(column);
+                                }
                             }
                         }
                     }
@@ -886,7 +890,7 @@
          */
         BaseEntity.prototype.readData  = function(p_obj) {
             var obj = p_obj;
-            var rows;
+            var rows = [];
 
             try {
                 if (!_isObject(p_obj)) throw new ExtendError(/EL0535B/, null, [typeof p_obj]);
@@ -897,15 +901,15 @@
                 }
                 if (!_isSchema(obj)) throw new ExtendError(/EL0535C/, null, [obj.columns, obj.rows]);
                 
-                rows = obj['rows'];
-                if (Array.isArray(rows) && this.columns.count > 0) {
-                    for (var i = 0; i < rows.length; i++) {
-                        var row = this.newRow(this);
-                        for (var key in rows[i]) {
-                            if (Object.prototype.hasOwnProperty.call(row, key)) row[key] = rows[i][key];
-                        }
-                        this.rows.add(row);
+                if (Array.isArray(obj['rows'])) rows = obj['rows'];
+                else rows.push(obj['rows']);
+                
+                for (var i = 0; i < rows.length && this.columns.count > 0; i++) {
+                    var row = this.newRow(this);
+                    for (var key in rows[i]) {
+                        if (Object.prototype.hasOwnProperty.call(row, key)) row[key] = rows[i][key];
                     }
+                    this.rows.add(row);
                 }
                 
             } catch (error) {
