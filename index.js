@@ -1,6 +1,3 @@
-/**
- * ES5
- */
 var ExtendError                 = require('logic-core').ExtendError;
 var Type                        = require('logic-core').Type;
 var Util                        = require('logic-core').Util;
@@ -23,61 +20,28 @@ var IListControl                = require('logic-core').IListControl;
 var ISerialize                  = require('logic-core').ISerialize;
 var IArrayCollection            = require('logic-core').IArrayCollection;
 
-var BaseEntity                  = require('./src/base-entity').BaseEntity;
-var MetaView                    = require('./src/meta-view').MetaView;
-var MetaViewCollection          = require('./src/meta-view').MetaViewCollection;
-var MetaTable                   = require('./src/meta-table').MetaTable;
-var MetaTableCollection         = require('./src/meta-table').MetaTableCollection;
-var MetaColumn                  = require('./src/meta-column').MetaColumn;
-var BaseColumnCollection        = require('./src/collection-column').BaseColumnCollection;
-var MetaViewColumnCollection    = require('./src/collection-column').MetaViewColumnCollection;
-var MetaTableColumnCollection   = require('./src/collection-column').MetaTableColumnCollection;
-var MetaRow                     = require('./src/meta-row').MetaRow;
-var MetaRowCollection           = require('./src/meta-row').MetaRowCollection;
-var IExportControl              = require('./src/i-control-export').IExportControl;
-var IGroupControl               = require('./src/i-control-group').IGroupControl;
-var IImportControl              = require('./src/i-control-import').IImportControl;
-var ISchemaControl              = require('./src/i-control-schema').ISchemaControl;
-var ITransaction                = require('./src/i-transaction').ITransaction;
-
 module.exports = {
     Util: Util,
     Type: Type,
     Observer: Observer,
     ExtendError: ExtendError,
     Message: Message,
-    BaseCollection: BaseCollection,
-    ArrayCollection: ArrayCollection,
-    PropertyCollection: PropertyCollection,
-    MetaObject: MetaObject,
-    MetaElement: MetaElement,
-    BaseEntity: BaseEntity,
-    MetaView: MetaView,
-    MetaViewCollection: MetaViewCollection,
-    MetaTable: MetaTable,
-    MetaTableCollection: MetaTableCollection,
-    MetaColumn: MetaColumn,
-    BaseColumnCollection: BaseColumnCollection,
-    MetaViewColumnCollection: MetaViewColumnCollection,
-    MetaTableColumnCollection: MetaTableColumnCollection,
-    MetaRow: MetaRow,
-    MetaRowCollection: MetaRowCollection,
-    MetaRegistry: MetaRegistry,
-    NamespaceManager: NamespaceManager,
     IObject: IObject,
     IMarshal: IMarshal,
     ICollection: ICollection,
     IPropertyCollection: IPropertyCollection,
-    IExportControl: IExportControl,
-    IGroupControl: IGroupControl,
-    IImportControl: IImportControl,
     IElement: IElement,
     IList: IList,
     IListControl: IListControl,
-    ISchemaControl: ISchemaControl,
-    ITransaction: ITransaction,
     ISerialize: ISerialize,
     IArrayCollection: IArrayCollection,
+    MetaObject: MetaObject,
+    MetaElement: MetaElement,
+    NamespaceManager: NamespaceManager,
+    MetaRegistry: MetaRegistry,
+    BaseCollection: BaseCollection,
+    ArrayCollection: ArrayCollection,
+    PropertyCollection: PropertyCollection,
     // namespace
     Common: {
         Util: Util,
@@ -96,35 +60,94 @@ module.exports = {
         MetaElement: MetaElement,
         MetaRegistry: MetaRegistry,
         NamespaceManager: NamespaceManager,        
-        Entity: {
-            BaseEntity: BaseEntity,
-            MetaView: MetaView,
-            MetaViewCollection: MetaViewCollection,
-            MetaTable: MetaTable,
-            MetaTableCollection: MetaTableCollection,
-            MetaColumn: MetaColumn,
-            BaseColumnCollection: BaseColumnCollection,
-            MetaViewColumnCollection: MetaViewColumnCollection,
-            MetaTableColumnCollection: MetaTableColumnCollection,
-            MetaRow: MetaRow,
-            MetaRowCollection: MetaRowCollection,
-        }
     },
     Interface: {
         IObject: IObject,
         IMarshal: IMarshal,
         ICollection: ICollection,
         IPropertyCollection: IPropertyCollection,
-        IExportControl: IExportControl,
-        IGroupControl: IGroupControl,
-        IImportControl: IImportControl,
         IElement: IElement,
         IList: IList,
         IListControl: IListControl,
-        ISchemaControl: ISchemaControl,
-        ITransaction: ITransaction,
         ISerialize: ISerialize,
         IArrayCollection: IArrayCollection,
     
+    },
+}
+
+// ################# local export #################
+var BaseColumn                  = require('./src/base-column').BaseColumn;
+var BaseEntity                  = require('./src/base-entity').BaseEntity;
+var BaseColumnCollection        = require('./src/collection-column').BaseColumnCollection;
+var MetaViewColumnCollection    = require('./src/collection-column').MetaViewColumnCollection;
+var MetaTableColumnCollection   = require('./src/collection-column').MetaTableColumnCollection;
+var TransactionCollection       = require('./src/collection-transaction').TransactionCollection;
+var IExportControl              = require('./src/i-control-export').IExportControl;
+var IGroupControl               = require('./src/i-control-group').IGroupControl;
+var IImportControl              = require('./src/i-control-import').IImportControl;
+var ISchemaControl              = require('./src/i-control-schema').ISchemaControl;
+var ITransaction                = require('./src/i-transaction').ITransaction;
+var MetaColumn                  = require('./src/meta-column').MetaColumn;
+var MetaRow                     = require('./src/meta-row').MetaRow;
+var MetaRowCollection           = require('./src/meta-row').MetaRowCollection;
+var MetaSet                     = require('./src/meta-set').MetaSet;
+var MetaTable                   = require('./src/meta-table').MetaTable;
+var MetaTableCollection         = require('./src/meta-table').MetaTableCollection;
+var MetaView                    = require('./src/meta-view').MetaView;
+var MetaViewCollection          = require('./src/meta-view').MetaViewCollection;
+var ObjectColumn                = require('./src/object-column').ObjectColumn;
+var TransactionQueue            = require('./src/trans-queue').TransactionQueue;
+
+module.exports = {
+    BaseColumn: BaseColumn,
+    BaseEntity: BaseEntity,
+    BaseColumnCollection: BaseColumnCollection,
+    MetaViewColumnCollection: MetaViewColumnCollection,
+    MetaTableColumnCollection: MetaTableColumnCollection,
+    TransactionCollection: TransactionCollection,
+    IExportControl: IExportControl,
+    IGroupControl: IGroupControl,
+    IImportControl: IImportControl,
+    ISchemaControl: ISchemaControl,
+    ITransaction: ITransaction,
+    MetaColumn: MetaColumn,
+    MetaRow: MetaRow,
+    MetaRowCollection: MetaRowCollection,
+    MetaSet: MetaSet,
+    MetaTable: MetaTable,
+    MetaTableCollection: MetaTableCollection,
+    MetaView: MetaView,
+    MetaViewCollection: MetaViewCollection,
+    ObjectColumn: ObjectColumn,
+    TransactionQueue: TransactionQueue,
+    // namespace
+    Collection: {
+        TransactionCollection: TransactionCollection,
+        TransactionQueue: TransactionQueue,
+    },
+    Meta: {
+        Entity: {
+            BaseColumn: BaseColumn,
+            BaseEntity: BaseEntity,
+            BaseColumnCollection: BaseColumnCollection,
+            MetaViewColumnCollection: MetaViewColumnCollection,
+            MetaTableColumnCollection: MetaTableColumnCollection,
+            TransactionCollection: TransactionCollection,
+            MetaColumn: MetaColumn,
+            MetaRow: MetaRow,
+            MetaRowCollection: MetaRowCollection,
+            MetaSet: MetaSet,
+            MetaTable: MetaTable,
+            MetaTableCollection: MetaTableCollection,
+            MetaView: MetaView,
+            MetaViewCollection: MetaViewCollection,
+        }
+    },
+    Interface: {
+        IExportControl: IExportControl,
+        IGroupControl: IGroupControl,
+        IImportControl: IImportControl,
+        ISchemaControl: ISchemaControl,
+        ITransaction: ITransaction,
     },
 }
