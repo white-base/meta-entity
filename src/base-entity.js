@@ -76,7 +76,7 @@
     if (typeof BaseColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['BaseColumnCollection', 'meta-column']));
 
     //==============================================================
-    // 4. module implementation   
+    // 4. module implementation
 
     // /**
     //  * 병합 옵션입니다.
