@@ -19,62 +19,6 @@ var IList                       = require('logic-core').IList;
 var IListControl                = require('logic-core').IListControl;
 var ISerialize                  = require('logic-core').ISerialize;
 var IArrayCollection            = require('logic-core').IArrayCollection;
-
-module.exports = {
-    Util: Util,
-    Type: Type,
-    Observer: Observer,
-    ExtendError: ExtendError,
-    Message: Message,
-    IObject: IObject,
-    IMarshal: IMarshal,
-    ICollection: ICollection,
-    IPropertyCollection: IPropertyCollection,
-    IElement: IElement,
-    IList: IList,
-    IListControl: IListControl,
-    ISerialize: ISerialize,
-    IArrayCollection: IArrayCollection,
-    MetaObject: MetaObject,
-    MetaElement: MetaElement,
-    NamespaceManager: NamespaceManager,
-    MetaRegistry: MetaRegistry,
-    BaseCollection: BaseCollection,
-    ArrayCollection: ArrayCollection,
-    PropertyCollection: PropertyCollection,
-    // namespace
-    Common: {
-        Util: Util,
-        Type: Type,
-        Observer: Observer,
-        ExtendError: ExtendError,
-        Message: Message,
-    },
-    Collection: {
-        BaseCollection: BaseCollection,
-        ArrayCollection: ArrayCollection,
-        PropertyCollection: PropertyCollection,
-    },
-    Meta: {
-        MetaObject: MetaObject,
-        MetaElement: MetaElement,
-        MetaRegistry: MetaRegistry,
-        NamespaceManager: NamespaceManager,        
-    },
-    Interface: {
-        IObject: IObject,
-        IMarshal: IMarshal,
-        ICollection: ICollection,
-        IPropertyCollection: IPropertyCollection,
-        IElement: IElement,
-        IList: IList,
-        IListControl: IListControl,
-        ISerialize: ISerialize,
-        IArrayCollection: IArrayCollection,
-    
-    },
-}
-
 // ################# local export #################
 var BaseColumn                  = require('./src/base-column').BaseColumn;
 var BaseEntity                  = require('./src/base-entity').BaseEntity;
@@ -99,6 +43,28 @@ var ObjectColumn                = require('./src/object-column').ObjectColumn;
 var TransactionQueue            = require('./src/trans-queue').TransactionQueue;
 
 module.exports = {
+    Util: Util,
+    Type: Type,
+    Observer: Observer,
+    ExtendError: ExtendError,
+    Message: Message,
+    IObject: IObject,
+    IMarshal: IMarshal,
+    ICollection: ICollection,
+    IPropertyCollection: IPropertyCollection,
+    IElement: IElement,
+    IList: IList,
+    IListControl: IListControl,
+    ISerialize: ISerialize,
+    IArrayCollection: IArrayCollection,
+    MetaObject: MetaObject,
+    MetaElement: MetaElement,
+    NamespaceManager: NamespaceManager,
+    MetaRegistry: MetaRegistry,
+    BaseCollection: BaseCollection,
+    ArrayCollection: ArrayCollection,
+    PropertyCollection: PropertyCollection,
+    // #### local ####
     BaseColumn: BaseColumn,
     BaseEntity: BaseEntity,
     BaseColumnCollection: BaseColumnCollection,
@@ -120,12 +86,27 @@ module.exports = {
     MetaViewCollection: MetaViewCollection,
     ObjectColumn: ObjectColumn,
     TransactionQueue: TransactionQueue,
-    // namespace
+    Common: {
+        Util: Util,
+        Type: Type,
+        Observer: Observer,
+        ExtendError: ExtendError,
+        Message: Message,
+    },
     Collection: {
+        BaseCollection: BaseCollection,
+        ArrayCollection: ArrayCollection,
+        PropertyCollection: PropertyCollection,
+        // #### local ####
         TransactionCollection: TransactionCollection,
         TransactionQueue: TransactionQueue,
     },
     Meta: {
+        MetaObject: MetaObject,
+        MetaElement: MetaElement,
+        MetaRegistry: MetaRegistry,
+        NamespaceManager: NamespaceManager,
+        // #### local ####
         Entity: {
             BaseColumn: BaseColumn,
             BaseEntity: BaseEntity,
@@ -141,13 +122,23 @@ module.exports = {
             MetaTableCollection: MetaTableCollection,
             MetaView: MetaView,
             MetaViewCollection: MetaViewCollection,
-        }
+        }        
     },
     Interface: {
+        IObject: IObject,
+        IMarshal: IMarshal,
+        ICollection: ICollection,
+        IPropertyCollection: IPropertyCollection,
+        IElement: IElement,
+        IList: IList,
+        IListControl: IListControl,
+        ISerialize: ISerialize,
+        IArrayCollection: IArrayCollection,
+        // #### local ####
         IExportControl: IExportControl,
         IGroupControl: IGroupControl,
         IImportControl: IImportControl,
         ISchemaControl: ISchemaControl,
-        ITransaction: ITransaction,
+        ITransaction: ITransaction,    
     },
 }
