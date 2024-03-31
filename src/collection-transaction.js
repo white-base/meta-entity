@@ -104,6 +104,10 @@
                 enumerable: false
             });
 
+            // 예약어 등록 
+            this.__KEYWORD = ['_transQueue', 'autoChanges', 'hasChanges'];
+            this.__KEYWORD = ['commit', 'rollback'];
+
         }
         Util.inherits(TransactionCollection, _super);
 

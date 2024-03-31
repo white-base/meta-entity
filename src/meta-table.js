@@ -265,6 +265,9 @@
             });
 
             this._elemTypes = MetaTable;   // 컬렉션 타입 설정
+
+            // 예약어 등록 
+            this.__KEYWORD = ['_baseType', 'existTableName'];
         }
         Util.inherits(MetaTableCollection, _super);
 

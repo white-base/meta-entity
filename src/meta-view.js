@@ -265,6 +265,9 @@
             });
 
             this._elemTypes = MetaView;   // 컬렉션타입 설정
+
+            // 예약어 등록 
+            this.__KEYWORD = ['_baseType', 'existViewName'];
         }
         Util.inherits(MetaViewCollection, _super);
 

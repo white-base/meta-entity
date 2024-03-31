@@ -93,6 +93,10 @@
 
             // this._baseType = p_baseType || MetaColumn;
             this._baseType = p_baseType;
+
+            // 예약어 등록 
+            this.__KEYWORD = ['_baseType', '_ownerIsEntity', 'initValue', 'existAlias'];
+            this.__KEYWORD = ['existColumnName', 'alias', 'addValue'];
         }
         Util.inherits(BaseColumnCollection, _super);
         
@@ -199,6 +203,9 @@
          */
         function MetaTableColumnCollection(p_owner) {
             _super.call(this, p_owner, MetaColumn);
+
+            // 예약어 등록 
+            this.__KEYWORD = ['addValue'];
         }
         Util.inherits(MetaTableColumnCollection, _super);
 
@@ -288,6 +295,9 @@
                 configurable: false,
                 enumerable: false
             });
+
+            // 예약어 등록 
+            this.__KEYWORD = ['_refEntities', 'addValue', 'addEntity'];
         }
         Util.inherits(MetaViewColumnCollection, _super);
 
