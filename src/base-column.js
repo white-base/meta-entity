@@ -59,29 +59,52 @@
         function BaseColumn(p_name, p_entity) {
             _super.call(this, p_name);
 
-            var __value         = null;
-            var __key           = p_name;
+            
+            var $key            = p_name;
+            var $alias          = null;
             var _entity;
             var _valueTypes     = this._type._VALUE_TYPE || [];
+            var value           = null;
             var defaultValue    = null;
             var caption         = null;
-            var alias           = null;
             
             /**
              * 컬럼 컬렉션의 키
+             * @member {string} _L.Meta.Entity.BaseColumn#$key
              * @readonly
-             * @member {string} _L.Meta.Entity.BaseColumn#__key
+             * @private
              */
-            Object.defineProperty(this, '__key', 
+            Object.defineProperty(this, '$key',
             {
-                get: function() { return __key; },
+                get: function() { return $key; },
+                set: function(nVal) { 
+                    if (_isString(nVal)) $key = nVal;
+                },
                 configurable: false,
                 enumerable: false,
             });
 
             /**
+             * 별칭 내부값
+             * @member {string} _L.Meta.Entity.BaseColumn#$alias
+             * @readonly
+             * @private
+             */
+            Object.defineProperty(this, '$alias',
+            {
+                get: function() { return $alias; },
+                set: function(nVal) { 
+                    if (_isString(nVal)) $alias = nVal;
+                },
+                configurable: false,
+                enumerable: false,
+            });
+
+
+            /**
              * 컬럼 소유 엔티티
              * @member {BaseEntity} _L.Meta.Entity.BaseColumn#_entity
+             * @protected
              */
             Object.defineProperty(this, '_entity', 
             {
@@ -99,6 +122,7 @@
             /**
              * value 속성 타입 설정
              * @member {BaseEntity} _L.Meta.Entity.BaseColumn#_valueTypes
+             * @protected
              */
             Object.defineProperty(this, '_valueTypes', 
             {
@@ -141,12 +165,12 @@
              */
             Object.defineProperty(this, 'alias', 
             {
-                get: function() { return typeof alias === 'string' ? alias : this.columnName; },
+                get: function() { return typeof $alias === 'string' ? $alias : this.columnName; },
                 set: function(nVal) { 
                    var entity = this._entity;
                    if(typeof nVal !== 'string') throw new ExtendError(/EL05115/, null, [this.constructor.name, typeof nVal]); 
                    if (entity && entity.columns.existAlias(nVal)) throw new ExtendError(/EL05116/, null, [this.constructor.name, nVal]);
-                   alias = nVal;
+                   $alias = nVal;
                 },
                 configurable: false,
                 enumerable: true
@@ -188,22 +212,22 @@
              */
             Object.defineProperty(this, 'value', 
             {
-                get: function() { return __value; },
-                set: function(nVal) { 
+                get: function() { return value; },
+                set: function(nVal) {
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
-                    __value = nVal; 
+                    value = nVal;
                 },
                 configurable: true,
                 enumerable: true
             });
 
             // inner variable access
-            this.__GET$alias = function(call) {
-                if (call instanceof BaseColumn) return alias;
-            }
-            this.__SET$__key = function(val, call) {
-                if (call instanceof BaseColumn) __key = val;
-            }
+            // this.__GET$alias = function(call) {
+            //     if (call instanceof BaseColumn) return $alias;
+            // }
+            // this.__SET$key = function(val, call) {
+            //     if (call instanceof BaseColumn) $key = val;
+            // }
             // this.__SET$_valueTypes = function(val, call) {
             //     var arr = [];
             //     if (call instanceof BaseColumn) {
@@ -221,6 +245,16 @@
         BaseColumn._PARAMS = ['columnName', '_entity'];    // creator parameter
         BaseColumn._KIND = 'abstract';
         BaseColumn._VALUE_TYPE = [];
+
+        // local funciton
+        // function _isObject(obj) {    // 객체 여부
+        //     if (typeof obj === 'object' && obj !== null) return true;
+        //     return false;
+        // }
+        function _isString(obj) {    // 공백아닌 문자 여부
+            if (typeof obj === 'string' && obj.length > 0) return true;
+            return false;
+        }
 
         /**
          * 현재 객체의 guid 타입의 객체를 가져옵니다.  
@@ -245,7 +279,8 @@
             obj['columnName'] = this.columnName;
             if (this.default !== null) obj['default'] = this.default;
             if (this.caption !== null) obj['caption'] = this.caption;            
-            if (this.__GET$alias(this) !== null) obj['alias'] = this.__GET$alias(this);
+            if (this.$alias !== null) obj['alias'] = this.$alias;
+            // if (this.__GET$alias(this) !== null) obj['alias'] = this.__GET$alias(this);
             if (this.value !== null) obj['value'] = this.value;
             return obj;                        
         };

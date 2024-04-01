@@ -670,25 +670,25 @@ describe("[target: meta-column.js ]", () => {
             });
             it("- 예외 : 설정 1", () => {   
                 const c1 = new MetaColumn('c1');
-                c1.__SET$__value('INNER', c1);
-                expect(c1.__GET$__value(c1)).toBe('INNER')
+                c1.$value = 'INNER'
+                expect(c1.$value).toBe('INNER')
             });
 
             it("- 조회 : COVER", () => {   
                 const c1 = new MetaColumn('c1');
                 
-                c1.__SET$__key('cc1', c1);
-                c1.__SET$__key('cc2');      // 무시됨
-                expect(c1.__key).toBe('cc1')
+                c1.$key = 'cc1';
+                expect(c1.$key).toBe('cc1')
+                // c1.$alias = 
                 
-                c1.__SET$__value('VV', c1);
-                c1.__SET$__value('VV');     // 무시됨
-                expect(c1.__GET$__value(c1)).toBe('VV')
-                expect(c1.__GET$__value()).toBe(undefined)
+                c1.$value = 'VV'
+                // c1.__SET$$value('VV');     // 무시됨
+                expect(c1.$value).toBe('VV')
+                // expect(c1.$$value()).toBe(undefined)
 
                 expect(c1.alias).toBe('c1')
-                expect(c1.__GET$alias()).toBe(undefined)
-                expect(c1.__GET$alias(c1)).toBe(null)
+                expect(c1.$alias).toBe(null)
+                // expect(c1.__GET$alias(c1)).toBe(null)
 
             });
             it("- 커버리지 : 조건검사 ", () => {   

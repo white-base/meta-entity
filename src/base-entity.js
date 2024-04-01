@@ -637,7 +637,8 @@
                     clone = tarColumns[i].clone(_this);
                     var key = tarColumns[i].alias;
                     clone.columnName = key;
-                    clone.__SET$__key(key, clone);
+                    clone.$key = key;
+                    // clone.__SET$$key(key, clone);
                     _this.columns.add(clone);
                 }
                 // 3-4. 로우 추가 (기준:idx)

@@ -69,16 +69,16 @@
         function MetaColumn(p_name, p_entity, p_property) {
             _super.call(this, p_name, p_entity);
 
-            var __value       = null;   // 재정의
+            var $value       = null;   // 재정의
             var __event       = new Observer(this);
-            var defaultValue  = null;
-            var caption       = null;
+            // var defaultValue  = null;
+            // var caption       = null;
             var isNotNull     = false;
             var isNullPass    = false;
             var constraints   = [];
             var getter        = null;
             var setter        = null;
-            var alias         = null;
+            // var alias         = null;
 
             /** 
              * 이벤트 객체
@@ -91,6 +91,20 @@
                 configurable: false,
                 enumerable: false,
             });        
+
+            /**
+             * 별칭 내부값
+             * @member {string} _L.Meta.Entity.MetaColumn#$value
+             * @readonly
+             * @private
+             */
+            Object.defineProperty(this, '$value',
+            {
+                get: function() { return $value; },
+                set: function(nVal) { $value = nVal; },
+                configurable: false,
+                enumerable: false,
+            });
 
             /**
              * 컬럼 value의 필수 여부
@@ -153,7 +167,7 @@
             
             /**
              * 컬럼 value  
-             * get 우선순위 : 1. getter 있는 경우, 2. 내부값 __value  
+             * get 우선순위 : 1. getter 있는 경우, 2. 내부값 $value  
              * set 우선순위 : 1. setter 있는 경우, 2. setter 리턴값이 없는 경우  
              * REVIEW: 정리표 보고 수정 필요!!
              * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#value
@@ -165,29 +179,29 @@
                     // 우선순위 : 1
                     if (typeof getter === 'function' ) {
                         __val = getter.call(this);
-                        if (__value !== null && __value !== __val) {
-                            this._onChanged(__val, __value);    // 검사 및 이벤트 발생
-                            __value = __val;   // 내부에 저장
+                        if ($value !== null && $value !== __val) {
+                            this._onChanged(__val, $value);    // 검사 및 이벤트 발생
+                            $value = __val;   // 내부에 저장
                         }
                     // 우선순위 : 2
-                    } else __val = __value;
+                    } else __val = $value;
                     /**
                      * 분기 처리값 '__val' 없는경우 (null, undefined)
-                     *  - this.__value 초기화 되지 않은 경우
+                     *  - this.$value 초기화 되지 않은 경우
                      *  - getter 리턴이 없는 경우
                      */
-                    if (typeof __val === 'undefined' || __val === null) __val = __value || this.default;  
+                    if (typeof __val === 'undefined' || __val === null) __val = $value || this.default;  
                     return __val; 
                 },
                 set:  function(val) { 
                     var __val, _val;
-                    var _oldVal = __value;
+                    var _oldVal = $value;
                     if (typeof setter === 'function' ) _val = setter.call(this, val);
                     // settter 의 리턴이 여부
                     __val = typeof _val !== 'undefined' ? _val : val;
                     __val = __val === null ? '' : __val;  // null 등록 오류 처리
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], __val);
-                    __value = __val;
+                    $value = __val;
                     if (_oldVal !== __val && __val) this._onChanged(__val, _oldVal);    // 검사 및 이벤트 발생
                 },
                 configurable: true, // 재정의 허용
@@ -247,12 +261,12 @@
             // this.__GET$alias = function(call) {
             //     if (call instanceof MetaColumn) return alias;
             // }
-            this.__GET$__value = function(call) {
-                if (call instanceof MetaColumn) return __value;
-            }
-            this.__SET$__value = function(val, call) {
-                if (call instanceof MetaColumn) __value = val;
-            }
+            // this.__GET$$value = function(call) {
+            //     if (call instanceof MetaColumn) return $value;
+            // }
+            // this.__SET$$value = function(val, call) {
+            //     if (call instanceof MetaColumn) $value = val;
+            // }
             // this.__SET$__key = function(val, call) {
             //     if (call instanceof MetaColumn) __key = val;
             // }
@@ -269,7 +283,7 @@
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
-            p_oValue = p_oValue || this.__GET$__value(this);
+            p_oValue = p_oValue || this.$value;
             this.__event.publish('onChanged', p_nValue, p_oValue, this);
         };
 
