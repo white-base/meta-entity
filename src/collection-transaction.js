@@ -105,8 +105,8 @@
             });
 
             // 예약어 등록 
-            this.__KEYWORD = ['_transQueue', 'autoChanges', 'hasChanges'];
-            this.__KEYWORD = ['commit', 'rollback'];
+            this.$KEYWORD = ['_transQueue', 'autoChanges', 'hasChanges'];
+            this.$KEYWORD = ['commit', 'rollback'];
 
         }
         Util.inherits(TransactionCollection, _super);
@@ -125,7 +125,7 @@
                 set: function(nVal) {
                     if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
                     this._transQueue.update(p_idx, nVal, this._elements[p_idx]); 
-                    this.$_elements[p_idx] = nVal;
+                    this.$elements[p_idx] = nVal;
                 },
                 configurable: true,
                 enumerable: true,

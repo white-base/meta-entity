@@ -108,7 +108,7 @@ describe("[target: meta-row.js]", () => {
             });
         });
         describe("MetaObject.equal() <객체 비교>", () => {
-            it("- equal() : __event ", () => {
+            it("- equal() : $event ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T1');
                 table1.columns.addValue('i1', 'V1');
@@ -288,7 +288,7 @@ describe("[target: meta-row.js]", () => {
                 a2.setObject(obj2);
 
                 expect(a2.equal(a1)).toBe(true);
-                expect(a2.rows[0].__event.list.length).toBe(1)
+                expect(a2.rows[0].$event.list.length).toBe(1)
                 expect(()=>a2.rows.setObject(obj1)).toThrow(/EL04112/);
                 /**
                  * MEMO:
@@ -438,24 +438,24 @@ describe("[target: meta-row.js]", () => {
             //     row1.__SET$_keys(['ccc1'],)  // 접근금지
             //     expect(row1._keys).toEqual(['cc1'])
             // });
-            it("- 커버리지 : this.__SET$_elements() ", () => {
+            it("- 커버리지 : this.__SET$elements() ", () => {
                 const table1 = new MetaTable('T1');
                 table1.columns.addValue('c1', 'V1');
                 const row1 = new MetaRow(table1);
 
-                row1.$_elements = ['r1']
+                row1.$elements = ['r1']
                 expect(row1._elements).toEqual(['r1'])
-                // row1.$_elements = ['rr1'],)  // 접근금지
+                // row1.$elements = ['rr1'],)  // 접근금지
                 expect(row1._elements).toEqual(['r1'])
             });
-            it("- 커버리지 : this.$_elements() ", () => {
+            it("- 커버리지 : this.$elements() ", () => {
                 const table1 = new MetaTable('T1');
                 table1.columns.addValue('c1', 'V1');
                 const row1 = new MetaRow(table1);
 
-                var elem1 = row1.$_elements = row1
-                expect(elem1).toEqual(row1._elements)
-                var elem2 = row1.$_elements
+                var elem1 = row1.$elements = row1
+                expect(elem1).toEqual(row1.$elements)
+                var elem2 = row1.$elements
                 expect(elem2).not.toEqual(row1._elements)
             });
         });

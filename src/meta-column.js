@@ -70,7 +70,7 @@
             _super.call(this, p_name, p_entity);
 
             var $value       = null;   // 재정의
-            var __event       = new Observer(this);
+            var $event       = new Observer(this);
             // var defaultValue  = null;
             // var caption       = null;
             var isNotNull     = false;
@@ -83,11 +83,11 @@
             /** 
              * 이벤트 객체
              * @private
-             * @member {Object} _L.Meta.Entity.MetaColumn#__event  
+             * @member {Object} _L.Meta.Entity.MetaColumn#$event  
              */
-            Object.defineProperty(this, '__event', 
+            Object.defineProperty(this, '$event', 
             {
-                get: function() { return __event; },
+                get: function() { return $event; },
                 configurable: false,
                 enumerable: false,
             });        
@@ -250,7 +250,7 @@
             Object.defineProperty(this, 'onChanged', 
             {
                 set: function(fun) {
-                    this.__event.subscribe(fun, 'onChanged');
+                    this.$event.subscribe(fun, 'onChanged');
                 },
                 configurable: false,
                 enumerable: false,
@@ -284,7 +284,7 @@
          */
         MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
             p_oValue = p_oValue || this.$value;
-            this.__event.publish('onChanged', p_nValue, p_oValue, this);
+            this.$event.publish('onChanged', p_nValue, p_oValue, this);
         };
 
         /**
@@ -325,8 +325,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.__event.$subscribers, this.__event._getInitObject())) {
-                obj['$subscribers'] = this.__event.$subscribers;
+            if (!Type.deepEqual(this.$event.$subscribers, this.$event._getInitObject())) {
+                obj['$subscribers'] = this.$event.$subscribers;
             }
             if (this.isNotNull !== false) obj['isNotNull'] = this.isNotNull;
             if (this.isNullPass !== false) obj['isNullPass'] = this.isNullPass;
@@ -350,7 +350,7 @@
             var entity;
 
             if (p_oGuid['$subscribers']) {
-                this.__event.$subscribers = p_oGuid['$subscribers'];
+                this.$event.$subscribers = p_oGuid['$subscribers'];
             }
             if (p_oGuid['isNotNull']) this.isNotNull = p_oGuid['isNotNull'];
             if (p_oGuid['isNullPass']) this.isNullPass = p_oGuid['isNullPass'];

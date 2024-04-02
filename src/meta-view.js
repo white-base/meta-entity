@@ -80,7 +80,7 @@
                 set: function(nVal) { 
                     if (nVal === this.viewName) return;
                     if (typeof nVal !== 'string') throw new ExtendError(/EL05431/, null, [typeof nVal]);
-                    this.$_name = nVal;
+                    this.$name = nVal;
                 },
                 configurable: false,
                 enumerable: true
@@ -267,7 +267,7 @@
             this._elemTypes = MetaView;   // 컬렉션타입 설정
 
             // 예약어 등록 
-            this.__KEYWORD = ['_baseType', 'existViewName'];
+            this.$KEYWORD = ['_baseType', 'existViewName'];
         }
         Util.inherits(MetaViewCollection, _super);
 

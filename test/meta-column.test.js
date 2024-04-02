@@ -208,7 +208,7 @@ describe("[target: meta-column.js ]", () => {
         
         
         describe("MetaObject.equal() <객체 비교>", () => {
-            it("- equal() : __event ", () => {
+            it("- equal() : $event ", () => {
                 var c1 = new MetaColumn('C1');
                 var c2 = new MetaColumn('C1');
                 var fun1 = function(){return 'Fun1'};
@@ -493,7 +493,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(cc1.value).toBe(c1.value);
                 expect(cc1.getter).toBe(c1.getter);
                 expect(cc1.setter).toBe(c1.setter);
-                expect(cc1.__event.$subscribers.onChanged).toBeDefined()
+                expect(cc1.$event.$subscribers.onChanged).toBeDefined()
                 /**
                  * MEMO:
                  * - equal() 및 세부 내용 확인

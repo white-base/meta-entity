@@ -67,7 +67,7 @@
         function MetaRow(p_entity) {
             _super.call(this);
             
-            var __event  = new Observer(this);
+            var $event  = new Observer(this);
             var _entity  = null;
             var _elements = [];
             var _keys = [];
@@ -75,11 +75,11 @@
 
             /**
              * 내부 변수 접근
-             * @member {string} _L.Meta.Entity.MetaRow#$_elements
+             * @member {string} _L.Meta.Entity.MetaRow#$elements
              * @readonly
              * @private
              */
-            Object.defineProperty(this, '$_elements',
+            Object.defineProperty(this, '$elements',
             {
                 get: function() { return _elements; },
                 set: function(nVal) { _elements = nVal; },
@@ -91,11 +91,11 @@
             /** 
              * 이벤트 객체
              * @private 
-             * @member {Object} _L.Meta.Entity.MetaRow#__event  
+             * @member {Object} _L.Meta.Entity.MetaRow#$event  
              */
-            Object.defineProperty(this, '__event', 
+            Object.defineProperty(this, '$event', 
             {
-                get: function() { return __event; },
+                get: function() { return $event; },
                 configurable: false,
                 enumerable: false,
             });
@@ -184,7 +184,7 @@
              */
             Object.defineProperty(this, 'onChanging', 
             {
-                set: function(fun) { this.__event.subscribe(fun, 'onChanging'); },
+                set: function(fun) { this.$event.subscribe(fun, 'onChanging'); },
                 configurable: false,
                 enumerable: false,
             });
@@ -199,19 +199,19 @@
              * @param {this}        p_callback.p_this 로우 객체
              */
             Object.defineProperty(this, 'onChanged', {
-                set: function(fun) { this.__event.subscribe(fun, 'onChanged'); },
+                set: function(fun) { this.$event.subscribe(fun, 'onChanged'); },
                 configurable: false,
                 enumerable: false,
             });
 
             // inner variable access
-            // this.__GET$_elements = function(call) {
+            // this.__GET$elements = function(call) {
             //     if (call instanceof MetaRow) return _elements;
             // }
             // this.__GET$_keys = function(call) {
             //     if (call instanceof MetaRow) return _keys;
             // };
-            // this.__SET$_elements = function(val, call) {
+            // this.__SET$elements = function(val, call) {
             //     if (call instanceof MetaRow) _elements = val;
             // }
             // this.__SET$_keys = function(val, call) {
@@ -279,7 +279,7 @@
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanging = function(p_idx, p_nValue, p_oValue) {
-            this.__event.publish('onChanging', p_idx, p_nValue, p_oValue, this);
+            this.$event.publish('onChanging', p_idx, p_nValue, p_oValue, this);
         };
 
         /**
@@ -287,7 +287,7 @@
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanged = function(p_idx, p_nValue, p_oValue) {
-            this.__event.publish('onChanged', p_idx, p_nValue, p_oValue, this);
+            this.$event.publish('onChanged', p_idx, p_nValue, p_oValue, this);
         };
 
         /**
@@ -307,8 +307,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.__event.$subscribers, this.__event._getInitObject())) {
-                obj['$subscribers'] = this.__event.$subscribers;
+            if (!Type.deepEqual(this.$event.$subscribers, this.$event._getInitObject())) {
+                obj['$subscribers'] = this.$event.$subscribers;
             }
             if (vOpt < 2 && vOpt > -1 && this._entity) {
                 obj['_entity'] = MetaRegistry.createReferObject(this._entity);
@@ -345,19 +345,19 @@
             if (p_oGuid['_elem'].length !== p_oGuid['_key'].length) throw new ExtendError(/EL05212/, null, [p_oGuid['_elem'].length, p_oGuid['_key'].length]);
 
             if (p_oGuid['$subscribers']) {
-                this.__event.$subscribers = p_oGuid['$subscribers'];
+                this.$event.$subscribers = p_oGuid['$subscribers'];
             }
             for(var i = 0; i < p_oGuid['_elem'].length; i++) {
                 var elem = p_oGuid['_elem'][i];
                 if (MetaRegistry.isGuidObject(elem)) {
                     var obj = MetaRegistry.createMetaObject(elem, origin);
                     obj.setObject(elem, origin);
-                    this.$_elements[i] = obj;
+                    this.$elements[i] = obj;
                 } else if (elem['$ref']) {
                     var meta = MetaRegistry.findSetObject(elem['$ref'], origin);
                     if (!meta) throw new ExtendError(/EL05213/, null, [i, elem['$ref']]);
-                    this.$_elements[i] = meta;   
-                } else this.$_elements[i] = elem;   
+                    this.$elements[i] = meta;   
+                } else this.$elements[i] = elem;   
             }
         };
 
@@ -372,9 +372,9 @@
             var obj = this.getObject();
 
             if (obj.$subscribers) {
-                clone.__event.$subscribers = obj.$subscribers;
+                clone.$event.$subscribers = obj.$subscribers;
             }
-            clone.$_elements = Util.deepCopy(obj._elem);
+            clone.$elements = Util.deepCopy(obj._elem);
             return clone;
         };
         
@@ -413,7 +413,7 @@
                     if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
                     if (nVal._entity !== this._owner) throw new ExtendError(/EL05221/, null, [this.constructor.name]);
                     this._transQueue.update(p_idx, nVal, this._elements[p_idx]); 
-                    this.$_elements[p_idx] = nVal;
+                    this.$elements[p_idx] = nVal;
                 },
                 configurable: true,
                 enumerable: true,
