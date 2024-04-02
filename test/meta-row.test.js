@@ -443,19 +443,19 @@ describe("[target: meta-row.js]", () => {
                 table1.columns.addValue('c1', 'V1');
                 const row1 = new MetaRow(table1);
 
-                row1.__SET$_elements(['r1'], row1)
+                row1.$_elements = ['r1']
                 expect(row1._elements).toEqual(['r1'])
-                row1.__SET$_elements(['rr1'],)  // 접근금지
+                // row1.$_elements = ['rr1'],)  // 접근금지
                 expect(row1._elements).toEqual(['r1'])
             });
-            it("- 커버리지 : this.__GET$_elements() ", () => {
+            it("- 커버리지 : this.$_elements() ", () => {
                 const table1 = new MetaTable('T1');
                 table1.columns.addValue('c1', 'V1');
                 const row1 = new MetaRow(table1);
 
-                var elem1 = row1.__GET$_elements(row1)
+                var elem1 = row1.$_elements = row1
                 expect(elem1).toEqual(row1._elements)
-                var elem2 = row1.__GET$_elements()
+                var elem2 = row1.$_elements
                 expect(elem2).not.toEqual(row1._elements)
             });
         });

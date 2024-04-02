@@ -80,7 +80,7 @@
                 set: function(nVal) { 
                     if (nVal === this.viewName) return;
                     if (typeof nVal !== 'string') throw new ExtendError(/EL05431/, null, [typeof nVal]);
-                    this.__SET$_name(nVal, this);
+                    this.$_name = nVal;
                 },
                 configurable: false,
                 enumerable: true

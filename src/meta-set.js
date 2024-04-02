@@ -100,7 +100,7 @@
                 get: function() { return this._name; },
                 set: function(nVal) { 
                     if (typeof nVal !== 'string') throw new ExtendError(/EL05451/, null, [this.constructor.name, typeof nVal]);
-                    this.__SET$_name(nVal, this);
+                    this.$_name = nVal;
                 },
                 configurable: false,
                 enumerable: true

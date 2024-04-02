@@ -73,6 +73,21 @@
             var _keys = [];
             var _this   = this;
 
+            /**
+             * 내부 변수 접근
+             * @member {string} _L.Meta.Entity.MetaRow#$_elements
+             * @readonly
+             * @private
+             */
+            Object.defineProperty(this, '$_elements',
+            {
+                get: function() { return _elements; },
+                set: function(nVal) { _elements = nVal; },
+                configurable: false,
+                enumerable: false,
+            });
+
+
             /** 
              * 이벤트 객체
              * @private 
@@ -190,15 +205,15 @@
             });
 
             // inner variable access
-            this.__GET$_elements = function(call) {
-                if (call instanceof MetaRow) return _elements;
-            }
+            // this.__GET$_elements = function(call) {
+            //     if (call instanceof MetaRow) return _elements;
+            // }
             // this.__GET$_keys = function(call) {
             //     if (call instanceof MetaRow) return _keys;
             // };
-            this.__SET$_elements = function(val, call) {
-                if (call instanceof MetaRow) _elements = val;
-            }
+            // this.__SET$_elements = function(val, call) {
+            //     if (call instanceof MetaRow) _elements = val;
+            // }
             // this.__SET$_keys = function(val, call) {
             //     if (call instanceof MetaRow) _keys = val;
             // };
@@ -292,8 +307,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.__event.__subscribers, this.__event._getInitObject())) {
-                obj['__subscribers'] = this.__event.__subscribers;
+            if (!Type.deepEqual(this.__event.$subscribers, this.__event._getInitObject())) {
+                obj['$subscribers'] = this.__event.$subscribers;
             }
             if (vOpt < 2 && vOpt > -1 && this._entity) {
                 obj['_entity'] = MetaRegistry.createReferObject(this._entity);
@@ -329,20 +344,20 @@
             
             if (p_oGuid['_elem'].length !== p_oGuid['_key'].length) throw new ExtendError(/EL05212/, null, [p_oGuid['_elem'].length, p_oGuid['_key'].length]);
 
-            if (p_oGuid['__subscribers']) {
-                this.__event.__SET$__subscribers(p_oGuid['__subscribers'], this.__event);
+            if (p_oGuid['$subscribers']) {
+                this.__event.$subscribers = p_oGuid['$subscribers'];
             }
             for(var i = 0; i < p_oGuid['_elem'].length; i++) {
                 var elem = p_oGuid['_elem'][i];
                 if (MetaRegistry.isGuidObject(elem)) {
                     var obj = MetaRegistry.createMetaObject(elem, origin);
                     obj.setObject(elem, origin);
-                    this.__GET$_elements(this)[i] = obj;
+                    this.$_elements[i] = obj;
                 } else if (elem['$ref']) {
                     var meta = MetaRegistry.findSetObject(elem['$ref'], origin);
                     if (!meta) throw new ExtendError(/EL05213/, null, [i, elem['$ref']]);
-                    this.__GET$_elements(this)[i] = meta;   
-                } else this.__GET$_elements(this)[i] = elem;   
+                    this.$_elements[i] = meta;   
+                } else this.$_elements[i] = elem;   
             }
         };
 
@@ -356,10 +371,10 @@
             var clone = new MetaRow(entity);
             var obj = this.getObject();
 
-            if (obj.__subscribers) {
-                clone.__event.__SET$__subscribers(obj.__subscribers, this.__event);
+            if (obj.$subscribers) {
+                clone.__event.$subscribers = obj.$subscribers;
             }
-            clone.__SET$_elements(Util.deepCopy(obj._elem), this);
+            clone.$_elements = Util.deepCopy(obj._elem);
             return clone;
         };
         
@@ -398,7 +413,7 @@
                     if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
                     if (nVal._entity !== this._owner) throw new ExtendError(/EL05221/, null, [this.constructor.name]);
                     this._transQueue.update(p_idx, nVal, this._elements[p_idx]); 
-                    this.__GET$_elements(this)[p_idx] = nVal;
+                    this.$_elements[p_idx] = nVal;
                 },
                 configurable: true,
                 enumerable: true,

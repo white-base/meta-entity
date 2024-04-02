@@ -325,8 +325,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.__event.__subscribers, this.__event._getInitObject())) {
-                obj['__subscribers'] = this.__event.__subscribers;
+            if (!Type.deepEqual(this.__event.$subscribers, this.__event._getInitObject())) {
+                obj['$subscribers'] = this.__event.$subscribers;
             }
             if (this.isNotNull !== false) obj['isNotNull'] = this.isNotNull;
             if (this.isNullPass !== false) obj['isNullPass'] = this.isNullPass;
@@ -349,8 +349,8 @@
             var origin = p_origin ? p_origin : p_oGuid;
             var entity;
 
-            if (p_oGuid['__subscribers']) {
-                this.__event.__SET$__subscribers(p_oGuid['__subscribers'], this.__event);
+            if (p_oGuid['$subscribers']) {
+                this.__event.$subscribers = p_oGuid['$subscribers'];
             }
             if (p_oGuid['isNotNull']) this.isNotNull = p_oGuid['isNotNull'];
             if (p_oGuid['isNullPass']) this.isNullPass = p_oGuid['isNullPass'];

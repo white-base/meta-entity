@@ -86,7 +86,7 @@
                 set: function(nVal) { 
                     if (nVal === this.tableName) return;
                     if (typeof nVal !== 'string') throw new ExtendError(/EL05411/, null, [typeof nVal]);
-                    this.__SET$_name(nVal, this);
+                    this.$_name = nVal;
                 },
                 configurable: false,
                 enumerable: true
