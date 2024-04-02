@@ -76,7 +76,7 @@
 
             /**
              * 기본 컬럼 타입
-             * @member {Function} _L.Meta.Entity.BaseColumnCollection#_baseType
+             * @member {BaseColumn} _L.Meta.Entity.BaseColumnCollection#_baseType
              */
             Object.defineProperty(this, '_baseType', 
             {
@@ -173,7 +173,7 @@
 
         /**
          * 별칭에 대한 컬럼 객체 얻기
-         * @param {string} p_key 
+         * @param {string} p_key 키
          * @returns {BaseColumn | undefined}
          */
         BaseColumnCollection.prototype.alias  = function(p_key) {

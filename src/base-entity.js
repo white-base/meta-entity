@@ -131,7 +131,6 @@
          * @implements {_L.Interface.IExportControl}
          * @implements {_L.Interface.ISerialize}
          * @param {string} p_name 
-         * @param {MetaSet} [p_metaSet] 메타셋
          */
         function BaseEntity(p_name) {
             _super.call(this, p_name);
@@ -209,7 +208,7 @@
 
         
         /**
-         * 엔티티 스카마 객체로 변환  (static method)
+         * 엔티티 스카마 객체로 변환
          * @param {object} p_oGuid getObject()로 얻은 객체
          * @static
          * @returns {object}
@@ -286,7 +285,7 @@
          * @protected
          * @param {BaseEntity} p_entity 빌드 대상 엔티티
          * @param {function} p_callback 로우 대상 조회 콜백
-         * @param {array<string>} p_items 선택할 로우명 , [] 또는 undefined 시 전체 선택
+         * @param {array<string>} p_items 선택할 로우명 , [] 또는 undefined 시 전체 선택    TODO: 필수 선택 여부 확인 필요
          * @returns {BaseEntity}
          */
         BaseEntity.prototype._buildEntity = function(p_entity, p_callback, p_items) {
@@ -385,8 +384,8 @@
         /**
          * 스키마 읽기
          * @param {object} p_obj 대상 객체
-         * @param {boolean} p_createRow 기본값 = false, 컬럼이 없을경우 로우이름의 컬럼 생성 여부
-         * @param {object} p_origin 원본 객체
+         * @param {boolean} [p_createRow=false] 기본값 = false, 컬럼이 없을경우 로우이름의 컬럼 생성 여부
+         * @param {object} [p_origin] 원본 객체
          */
         BaseEntity.prototype._readSchema  = function(p_obj, p_isCreateRow, p_origin) {
             var _this = this;
@@ -534,7 +533,7 @@
 
         /**
          * MetaRow 의 값을 컬럼의 value에 설정한다.
-         * @param {MetaRow} p_row 
+         * @param {MetaRow} p_row 로우
          */
         BaseEntity.prototype.setValue  = function(p_row) {
             var alias = '';
@@ -553,13 +552,13 @@
 
         /**
          * 엔티티(테이블/뷰)와 병합
-         * @param {BaseEntity} p_target 
+         * @param {BaseEntity} p_target 병할할 대상
          * @param {object} p_option 옵션
          * @param {object} p_option.0 로우(idx) 기준 병합, 초과 컬럼은 무시됨 <**>   
          * @param {object} p_option.1 컬럼(key) 기준 병합, 초과 로우는 무시됨
          * @param {object} p_option.2 로우(idx) 기준 병합, 초과 컬럼은 채워짐
          * @param {object} p_option.3 컬럼(key) 기준 병합, 초과 로우는 채워짐 
-         * @param {boolean} p_matchType 로우 유효성 검사 유무 (기본:false)
+         * @param {boolean} [p_matchType] 로우 유효성 검사 유무 (기본:false)
          */
         BaseEntity.prototype.merge  = function(p_target, p_option, p_matchType) {
             var _this = this;
@@ -738,7 +737,7 @@
 
         /**
          * 엔티티의 지정한 컬럼과 조건의 row 를 조회
-         * @param {function | array<string>| arguments<string>} p_filter 
+         * @param {function | array<string>| arguments<string>} p_filter 필터
          * @param {array<string> | arguments<string>} [p_args] filter 설정시 컬럼명
          * @returns {MetaView}
          */
@@ -807,8 +806,8 @@
         /**
          * 객체 출력(직렬화)
          * @param {number} [p_vOpt] 옵션 (0, 1, 2)
-         * @param {function} [p_stringify] 
-         * @param {string} [p_space] 
+         * @param {function} [p_stringify] 파서출력 사용자 함수
+         * @param {string} [p_space] 공백
          * @returns {string}
          */
         BaseEntity.prototype.output = function(p_vOpt, p_stringify, p_space) {
@@ -865,7 +864,7 @@
          * 없으면 빈 컬럼을 생성해야 하는지?  
          * 이경우에 대해서 명료하게 처리햐야함 !!  
          * @param {object} p_obj object<Schema> | object<Guid>
-         * @param {boolean} p_createRow true 이면, row[0] 기준으로 컬럼을 추가함
+         * @param {boolean} [p_createRow] true 이면, row[0] 기준으로 컬럼을 추가함
          */
         BaseEntity.prototype.readSchema  = function(p_obj, p_createRow) {
             var obj = p_obj;
@@ -887,7 +886,7 @@
 
         /**
          * 존재하는 로우만 읽기
-         * @param {object} p_obj 
+         * @param {object} p_obj 읽을 객체
          */
         BaseEntity.prototype.readData  = function(p_obj) {
             var obj = p_obj;
@@ -920,7 +919,7 @@
 
         /**
          * 엔티티를 컬럼과 로우를 스키마 타입의 객체로 쓰기(내보내기)
-         * @param {number} p_vOpt 
+         * @param {number} p_vOpt 기본 = 0
          * @returns {object} 스키마 타입
          */
         BaseEntity.prototype.write  = function(p_vOpt) {
@@ -933,7 +932,7 @@
 
         /**
          * 엔티티 스키마(컬럼)을 스키마 타입의 객체로 쓰기
-         * @param {number} p_vOpt 
+         * @param {number} [p_vOpt] 기본 = 0
          * @returns {object} 스키마 타입
          */
         BaseEntity.prototype.writeSchema  = function(p_vOpt) {
@@ -947,7 +946,7 @@
 
         /**
          * 엔티티 데이터(로우)를 스키마 타입의 객체로 쓰기
-         * @param {number} p_vOpt 
+         * @param {number} p_vOpt 기본 = 0
          * @returns {object} 스키마 타입
          */
         BaseEntity.prototype.writeData  = function(p_vOpt) {
@@ -971,13 +970,11 @@
         /** 
          * 엔티티 복사
          * @abstract 
-         * @returns {MetaView} 복사한 뷰 객체
+         * @returns {BaseEntity} 복사한 뷰 객체
          */
         BaseEntity.prototype.copy = function() {
             throw new ExtendError(/EL05348/, null, []);
         };
-
-        
 
         return BaseEntity;
     

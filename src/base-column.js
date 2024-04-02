@@ -120,8 +120,8 @@
             });
 
             /**
-             * value 속성 타입 설정
-             * @member {BaseEntity} _L.Meta.Entity.BaseColumn#_valueTypes
+             * value 타입 설정
+             * @member {any} _L.Meta.Entity.BaseColumn#_valueTypes
              * @protected
              */
             Object.defineProperty(this, '_valueTypes', 
