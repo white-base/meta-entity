@@ -205,7 +205,7 @@ declare abstract class BaseEntity extends MetaElemet
      *  엔티티 복사
      * @returns 복사한 뷰 객체
      */
-    abstract copy(): this;
+    abstract copy(...args): this;
 }
 
 export = BaseEntity;

@@ -1,11 +1,11 @@
-import MetaElemet           = require("logic-core/meta-element");
+import BaseEntity           = require("./base-column");
 import ITransaction         = require("./i-transaction");
 import MetaTableCollection  = require("./collection-meta-table");
 
 /**
  * 테이블 엔티티
  */
-declare class MetaTable extends MetaElemet implements ITransaction {
+declare class MetaTable extends BaseEntity implements ITransaction {
 
     /**
      * 테이블 엔티티

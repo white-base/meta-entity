@@ -1,5 +1,5 @@
 
-// ts-check
+// @ts-check
 
 var Util                        = require('logic-core').Util;
 var Observer                    = require('logic-core').Observer;
@@ -21,6 +21,20 @@ var MetaRegistry                = require('logic-core').MetaRegistry;
 
 var MetaElement                 = require('logic-core').MetaElement;
 var MetaTable                   = require('../src/meta-table').MetaTable;
+
+var entity = require('../');
+
+var C = require('logic-entity');
+
+var a1 = new C.MetaRowCollection({});
+var a2 = new C.MetaTable('a2');
+a1.add(10); // OK
+a2._name;
+
+var a3 = new C.MetaRow(a2);
+
+// a1.add(new C.MetaRow(a2), true);
+
 
 
 var iii = new MetaTable('ff')

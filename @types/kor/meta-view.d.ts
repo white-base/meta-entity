@@ -1,11 +1,11 @@
-import MetaElemet           = require("logic-core/meta-element");
+// import BaseEntity           = require("./base-column");
 import BaseEntity           = require("./base-entity");
 import MetaViewColumnCollection = require("./collection-meta-view-column");
 
 /**
  * 메타 뷰
  */
-declare class MetaView extends MetaElemet {
+declare class MetaView extends BaseEntity {
 
     /**
      * 메타 뷰
