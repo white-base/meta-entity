@@ -214,25 +214,25 @@
 
         /**
          * 테이블 컬렉션에 컬럼 추가
-         * @param {string | BaseColumn} p_any 컬럼명, 매타컬럼
+         * @param {string | BaseColumn} p_column 컬럼명, 매타컬럼
          * @returns {number} 등록한 index
          */
-        MetaTableColumnCollection.prototype.add  = function(p_any) {
+        MetaTableColumnCollection.prototype.add  = function(p_column) {
             var column;
             var key;
 
-            if (typeof p_any === 'string') {      
-                key  = p_any;
+            if (typeof p_column === 'string') {      
+                key  = p_column;
                 if (this._ownerIsEntity()) column = new this._baseType(key, this._owner);
                 else column = new this._baseType(key);
                 
-            } else if (p_any instanceof this._baseType) {
-                key  = p_any.columnName;
-                if (this._ownerIsEntity()) column = p_any.clone(this._owner);
-                else column = p_any.clone();
+            } else if (p_column instanceof this._baseType) {
+                key  = p_column.columnName;
+                if (this._ownerIsEntity()) column = p_column.clone(this._owner);
+                else column = p_column.clone();
                 
             } else {
-                throw new ExtendError(/EL05151/, null, [typeof p_any]); 
+                throw new ExtendError(/EL05151/, null, [typeof p_column]); 
             }
 
             return _super.prototype.add.call(this, key, column);
@@ -241,7 +241,7 @@
         /**
          * 이름과 값으로 컬렉션에 추가 (내부에서 생성)
          * @param {string} p_name 컬럼명
-         * @param {String | Number | Boolean} p_value 
+         * @param {string | number | boolean} p_value 값
          * @returns {BaseColumn} 추가한 컬럼 객체
          */
         MetaTableColumnCollection.prototype.addValue  = function(p_name, p_value) {
@@ -344,10 +344,10 @@
          * - entity가 없는 컬럼을 추가할 경우 : 자신을 소유자로 등록한다.
          * - collection에 컬럼이 존재할 경우 : columns 객체는 무시되고, 리턴한 객체의 참조를 등록한다.
          * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)
-         * @param {string | MetaColumn} p_any 
-         * @param {BaseColumnCollection} [p_refCollection]
+         * @param {string | MetaColumn} p_column 컬럼
+         * @param {BaseColumnCollection} [p_refCollection] 참조컬렉션
          */
-        MetaViewColumnCollection.prototype.add  = function(p_any, p_refCollection) {
+        MetaViewColumnCollection.prototype.add  = function(p_column, p_refCollection) {
             var collection;
             var key;
             var column;
@@ -356,13 +356,13 @@
                 throw new ExtendError(/EL05161/, null, []);
             }
 
-            if (p_any instanceof BaseColumn) {
-                key = p_any.columnName;
-                column = p_any;
-            } else if (typeof p_any === 'string') {
-                key = p_any;
+            if (p_column instanceof BaseColumn) {
+                key = p_column.columnName;
+                column = p_column;
+            } else if (typeof p_column === 'string') {
+                key = p_column;
                 column = new this._baseType(key, this._owner);
-            } else throw new ExtendError(/EL05162/, null, [typeof p_any]);
+            } else throw new ExtendError(/EL05162/, null, [typeof p_column]);
 
             // baseCollection & refCollection 존재하는 경우
             if (p_refCollection instanceof BaseColumnCollection) {                                  
@@ -376,7 +376,7 @@
                 if (collection.contains(collection[key])) {
                     column = collection[key];   // 기존에 존재하면 참조 가져옴
                 } else {                                                
-                    collection.add(p_any);      // 없으면 컬렉션에 추가(owner 설정됨)
+                    collection.add(p_column);      // 없으면 컬렉션에 추가(owner 설정됨)
                     column = collection[key];
                 }
             }
@@ -389,7 +389,7 @@
         /**
          *  이름과 값으로 컬럼 생성하여 컬렉션에 추가
          * @param {string} p_name 컬럼명
-         * @param {any} p_value 
+         * @param {string | number | boolean} p_value 값
          * @param {BaseColumnCollection} [p_refCollection]
          * @returns {MetaColumn}
          */
@@ -408,7 +408,7 @@
         };
 
         /**
-         * 엔티티 모든 컬럼을 추가
+         * 엔티티의 모든 컬럼을 추가
          * @param {BaseEntity} p_entity 
          */
         MetaViewColumnCollection.prototype.addEntity  = function(p_entity) {

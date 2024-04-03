@@ -422,19 +422,21 @@
 
         /**
          * MetaRow 추가 idx 를 기준으로 검사한다.
-         * @param {MetaRow} p_row 
-         * @param {boolean} [p_isCheck] true: 검사 진행, false: 검사 안함
+         * @param {MetaRow} p_row 추가할 MetaRow
+         * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)
          * @returns {number}
          */
         MetaRowCollection.prototype.add  = function(p_row, p_isCheck) {
-            return this.insertAt(this._elements.length, p_row, p_isCheck);
+            var pos = this._elements.length;
+            this.insertAt(pos, p_row, p_isCheck);  // TODO: try 문으로 묶음 필요
+            return pos;
         };
 
         /**
          * pos 위치에 추가
-         * @param {number} p_pos 
-         * @param {MetaRow} p_row 
-         * @param {boolean} [p_isCheck] 유효성 검사 여부 
+         * @param {number} p_pos 추가할 위치 인덱스
+         * @param {MetaRow} p_row 추가할 MetaRow
+         * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)
          * @returns {boolean}
          */
         MetaRowCollection.prototype.insertAt  = function(p_pos, p_row, p_isCheck) {

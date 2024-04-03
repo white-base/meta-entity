@@ -276,24 +276,24 @@
 
         /**
          * 테이블 컬렉션에 엔티티 추가
-         * @param {string | MetaTable} p_any 
+         * @param {string | MetaTable} p_table 추가할 메타테이블
          * @returns {MetaTable} 등록한 아이템
          */
-        MetaTableCollection.prototype.add  = function(p_any) { // COVER:
+        MetaTableCollection.prototype.add  = function(p_table) { // COVER:
             var table;
             var key;
 
-            if (typeof p_any === 'string' && p_any.length > 0) {      
-                key  = p_any;
+            if (typeof p_table === 'string' && p_table.length > 0) {      
+                key  = p_table;
                 table = new this._baseType(key);
                 if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) table._metaSet = this._owner;
                 // table._metaSet = this._owner;
 
-            } else if (p_any instanceof MetaTable) {
-                key  = p_any.tableName;
-                table = p_any;
-                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) p_any._metaSet = this._owner;
-                // p_any._metaSet = this._owner;
+            } else if (p_table instanceof MetaTable) {
+                key  = p_table.tableName;
+                table = p_table;
+                if (this._owner instanceof MetaObject && this._owner.instanceOf('MetaSet')) p_table._metaSet = this._owner;
+                // p_table._metaSet = this._owner;
             } else throw new ExtendError(/EL05423/, null, [typeof any]);
 
             if (this.existTableName(key)) throw new ExtendError(/EL05424/, null, [key]);
