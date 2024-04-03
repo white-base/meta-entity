@@ -1,6 +1,6 @@
 import BaseEntity           = require("./base-entity");
 import ITransaction         = require("./i-transaction");
-import MetaTableCollection  = require("./collection-meta-table");
+import MetaTableColumnCollection  = require("./collection-meta-table-column");
 
 /**
  * 테이블 엔티티
@@ -21,7 +21,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     /**
      * 엔티티의 아이템(속성) 컬렉션
      */
-    columns: MetaTableCollection;
+    columns: MetaTableColumnCollection;
 
     /**
      * 현재 객체를 직렬화(guid 타입) 객체로 얻습니다. 

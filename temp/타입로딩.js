@@ -26,19 +26,31 @@ var MetaElement                 = require('logic-core').MetaElement;
 // var entity = require('../');
 
 var C = require('logic-entity');
+// var C = require('../');
 
-var a1 = new C.MetaRowCollection({});
 var a2 = new C.MetaTable('a2');
-a1.add(10); // OK
-a2._name;
-
+var a1 = new C.MetaRowCollection(a2);
 var a3 = new C.MetaRow(a2);
-
+// a1.add(10); // OK  오류 되야함
+a1.add(a3, true);   // OK
 
 
 // a1.add(new C.MetaRow(a2), true);
 
+Function._TYPE = {
+    // params: [],
+    // return: null,
+    $type: 'string',
+    // kind: '_ANY_',
+    // default: 
+}
 
+function Func() {
+
+}
+
+Func._KIND;
+Func._TYPE;
 
 var iii = new C.MetaTable('ff')
 
