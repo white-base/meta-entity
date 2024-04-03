@@ -86,7 +86,7 @@
 
         /**
          *  프로퍼티 객체로 속성 로드
-         * @param {object} p_prop 
+         * @param {object} p_prop 속성
          */
         ObjectColumn.prototype._load = function(p_prop) {
             if (typeof p_prop === 'object' ) {

@@ -62,7 +62,7 @@
          * 메타 뷰
          * @constructs _L.Meta.Entity.MetaView
          * @extends _L.Meta.Entity.BaseEntity
-         * @param {string} p_name 
+         * @param {string} p_name 뷰이름
          * @param {BaseEntity} [p_baseEntity] 기본 엔티티, 컬럼 추가시 기본엔티티에 추가 된다.
          */
         function MetaView(p_name, p_baseEntity) {

@@ -12,14 +12,14 @@ import MetaRow              = require("./meta-row");
 /**
  * 기본 엔티티 (최상위)
  */
-declare abstract class BaseEntity extends MetaElemet {
-    // implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {   // TODO: 활성화 해야함
+declare abstract class BaseEntity extends MetaElemet 
+    implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
 
     /**
      * 
      * @param name 
      */
-    constructor(name: stirng);
+    constructor(name: string);
 
     /**
      * 엔티티의 아이템(속성) 컬렉션
@@ -118,10 +118,23 @@ declare abstract class BaseEntity extends MetaElemet {
 
     /**
      * 엔티티의 지정한 컬럼과 조건의 row 를 조회
+     * @param callback 콜백함수
+     */
+    select(callback: Function): BaseEntity; // TODO: 함수 세부로 정의 필요
+
+    /**
+     * 엔티티의 지정한 컬럼과 조건의 row 를 조회
      * @param filter 필터
      * @param args filter 설정시 컬럼명
      */
-    select(filter: Function | string[] | arguments, args: arguments): BaseEntity;   // TODO: 오버로드 속성 정의 필요
+    select(filter: string[], ...args): BaseEntity;
+
+    /**
+     * 엔티티의 지정한 컬럼과 조건의 row 를 조회
+     * @param args filter 설정시 컬럼명
+     */
+    select(...args): BaseEntity;
+
 
     /**
      * 객체(직렬화) 로드
@@ -186,13 +199,13 @@ declare abstract class BaseEntity extends MetaElemet {
      * 엔티티 복제
      * @returns 복제한 객체
      */
-    abstract clone(): BaseEntity;
+    abstract clone(): this;
 
     /**
      *  엔티티 복사
      * @returns 복사한 뷰 객체
      */
-    abstract copy(): BaseEntity;
+    abstract copy(): this;
 }
 
 export = BaseEntity;

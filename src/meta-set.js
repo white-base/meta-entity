@@ -83,7 +83,7 @@
          * @implements {_L.Interface.IExportControl}
          * @implements {_L.Interface.ITransaction}
          * @implements {_L.Interface.ISerialize}
-         * @param {string} p_name 
+         * @param {string} p_name 메타셋 이름
          */
         function MetaSet(p_name) {
             _super.call(this, p_name);
@@ -302,13 +302,13 @@
             this.setObject(obj);
         };
 
-        MetaSet.prototype.load._TYPE = { params: String };
+        // MetaSet.prototype.load._TYPE = { params: String };
 
         /**
          * 메타셋 객체 출력(직렬화)
          * @param {number} [p_vOpt] 옵션 (0, 1, 2)
-         * @param {function} [p_stringify] 
-         * @param {string} [p_space] 
+         * @param {function} [p_stringify] 파서출력 함수
+         * @param {string} [p_space] 공백
          * @returns {string}
          */
         MetaSet.prototype.output = function(p_vOpt, p_stringify, p_space) {
@@ -412,7 +412,7 @@
 
         /**
          * row 들을 불러 온다
-         * @param {object} p_obj object
+         * @param {object} p_obj 읽을 데이터
          */
         MetaSet.prototype.readData  = function(p_obj) {
             var metaSet = null;
@@ -444,7 +444,7 @@
 
         /**
          * 메타셋을 스키마 타입의 객체로 쓰기(내보내기)
-         * @param {number} p_vOpt 
+         * @param {number} p_vOpt 옵션
          * @returns {object} 스키마 타입
          */
         MetaSet.prototype.write  = function(p_vOpt) {
@@ -457,7 +457,7 @@
 
         /**
          * 메타셋 스키마(컬럼)을 스키마 타입의 객체로 쓰기
-         * @param {number} p_vOpt 
+         * @param {number} p_vOpt 옵션
          * @returns {object} 스키마 타입
          */
         MetaSet.prototype.writeSchema  = function(p_vOpt) {
@@ -476,7 +476,7 @@
 
         /**
          * 메타셋 데이터(로우)를 스키마 타입의 객체로 쓰기
-         * @param {number} p_vOpt 
+         * @param {number} p_vOpt 옵션
          * @returns {object} 스키마 타입
          */
         MetaSet.prototype.writeData  = function(p_vOpt) {

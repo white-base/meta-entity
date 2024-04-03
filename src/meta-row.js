@@ -75,7 +75,7 @@
 
             /**
              * 내부 변수 접근
-             * @member {string} _L.Meta.Entity.MetaRow#$elements
+             * @member {Array<string>} _L.Meta.Entity.MetaRow#$elements
              * @readonly
              * @private
              */
@@ -91,7 +91,7 @@
             /** 
              * 이벤트 객체
              * @private 
-             * @member {Object} _L.Meta.Entity.MetaRow#$event  
+             * @member {Observer} _L.Meta.Entity.MetaRow#$event  
              */
             Object.defineProperty(this, '$event', 
             {
@@ -234,11 +234,11 @@
                 var alias = _entity.columns[i].alias;
                 _elements.push(_entity.columns[i].default);  // 기본값 등록
                 _keys.push(alias);
-                Object.defineProperty(this, [i], getPropDescriptor(idx));
-                Object.defineProperty(this, alias, getPropDescriptor(idx));
+                Object.defineProperty(this, [i], $getPropDescriptor(idx));
+                Object.defineProperty(this, alias, $getPropDescriptor(idx));
             }
 
-            function getPropDescriptor(p_idx) {
+            function $getPropDescriptor(p_idx) {
                 return {
                     get: function() { return _elements[p_idx]; },
                     set: function(nVal) { 
@@ -276,6 +276,9 @@
 
         /**
          * 로우 요소 변경전 이벤트
+         * @param {*} p_idx 인덱스
+         * @param {*} p_nValue 변경 값
+         * @param {*} p_oValue 기존 값
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanging = function(p_idx, p_nValue, p_oValue) {
@@ -284,6 +287,9 @@
 
         /**
          * 로우 요소 변경후 이벤트
+         * @param {*} p_idx 인덱스
+         * @param {*} p_nValue 변경 값
+         * @param {*} p_oValue 기존 값
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanged = function(p_idx, p_nValue, p_oValue) {

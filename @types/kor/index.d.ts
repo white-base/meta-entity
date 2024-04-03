@@ -19,10 +19,10 @@ import MetaElement          = require("logic-core/meta-element");
 import BaseCollection       = require("logic-core/base-collection");
 import ArrayCollection      = require("logic-core/collection-array");
 import PropertyCollection   = require("logic-core/collection-property");
-import T                    = require("logic-core/T");
+import Core_T               = require("logic-core/T");
 
 export {
-    T,
+    Core_T,
     ExtendError,
     Observer,
     Util,
@@ -96,8 +96,10 @@ import MetaTableColumnCollection= require("./collection-meta-table-column");
 import MetaViewColumnCollection = require("./collection-meta-view-column");
 import ObjectColumn             = require("./object-column");
 import TransactionQueue         = require("./trans-queue");
+import Entity_T                 = require("./T");
 
 export {
+    Entity_T,
     BaseColumn,
     BaseEntity,
     BaseColumnCollection,

@@ -63,7 +63,7 @@ declare abstract class BaseColumnCollection extends PropertyCollection {
     /**
      * 
      */
-    addValue();
+    abstract addValue(...args);
 }
 
 export = BaseColumnCollection;

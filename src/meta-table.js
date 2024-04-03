@@ -69,7 +69,7 @@
          * 테이블 엔티티
          * @constructs _L.Meta.Entity.MetaTable
          * @extends _L.Meta.Entity.BaseEntity
-         * @param {string} p_name 
+         * @param {string} p_name 테이블명
          */
         function MetaTable(p_name) {
             _super.call(this, p_name);
@@ -161,7 +161,6 @@
 
         /**
          * 객체 복제
-         * override
          * @returns {MetaTable}
          */
         MetaTable.prototype.clone  = function() {

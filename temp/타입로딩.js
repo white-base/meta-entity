@@ -36,6 +36,10 @@ var i6 = new IObject()
 var i7 = new PropertyCollection({})
 var i8 = new IElement();
 
+
+var str = "aa";
+
+str.substr()
 // i6.
 
 // MetaRegistry.setMetaObject

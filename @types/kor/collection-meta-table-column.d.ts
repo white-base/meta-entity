@@ -12,6 +12,9 @@ declare class MetaTableColumnCollection extends BaseColumnCollection {
      */
     constructor(owner: object);
 
+    /** @deprecated */
+    add(name: string, value: any): number;
+
     /**
      * 테이블 컬렉션에 컬럼 추가
      * @param column 컬럼명, 매타컬럼

@@ -64,7 +64,7 @@
             });
             
             /**
-             * 컬랙션 갯수 
+             * 대상 컬랙션
              * @member {Number} _L.Collection.TransactionQueue#count 
              */
             Object.defineProperty(this, 'collection', 
@@ -130,9 +130,9 @@
 
         /**
          * 추가
-         * @param {number} p_pos 
-         * @param {object} p_target 
-         * @param {string} p_etc 
+         * @param {number} p_pos 위치
+         * @param {object} p_target 대상
+         * @param {string} p_etc 기타
          */
         TransactionQueue.prototype.insert  = function(p_pos, p_target, p_etc) {
             this.queue.push({
@@ -146,9 +146,9 @@
         
         /**
          * 삭제
-         * @param {number} p_pos 
-         * @param {object} p_clone 
-         * @param {string} p_etc 
+         * @param {number} p_pos 위치
+         * @param {object} p_clone 복제한 객체
+         * @param {string} p_etc 기타
          */
         TransactionQueue.prototype.delete  = function(p_pos, p_clone, p_etc) {
             this.queue.push({
@@ -162,10 +162,10 @@
 
         /**
          * 수정
-         * @param {number} p_pos 
-         * @param {object} p_target 
-         * @param {object} p_clone 
-         * @param {string} p_etc 
+         * @param {number} p_pos 위치
+         * @param {object} p_target 대상
+         * @param {object} p_clone 복제한 객체
+         * @param {string} p_etc 기타
          */
         TransactionQueue.prototype.update  = function(p_pos, p_target, p_clone, p_etc) {
             this.queue.push({

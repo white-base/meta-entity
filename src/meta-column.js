@@ -52,7 +52,7 @@
          * 메타 컬럼
          * @constructs _L.Meta.Entity.MetaColumn
          * @extends _L.Meta.Entity.BaseColumn
-         * @param {string} p_name 속성명
+         * @param {string} p_name 컬럼명
          * @param {BaseEntity} [p_entity] 소유 BaseEntity
          * @param {object} [p_property] 
          * @param {object} p_property.default 기본값
@@ -83,7 +83,7 @@
             /** 
              * 이벤트 객체
              * @private
-             * @member {Object} _L.Meta.Entity.MetaColumn#$event  
+             * @member {Observer} _L.Meta.Entity.MetaColumn#$event  
              */
             Object.defineProperty(this, '$event', 
             {
@@ -94,7 +94,7 @@
 
             /**
              * 별칭 내부값
-             * @member {string} _L.Meta.Entity.MetaColumn#$value
+             * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#$value
              * @readonly
              * @private
              */
@@ -280,6 +280,9 @@
         MetaColumn._VALUE_TYPE = [String, Number, Boolean];
 
         /**
+         * onChanged 이벤트를 발생합니다.
+         * @param {*} p_nValue 변경 값
+         * @param {*} p_oValue 기존 값
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
@@ -394,7 +397,6 @@
          * @param {boolean} [p_condition] <기본값 false> 성공/실패 조건
          * @param {boolean} p_condition.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
          * @param {boolean} p_condition.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
-         * @returns {object | undefined} 리턴값이 없으면 검사 성공
          */
         MetaColumn.prototype.addConstraint = function(p_regex, p_msg, p_code, p_condition) {
             p_condition = p_condition || false;
@@ -418,9 +420,10 @@
         /**
          * 속성의 value에 유효성을 검사한다. (isNotnull, isNullPass, constraints 기준)
          * TODO: number, boolean 형이 입력될경우, 기본 제약 조건 valueTypes 검사여부 검토?, 예외가 아니고 메세지로 표현?
-         * @param {string} p_value 
+         * @param {string | number | boolean} p_value 검사할 값
          * @param {object} result 메세지는 참조(객체)형 으로 전달
          * @param {number} p_option 1. isNotNull 참조 | 2: null검사 진행   |  3: null검사 무시
+         * @returns {object | undefined} 리턴값이 없으면 검사 성공
          */
         MetaColumn.prototype.valid = function(p_value) {
             var result = {};

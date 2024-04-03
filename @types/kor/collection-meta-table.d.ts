@@ -1,4 +1,6 @@
 import PropertyCollection       = require("logic-core/collection-property");
+import T                        = require("logic-core/T");
+
 import MetaTable                = require("./meta-table");
 
 /**
@@ -12,6 +14,9 @@ declare class MetaTableCollection extends PropertyCollection {
      */
     constructor(owner: object);
 
+    /** @deprecated */
+    add(key: string, elem: any,  desc?: T.PropertyDescriptor): number;
+    
     /**
      * 테이블 컬렉션에 엔티티 추가
      * @param table 추가할 메타테이블
