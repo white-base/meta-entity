@@ -1,4 +1,4 @@
-import BaseEntity           = require("./base-column");
+import BaseEntity           = require("./base-entity");
 import ITransaction         = require("./i-transaction");
 import MetaTableCollection  = require("./collection-meta-table");
 
