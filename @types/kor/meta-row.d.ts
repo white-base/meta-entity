@@ -72,7 +72,7 @@ declare class MetaRow extends MetaObject {
      * @param idx 인덱스
      * @param nVal 변경 값
      * @param oVal 기존 값
-     * @listens MetaRow#_onChanging
+     * @listens MetaRow#onChanging
      */
     _onChanging(idx: number, nVal: any, oVal: any);
 
@@ -81,7 +81,7 @@ declare class MetaRow extends MetaObject {
      * @param idx 인덱스
      * @param nVal 변경 값
      * @param oVal 기존 값
-     * @listens MetaRow#_onChanged
+     * @listens MetaRow#onChanged
      */
     _onChanged(idx: number, nVal: any, oVal: any);
 
