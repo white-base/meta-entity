@@ -21,60 +21,6 @@ import MetaElement          = require("logic-core/meta-element");
 import BaseCollection       = require("logic-core/base-collection");
 import ArrayCollection      = require("logic-core/collection-array");
 import PropertyCollection   = require("logic-core/collection-property");
-// import Core_T               = require("logic-core/T");
-
-export {
-    // Core_T,
-    ExtendError,
-    Observer,
-    Util,
-    Type,
-    Message,
-    IObject,
-    IMarshal,
-    ICollection,
-    IPropertyCollection,
-    IElement,
-    IList,
-    IListControl,
-    ISerialize,
-    IArrayCollection,
-    NamespaceManager,
-    MetaRegistry,
-    MetaObject,
-    MetaElement,
-    BaseCollection,
-    ArrayCollection,
-    PropertyCollection
-};
-export namespace Common {
-    /** Util 네임스페이스 TODO: */
-    let Util;
-    /** Type 네임스페이스 TODO: */
-    let Type;
-}
-export namespace Interface {
-    var IObject : IObject;
-    var IMarshal : IMarshal;
-    var ICollection : ICollection;
-    var IPropertyCollection : IPropertyCollection;
-    var IElement : IElement;
-    var IList : IList;
-    var IListControl : IListControl;
-    var ISerialize : ISerialize;
-    var IArrayCollection : IArrayCollection;
-}
-export namespace Meta {
-    var NamespaceManager : NamespaceManager;
-    var MetaRegistry : MetaRegistry;
-    var MetaObject : MetaObject;
-    var MetaElement : MetaElement;
-}
-export namespace Collection {
-    var BaseCollection : BaseCollection;
-    var ArrayCollection : ArrayCollection;
-    var PropertyCollection : PropertyCollection;
-}
 
 // ################# local export #################
 import BaseColumn               = require("./base-column");
@@ -98,10 +44,31 @@ import MetaTableColumnCollection= require("./collection-meta-table-column");
 import MetaViewColumnCollection = require("./collection-meta-view-column");
 import ObjectColumn             = require("./object-column");
 import TransactionQueue         = require("./trans-queue");
-// import Entity_T                 = require("./T");
 
 export {
-    // Entity_T,
+    // Core_T,
+    ExtendError,
+    Observer,
+    Util,
+    Type,
+    Message,
+    IObject,
+    IMarshal,
+    ICollection,
+    IPropertyCollection,
+    IElement,
+    IList,
+    IListControl,
+    ISerialize,
+    IArrayCollection,
+    NamespaceManager,
+    MetaRegistry,
+    MetaObject,
+    MetaElement,
+    BaseCollection,
+    ArrayCollection,
+    PropertyCollection,
+    // local
     BaseColumn,
     BaseEntity,
     BaseColumnCollection,
@@ -124,12 +91,42 @@ export {
     MetaTableColumnCollection,
     MetaViewColumnCollection
 };
+export namespace Common {
+    /** Util 네임스페이스 TODO: */
+    let Util;
+    /** Type 네임스페이스 TODO: */
+    let Type;
+}
 export namespace Interface {
+    var IObject : IObject;
+    var IMarshal : IMarshal;
+    var ICollection : ICollection;
+    var IPropertyCollection : IPropertyCollection;
+    var IElement : IElement;
+    var IList : IList;
+    var IListControl : IListControl;
+    var ISerialize : ISerialize;
+    var IArrayCollection : IArrayCollection;
+    // local
     var IExportControl : IExportControl;
     var IGroupControl : IGroupControl;
     var IImportControl : IImportControl;
     var ISchemaControl : ISchemaControl;
     var ITransaction : ITransaction;
+}
+export namespace Collection {
+    var BaseCollection : BaseCollection;
+    var ArrayCollection : ArrayCollection;
+    var PropertyCollection : PropertyCollection;
+    // local
+    var TransactionCollection : TransactionCollection;
+    var TransactionQueue : TransactionQueue;
+}
+export namespace Meta {
+    var NamespaceManager : NamespaceManager;
+    var MetaRegistry : MetaRegistry;
+    var MetaObject : MetaObject;
+    var MetaElement : MetaElement;
 }
 export namespace Meta.Entity {
     var BaseColumn : BaseColumn;
@@ -148,10 +145,5 @@ export namespace Meta.Entity {
     var MetaViewColumnCollection : MetaViewColumnCollection;
 
 }
-export namespace Collection {
-    var TransactionCollection : TransactionCollection;
-    var TransactionQueue : TransactionQueue;
-}
-
 
 
