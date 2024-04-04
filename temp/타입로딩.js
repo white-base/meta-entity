@@ -1,8 +1,10 @@
 // @ts-check
 
 var Util                        = require('logic-core').Util;
+var Type                        = require('logic-core').Type;
 var Observer                    = require('logic-core').Observer;
 var Message                     = require('logic-core').Message;
+var ArrayCollection             = require('logic-core').ArrayCollection;
 
 
 var MetaObject                  = require('logic-core').MetaObject;
@@ -26,7 +28,20 @@ var MetaElement                 = require('logic-core').MetaElement;
 
 // var C = require('logic-entity');
 // var C = require('../');
+// MetaObject._
+// MetaElement._UNION = 읽기 전용 속성이라 추가 할수 없게 해 놓음
+var t1 = Type.typeObject([[]]);
+// t1.
 
+var a1 = new ArrayCollection({});
+var e1 = new MetaElement('e1');
+
+
+var r1 = MetaRegistry.createReferObject(e1);
+
+
+// a1.add(1, { })
+// t1.
 // var a2 = new C.MetaTable('a2');
 // var a1 = new C.MetaRowCollection(a2);
 // var a3 = new C.MetaRow(a2);
@@ -97,7 +112,7 @@ Func._TYPE = {
 
 // Func.
 
-Function.prototype
+// Function.prototype
 
 // Function._NS = 10;
 

@@ -2,7 +2,7 @@ import BaseColumn           = require("./base-column");
 import Observer             = require("logic-core/observer");
 import BaseEntity           = require("./base-entity");
 
-import T                    = require("./T");
+// import T                    = require("./T");
 
 
 // declare type ValueType = string | number | boolean;
@@ -28,7 +28,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 직접 접근 제한 !!
      */
-    $value: T.ValueType;
+    $value: ValueType;
 
     /**
      * 컬럼 value의 필수 여부
@@ -50,23 +50,23 @@ declare class MetaColumn extends BaseColumn {
      * get 우선순위 : 1. getter 있는 경우, 2. 내부값 $value  
      * set 우선순위 : 1. setter 있는 경우, 2. setter 리턴값이 없는 경우  
      */
-    value: T.ValueType;
+    value: ValueType;
 
     /**
      * 컬럼의 value 의 getter
      */
-    getter: ()=>T.ValueType;
+    getter: ()=>ValueType;
 
     /**
      * 컬럼의 value 의 setter
      */
-    setter: (value: T.ValueType)=>void;
+    setter: (value: ValueType)=>void;
 
     /**
      * 변경 이벤트 
      * @event MetaColumn#onChanged
      */
-    onChanged: (newVal: T.ValueType, oldVal: T.ValueType, _this: this)=>void;
+    onChanged: (newVal: ValueType, oldVal: ValueType, _this: this)=>void;
 
     /**
      * 
@@ -74,7 +74,7 @@ declare class MetaColumn extends BaseColumn {
      * @param oVal 기존 값
      * @listens  MetaColumn#onChanged
      */
-    _onChanged(nVal: T.ValueType, oVal: T.ValueType);
+    _onChanged(nVal: ValueType, oVal: ValueType);
 
     /**
      * 
@@ -122,7 +122,7 @@ declare class MetaColumn extends BaseColumn {
      * 속성의 value에 유효성을 검사한다. (isNotnull, isNullPass, constraints 기준)
      * @param value 검사할 값
      */
-    valid(value: T.ValueType): object | undefined;
+    valid(value: ValueType): object | undefined;
 }
 
 export = MetaColumn;

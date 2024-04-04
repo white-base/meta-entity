@@ -1,6 +1,6 @@
 import TransactionCollection    = require("./collection-transaction");
 import MetaRow                  = require("./meta-row");
-import T                    = require("logic-core/T");
+// import T                    = require("logic-core/T");
 
 declare class MetaRowCollection extends TransactionCollection {
 
@@ -18,7 +18,7 @@ declare class MetaRowCollection extends TransactionCollection {
 
     
     /** @deprecated */
-    add(elem: any, desc?: T.PropertyDescriptor): number;
+    add(elem: any, desc?: PropertyDescriptor): number;
 
     /**
      * MetaRow 추가 idx 를 기준으로 검사한다.
@@ -29,7 +29,7 @@ declare class MetaRowCollection extends TransactionCollection {
 
     
     /** @deprecated */
-    insertAt(pos: number, elem: any, desc?: T.PropertyDescriptor): boolean;
+    insertAt(pos: number, elem: any, desc?: PropertyDescriptor): boolean;
     
     /**
      * pos 위치에 추가

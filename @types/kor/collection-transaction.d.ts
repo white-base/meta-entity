@@ -1,5 +1,5 @@
 import ArrayCollection          = require("logic-core/collection-array");
-import T                        = require("logic-core/T");
+// import T                        = require("logic-core/T");
 import TransactionQueue         = require("./trans-queue");
 
 /**
@@ -72,7 +72,7 @@ declare class TransactionCollection extends ArrayCollection {
      * @param elem 요소
      * @param desc 프로퍼티 기술자 객체
      */
-    insertAt(pos: number, elem: any, desc: T.PropertyDescriptor): boolean;
+    insertAt(pos: number, elem: any, desc: PropertyDescriptor): boolean;
 
     /**
      * 변경사항 반영
