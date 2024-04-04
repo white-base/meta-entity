@@ -55,15 +55,16 @@ Function.prototype.constructor
 function Func() {
    
 }
+
 // Func.bbb = ()=>{}
 // Func.bbb = 1;
 // Func.bind = "a"
 
 // Function.length = 1
-// Func.caller = ''
+Func.caller = 's'
 Func.apply()
-Func.aaa()
-Func.bbb({$type: 'union', _prop: 1})
+// Func.aaa()
+// Func.bbb({$type: 'union', _prop: 1})
 
 Func._NS;
 // Func.aa = 1;
@@ -89,7 +90,7 @@ Func._TYPE = {
     // kind: '_ANY_',
     // default: 
 }
-Func.zzz
+// Func.zzz
 // var dfdf = Func.zzz;
 // Func.
 
