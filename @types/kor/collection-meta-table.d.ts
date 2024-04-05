@@ -15,13 +15,13 @@ declare class MetaTableCollection extends PropertyCollection {
     constructor(owner: object);
 
     /** @deprecated */
-    add(key: string, elem: any,  desc?: PropertyDescriptor): number;
+    // add(key: string, elem: any,  desc?: PropertyDescriptor): number;
     
     /**
      * 테이블 컬렉션에 엔티티 추가
      * @param table 추가할 메타테이블
      */
-    add(table: string | MetaTable): MetaTable;
+    add(table: string | MetaTable): number;
 
     /**
      * 테이블명 존재 유무

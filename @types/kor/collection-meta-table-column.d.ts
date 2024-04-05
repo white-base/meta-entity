@@ -13,7 +13,7 @@ declare class MetaTableColumnCollection extends BaseColumnCollection {
     constructor(owner: object);
 
     /** @deprecated */
-    add(name: string, value: any): number;
+    // add(name: string, value: any): number;
 
     /**
      * 테이블 컬렉션에 컬럼 추가
