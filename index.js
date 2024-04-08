@@ -20,27 +20,27 @@ var IListControl                = require('logic-core').IListControl;
 var ISerialize                  = require('logic-core').ISerialize;
 var IArrayCollection            = require('logic-core').IArrayCollection;
 // ################# local export #################
-var BaseColumn                  = require('./src/base-column').BaseColumn;
-var BaseEntity                  = require('./src/base-entity').BaseEntity;
-var BaseColumnCollection        = require('./src/collection-column').BaseColumnCollection;
-var MetaViewColumnCollection    = require('./src/collection-column').MetaViewColumnCollection;
-var MetaTableColumnCollection   = require('./src/collection-column').MetaTableColumnCollection;
-var TransactionCollection       = require('./src/collection-transaction').TransactionCollection;
 var IExportControl              = require('./src/i-control-export').IExportControl;
 var IGroupControl               = require('./src/i-control-group').IGroupControl;
 var IImportControl              = require('./src/i-control-import').IImportControl;
 var ISchemaControl              = require('./src/i-control-schema').ISchemaControl;
 var ITransaction                = require('./src/i-transaction').ITransaction;
-var MetaColumn                  = require('./src/meta-column').MetaColumn;
-var MetaRow                     = require('./src/meta-row').MetaRow;
+var TransactionQueue            = require('./src/trans-queue').TransactionQueue;
+var TransactionCollection       = require('./src/collection-transaction').TransactionCollection;
 var MetaRowCollection           = require('./src/meta-row').MetaRowCollection;
-var MetaSet                     = require('./src/meta-set').MetaSet;
+var MetaRow                     = require('./src/meta-row').MetaRow;
+var BaseColumn                  = require('./src/base-column').BaseColumn;
+var MetaColumn                  = require('./src/meta-column').MetaColumn;
+var ObjectColumn                = require('./src/object-column').ObjectColumn;
+var BaseColumnCollection        = require('./src/collection-column').BaseColumnCollection;
+var MetaViewColumnCollection    = require('./src/collection-column').MetaViewColumnCollection;
+var MetaTableColumnCollection   = require('./src/collection-column').MetaTableColumnCollection;
+var BaseEntity                  = require('./src/base-entity').BaseEntity;
 var MetaTable                   = require('./src/meta-table').MetaTable;
 var MetaTableCollection         = require('./src/meta-table').MetaTableCollection;
 var MetaView                    = require('./src/meta-view').MetaView;
 var MetaViewCollection          = require('./src/meta-view').MetaViewCollection;
-var ObjectColumn                = require('./src/object-column').ObjectColumn;
-var TransactionQueue            = require('./src/trans-queue').TransactionQueue;
+var MetaSet                     = require('./src/meta-set').MetaSet;
 
 module.exports = {
     Util: Util,
@@ -65,27 +65,27 @@ module.exports = {
     ArrayCollection: ArrayCollection,
     PropertyCollection: PropertyCollection,
     // #### local ####
-    BaseColumn: BaseColumn,
-    BaseEntity: BaseEntity,
-    BaseColumnCollection: BaseColumnCollection,
-    MetaViewColumnCollection: MetaViewColumnCollection,
-    MetaTableColumnCollection: MetaTableColumnCollection,
-    TransactionCollection: TransactionCollection,
     IExportControl: IExportControl,
     IGroupControl: IGroupControl,
     IImportControl: IImportControl,
     ISchemaControl: ISchemaControl,
     ITransaction: ITransaction,
-    MetaColumn: MetaColumn,
-    MetaRow: MetaRow,
+    TransactionQueue: TransactionQueue,
+    TransactionCollection: TransactionCollection,
     MetaRowCollection: MetaRowCollection,
-    MetaSet: MetaSet,
+    MetaRow: MetaRow,
+    BaseColumn: BaseColumn,
+    MetaColumn: MetaColumn,
+    ObjectColumn: ObjectColumn,
+    BaseColumnCollection: BaseColumnCollection,
+    MetaViewColumnCollection: MetaViewColumnCollection,
+    MetaTableColumnCollection: MetaTableColumnCollection,
+    BaseEntity: BaseEntity,
     MetaTable: MetaTable,
     MetaTableCollection: MetaTableCollection,
     MetaView: MetaView,
     MetaViewCollection: MetaViewCollection,
-    ObjectColumn: ObjectColumn,
-    TransactionQueue: TransactionQueue,
+    MetaSet: MetaSet,
     Common: {
         Util: Util,
         Type: Type,
