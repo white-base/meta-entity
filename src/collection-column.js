@@ -226,7 +226,7 @@
                 if (this._ownerIsEntity()) column = new this._baseType(key, this._owner);
                 else column = new this._baseType(key);
                 
-            } else if (p_column instanceof this._baseType) {
+            } else if (p_column instanceof BaseColumn) {
                 key  = p_column.columnName;
                 if (this._ownerIsEntity()) column = p_column.clone(this._owner);
                 else column = p_column.clone();
