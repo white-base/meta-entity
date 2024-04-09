@@ -383,7 +383,7 @@
             if (rObj['getter']) clone.getter = rObj['getter'];
             if (rObj['setter']) clone.setter = rObj['setter'];
             if (rObj['alias']) clone.alias = rObj['alias'];
-            if (rObj['value']) clone.value = rObj['value'];
+            clone.value = rObj['value'];
 
             return clone;
         };
