@@ -228,8 +228,11 @@
                 
             } else if (p_column instanceof BaseColumn) {
                 key  = p_column.columnName;
-                if (this._ownerIsEntity()) column = p_column.clone(this._owner);
-                else column = p_column.clone();
+                if (this._ownerIsEntity() && p_column._owner !== this._owner) {
+                    column = p_column.clone(this._owner);
+                } else column = p_column;
+                // if (this._ownerIsEntity()) column = p_column.clone(this._owner);
+                // else column = p_column.clone();
                 
             } else {
                 throw new ExtendError(/EL05151/, null, [typeof p_column]); 
