@@ -14,9 +14,6 @@ declare class MetaTableCollection extends PropertyCollection {
      */
     constructor(owner: object);
 
-    /** @deprecated */
-    // add(key: string, elem: any,  desc?: PropertyDescriptor): number;
-    
     /**
      * 테이블 컬렉션에 엔티티 추가
      * @param table 추가할 메타테이블
