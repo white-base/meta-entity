@@ -33,7 +33,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows[0]).toBeUndefined();
                 expect(s.rows['0']).toBeUndefined();
                 expect(s.rows.count).toBe(0);
-                expect(s.rows.list.length).toBe(0);
+                expect(s.rows._list.length).toBe(0);
                 expect(result > -1).toBeTruthy();
             });
             it("- remove(elem) : number ", () => {
@@ -44,7 +44,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows[0]).toBeUndefined();
                 expect(s.rows['0']).toBeUndefined();
                 expect(s.rows.count).toBe(0);
-                expect(s.rows.list.length).toBe(0);
+                expect(s.rows._list.length).toBe(0);
             });
             it("- remove(elem) : object ", () => {
                 let s = new Student();
@@ -55,7 +55,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows[0]).toBeUndefined();
                 expect(s.rows['0']).toBeUndefined();
                 expect(s.rows.count).toBe(0);
-                expect(s.rows.list.length).toBe(0);
+                expect(s.rows._list.length).toBe(0);
             });
             it("- remove(elem) : string (없을 경우)", () => {
                 let s = new Student();
@@ -64,7 +64,7 @@ describe("[target: collection-trans.js]", () => {
     
                 expect(s.rows[0]).not.toBeUndefined();
                 expect(s.rows.count).toBe(1);
-                expect(s.rows.list.length).toBe(1);
+                expect(s.rows._list.length).toBe(1);
                 expect(result > -1).not.toBeTruthy();
             });
         });
@@ -252,7 +252,7 @@ describe("[target: collection-trans.js]", () => {
     
                 expect(s.rows[0]).toBeUndefined();
                 expect(s.rows.count).toBe(0);
-                expect(s.rows.list.length).toBe(0);
+                expect(s.rows._list.length).toBe(0);
                 expect(result).toBeTruthy();
             });
             it("- removeAt(idx) : 없을 경우", () => {
@@ -263,7 +263,7 @@ describe("[target: collection-trans.js]", () => {
     
                 expect(s.rows[0]).toBeTruthy();
                 expect(s.rows.count).toBe(1);
-                expect(s.rows.list.length).toBe(1);
+                expect(s.rows._list.length).toBe(1);
                 expect(result).not.toBeTruthy();
             });
             it("- removeAt(idx) : 첫째 요소 삭제", () => {
@@ -279,7 +279,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A2')).toBe(0);  // 바뀐 idx 확인
                 expect(s.rows.indexOf('A3')).toBe(1);  // 바뀐 idx 확인
                 expect(s.rows.count).toBe(2);
-                expect(s.rows.list.length).toBe(2);
+                expect(s.rows._list.length).toBe(2);
                 expect(result).toBeTruthy();
             });
             it("- removeAt(idx) : 중간 요소 삭제", () => {
@@ -295,7 +295,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A1')).toBe(0);  
                 expect(s.rows.indexOf('A3')).toBe(1);  // 바뀐 idx 확인
                 expect(s.rows.count).toBe(2);
-                expect(s.rows.list.length).toBe(2);
+                expect(s.rows._list.length).toBe(2);
                 expect(result).toBeTruthy();
             });
             it("- removeAt(idx) : 마지막 요소 삭제 후 추가", () => {
@@ -314,7 +314,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A2')).toBe(1);
                 expect(s.rows.indexOf('A4')).toBe(2);
                 expect(s.rows.count).toBe(3);
-                expect(s.rows.list.length).toBe(3);
+                expect(s.rows._list.length).toBe(3);
                 expect(result).toBeTruthy();
             });
             it("- removeAt(idx) : autoChanges = true 설정", () => {
@@ -354,7 +354,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A1')).toBe(1);  // 바뀐 idx 확인
                 expect(s.rows.indexOf('A2')).toBe(2);  // 바뀐 idx 확인
                 expect(s.rows.count).toBe(3);
-                expect(s.rows.list.length).toBe(3);
+                expect(s.rows._list.length).toBe(3);
                 expect(result).toBeTruthy();
             });
             it("- insertAt(idx, value) : 중간 요소 추가", () => {
@@ -370,7 +370,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A1')).toBe(1);  // 바뀐 idx 확인
                 expect(s.rows.indexOf('A2')).toBe(2);  // 바뀐 idx 확인
                 expect(s.rows.count).toBe(3);
-                expect(s.rows.list.length).toBe(3);
+                expect(s.rows._list.length).toBe(3);
                 expect(result).toBeTruthy();
             });
             it("- insertAt(idx, value) : 마지막 요소 추가 후 add()", () => {
@@ -389,7 +389,7 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows.indexOf('A2')).toBe(2);  // 바뀐 idx 확인
                 expect(s.rows.indexOf('A3')).toBe(3);  // 바뀐 idx 확인
                 expect(s.rows.count).toBe(4);
-                expect(s.rows.list.length).toBe(4);
+                expect(s.rows._list.length).toBe(4);
                 expect(result).toBeTruthy();
             });
             it("- insertAt(pos) : 예외 : 사이즈 초과", () => {
@@ -521,7 +521,7 @@ describe("[target: collection-trans.js]", () => {
         
                 expect(s.rows._transQueue.queue.length).toBe(0);
                 expect(s.rows.count).toBe(0);
-                expect(s.rows.list.length).toBe(0);
+                expect(s.rows._list.length).toBe(0);
             });
         });
         describe("예외, 커버리지", () => {

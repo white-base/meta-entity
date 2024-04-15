@@ -288,7 +288,7 @@ describe("[target: meta-row.js]", () => {
                 a2.setObject(obj2);
 
                 expect(a2.equal(a1)).toBe(true);
-                expect(a2.rows[0].$event.list.length).toBe(1)
+                expect(a2.rows[0].$event._list.length).toBe(1)
                 expect(()=>a2.rows.setObject(obj1)).toThrow(/EL04112/);
                 /**
                  * MEMO:
@@ -769,7 +769,7 @@ describe("[target: meta-row.js]", () => {
                 expect(table1.rows.indexOf(row1)).toBe(1);  // 바뀐 idx 확인
                 expect(table1.rows.indexOf(row2)).toBe(2);  // 바뀐 idx 확인
                 expect(table1.rows.count).toBe(3);
-                expect(table1.rows.list.length).toBe(3);
+                expect(table1.rows._list.length).toBe(3);
             });
             it("- insertAt(idx, value) : 중간 요소 추가", () => {
                 var table1 = new MetaTable('T1');
@@ -792,7 +792,7 @@ describe("[target: meta-row.js]", () => {
                 expect(table1.rows.indexOf(row1)).toBe(1);  // 바뀐 idx 확인
                 expect(table1.rows.indexOf(row2)).toBe(2);  // 바뀐 idx 확인
                 expect(table1.rows.count).toBe(3);
-                expect(table1.rows.list.length).toBe(3);
+                expect(table1.rows._list.length).toBe(3);
             });
             it("- insertAt(idx, value) : 마지막 요소 추가 후 add()", () => {
                 var table1 = new MetaTable('T1');
@@ -820,7 +820,7 @@ describe("[target: meta-row.js]", () => {
                 expect(table1.rows.indexOf(row2)).toBe(2);  // 바뀐 idx 확인
                 expect(table1.rows.indexOf(row3)).toBe(3);  // 바뀐 idx 확인
                 expect(table1.rows.count).toBe(4);
-                expect(table1.rows.list.length).toBe(4);
+                expect(table1.rows._list.length).toBe(4);
             });
             it("- insertAt(pos) : 예외 : 사이즈 초과", () => {
                 var table1 = new MetaTable('T1');

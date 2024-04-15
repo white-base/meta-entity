@@ -148,9 +148,9 @@
             /**
              * 컬렉션 목록 
              * @readonly
-             * @member {Array<any>}  _L.Meta.Entity.MetaRow#list  
+             * @member {Array<any>}  _L.Meta.Entity.MetaRow#_list  
              */
-            Object.defineProperty(this, 'list', 
+            Object.defineProperty(this, '_list', 
             {
                 get: function() {
                     var arr = [];
@@ -320,8 +320,8 @@
                 obj['_entity'] = MetaRegistry.createReferObject(this._entity);
             }
             obj['_elem'] = [];
-            for (var i = 0; i < this.list.length; i++) {
-                var elem = this.list[i];
+            for (var i = 0; i < this._list.length; i++) {
+                var elem = this._list[i];
                 if (elem instanceof MetaObject) {
                     if (MetaRegistry.hasGuidObject(elem, owned)) {
                         obj['_elem'].push(MetaRegistry.createReferObject(elem));
