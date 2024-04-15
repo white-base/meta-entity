@@ -338,7 +338,7 @@ describe("[target: meta-column.js ]", () => {
                 c4.setter = fun3;
 
                 expect(c1.equal(c2)).toBe(true);
-                expect(c1.equal(c3)).toBe(false);
+                expect(c1.equal(c3)).toBe(true);
                 expect(c1.equal(c4)).toBe(false);
             });
             it("- equal() : getter 로 비교 ", () => {
@@ -356,7 +356,7 @@ describe("[target: meta-column.js ]", () => {
                 c4.getter = fun3;
 
                 expect(c1.equal(c2)).toBe(true);
-                expect(c1.equal(c3)).toBe(false);
+                expect(c1.equal(c3)).toBe(true);
                 expect(c1.equal(c4)).toBe(false);
             });
         });

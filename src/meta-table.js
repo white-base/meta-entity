@@ -18,12 +18,12 @@
         var _ExtendError                = require('logic-core').ExtendError;
         var _Type                       = require('logic-core').Type;
         var _Util                       = require('logic-core').Util;
+        var _MetaRegistry               = require('logic-core').MetaRegistry;
         var _MetaObject                 = require('logic-core').MetaObject;
         var _BaseEntity                 = require('./base-entity').BaseEntity;
         var _ITransaction               = require('./i-transaction').ITransaction;
         var _PropertyCollection         = require('logic-core').PropertyCollection;
         var _MetaTableColumnCollection  = require('./collection-column').MetaTableColumnCollection;
-        var _MetaRegistry               = require('logic-core').MetaRegistry;
     } else {    
         var $Message                    = _global._L.Message;
         var $ExtendError                = _global._L.ExtendError;
