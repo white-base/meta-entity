@@ -276,7 +276,7 @@
         Util.inherits(MetaColumn, _super);
 
         MetaColumn._NS = 'Meta.Entity';                                 // namespace
-        MetaColumn._PARAMS = ['columnName', '_entity', '_property'];    // creator parameter
+        MetaColumn._PARAMS = ['columnName', '_entity'];    // creator parameter    // 
         MetaColumn._VALUE_TYPE = [String, Number, Boolean];
 
         /**
