@@ -62,7 +62,7 @@
             var $key            = p_name;
             var $value          = null;
             var $alias          = null;
-            var _entity;
+            var _entity         = null;
             var _valueTypes     = this._type._VALUE_TYPE || [];
             var value           = null;
             var caption         = null;
@@ -112,7 +112,6 @@
                 configurable: false,
                 enumerable: false,
             });
-
 
             /**
              * 컬럼 소유 엔티티

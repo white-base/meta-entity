@@ -188,6 +188,16 @@ describe("[target: meta-column.js]", () => {
     
                 expect(table1.columns.count).toBe(2);
             });
+            it("- add(name) : MetaTableColumnCollection 에서 추가  ", () => {
+                var extColumns = new MetaTableColumnCollection();
+                extColumns.add('i1');
+                extColumns.add(new MetaColumn('i2'));
+    
+                expect(extColumns.count).toBe(2);
+                expect(extColumns.i1 instanceof MetaColumn).toBe(true);
+                expect(extColumns.i1._entity).toBe(null);
+                expect(extColumns.i2._entity).toBe(null);
+            });
             it("- add(item) : 아이템 객체로 추가 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add(new MetaColumn('i1'));

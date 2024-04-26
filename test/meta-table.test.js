@@ -9,7 +9,7 @@ const {MetaElement}                 = require('logic-core');
 const {BaseEntity}                  = require('../src/base-entity');
 const {IObject}                     = require('logic-core');
 const {IMarshal}                    = require('logic-core');
-const { MetaTable }                 = require('../src/meta-table');
+const { MetaTable, MetaTableCollection }                 = require('../src/meta-table');
 const { MetaView }                  = require('../src/meta-view');
 const {Util}                        = require('logic-core');
 const { MetaRow }                   = require('../src/meta-row');
@@ -1157,9 +1157,11 @@ describe("[target: meta-table.js]", () => {
                     ]
                 };
                 var json2 = { 
-                    columns: {
-                        i1: { caption: 'C1'},
-                    },
+                    entity: {
+                        columns: {
+                            i1: { caption: 'C1'},
+                        },
+                    }
                 };
                 expect(()=> table1.read(json1, 0)).toThrow('EL05356')
                 expect(()=> table1.read(json1, 0)).toThrow('EL05357')     // catch 
@@ -1222,9 +1224,11 @@ describe("[target: meta-table.js]", () => {
                     ]
                 };
                 var json2 = { 
-                    columns: {
-                        i1: { caption: 'C1'},
-                    },
+                    table: {
+                        columns: {
+                            i1: { caption: 'C1'},
+                        },
+                    }
                 };
                 table0.read(json1);  // 아무 동작 안함
                 const rObj = table0.getObject();
@@ -1334,7 +1338,6 @@ describe("[target: meta-table.js]", () => {
 
         describe("BaseEntity.readSchema(obj) <column 읽기(스키마)>", () => {
 
-
             it("- readSchema(obj) : column 읽기(스키마) ", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
@@ -1421,9 +1424,8 @@ describe("[target: meta-table.js]", () => {
                 var json3 = { columns: {
                         i1: { caption: 'C1'},
                     },
-                    rows: [
-                        { i1: 'R1', i2: 'R2' },
-                    ]
+                    rows: { i1: 'R1', i2: 'R2' },
+                    
                 };
                 table1.readSchema(json1, true);
                 table2.readSchema(json2, true);
@@ -2023,7 +2025,7 @@ describe("[target: meta-table.js]", () => {
         describe("MetaTableCollection.add() <테이블 추가>", () => {
             it("- tables.add() : 테이블 추가", () => {
                 const set1 = new MetaSet('S1');
-                const table1 = new MetaTable('T1');
+                const table1 = new MetaTable('t1')
                 set1.tables.add(table1);
                 
                 expect(set1.tables.count).toBe(1);
@@ -2042,6 +2044,15 @@ describe("[target: meta-table.js]", () => {
                 expect(()=> set1.tables.add({})).toThrow(/EL05423/)
                 // expect(()=> set1.tables.add()).toThrow(/ES051/)
                 expect(()=> set1.tables.add('T1')).toThrow(/EL05424/)
+            });
+            it("- tables.add() : 독립적으로 사용", () => {
+                const tables = new MetaTableCollection();
+                tables.add('t1');
+                tables.add(new MetaTable('t2'));
+                
+                expect(tables.count).toBe(2);
+                expect(tables.t1._metaSet).toBe(null);
+                expect(tables.t2._metaSet).toBe(null);
             });
         });
         describe("output(), load()", () => {

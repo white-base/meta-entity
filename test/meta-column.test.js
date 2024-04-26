@@ -678,6 +678,7 @@ describe("[target: meta-column.js ]", () => {
                 const c1 = new MetaColumn('c1');
                 
                 c1.$key = 'cc1';
+                c1.$key = 10
                 expect(c1.$key).toBe('cc1')
                 // c1.$alias = 
                 
@@ -688,6 +689,10 @@ describe("[target: meta-column.js ]", () => {
 
                 expect(c1.alias).toBe('c1')
                 expect(c1.$alias).toBe(null)
+                c1.$alias = 'a'
+                expect(c1.alias).toBe('a')
+                c1.$alias = 10
+                expect(c1.alias).toBe('a')
                 // expect(c1.__GET$alias(c1)).toBe(null)
 
             });

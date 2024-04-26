@@ -77,48 +77,8 @@
 
     //==============================================================
     // 4. module implementation
-
-    // /**
-    //  * 병합 옵션입니다.
-    //  * @readonly
-    //  * @enum {number}
-    //  * @memberof  _L.Meta.Entity.BaseEntity
-    //  */
-    // var EnumMerge = {
-    //     /** 로우 기준, 초과 컬럼 무시 */
-    //     Row_Limit: 0,
-    //     /** 컬럼 기준, 초과 로우 무시 */
-    //     Column_Limit: 1,
-    //     /** 컬럼 기준, 초과 컬럼 채움 */
-    //     Row_Over: 2,
-    //     /** 컬럼 기준, 넘침 로우 채움 */
-    //     Column_Over: 3
-    // };
-
-    // function eMerge() {
-    //     /**
-    //      * 병합 옵션입니다.
-    //      * @readonly
-    //      * @enum {number | string}
-    //      * @memberof  _L.Meta.Entity
-    //      */
-    //     var eMerge = {
-    //         /** 로우 기준, 초과 컬럼 무시 */
-    //         Row_Limit: 0,
-    //         /** 컬럼 기준, 초과 로우 무시 */
-    //         Column_Limit: 1,
-    //         /** 컬럼 기준, 초과 컬럼 채움 */
-    //         Row_Over: 2,
-    //         /** 컬럼 기준, 넘침 로우 채움 
-    //          * @type {string}
-    //         */
-    //         Column_Over: 'S'
-    //     };
-    //     return eMerge;
-    // }
-        
-
-
+    //--------------------------------------------------------------
+    // implementation   
     var BaseEntity  = (function (_super) {
         /**
          * 기본 엔티티 (최상위)
@@ -135,8 +95,8 @@
         function BaseEntity(p_name) {
             _super.call(this, p_name);
 
-            var _metaSet = null;
-            var rows  = new MetaRowCollection(this);
+            var _metaSet    = null;
+            var rows        = new MetaRowCollection(this);
 
             /**
              * 엔티티의 아이템(속성) 컬렉션
@@ -842,7 +802,7 @@
 
                 if (p_obj instanceof BaseEntity) {
                     this._readEntity(p_obj, p_option);
-                } else{
+                } else {    // REVIEW: entity, table 필요성 검토
                     if (p_obj['entity']) entity = p_obj['entity'];
                     else if (p_obj['table']) entity = p_obj['table'];
                     else entity = p_obj;

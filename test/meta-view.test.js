@@ -11,7 +11,7 @@ const {IObject}                     = require('logic-core');
 const {IMarshal}                    = require('logic-core');
 const {Util}                        = require('logic-core');
 const { MetaTable }                 = require('../src/meta-table');
-const { MetaView }                  = require('../src/meta-view');
+const { MetaView, MetaViewCollection }                  = require('../src/meta-view');
 const { MetaRow }                   = require('../src/meta-row');
 const  {MetaSet}                    = require('../src/meta-set');
 const { MetaColumn }                = require('../src/meta-column');  
@@ -1983,6 +1983,15 @@ describe("[target: meta-view.js]", () => {
                 set1.views.add(veiw1);
                 
                 expect(set1.views.count).toBe(1);
+            });
+            it("- tables.add() : 독립적으로 사용", () => {
+                const views = new MetaViewCollection();
+                views.add('v1');
+                views.add(new MetaView('v2'));
+                
+                expect(views.count).toBe(2);
+                expect(views.v1._metaSet).toBe(null);
+                expect(views.v2._metaSet).toBe(null);
             });
             it("- 예외 : 다른 타입", () => {
                 const set1 = new MetaSet('S1');
