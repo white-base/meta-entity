@@ -59,13 +59,12 @@
         function BaseColumn(p_name, p_entity) {
             _super.call(this, p_name);
 
-            
             var $key            = p_name;
+            var $value          = null;
             var $alias          = null;
             var _entity;
             var _valueTypes     = this._type._VALUE_TYPE || [];
             var value           = null;
-            var defaultValue    = null;
             var caption         = null;
             
             /**
@@ -80,6 +79,20 @@
                 set: function(nVal) { 
                     if (_isString(nVal)) $key = nVal;
                 },
+                configurable: false,
+                enumerable: false,
+            });
+
+            /**
+             * 별칭 내부값
+             * @member {string | number | boolean} _L.Meta.Entity.BaseColumn#$value
+             * @readonly
+             * @private
+             */
+            Object.defineProperty(this, '$value',
+            {
+                get: function() { return $value; },
+                set: function(nVal) { $value = nVal; },
                 configurable: false,
                 enumerable: false,
             });
@@ -182,10 +195,10 @@
              */
             Object.defineProperty(this, 'default', 
             {
-                get: function() { return defaultValue; },
+                get: function() { return value; },
                 set: function(nVal) { 
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
-                    defaultValue = nVal; 
+                    value = nVal; 
                 },
                 configurable: false,
                 enumerable: true
@@ -212,32 +225,16 @@
              */
             Object.defineProperty(this, 'value', 
             {
-                get: function() { return value; },
+                get: function() { return $value; },
                 set: function(nVal) {
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
-                    value = nVal;
+                    $value = nVal;
                 },
                 configurable: true,
                 enumerable: true
             });
 
-            // inner variable access
-            // this.__GET$alias = function(call) {
-            //     if (call instanceof BaseColumn) return $alias;
-            // }
-            // this.__SET$key = function(val, call) {
-            //     if (call instanceof BaseColumn) $key = val;
-            // }
-            // this.__SET$_valueTypes = function(val, call) {
-            //     var arr = [];
-            //     if (call instanceof BaseColumn) {
-            //         if (!Array.isArray(val)) arr.push(val);
-            //         else arr = val;
-            //         _valueTypes = arr;  
-            //     } 
-            // }
             if (p_entity) _entity = p_entity;
-            
         }
         Util.inherits(BaseColumn, _super);
 

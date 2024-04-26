@@ -56,7 +56,6 @@
          * @param {BaseEntity} [p_entity] 소유 BaseEntity
          * @param {object} [p_property] 
          * @param {object} p_property.default 기본값
-         * @param {object} p_property.caption 설명
          * @param {boolean} p_property.isNotNull 필수 유무
          * @param {boolean} p_property.isNullPass null 통과 유무
          * @param {array<object.function>} p_property.constraints 제약조건
@@ -69,16 +68,12 @@
         function MetaColumn(p_name, p_entity, p_property) {
             _super.call(this, p_name, p_entity);
 
-            var $value       = null;   // 재정의
-            var $event       = new Observer(this);
-            // var defaultValue  = null;
-            // var caption       = null;
-            var isNotNull     = false;
-            var isNullPass    = false;
-            var constraints   = [];
-            var getter        = null;
-            var setter        = null;
-            // var alias         = null;
+            var $event          = new Observer(this);
+            var isNotNull       = false;
+            var isNullPass      = false;
+            var constraints     = [];
+            var getter          = null;
+            var setter          = null;
 
             /** 
              * 이벤트 객체
@@ -91,20 +86,6 @@
                 configurable: false,
                 enumerable: false,
             });        
-
-            /**
-             * 별칭 내부값
-             * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#$value
-             * @readonly
-             * @private
-             */
-            Object.defineProperty(this, '$value',
-            {
-                get: function() { return $value; },
-                set: function(nVal) { $value = nVal; },
-                configurable: false,
-                enumerable: false,
-            });
 
             /**
              * 컬럼 value의 필수 여부
@@ -179,29 +160,29 @@
                     // 우선순위 : 1
                     if (typeof getter === 'function' ) {
                         __val = getter.call(this);
-                        if ($value !== null && $value !== __val) {
-                            this._onChanged(__val, $value);    // 검사 및 이벤트 발생
-                            $value = __val;   // 내부에 저장
+                        if (this.$value !== null && this.$value !== __val) {
+                            this._onChanged(__val, this.$value);    // 검사 및 이벤트 발생
+                            this.$value = __val;   // 내부에 저장
                         }
                     // 우선순위 : 2
-                    } else __val = $value;
+                    } else __val = this.$value;
                     /**
                      * 분기 처리값 '__val' 없는경우 (null, undefined)
                      *  - this.$value 초기화 되지 않은 경우
                      *  - getter 리턴이 없는 경우
                      */
-                    if (typeof __val === 'undefined' || __val === null) __val = $value || this.default;  
+                    if (typeof __val === 'undefined' || __val === null) __val = this.$value || this.default;  
                     return __val; 
                 },
                 set:  function(val) { 
                     var __val, _val;
-                    var _oldVal = $value;
+                    var _oldVal = this.$value;
                     if (typeof setter === 'function' ) _val = setter.call(this, val);
                     // settter 의 리턴이 여부
                     __val = typeof _val !== 'undefined' ? _val : val;
                     __val = __val === null ? '' : __val;  // null 등록 오류 처리
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], __val);
-                    $value = __val;
+                    this.$value = __val;
                     if (_oldVal !== __val && __val) this._onChanged(__val, _oldVal);    // 검사 및 이벤트 발생
                 },
                 configurable: true, // 재정의 허용
@@ -245,7 +226,6 @@
              * @param {any}         p_callback.p_nValue 신규 value 값
              * @param {any}         p_callback.p_oValue 기존 value 값
              * @param {MetaColumn}  p_callback.p_this this(컬럼객체)
-
              */
             Object.defineProperty(this, 'onChanged', 
             {
@@ -256,21 +236,6 @@
                 enumerable: false,
             });
             
-
-            // inner variable access
-            // this.__GET$alias = function(call) {
-            //     if (call instanceof MetaColumn) return alias;
-            // }
-            // this.__GET$$value = function(call) {
-            //     if (call instanceof MetaColumn) return $value;
-            // }
-            // this.__SET$$value = function(val, call) {
-            //     if (call instanceof MetaColumn) $value = val;
-            // }
-            // this.__SET$__key = function(val, call) {
-            //     if (call instanceof MetaColumn) __key = val;
-            // }
-
             if (p_property) this._load(p_property);
         }
         Util.inherits(MetaColumn, _super);
@@ -299,8 +264,9 @@
                 for(var prop in p_property) {
                     // if (p_property.hasOwnProperty(prop) &&
                     if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
-                        ['default', 'caption', 'isNotNull', 'isNullPass', 'constraints', 
-                        'value', 'getter', 'setter', 'alias', 'onChanged'
+                        [
+                            '_valueTypes', 'alias', 'default', 'caption', 'value',          // BaseColumn
+                            'isNotNull', 'isNullPass', 'constraints', 'getter', 'setter'    // MetaColumn                        
                         ].indexOf(prop) > -1) {
                         this[prop] = p_property[prop];
                     }
