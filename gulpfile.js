@@ -4,6 +4,7 @@ const minify = require('gulp-minify');
 // var uglify = require('gulp-uglify');
 // var minifyhtml = require('gulp-minify-html');
 var package = require('./package');
+var gulpCore = require('logic-core/gulpfile').paths;
 
 var src = '';
 var dist = 'dist/';
@@ -15,7 +16,20 @@ var paths = {
         // 폴리심 + 확장
         'src/i-control-export.js', 
         'src/i-control-group.js', 
-
+        'src/i-control-import.js', 
+        'src/i-control-schema.js', 
+        'src/i-transaction.js', 
+        'src/trans-queue.js', 
+        'src/collection-transaction.js', 
+        'src/meta-row.js', 
+        'src/base-column.js', 
+        'src/meta-column.js', 
+        'src/object-column.js', 
+        'src/collection-column.js', 
+        'src/base-entity.js', 
+        'src/meta-table.js', 
+        'src/meta-view.js', 
+        'src/meta-set.js', 
     ],
     test: 'test/*.test.js',
     // task: ['task/Collection.ArrayCollection.task.js', 'task/Main.task.js'],     // 임시 테스트
@@ -23,6 +37,12 @@ var paths = {
 	html: src + '/**/*.html'
 };
 
+var fileList = [];
+
+gulpCore.js.forEach((val, idx, arr) => {
+    fileList.push('node_modules/logic-core/'+ val);
+});
+fileList = fileList.concat(paths.js);
 /**
  * << 출판 파일 관리 정책 >>
  * 
@@ -41,13 +61,13 @@ var paths = {
  */
 
 gulp.task('meta', function () {
-	return gulp.src(paths.js)
+	return gulp.src(fileList)
 		.pipe(concat(PreFileName +'-'+ package.version + '.js'))
 		.pipe(gulp.dest(dist));
 });
 
 gulp.task('min', function () {
-	return gulp.src(paths.js)
+	return gulp.src(fileList)
 		.pipe(concat(PreFileName +'-'+ package.version + '.js'))
 		.pipe(minify())
 		.pipe(gulp.dest(dist));
