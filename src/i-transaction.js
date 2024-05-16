@@ -1,5 +1,4 @@
 /**** i-transaction.js | _L.Interface.ITransaction ****/
-
 (function(_global) {
     'use strict';
 

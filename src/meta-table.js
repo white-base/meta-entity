@@ -1,5 +1,4 @@
 /**** meta-table.js | _L.Meta.Entity.MetaTable, _L.Meta.Entity.MetaTableCollection ****/
-
 (function(_global) {
     'use strict';
 

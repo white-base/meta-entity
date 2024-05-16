@@ -1,5 +1,4 @@
 /**** i-control-schema.js | _L.Interface.ISchemaControl ****/
-
 (function(_global) {
     'use strict';
 

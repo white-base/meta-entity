@@ -1,5 +1,4 @@
 /**** collection-column.js | _L.Meta.Entity.BaseColumnCollection, MetaViewColumnCollection, MetaTableColumnCollection ****/
-
 (function(_global) {
     'use strict';
 

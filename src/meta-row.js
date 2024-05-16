@@ -1,5 +1,4 @@
 /**** meta-row.js | _L.Meta.Entity.MetaRow, _L.Meta.Entity.MetaRowCollection ****/
-
 (function(_global) {
     'use strict';
 

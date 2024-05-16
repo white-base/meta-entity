@@ -1,6 +1,6 @@
 {
   "name": "logic-entity",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "logic framwork entity",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.2",
     "jsdom": "^24.0.0",
-    "telejson": "^7.2.0"
+    "telejson": "^7.2.0",
+    "gulp": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0"
   },
   "dependencies": {
     "@types/logic-entity": "file:@types/kor",

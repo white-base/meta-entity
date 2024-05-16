@@ -1,5 +1,4 @@
 /**** meta-set.js | _L.Meta.Entity.MetaSet ****/
-
 (function(_global) {
     'use strict';
 

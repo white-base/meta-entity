@@ -1,5 +1,4 @@
 /**** collection-transaction.js | _L.Collection.TransactionCollection ****/
-
 (function(_global) {
     'use strict';
 

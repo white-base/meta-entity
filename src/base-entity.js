@@ -1,5 +1,4 @@
 /**** base-entity.js | _L.Meta.Entity.BaseEntity ****/
-
 (function(_global) {
     'use strict';
 

@@ -1,5 +1,4 @@
 /**** trans-queue.js | _L.Collection.TransactionQueue ****/
-
 (function(_global) {
     'use strict';
 
