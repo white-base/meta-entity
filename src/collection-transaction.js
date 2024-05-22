@@ -17,27 +17,27 @@
 
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Type                       = require('logic-core').Type;
-        var _Util                       = require('logic-core').Util;
-        var _ArrayCollection            = require('logic-core').ArrayCollection;
-        var _TransactionQueue           = require('./trans-queue').TransactionQueue;
-    } else {    
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Type                       = _global._L.Type;
-        var $Util                       = _global._L.Util;
-        var $ArrayCollection            = _global._L.ArrayCollection;
-        var $TransactionQueue           = _global._L.TransactionQueue;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Type                    = _Type                 || $Type;
-    var Util                    = _Util                 || $Util;
-    var ArrayCollection         = _ArrayCollection      || $ArrayCollection;
-    var TransactionQueue        = _TransactionQueue     || $TransactionQueue;
+    if (isNode) {                                                                       // strip:
+        var _Message                    = require('logic-core').Message;                // strip:
+        var _ExtendError                = require('logic-core').ExtendError;            // strip:
+        var _Type                       = require('logic-core').Type;                   // strip:
+        var _Util                       = require('logic-core').Util;                   // strip:
+        var _ArrayCollection            = require('logic-core').ArrayCollection;        // strip:
+        var _TransactionQueue           = require('./trans-queue').TransactionQueue;    // strip:
+    }                                                                                   // strip:
+    var $Message                    = _global._L.Message;           // modify:
+    var $ExtendError                = _global._L.ExtendError;       // modify:
+    var $Type                       = _global._L.Type;              // modify:
+    var $Util                       = _global._L.Util;              // modify:
+    var $ArrayCollection            = _global._L.ArrayCollection;   // modify:
+    var $TransactionQueue           = _global._L.TransactionQueue;  // modify:
+
+    var Message                 = _Message              || $Message;                    // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;                // strip:
+    var Type                    = _Type                 || $Type;                       // strip:
+    var Util                    = _Util                 || $Util;                       // strip:
+    var ArrayCollection         = _ArrayCollection      || $ArrayCollection;            // strip:
+    var TransactionQueue        = _TransactionQueue     || $TransactionQueue;           // strip:
 
     //==============================================================
     // 3. module dependency check

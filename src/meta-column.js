@@ -12,27 +12,27 @@
 
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Type                       = require('logic-core').Type;
-        var _Util                       = require('logic-core').Util;
-        var _Observer                   = require('logic-core').Observer;
-        var _BaseColumn                 = require('./base-column').BaseColumn;
-    } else {
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Type                       = _global._L.Type;
-        var $Util                       = _global._L.Util;
-        var $Observer                   = _global._L.Observer;
-        var $BaseColumn                 = _global._L.BaseColumn;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Type                    = _Type                 || $Type;
-    var Util                    = _Util                 || $Util;
-    var Observer                = _Observer             || $Observer;
-    var BaseColumn              = _BaseColumn           || $BaseColumn;
+    if (isNode) {                                                               // strip:
+        var _Message                    = require('logic-core').Message;        // strip:
+        var _ExtendError                = require('logic-core').ExtendError;    // strip:
+        var _Type                       = require('logic-core').Type;           // strip:
+        var _Util                       = require('logic-core').Util;           // strip:
+        var _Observer                   = require('logic-core').Observer;       // strip:
+        var _BaseColumn                 = require('./base-column').BaseColumn;  // strip:
+    }                                                                           // strip:
+    var $Message                    = _global._L.Message;       // modify:
+    var $ExtendError                = _global._L.ExtendError;   // modify:
+    var $Type                       = _global._L.Type;          // modify:
+    var $Util                       = _global._L.Util;          // modify:
+    var $Observer                   = _global._L.Observer;      // modify:
+    var $BaseColumn                 = _global._L.BaseColumn;    // modify:
+
+    var Message                 = _Message              || $Message;            // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;        // strip:
+    var Type                    = _Type                 || $Type;               // strip:
+    var Util                    = _Util                 || $Util;               // strip:
+    var Observer                = _Observer             || $Observer;           // strip:
+    var BaseColumn              = _BaseColumn           || $BaseColumn;         // strip:
 
     //==============================================================
     // 3. module dependency check

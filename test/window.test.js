@@ -28,11 +28,11 @@ describe("[L.*]", () => {
                 
                 expect(() => require('../src/trans-queue')).toThrow(/Util/);
             });
-            it("- 예외 : IArrayCollection 로딩이 인된경우", () => {
+            it("- 예외 : ArrayCollection 로딩이 인된경우", () => {
                 require('logic-core');
-                delete global._L.IArrayCollection;
+                delete global._L.ArrayCollection;
         
-                expect(() => require('../src/trans-queue')).toThrow(/IArrayCollection/);
+                expect(() => require('../src/trans-queue')).toThrow(/ArrayCollection/);
             });
             it("- 예외 : MetaObject 로딩이 인된경우", () => {
                 require('logic-core');

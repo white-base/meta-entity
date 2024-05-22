@@ -12,36 +12,36 @@
     
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Type                       = require('logic-core').Type;
-        var _Util                       = require('logic-core').Util;
-        var _PropertyCollection         = require('logic-core').PropertyCollection;
-        var _MetaObject                 = require('logic-core').MetaObject;
-        var _BaseEntity                 = require('./base-entity').BaseEntity;
-        var _MetaRegistry               = require('logic-core').MetaRegistry;
-        var _MetaViewColumnCollection   = require('./collection-column').MetaViewColumnCollection;
-    } else {
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Type                       = _global._L.Type;
-        var $Util                       = _global._L.Util;
-        var $PropertyCollection         = _global._L.PropertyCollection;
-        var $MetaObject                 = _global._L.MetaObject;
-        var $BaseEntity                 = _global._L.BaseEntity;
-        var $MetaRegistry               = _global._L.MetaRegistry;
-        var $MetaViewColumnCollection   = _global._L.MetaViewColumnCollection;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Type                    = _Type                 || $Type;
-    var Util                    = _Util                 || $Util;
-    var PropertyCollection      = _PropertyCollection   || $PropertyCollection;
-    var MetaObject              = _MetaObject           || $MetaObject;
-    var BaseEntity              = _BaseEntity           || $BaseEntity;
-    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
-    var MetaViewColumnCollection= _MetaViewColumnCollection || $MetaViewColumnCollection;
+    if (isNode) {                                                                                   // strip:
+        var _Message                    = require('logic-core').Message;                            // strip:
+        var _ExtendError                = require('logic-core').ExtendError;                        // strip:
+        var _Type                       = require('logic-core').Type;                               // strip:
+        var _Util                       = require('logic-core').Util;                               // strip:
+        var _PropertyCollection         = require('logic-core').PropertyCollection;                 // strip:
+        var _MetaObject                 = require('logic-core').MetaObject;                         // strip:
+        var _BaseEntity                 = require('./base-entity').BaseEntity;                      // strip:
+        var _MetaRegistry               = require('logic-core').MetaRegistry;                       // strip:
+        var _MetaViewColumnCollection   = require('./collection-column').MetaViewColumnCollection;  // strip:
+    }                                                                                               // strip:
+    var $Message                    = _global._L.Message;                   // modify:
+    var $ExtendError                = _global._L.ExtendError;               // modify:
+    var $Type                       = _global._L.Type;                      // modify:
+    var $Util                       = _global._L.Util;                      // modify:
+    var $PropertyCollection         = _global._L.PropertyCollection;        // modify:
+    var $MetaObject                 = _global._L.MetaObject;                // modify:
+    var $BaseEntity                 = _global._L.BaseEntity;                // modify:
+    var $MetaRegistry               = _global._L.MetaRegistry;              // modify:
+    var $MetaViewColumnCollection   = _global._L.MetaViewColumnCollection;  // modify:
+
+    var Message                 = _Message              || $Message;                                // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;                            // strip:
+    var Type                    = _Type                 || $Type;                                   // strip:
+    var Util                    = _Util                 || $Util;                                   // strip:
+    var PropertyCollection      = _PropertyCollection   || $PropertyCollection;                     // strip:
+    var MetaObject              = _MetaObject           || $MetaObject;                             // strip:
+    var BaseEntity              = _BaseEntity           || $BaseEntity;                             // strip:
+    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;                           // strip:
+    var MetaViewColumnCollection= _MetaViewColumnCollection || $MetaViewColumnCollection;           // strip:
 
     //==============================================================
     // 3. module dependency check

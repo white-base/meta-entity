@@ -11,30 +11,30 @@
 
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Util                       = require('logic-core').Util;
-        var _MetaObject                 = require('logic-core').MetaObject;
-        var _IArrayCollection           = require('logic-core').IArrayCollection;
-    } else {
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Util                       = _global._L.Util;
-        var $MetaObject                 = _global._L.MetaObject;
-        var $IArrayCollection           = _global._L.IArrayCollection;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Util                    = _Util                 || $Util;
-    var MetaObject              = _MetaObject           || $MetaObject;
-    var IArrayCollection        = _IArrayCollection     || $IArrayCollection;
+    if (isNode) {                                                                   // strip:
+        var _Message                    = require('logic-core').Message;            // strip:
+        var _ExtendError                = require('logic-core').ExtendError;        // strip:
+        var _Util                       = require('logic-core').Util;               // strip:
+        var _MetaObject                 = require('logic-core').MetaObject;         // strip:
+        var _ArrayCollection            = require('logic-core').ArrayCollection;    // strip:
+    }                                                                               // strip:
+    var $Message                    = _global._L.Message;               // modify:
+    var $ExtendError                = _global._L.ExtendError;           // modify:
+    var $Util                       = _global._L.Util;                  // modify:
+    var $MetaObject                 = _global._L.MetaObject;            // modify:
+    var $ArrayCollection            = _global._L.ArrayCollection;       // modify:
+
+    var Message                 = _Message              || $Message;                // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;            // strip:
+    var Util                    = _Util                 || $Util;                   // strip:
+    var MetaObject              = _MetaObject           || $MetaObject;             // strip:
+    var ArrayCollection         = _ArrayCollection      || $ArrayCollection;        // strip:
 
     //==============================================================
     // 3. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
-    if (typeof IArrayCollection === 'undefined') throw new Error(Message.get('ES011', ['IArrayCollection', 'i-collection-array']));
+    if (typeof ArrayCollection === 'undefined') throw new Error(Message.get('ES011', ['ArrayCollection', 'i-collection-array']));
     if (typeof MetaObject === 'undefined') throw new Error(Message.get('ES011', ['MetaObject', 'meta-object']));
 
     //==============================================================
@@ -43,7 +43,7 @@
         /**
          * 트랜젝션 큐
          * @constructs _L.Collection.TransactionQueue
-         * @param {IArrayCollection} p_collection 배열컬렉션
+         * @param {ArrayCollection} p_collection 배열컬렉션
          */
         function TransactionQueue(p_collection) {
             
@@ -73,7 +73,7 @@
                     if (!(nVal instanceof MetaObject)) {
                         throw new ExtendError(/EL04321/, null, []);
                     }
-                    if (!(nVal.isImplementOf(IArrayCollection))) {
+                    if (!(nVal.instanceOf(ArrayCollection))) {
                         throw new ExtendError(/EL04322/, null, []);
                     }
                     collection = nVal;

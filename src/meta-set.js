@@ -12,48 +12,48 @@
 
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Util                       = require('logic-core').Util;
-        var _ISchemaControl             = require('./i-control-schema').ISchemaControl;
-        var _IImportControl             = require('./i-control-import').IImportControl;
-        var _IExportControl             = require('./i-control-export').IExportControl;
-        var _ISerialize                 = require('logic-core').ISerialize;
-        var _ITransaction               = require('./i-transaction').ITransaction;
-        var _MetaElement                = require('logic-core').MetaElement;
-        var _BaseEntity                 = require('./base-entity').BaseEntity;
-        var _MetaTableCollection        = require('./meta-table').MetaTableCollection;
-        var _MetaViewCollection         = require('./meta-view').MetaViewCollection;
-        var _MetaRegistry               = require('logic-core').MetaRegistry;
-    } else {
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Util                       = _global._L.Util;
-        var $ISchemaControl             = _global._L.ISchemaControl;
-        var $IImportControl             = _global._L.IImportControl;
-        var $IExportControl             = _global._L.IExportControl;
-        var $ISerialize                 = _global._L.ISerialize;
-        var $ITransaction               = _global._L.ITransaction;
-        var $MetaElement                = _global._L.MetaElement;
-        var $BaseEntity                 = _global._L.BaseEntity;
-        var $MetaTableCollection        = _global._L.MetaTableCollection;
-        var $MetaViewCollection         = _global._L.MetaViewCollection;
-        var $MetaRegistry               = _global._L.MetaRegistry;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Util                    = _Util                 || $Util;
-    var ISchemaControl          = _ISchemaControl       || $ISchemaControl;
-    var IImportControl          = _IImportControl       || $IImportControl;
-    var IExportControl          = _IExportControl       || $IExportControl;
-    var ISerialize              = _ISerialize           || $ISerialize;
-    var ITransaction            = _ITransaction         || $ITransaction;
-    var MetaElement             = _MetaElement          || $MetaElement;
-    var BaseEntity              = _BaseEntity           || $BaseEntity;
-    var MetaTableCollection     = _MetaTableCollection  || $MetaTableCollection;
-    var MetaViewCollection      = _MetaViewCollection   || $MetaViewCollection;
-    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
+    if (isNode) {                                                                       // strip:
+        var _Message                    = require('logic-core').Message;                // strip:
+        var _ExtendError                = require('logic-core').ExtendError;            // strip:
+        var _Util                       = require('logic-core').Util;                   // strip:
+        var _ISchemaControl             = require('./i-control-schema').ISchemaControl; // strip:
+        var _IImportControl             = require('./i-control-import').IImportControl; // strip:
+        var _IExportControl             = require('./i-control-export').IExportControl; // strip:
+        var _ISerialize                 = require('logic-core').ISerialize;             // strip:
+        var _ITransaction               = require('./i-transaction').ITransaction;      // strip:
+        var _MetaElement                = require('logic-core').MetaElement;            // strip:
+        var _BaseEntity                 = require('./base-entity').BaseEntity;          // strip:
+        var _MetaTableCollection        = require('./meta-table').MetaTableCollection;  // strip:
+        var _MetaViewCollection         = require('./meta-view').MetaViewCollection;    // strip:
+        var _MetaRegistry               = require('logic-core').MetaRegistry;           // strip:
+    }                                                                                   // strip:
+    var $Message                    = _global._L.Message;               // modify:
+    var $ExtendError                = _global._L.ExtendError;           // modify:
+    var $Util                       = _global._L.Util;                  // modify:
+    var $ISchemaControl             = _global._L.ISchemaControl;        // modify:
+    var $IImportControl             = _global._L.IImportControl;        // modify:
+    var $IExportControl             = _global._L.IExportControl;        // modify:
+    var $ISerialize                 = _global._L.ISerialize;            // modify:
+    var $ITransaction               = _global._L.ITransaction;          // modify:
+    var $MetaElement                = _global._L.MetaElement;           // modify:
+    var $BaseEntity                 = _global._L.BaseEntity;            // modify:
+    var $MetaTableCollection        = _global._L.MetaTableCollection;   // modify:
+    var $MetaViewCollection         = _global._L.MetaViewCollection;    // modify:
+    var $MetaRegistry               = _global._L.MetaRegistry;          // modify:
+
+    var Message                 = _Message              || $Message;                    // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;                // strip:
+    var Util                    = _Util                 || $Util;                       // strip:
+    var ISchemaControl          = _ISchemaControl       || $ISchemaControl;             // strip:
+    var IImportControl          = _IImportControl       || $IImportControl;             // strip:
+    var IExportControl          = _IExportControl       || $IExportControl;             // strip:
+    var ISerialize              = _ISerialize           || $ISerialize;                 // strip:
+    var ITransaction            = _ITransaction         || $ITransaction;               // strip:
+    var MetaElement             = _MetaElement          || $MetaElement;                // strip:
+    var BaseEntity              = _BaseEntity           || $BaseEntity;                 // strip:
+    var MetaTableCollection     = _MetaTableCollection  || $MetaTableCollection;        // strip:
+    var MetaViewCollection      = _MetaViewCollection   || $MetaViewCollection;         // strip:
+    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;               // strip:
 
     //==============================================================
     // 3. module dependency check
@@ -146,7 +146,7 @@
                 enumerable: true
             });
 
-            Util.implements(MetaSet, this);
+            Util.implements(MetaSet, this);     // strip:
         }
         Util.inherits(MetaSet, _super);
         

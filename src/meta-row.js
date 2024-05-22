@@ -12,36 +12,36 @@
 
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Type                       = require('logic-core').Type;
-        var _Util                       = require('logic-core').Util;
-        var _Observer                   = require('logic-core').Observer;
-        var _IList                      = require('logic-core').IList;
-        var _MetaObject                 = require('logic-core').MetaObject;
-        var _TransactionCollection      = require('./collection-transaction').TransactionCollection;
-        var _MetaRegistry               = require('logic-core').MetaRegistry;
-    } else {    // COVER:
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Type                       = _global._L.Type;
-        var $Util                       = _global._L.Util;
-        var $Observer                   = _global._L.Observer;
-        var $MetaObject                 = _global._L.MetaObject;
-        var $IList                      = _global._L.IList;
-        var $TransactionCollection      = _global._L.TransactionCollection;
-        var $MetaRegistry               = _global._L.MetaRegistry;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Type                    = _Type                 || $Type;
-    var Util                    = _Util                 || $Util;
-    var Observer                = _Observer             || $Observer;
-    var IList                   = _IList                || $IList;
-    var MetaObject              = _MetaObject           || $MetaObject;
-    var TransactionCollection   = _TransactionCollection|| $TransactionCollection;
-    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
+    if (isNode) {                                                                                   // strip:
+        var _Message                    = require('logic-core').Message;                            // strip:
+        var _ExtendError                = require('logic-core').ExtendError;                        // strip:
+        var _Type                       = require('logic-core').Type;                               // strip:
+        var _Util                       = require('logic-core').Util;                               // strip:
+        var _Observer                   = require('logic-core').Observer;                           // strip:
+        var _IList                      = require('logic-core').IList;                              // strip:
+        var _MetaObject                 = require('logic-core').MetaObject;                         // strip:
+        var _TransactionCollection      = require('./collection-transaction').TransactionCollection;// strip:
+        var _MetaRegistry               = require('logic-core').MetaRegistry;                       // strip:
+    }                                                                                               // strip:
+    var $Message                    = _global._L.Message;                   // modify:
+    var $ExtendError                = _global._L.ExtendError;               // modify:
+    var $Type                       = _global._L.Type;                      // modify:
+    var $Util                       = _global._L.Util;                      // modify:
+    var $Observer                   = _global._L.Observer;                  // modify:
+    var $MetaObject                 = _global._L.MetaObject;                // modify:
+    var $IList                      = _global._L.IList;                     // modify:
+    var $TransactionCollection      = _global._L.TransactionCollection;     // modify:
+    var $MetaRegistry               = _global._L.MetaRegistry;              // modify:
+
+    var Message                 = _Message              || $Message;                                // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;                            // strip:
+    var Type                    = _Type                 || $Type;                                   // strip:
+    var Util                    = _Util                 || $Util;                                   // strip:
+    var Observer                = _Observer             || $Observer;                               // strip:
+    var IList                   = _IList                || $IList;                                  // strip:
+    var MetaObject              = _MetaObject           || $MetaObject;                             // strip:
+    var TransactionCollection   = _TransactionCollection|| $TransactionCollection;                  // strip:
+    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;                           // strip:
 
     //==============================================================
     // 3. module dependency check
@@ -265,7 +265,7 @@
                 };
             }
 
-            Util.implements(MetaRow, this);
+            Util.implements(MetaRow, this);         // strip:
         }
         Util.inherits(MetaRow, _super);
         

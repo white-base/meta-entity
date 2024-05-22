@@ -12,40 +12,40 @@
     
     //==============================================================
     // 2. import module
-    if (isNode) {     
-        var _Message                    = require('logic-core').Message;
-        var _ExtendError                = require('logic-core').ExtendError;
-        var _Type                       = require('logic-core').Type;
-        var _Util                       = require('logic-core').Util;
-        var _MetaRegistry               = require('logic-core').MetaRegistry;
-        var _MetaObject                 = require('logic-core').MetaObject;
-        var _BaseEntity                 = require('./base-entity').BaseEntity;
-        var _ITransaction               = require('./i-transaction').ITransaction;
-        var _PropertyCollection         = require('logic-core').PropertyCollection;
-        var _MetaTableColumnCollection  = require('./collection-column').MetaTableColumnCollection;
-    } else {    
-        var $Message                    = _global._L.Message;
-        var $ExtendError                = _global._L.ExtendError;
-        var $Type                       = _global._L.Type;
-        var $Util                       = _global._L.Util;
-        var $MetaRegistry               = _global._L.MetaRegistry;
-        var $ITransaction               = _global._L.ITransaction;
-        var $PropertyCollection         = _global._L.PropertyCollection;
-        var $MetaObject                 = _global._L.MetaObject;
-        var $BaseEntity                 = _global._L.BaseEntity;
-        var $MetaTableColumnCollection  = _global._L.MetaTableColumnCollection;
-        var $ExtendError                = _global._L.ExtendError;
-    }
-    var Message                 = _Message              || $Message;
-    var ExtendError             = _ExtendError          || $ExtendError;
-    var Type                    = _Type                 || $Type;
-    var Util                    = _Util                 || $Util;
-    var ITransaction            = _ITransaction         || $ITransaction;
-    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;
-    var MetaObject              = _MetaObject           || $MetaObject;
-    var BaseEntity              = _BaseEntity           || $BaseEntity;
-    var PropertyCollection      = _PropertyCollection   || $PropertyCollection;
-    var MetaTableColumnCollection   = _MetaTableColumnCollection    || $MetaTableColumnCollection;
+    if (isNode) {                                                                                   // strip:   
+        var _Message                    = require('logic-core').Message;                            // strip:
+        var _ExtendError                = require('logic-core').ExtendError;                        // strip:
+        var _Type                       = require('logic-core').Type;                               // strip:
+        var _Util                       = require('logic-core').Util;                               // strip:
+        var _MetaRegistry               = require('logic-core').MetaRegistry;                       // strip:
+        var _MetaObject                 = require('logic-core').MetaObject;                         // strip:
+        var _BaseEntity                 = require('./base-entity').BaseEntity;                      // strip:
+        var _ITransaction               = require('./i-transaction').ITransaction;                  // strip:
+        var _PropertyCollection         = require('logic-core').PropertyCollection;                 // strip:
+        var _MetaTableColumnCollection  = require('./collection-column').MetaTableColumnCollection; // strip:
+    }                                                                                               // strip:
+    var $Message                    = _global._L.Message;                       // modify:
+    var $ExtendError                = _global._L.ExtendError;                   // modify:
+    var $Type                       = _global._L.Type;                          // modify:
+    var $Util                       = _global._L.Util;                          // modify:
+    var $MetaRegistry               = _global._L.MetaRegistry;                  // modify:
+    var $ITransaction               = _global._L.ITransaction;                  // modify:
+    var $PropertyCollection         = _global._L.PropertyCollection;            // modify:
+    var $MetaObject                 = _global._L.MetaObject;                    // modify:
+    var $BaseEntity                 = _global._L.BaseEntity;                    // modify:
+    var $MetaTableColumnCollection  = _global._L.MetaTableColumnCollection;     // modify:
+    var $ExtendError                = _global._L.ExtendError;                   // modify:
+
+    var Message                 = _Message              || $Message;                                // strip:
+    var ExtendError             = _ExtendError          || $ExtendError;                            // strip:
+    var Type                    = _Type                 || $Type;                                   // strip:
+    var Util                    = _Util                 || $Util;                                   // strip:
+    var ITransaction            = _ITransaction         || $ITransaction;                           // strip:
+    var MetaRegistry            = _MetaRegistry         || $MetaRegistry;                           // strip:
+    var MetaObject              = _MetaObject           || $MetaObject;                             // strip:
+    var BaseEntity              = _BaseEntity           || $BaseEntity;                             // strip:
+    var PropertyCollection      = _PropertyCollection   || $PropertyCollection;                     // strip:
+    var MetaTableColumnCollection   = _MetaTableColumnCollection    || $MetaTableColumnCollection;  // strip:
 
     //==============================================================
     // 3. module dependency check
@@ -107,7 +107,7 @@
                 enumerable: true
             });
             
-            Util.implements(MetaTable, this);
+            Util.implements(MetaTable, this);       // strip:
         }
         Util.inherits(MetaTable, _super);
         
