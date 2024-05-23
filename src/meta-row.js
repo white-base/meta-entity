@@ -470,14 +470,14 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.MetaRow = MetaRow;
-        exports.MetaRowCollection = MetaRowCollection;
-    } else {
-        _global._L.MetaRow = MetaRow;
-        _global._L.MetaRowCollection = MetaRowCollection;
-        _global._L.Meta.Entity.MetaRow = MetaRow;                       // namespace
-        _global._L.Meta.Entity.MetaRowCollection = MetaRowCollection;   // namespace
-    }
+    if (isNode) {                                           // strip:
+        exports.MetaRow = MetaRow;                          // strip:
+        exports.MetaRowCollection = MetaRowCollection;      // strip:
+    }                                                       // strip:
+    
+    _global._L.MetaRow = MetaRow;
+    _global._L.MetaRowCollection = MetaRowCollection;
+    _global._L.Meta.Entity.MetaRow = MetaRow;
+    _global._L.Meta.Entity.MetaRowCollection = MetaRowCollection;
 
 }(typeof window !== 'undefined' ? window : global));

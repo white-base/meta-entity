@@ -319,11 +319,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.BaseColumn                         = BaseColumn;
-    } else {
-        _global._L.BaseColumn                              = BaseColumn;
-        _global._L.Meta.Entity.BaseColumn                  = BaseColumn;    // namespace
-    }
+    if (isNode) exports.BaseColumn = BaseColumn;    // strip:
+        
+    _global._L.BaseColumn = BaseColumn;
+    _global._L.Meta.Entity.BaseColumn = BaseColumn;
 
 }(typeof window !== 'undefined' ? window : global));

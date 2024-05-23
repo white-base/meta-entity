@@ -941,11 +941,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.BaseEntity = BaseEntity;
-    } else {
-        _global._L.BaseEntity = BaseEntity;
-        _global._L.Meta.Entity.BaseEntity = BaseEntity;     // namespace
-    }
+    if (isNode) exports.BaseEntity = BaseEntity;        // strip:
+
+    _global._L.BaseEntity = BaseEntity;
+    _global._L.Meta.Entity.BaseEntity = BaseEntity;
 
 }(typeof window !== 'undefined' ? window : global));

@@ -61,11 +61,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.ITransaction = ITransaction;
-    } else {
-        _global._L.ITransaction = ITransaction;
-        _global._L.Interface.ITransaction = ITransaction;     // namespace
-    }
+    if (isNode) exports.ITransaction = ITransaction;    // strip:
+    
+    _global._L.ITransaction = ITransaction;
+    _global._L.Interface.ITransaction = ITransaction;
 
 }(typeof window !== 'undefined' ? window : global));

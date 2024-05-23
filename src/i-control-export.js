@@ -54,11 +54,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.IExportControl = IExportControl;
-    } else {
-        _global._L.IExportControl = IExportControl;
-        _global._L.Interface.IExportControl = IExportControl;   // namespace
-    }
+    if (isNode) exports.IExportControl = IExportControl;    // strip:
+        
+    _global._L.IExportControl = IExportControl;
+    _global._L.Interface.IExportControl = IExportControl;
 
 }(typeof window !== 'undefined' ? window : global));

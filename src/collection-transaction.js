@@ -215,11 +215,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.TransactionCollection = TransactionCollection;
-    } else {    
-        _global._L.TransactionCollection = TransactionCollection;
-        _global._L.Collection.TransactionCollection = TransactionCollection;    // namespace
-    }
+    if (isNode) exports.TransactionCollection = TransactionCollection;      // strip:
+        
+    _global._L.TransactionCollection = TransactionCollection;
+    _global._L.Collection.TransactionCollection = TransactionCollection;
 
 }(typeof window !== 'undefined' ? window : global));

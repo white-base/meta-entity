@@ -62,11 +62,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.IGroupControl = IGroupControl;
-    } else {
-        _global._L.IGroupControl = IGroupControl;
-        _global._L.Interface.IGroupControl = IGroupControl;     // namespace
-    }
+    if (isNode) exports.IGroupControl = IGroupControl;      // strip:
+        
+    _global._L.IGroupControl = IGroupControl;
+    _global._L.Interface.IGroupControl = IGroupControl;
 
 }(typeof window !== 'undefined' ? window : global));

@@ -441,11 +441,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.MetaColumn                                 = MetaColumn;
-    } else {
-        _global._L.MetaColumn                              = MetaColumn;
-        _global._L.Meta.Entity.MetaColumn                  = MetaColumn;    // namespace
-    }
+    if (isNode) exports.MetaColumn = MetaColumn;        // strip:
+
+    _global._L.MetaColumn = MetaColumn;
+    _global._L.Meta.Entity.MetaColumn = MetaColumn;
 
 }(typeof window !== 'undefined' ? window : global));

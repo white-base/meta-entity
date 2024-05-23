@@ -62,11 +62,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.ISchemaControl = ISchemaControl;
-    } else {
-        _global._L.ISchemaControl = ISchemaControl;
-        _global._L.Interface.ISchemaControl = ISchemaControl; // namespace
-    }
+    if (isNode) exports.ISchemaControl = ISchemaControl;    // strip:
+        
+    _global._L.ISchemaControl = ISchemaControl;
+    _global._L.Interface.ISchemaControl = ISchemaControl;
     
 }(typeof window !== 'undefined' ? window : global));

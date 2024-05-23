@@ -190,11 +190,9 @@
     
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.TransactionQueue = TransactionQueue;
-    } else {
-        _global._L.TransactionQueue = TransactionQueue;
-        _global._L.Collection.TransactionQueue = TransactionQueue;  // namespace
-    }
+    if (isNode) exports.TransactionQueue = TransactionQueue;    // strip:
+        
+    _global._L.TransactionQueue = TransactionQueue;
+    _global._L.Collection.TransactionQueue = TransactionQueue;
 
 }(typeof window !== 'undefined' ? window : global));

@@ -317,15 +317,14 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.MetaTable = MetaTable;
-        exports.MetaTableCollection = MetaTableCollection;
-    } else {
-        _global._L.MetaTable = MetaTable;
-        _global._L.MetaTableCollection = MetaTableCollection;
-        // namespace
-        _global._L.Meta.Entity.MetaTable = MetaTable;
-        _global._L.Meta.Entity.MetaTableCollection = MetaTableCollection;
-    }
+    if (isNode) {                                               // strip:
+        exports.MetaTable = MetaTable;                          // strip:
+        exports.MetaTableCollection = MetaTableCollection;      // strip:
+    }                                                           // strip:
+    
+    _global._L.MetaTable = MetaTable;
+    _global._L.MetaTableCollection = MetaTableCollection;
+    _global._L.Meta.Entity.MetaTable = MetaTable;
+    _global._L.Meta.Entity.MetaTableCollection = MetaTableCollection;
 
 }(typeof window !== 'undefined' ? window : global));

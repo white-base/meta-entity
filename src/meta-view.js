@@ -330,15 +330,14 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.MetaView = MetaView;
-        exports.MetaViewCollection = MetaViewCollection;
-    } else {
-        _global._L.MetaView = MetaView;
-        _global._L.MetaViewCollection = MetaViewCollection;
-        // namespace
-        _global._L.Meta.Entity.MetaView = MetaView;
-        _global._L.Meta.Entity.MetaViewCollection = MetaViewCollection;
-    }
+    if (isNode) {                                           // strip:
+        exports.MetaView = MetaView;                        // strip:
+        exports.MetaViewCollection = MetaViewCollection;    // strip:
+    }                                                       // strip:
+    
+    _global._L.MetaView = MetaView;
+    _global._L.MetaViewCollection = MetaViewCollection;
+    _global._L.Meta.Entity.MetaView = MetaView;
+    _global._L.Meta.Entity.MetaViewCollection = MetaViewCollection;
 
 }(typeof window !== 'undefined' ? window : global));

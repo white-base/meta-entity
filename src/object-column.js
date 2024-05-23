@@ -201,12 +201,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.ObjectColumn                                = ObjectColumn;
+    if (isNode) exports.ObjectColumn = ObjectColumn;    // strip:
 
-    } else {
-        _global._L.ObjectColumn                              = ObjectColumn;
-        _global._L.Meta.Entity.ObjectColumn                  = ObjectColumn;    // namespace
-    }
+    _global._L.ObjectColumn = ObjectColumn;
+    _global._L.Meta.Entity.ObjectColumn = ObjectColumn;
 
 }(typeof window !== 'undefined' ? window : global));

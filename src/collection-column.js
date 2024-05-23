@@ -429,19 +429,17 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.BaseColumnCollection                        = BaseColumnCollection;
-        exports.MetaViewColumnCollection                    = MetaViewColumnCollection;
-        exports.MetaTableColumnCollection                   = MetaTableColumnCollection;
+    if (isNode) {                                                       // strip:
+        exports.BaseColumnCollection = BaseColumnCollection;            // strip:
+        exports.MetaViewColumnCollection = MetaViewColumnCollection;    // strip:
+        exports.MetaTableColumnCollection = MetaTableColumnCollection;  // strip:
+    }                                                                   // strip:
 
-    } else {
-        _global._L.BaseColumnCollection                    = BaseColumnCollection;
-        _global._L.MetaViewColumnCollection                = MetaViewColumnCollection;
-        _global._L.MetaTableColumnCollection               = MetaTableColumnCollection;
-        // namespace
-        _global._L.Meta.Entity.BaseColumnCollection        = BaseColumnCollection;
-        _global._L.Meta.Entity.MetaViewColumnCollection    = MetaViewColumnCollection;
-        _global._L.Meta.Entity.MetaTableColumnCollection   = MetaTableColumnCollection;
-    }
+    _global._L.BaseColumnCollection = BaseColumnCollection;
+    _global._L.MetaViewColumnCollection = MetaViewColumnCollection;
+    _global._L.MetaTableColumnCollection = MetaTableColumnCollection;
+    _global._L.Meta.Entity.BaseColumnCollection = BaseColumnCollection;
+    _global._L.Meta.Entity.MetaViewColumnCollection = MetaViewColumnCollection;
+    _global._L.Meta.Entity.MetaTableColumnCollection = MetaTableColumnCollection;
 
 }(typeof window !== 'undefined' ? window : global));

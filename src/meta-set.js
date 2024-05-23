@@ -528,11 +528,9 @@
 
     //==============================================================
     // 5. module export
-    if (isNode) {     
-        exports.MetaSet = MetaSet;
-    } else {
-        _global._L.MetaSet = MetaSet;
-        _global._L.Meta.Entity.MetaSet = MetaSet;     // namespace
-    }
+    if (isNode) exports.MetaSet = MetaSet;      // strip:
+        
+    _global._L.MetaSet = MetaSet;
+    _global._L.Meta.Entity.MetaSet = MetaSet;
 
 }(typeof window !== 'undefined' ? window : global));
