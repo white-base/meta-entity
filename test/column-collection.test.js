@@ -324,7 +324,7 @@ describe("[target: meta-column.js]", () => {
             });
         });
         describe("MetaViewColumnCollection.add(name, baseCollection) <컬럼 추가>", () => {
-            it("- add(name, baseCollection) : 독립형 생성 ", () => {
+            it("- add(name) : 추가 ", () => {
                 var view1 = new MetaView('T1');        // 독립형 생성
                 view1.columns.add('i1');                   // 아이템 추가
                 view1.columns.add('i2');
@@ -350,6 +350,45 @@ describe("[target: meta-column.js]", () => {
                 expect(view2.columns['i2'].caption).toBe('C2');
                 expect(view2.columns['i3'].caption).toBe('C3');
             });
+            it("- add(name, baseCollection) : 추가 ", () => {
+                var t1 = new MetaTable('T1');
+                var v1 = new MetaView('V1');
+                v1.columns.add('aa', t1.columns);
+                v1.columns.add('bb');
+
+                expect(v1.columns.count).toBe(2);
+                expect(t1.columns.count).toBe(1);
+            });
+            it("- add(name, baseCollection) : baseEntity 설정된 MetaView에 추가 ", () => {
+                var t1 = new MetaTable('T1');
+                var t2 = new MetaTable('T2');
+                var v1 = new MetaView('V1');
+                v1._baseEntity = t1;
+                v1.columns.add('aa');
+                v1.columns.add('bb');
+                v1.columns.add('cc', t2.columns);
+
+                expect(v1.columns.count).toBe(3);
+                expect(t1.columns.count).toBe(2);
+                expect(t2.columns.count).toBe(1);
+            });            
+            it("- add(name, baseCollection) : baseEntity 설정된 뷰에 추가 ", () => {
+                var t1 = new MetaTable('T1');
+                var t2 = new MetaTable('T2');
+                var v1 = new MetaView('V1');
+                var v2 = new MetaView('V2');
+                v1._baseEntity = t1;
+                v2._baseEntity = v1;
+                v2.columns.add('aa');
+                v2.columns.add('bb');
+                v2.columns.add('cc', t2.columns);
+
+                expect(t1.columns.count).toBe(2);
+                expect(t2.columns.count).toBe(1);
+                expect(v1.columns.count).toBe(2);
+                expect(v2.columns.count).toBe(3);
+            });
+
             it("- add(?, ?) : 예외 ", () => {
                 var view1 = new MetaView('T1');
 

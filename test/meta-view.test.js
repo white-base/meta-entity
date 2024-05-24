@@ -85,6 +85,22 @@ describe("[target: meta-view.js]", () => {
             });
         });
         describe("MetaView._baseEntity <기본 엔티티>", () => {
+            it("- 확인  ", () => {
+                const v1 = new MetaView('V1');
+                const v2 = new MetaView('V2');
+                v2._baseEntity = v1;
+                
+                expect(v2._baseEntity === v1).toBe(true);
+            });
+            it("- 초기화  ", () => {
+                const v1 = new MetaView('V1');
+                const v2 = new MetaView('V2');
+                v2._baseEntity = v1;
+                
+                expect(v2._baseEntity === v1).toBe(true);
+                v2._baseEntity = null;
+                expect(v2._baseEntity === v1).toBe(false);
+            });
             it("- 예외 : 타입이 다를 경우 ", () => {
                 var view1 = new MetaView('T1');
                 expect(()=> view1._baseEntity = {}).toThrow('EL05434')

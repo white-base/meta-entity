@@ -103,12 +103,17 @@
            
             /**
              * 기본 엔티티
+             * null 으로 undefined 
              * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#_baseEntity
              */
             Object.defineProperty(this, '_baseEntity', 
             {
                 get: function() { return _baseEntity; },
                 set: function(nVal) { 
+                    if (nVal === null || typeof nVal === 'undefined') {
+                        _baseEntity = undefined;    // init
+                        return;
+                    }
                     if (!(nVal instanceof BaseEntity)) throw new ExtendError(/EL05434/, null, [this.constructor.name]);
                     _baseEntity = nVal;
                 },
