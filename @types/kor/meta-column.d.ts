@@ -33,12 +33,12 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 컬럼 value의 필수 여부
      */
-    isNotNull: boolean;
+    required: boolean;
 
     /**
      * 컬럼 value null 통과 여부 (기본값 = false)
      */
-    isNullPass: boolean;
+    // optional: boolean;
 
     /**
      *  컬럼 제약 조건 
@@ -119,7 +119,7 @@ declare class MetaColumn extends BaseColumn {
     addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean);
 
     /**
-     * 속성의 value에 유효성을 검사한다. (isNotnull, isNullPass, constraints 기준)
+     * 속성의 value에 유효성을 검사한다. (required, constraints 기준)
      * @param value 검사할 값
      */
     valid(value: ValueType): object | undefined;

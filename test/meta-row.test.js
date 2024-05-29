@@ -491,7 +491,7 @@ describe("[target: meta-row.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.addValue('i1', '');
                 table1.columns.addValue('i2', '');
-                table1.columns['i1'].isNotNull = true;
+                table1.columns['i1'].required = true;
                 table1.columns['i2'].addConstraint(/\d/, '숫자', 'E1', true);
                 var row = new MetaRow(table1);
                 row['i1'] = 'R1';

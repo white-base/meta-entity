@@ -1058,7 +1058,7 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity._readEntity(): <엔티티 읽기>", () => {
             it("- 예외 및 커버리지  ", () => {
                 // const prop1 = {
-                //     default: 1, caption: 'C1', isNotNull: true, isNullPass: true,
+                //     default: 1, caption: 'C1', required: true, optional: true,
                 //     constraints: [{regex: /reg/, msg: 'msg' }],
                 //     setter: function() { /** s */ },
                 //     getter: function() { /** g */ }
@@ -1085,7 +1085,7 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.read(obj | rObj, opt) <JSON 읽기>", () => {
             it("- read(oGuid) : 객체 읽기  ", () => {
                 const prop1 = {
-                    default: 1, caption: 'C1', isNotNull: true, isNullPass: true,
+                    default: 1, caption: 'C1', required: true,
                     constraints: [{regex: /reg/, msg: 'msg' }],
                     setter: function() { /** s */ },
                     getter: function() { /** g */ }
@@ -1107,7 +1107,7 @@ describe("[target: meta-table.js]", () => {
             });
             it("- read(entity) : 객체 읽기  ", () => {
                 const prop1 = {
-                    default: 1, caption: 'C1', isNotNull: true, isNullPass: true,
+                    default: 1, caption: 'C1', required: true,
                     constraints: [{regex: /reg/, msg: 'msg' }],
                     setter: function() { /** s */ },
                     getter: function() { /** g */ }

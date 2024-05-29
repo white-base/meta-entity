@@ -506,7 +506,7 @@ describe("[target: meta-view.js]", () => {
                 const view3 = new MetaView('V3');
                 view3.columns.addValue('c3', 'R3', view2.columns);     // 일부 참조
                 view3.columns.addValue('c4', 'R4');
-                view2.columns['c2'].isNotNull = true;
+                view2.columns['c2'].required = true;
                 view1.rows.add(view1.getValue()); // row 추가
                 view2.rows.add(view2.getValue());
                 view3.rows.add(view3.getValue());

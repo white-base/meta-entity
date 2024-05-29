@@ -208,8 +208,8 @@
                         if (column._guid) obj[key]._guid = column['_guid'];
                         if (column.default) obj[key].default = column['default'];
                         if (column.caption) obj[key].caption = column['caption'];            
-                        if (column.isNotNull) obj[key].isNotNull = column['isNotNull'];
-                        if (column.isNullPass) obj[key].isNullPass = column['isNullPass'];
+                        if (column.required) obj[key].required = column['required'];
+                        // if (column.optional) obj[key].optional = column['optional'];
                         if (Array.isArray(column.constraints)) {
                             obj[key]['constraints'] = Util.deepCopy(column['constraints']);
                         }

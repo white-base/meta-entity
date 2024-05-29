@@ -42,7 +42,7 @@ describe("[target: meta-column.js ]", () => {
                     // size: 100,
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },         // true : 충족조건
                         { regex: /[0-9]{5}/, msg: 'message', code: 'C2', return: false }   // false : 통과조건
@@ -56,7 +56,7 @@ describe("[target: meta-column.js ]", () => {
                 // expect(item1.size).toBe(100);
                 expect(item1.default).toBe('D1');
                 expect(item1.caption).toBe('C1');
-                expect(item1.isNotNull).toBe(true);
+                expect(item1.required).toBe(true);
                 expect(item1.constraints.length).toBe(2);
                 // expect(item1.order).toBe(1000);
                 // expect(item1.increase).toBe(10);
@@ -260,7 +260,7 @@ describe("[target: meta-column.js ]", () => {
                 var prop1 = {
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -268,7 +268,7 @@ describe("[target: meta-column.js ]", () => {
                 };
                 var prop2 = {   // default 빠짐
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -276,13 +276,13 @@ describe("[target: meta-column.js ]", () => {
                 };
                 var prop3 = {   // caption 빠짐
                     default: 'D1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
                     value: 'V1'
                 };
-                var prop4 = {   // isNotNull 빠짐
+                var prop4 = {   // required 빠짐
                     default: 'D1',
                     caption: 'C1',
                     constraints: [
@@ -293,7 +293,7 @@ describe("[target: meta-column.js ]", () => {
                 var prop5 = {   // constraints 대문자
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'MESSAGE', code: 'C1', return: true },  // 다른 위치
                     ],   
@@ -302,7 +302,7 @@ describe("[target: meta-column.js ]", () => {
                 var prop6 = {   // value 빠짐
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -365,7 +365,7 @@ describe("[target: meta-column.js ]", () => {
                 const prop1 = {
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -382,7 +382,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
-                expect(obj1.isNotNull).toBe(true);
+                expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
                 expect(obj1.value).toBe('V1');
                 expect(obj1._entity).toBe(undefined);
@@ -397,7 +397,7 @@ describe("[target: meta-column.js ]", () => {
                 const prop1 = {
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -414,7 +414,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
-                expect(obj1.isNotNull).toBe(true);
+                expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
                 expect(obj1.value).toBe('V1');
                 expect(obj1._entity.$ref).toBe(t1._guid);
@@ -428,7 +428,7 @@ describe("[target: meta-column.js ]", () => {
                 const prop1 = {
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -442,7 +442,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
-                expect(obj1.isNotNull).toBe(true);
+                expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
                 expect(obj1.value).toBe('V1');
                 /**
@@ -460,8 +460,7 @@ describe("[target: meta-column.js ]", () => {
                     default: 'D1',
                     caption: 'C1',
                     alias: 'cc1',
-                    isNotNull: true,
-                    isNullPass: true,
+                    required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },
                     ],   
@@ -487,8 +486,8 @@ describe("[target: meta-column.js ]", () => {
                 expect(cc1.columnName).toBe(c1.columnName);
                 expect(cc1.constraints).toEqual(c1.constraints);
                 expect(cc1.default).toBe(c1.default);
-                expect(cc1.isNotNull).toBe(c1.isNotNull);
-                expect(cc1.isNullPass).toBe(c1.isNullPass);
+                expect(cc1.required).toBe(c1.required);
+                // expect(cc1.optional).toBe(c1.optional);
                 expect(cc1.name).toBe(c1.name);
                 expect(cc1.value).toBe(c1.value);
                 expect(cc1.getter).toBe(c1.getter);
@@ -512,8 +511,8 @@ describe("[target: meta-column.js ]", () => {
                     // size: 100,
                     default: 'D1',
                     caption: 'C1',
-                    isNotNull: true,
-                    isNullPass: true,
+                    required: true,
+                    // optional: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', return: true },         // true : 충족조건
                         { regex: /[0-9]{5}/, msg: 'message', code: 'C2', return: false }   // false : 통과조건
@@ -530,15 +529,15 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1._entity.tableName).toBe('T1');
                 expect(item1.default).toBe('D1');
                 expect(item1.caption).toBe('C1');
-                expect(item1.isNotNull).toBe(true);
-                expect(item1.isNullPass).toBe(true);
+                expect(item1.required).toBe(true);
+                // expect(item1.optional).toBe(false);
                 expect(item1.constraints.length).toBe(2);
                 expect(item1.value).toBe('F1');
                 // item2
                 expect(item2._entity.tableName).toBe('T1');
                 expect(item2.default).toBe('D1');
                 expect(item2.caption).toBe('C1');
-                expect(item2.isNotNull).toBe(true);
+                expect(item2.required).toBe(true);
                 expect(item2.constraints.length).toBe(2);
                 expect(item2.value).toBe('F1');
                 expect(item2.getter).toBe(fun1);
@@ -573,7 +572,7 @@ describe("[target: meta-column.js ]", () => {
         describe("MetaColumn.valid(value, r_result) <제약조건 검사>", () => {
             it("- valid(value): return  <제약조건 검사> ", () => {     // REVIEW: r_result => 존재시 object 이어야함, 검사 추가
                 var item1 = new MetaColumn('i1');
-                item1.isNotNull = false;
+                item1.required = true;
 
                 item1.addConstraint(/10/, '10 시작...', 100, true);
                 item1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 200, false);
@@ -587,33 +586,33 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('10000')).toBeDefined();   // 실패 : 5자리 이상
                 expect(item1.valid('100a')).toBeDefined();    // 실패 : 문자가 들어가서
             });
-            it("- valid(value) : isNotNull 여부 ", () => {
+            it("- valid(value) : required 여부 ", () => {
                 var item1 = new MetaColumn('i1');
-                item1.isNotNull = false;
+                item1.required = false;
                 var item2 = new MetaColumn('i2');
-                item2.isNotNull = true;     // 공백허용 안함
+                item2.required = true;     // 공백허용 안함
                 var result1 = {};
                 var result2 = {};
         
                 expect(item1.valid('')).not.toBeDefined();
                 expect(item2.valid('')).toBeDefined();
             });
-            it("- valid(value, r_result) : isNotNull, isNullPass ", () => {
+            it("- valid(value, r_result) : required ", () => {
                 var item1 = new MetaColumn('i1');
-                item1.isNotNull      = false;
-                item1.isNullPass     = true;
+                item1.required      = false;
+                // item1.optional     = true;
                 var item2 = new MetaColumn('i2');
-                item2.isNotNull     = true;     // 공백 불가
-                item2.isNullPass    = true;     
+                item2.required     = true;     // 공백 불가
+                // item2.optional    = true;     
                 var result1 = {};
                 var result2 = {};
         
                 expect(item1.valid('', result1)).not.toBeDefined();
                 expect(item2.valid('', result2)).toBeDefined();
             });
-            it("- valid(value, r_result) : isNotNull, isNullPass ", () => {
+            it("- valid(value, r_result) : required ", () => {
                 var item1 = new MetaColumn('i1');
-                item1.isNotNull = false;
+                item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
                     result = v;
@@ -625,20 +624,20 @@ describe("[target: meta-column.js ]", () => {
             });
             it("- valid(value): return  <제약조건 검사> ", () => {
                 var item1 = new MetaColumn('i1');
-                item1.isNotNull = false;
-                item1.isNullPass = false;
+                item1.required = false;
+                // item1.optional = false;
 
-                var item2 = new MetaColumn('i2');
-                item2.isNotNull = false;
-                item2.isNullPass = true;
+                // var item2 = new MetaColumn('i2');
+                // // item2.required = false;
+                // item2.optional = true;
 
                 var item3 = new MetaColumn('i3');
-                item3.isNotNull = true;
-                item3.isNullPass = false;
+                item3.required = true;
+                // item3.optional = false;
 
-                var item4 = new MetaColumn('i4');
-                item4.isNotNull = true;
-                item4.isNullPass = true;
+                // var item4 = new MetaColumn('i4');
+                // item4.required = true;
+                // item4.optional = false;
 
                 // item1.default = 10
                 // item1.addConstraint(/10/, '10 시작...', 100, true);
@@ -646,12 +645,12 @@ describe("[target: meta-column.js ]", () => {
                 // expect(item1.valid()).toBe(undefined); 
                 expect(item1.valid('Yes')).toBe(undefined); 
                 expect(item1.valid()).toBe(undefined); 
-                expect(item2.valid('Yes')).toBe(undefined); 
-                expect(item2.valid('')).toBe(undefined); 
+                // expect(item2.valid('Yes')).toBe(undefined); 
+                // expect(item2.valid('')).toBe(undefined); 
                 expect(item3.valid('Yes')).toBe(undefined); 
                 expect(item3.valid()).not.toBe(undefined); 
-                expect(item4.valid('Yes')).toBe(undefined); 
-                expect(item4.valid()).not.toBe(undefined); 
+                // expect(item4.valid('Yes')).toBe(undefined); 
+                // expect(item4.valid()).not.toBe(undefined); 
                 // expect(item5.valid('Yes')).toBe(undefined); 
                 // expect(item5.valid()).toBe(undefined); 
                 // expect(item6.valid('Yes')).toBe(undefined); 
