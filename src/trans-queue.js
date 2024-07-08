@@ -12,7 +12,7 @@
     //==============================================================
     // 2. import module
     if (isNode) {                                                                   // strip:
-        var _Message                    = require('logic-core').Message;            // strip:
+        var _Message                    = require('./message-wrap').Message;        // strip:
         var _ExtendError                = require('logic-core').ExtendError;        // strip:
         var _Util                       = require('logic-core').Util;               // strip:
         var _MetaObject                 = require('logic-core').MetaObject;         // strip:

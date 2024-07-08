@@ -9,8 +9,8 @@
     // 2. module dependency check
     //==============================================================
     var messageCode = {
-        en: {},
-        ko: {
+        eng: {},
+        kor: {
             // Meta.Entity.*
             EL05100: '',
             // BaseColumn
@@ -149,7 +149,7 @@
             EL05432: '$1.columns 값은 [MetaViewColumnCollection] 타입이 아닙니다.',
             EL05433: '$1.rows 존재하여 columns 을 설정할 수 없습니다. rows.count = $2',
             EL05434: '$1._baseEntity 값은 [BaseEntity] 타입이 아닙니다.',
-            EL05434: 'setObject(oGuid, origin); oGuid.[\'_metaSet\'] guid 를 찾을 수 없습니다. guid = $1' ,
+            EL05435: 'setObject(oGuid, origin); oGuid.[\'_metaSet\'] guid 를 찾을 수 없습니다. guid = $1' ,
             EL05436: 'setObject(oGuid, origin); oGuid.[\'_baseEntity\'] guid 를 찾을 수 없습니다. guid = $1' ,
             // MetaViewColleciton
             EL05440: '',
@@ -172,6 +172,9 @@
             EL05459: 'readSchema(obj, isCreate); obj 는 스키마 객체가 아닙니다. obj = {tables: $1, views: $2}',
             EL0545A: 'readData(obj); obj 가 \'object\' 타입이 아닙니다.(null제외) typeof obj = $1',
             EL0545B: 'readData(obj); obj 는 스키마 객체가 아닙니다. obj = {tables: $1, views: $2}',
+            // Warn
+            WS011: '[$1] 대상 [$2]는 삭제 할 수 없습니다.',
+
         }
     };
 

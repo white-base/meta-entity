@@ -24,6 +24,7 @@ var paths = {
         'src/i-control-import.js', 
         'src/i-control-schema.js', 
         'src/i-transaction.js', 
+        'src/message-code.js', 
         'src/trans-queue.js', 
         'src/collection-transaction.js', 
         'src/meta-row.js', 
