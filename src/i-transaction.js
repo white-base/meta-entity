@@ -44,7 +44,7 @@
          * @abstract
          */
         ITransaction.prototype.acceptChanges  = function() {
-            throw new ExtendError(/EL02361/, null, ['ITransaction']);
+            throw new ExtendError(/EL02251/, null, ['ITransaction']);
         };
 
         /**
@@ -52,7 +52,7 @@
          * @abstract
          */
         ITransaction.prototype.rejectChanges  = function() {
-            throw new ExtendError(/EL02362/, null, ['ITransaction']);
+            throw new ExtendError(/EL02252/, null, ['ITransaction']);
         };
 
         return ITransaction;

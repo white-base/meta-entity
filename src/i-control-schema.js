@@ -44,7 +44,7 @@
          * @abstract
          */
         ISchemaControl.prototype.readSchema  = function() {
-            throw new ExtendError(/EL02341/, null, ['ISchemaControl']);
+            throw new ExtendError(/EL02241/, null, ['ISchemaControl']);
         };
 
         /**
@@ -53,7 +53,7 @@
          * @abstract
          */
         ISchemaControl.prototype.writeSchema  = function() {
-            throw new ExtendError(/EL02342/, null, ['ISchemaControl']);
+            throw new ExtendError(/EL02242/, null, ['ISchemaControl']);
         };
     
         return ISchemaControl;

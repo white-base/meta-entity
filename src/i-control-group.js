@@ -44,7 +44,7 @@
          * @abstract
          */
         IGroupControl.prototype.merge  = function() {
-            throw new ExtendError(/EL02331/, null, ['IGroupControl']);
+            throw new ExtendError(/EL02231/, null, ['IGroupControl']);
         };
 
         /**
@@ -53,7 +53,7 @@
          * @abstract
          */
         IGroupControl.prototype.copy  = function() {
-            throw new ExtendError(/EL02332/, null, ['IGroupControl']);
+            throw new ExtendError(/EL02232/, null, ['IGroupControl']);
         };
 
         return IGroupControl;

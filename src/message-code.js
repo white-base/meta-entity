@@ -11,6 +11,27 @@
     var messageCode = {
         eng: {},
         kor: {
+            // Interface.*
+            // i-control-export.js
+            EL02210: '',
+            EL02211: 'write(opt): object 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            // i-control-import.js
+            EL02220: '',
+            EL02221: 'read(object) 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            // i-control-group.js
+            EL02230: '',
+            EL02231: 'merge(any, opt) 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            EL02232: 'copy(filter) 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            // i-control-schema.js
+            EL02240: '',
+            EL02241: 'readSchema(json) 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            EL02242: 'writeSchema(opt): object 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            // i-transaction.js
+            EL02250: '',
+            EL02251: 'acceptChanges() 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            EL02252: 'rejectChanges() 은 추상메소드 입니다. [$1] 을 구현해야 합니다.',
+            
+
             // Meta.Entity.*
             EL05100: '',
             // BaseColumn

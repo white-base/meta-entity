@@ -78,9 +78,9 @@ describe("[target: i-* ]", () => {
             const i = new IExportControl();
 
             // extends
-            expect(()=> s.write()).toThrow(/EL02311/);
+            expect(()=> s.write()).toThrow(/EL02211/);
             // create
-            expect(()=> i.write()).toThrow(/EL02311/);
+            expect(()=> i.write()).toThrow(/EL02211/);
         });
     });
     describe("IGroupControl :: 인터페이스", () => {
@@ -90,9 +90,9 @@ describe("[target: i-* ]", () => {
             const i = new IGroupControl();
 
             // extends
-            expect(()=> s.merge()).toThrow(/EL02331/);
+            expect(()=> s.merge()).toThrow(/EL02231/);
             // create
-            expect(()=> i.copy()).toThrow(/EL02332/);
+            expect(()=> i.copy()).toThrow(/EL02232/);
         });
     });
     describe("IImportControl :: 인터페이스", () => {
@@ -102,9 +102,9 @@ describe("[target: i-* ]", () => {
             const i = new IImportControl();
 
             // extends
-            expect(()=> s.read()).toThrow(/EL02321/);
+            expect(()=> s.read()).toThrow(/EL02221/);
             // create
-            expect(()=> i.read()).toThrow(/EL02321/);
+            expect(()=> i.read()).toThrow(/EL02221/);
         });
     });
     
@@ -177,11 +177,11 @@ describe("[target: i-* ]", () => {
             const i = new ITransaction();
 
             // extends
-            expect(()=> s.acceptChanges()).toThrow(/EL02361/);
-            expect(()=> s.rejectChanges()).toThrow(/EL02362/);
+            expect(()=> s.acceptChanges()).toThrow(/EL02251/);
+            expect(()=> s.rejectChanges()).toThrow(/EL02252/);
             // create
-            expect(()=> i.acceptChanges()).toThrow(/EL02361/);
-            expect(()=> i.rejectChanges()).toThrow(/EL02362/);
+            expect(()=> i.acceptChanges()).toThrow(/EL02251/);
+            expect(()=> i.rejectChanges()).toThrow(/EL02252/);
         });
     });
 
@@ -236,13 +236,13 @@ describe("[target: i-* ]", () => {
             // extends
             // expect(()=> s.read()).toThrow(/ES013/);
             // expect(()=> s.write()).toThrow(/ES013/);
-            expect(()=> s.readSchema()).toThrow(/EL02341/);
-            expect(()=> s.writeSchema()).toThrow(/EL02342/);
+            expect(()=> s.readSchema()).toThrow(/EL02241/);
+            expect(()=> s.writeSchema()).toThrow(/EL02242/);
             // create
             // expect(()=> i.read()).toThrow(/ES013/);
             // expect(()=> i.write()).toThrow(/ES013/);
-            expect(()=> i.readSchema()).toThrow(/EL02341/);
-            expect(()=> i.writeSchema()).toThrow(/EL02342/);
+            expect(()=> i.readSchema()).toThrow(/EL02241/);
+            expect(()=> i.writeSchema()).toThrow(/EL02242/);
         });
     });
 
