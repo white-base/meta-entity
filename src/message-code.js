@@ -49,7 +49,7 @@
             EL05120: '',
             EL05121: '_load(prop); prop 는 \'object\' 타입입니다. typeof prop = \'$2\'',
             EL05122: 'setObject(oGuid, origin); oGuid.[\'default\'] guid 를 찾을 수 없습니다. guid = $1' ,
-            EL05123: '',
+            EL05123: 'setObject(oGuid, origin); oGuid.[\'value\'] guid 를 찾을 수 없습니다. guid = $1' ,
             // MetaColumn
             EL05130: '',
             EL05131: '$1.required 는 \'boolean\' 타입입니다. typeof required = \'$2\'',
@@ -155,7 +155,7 @@
             // MetaTable
             EL05410: '',
             EL05411: '$1.tableName 값은 \'string\' 타입이 아닙니다. typeof tableName = $2',
-            EL05412: '$1.columns 값은 [MetaTableColumnCollection] 타입이 아닙니다.',
+            EL05412: '$1.columns 값이 [MetaTableColumnCollection] 타입이 아닙니다.',
             EL05413: '$1.rows 존재하여 columns 을 설정할 수 없습니다. rows.count = $2',
             EL05414: 'setObject(oGuid, origin); oGuid.[\'_metaSet\'] guid 를 찾을 수 없습니다. guid = $1',
             // MetaTableColleciton
