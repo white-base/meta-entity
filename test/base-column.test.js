@@ -4,7 +4,6 @@
 //==============================================================
 // gobal defined
 'use strict';
-const Util                      = require('logic-core');
 const {MetaObject}              = require('logic-core');
 const {MetaElement}             = require('logic-core');
 const {BaseColumn}              = require('../src/base-column');

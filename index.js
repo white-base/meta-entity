@@ -1,46 +1,49 @@
-var ExtendError                 = require('logic-core').ExtendError;
-var Type                        = require('logic-core').Type;
-var Util                        = require('logic-core').Util;
-var Observer                    = require('logic-core').Observer;
-var Message                     = require('logic-core').Message;
-var BaseCollection              = require('logic-core').BaseCollection;
-var ArrayCollection             = require('logic-core').ArrayCollection;
-var PropertyCollection          = require('logic-core').PropertyCollection;
-var MetaObject                  = require('logic-core').MetaObject;
-var MetaElement                 = require('logic-core').MetaElement;
-var MetaRegistry                = require('logic-core').MetaRegistry;
-var NamespaceManager            = require('logic-core').NamespaceManager;
-var IObject                     = require('logic-core').IObject;
-var IMarshal                    = require('logic-core').IMarshal;
-var ICollection                 = require('logic-core').ICollection;
-var IPropertyCollection         = require('logic-core').IPropertyCollection;
-var IElement                    = require('logic-core').IElement;
-var IList                       = require('logic-core').IList;
-var IListControl                = require('logic-core').IListControl;
-var ISerialize                  = require('logic-core').ISerialize;
-var IArrayCollection            = require('logic-core').IArrayCollection;
+const messageCode_core              = require('logic-core').messageCode;
+const ExtendError                   = require('logic-core').ExtendError;
+const Type                          = require('logic-core').Type;
+const Util                          = require('logic-core').Util;
+const Observer                      = require('logic-core').Observer;
+// const Message                   = require('logic-core').Message;  NOTE: warp 포 하단에서 호출
+const BaseCollection                = require('logic-core').BaseCollection;
+const ArrayCollection               = require('logic-core').ArrayCollection;
+const PropertyCollection            = require('logic-core').PropertyCollection;
+const MetaObject                    = require('logic-core').MetaObject;
+const MetaElement                   = require('logic-core').MetaElement;
+const MetaRegistry                  = require('logic-core').MetaRegistry;
+const NamespaceManager              = require('logic-core').NamespaceManager;
+const IObject                       = require('logic-core').IObject;
+const IMarshal                      = require('logic-core').IMarshal;
+const ICollection                   = require('logic-core').ICollection;
+const IPropertyCollection           = require('logic-core').IPropertyCollection;
+const IElement                      = require('logic-core').IElement;
+const IList                         = require('logic-core').IList;
+const IListControl                  = require('logic-core').IListControl;
+const ISerialize                    = require('logic-core').ISerialize;
+const IArrayCollection              = require('logic-core').IArrayCollection;
 // ################# local export #################
-var IExportControl              = require('./src/i-control-export').IExportControl;
-var IGroupControl               = require('./src/i-control-group').IGroupControl;
-var IImportControl              = require('./src/i-control-import').IImportControl;
-var ISchemaControl              = require('./src/i-control-schema').ISchemaControl;
-var ITransaction                = require('./src/i-transaction').ITransaction;
-var TransactionQueue            = require('./src/trans-queue').TransactionQueue;
-var TransactionCollection       = require('./src/collection-transaction').TransactionCollection;
-var MetaRowCollection           = require('./src/meta-row').MetaRowCollection;
-var MetaRow                     = require('./src/meta-row').MetaRow;
-var BaseColumn                  = require('./src/base-column').BaseColumn;
-var MetaColumn                  = require('./src/meta-column').MetaColumn;
-var ObjectColumn                = require('./src/object-column').ObjectColumn;
-var BaseColumnCollection        = require('./src/collection-column').BaseColumnCollection;
-var MetaViewColumnCollection    = require('./src/collection-column').MetaViewColumnCollection;
-var MetaTableColumnCollection   = require('./src/collection-column').MetaTableColumnCollection;
-var BaseEntity                  = require('./src/base-entity').BaseEntity;
-var MetaTable                   = require('./src/meta-table').MetaTable;
-var MetaTableCollection         = require('./src/meta-table').MetaTableCollection;
-var MetaView                    = require('./src/meta-view').MetaView;
-var MetaViewCollection          = require('./src/meta-view').MetaViewCollection;
-var MetaSet                     = require('./src/meta-set').MetaSet;
+const messageCode_entity            = require('./src/message-code').messageCode;
+const Message                       = require('./src/message-wrap').Message;
+const IExportControl                = require('./src/i-control-export').IExportControl;
+const IGroupControl                 = require('./src/i-control-group').IGroupControl;
+const IImportControl                = require('./src/i-control-import').IImportControl;
+const ISchemaControl                = require('./src/i-control-schema').ISchemaControl;
+const ITransaction                  = require('./src/i-transaction').ITransaction;
+const TransactionQueue              = require('./src/trans-queue').TransactionQueue;
+const TransactionCollection         = require('./src/collection-transaction').TransactionCollection;
+const MetaRowCollection             = require('./src/meta-row').MetaRowCollection;
+const MetaRow                       = require('./src/meta-row').MetaRow;
+const BaseColumn                    = require('./src/base-column').BaseColumn;
+const MetaColumn                    = require('./src/meta-column').MetaColumn;
+const ObjectColumn                  = require('./src/object-column').ObjectColumn;
+const BaseColumnCollection          = require('./src/collection-column').BaseColumnCollection;
+const MetaViewColumnCollection      = require('./src/collection-column').MetaViewColumnCollection;
+const MetaTableColumnCollection     = require('./src/collection-column').MetaTableColumnCollection;
+const BaseEntity                    = require('./src/base-entity').BaseEntity;
+const MetaTable                     = require('./src/meta-table').MetaTable;
+const MetaTableCollection           = require('./src/meta-table').MetaTableCollection;
+const MetaView                      = require('./src/meta-view').MetaView;
+const MetaViewCollection            = require('./src/meta-view').MetaViewCollection;
+const MetaSet                       = require('./src/meta-set').MetaSet;
 
 module.exports = {
     Util: Util,
@@ -141,4 +144,8 @@ module.exports = {
         ISchemaControl: ISchemaControl,
         ITransaction: ITransaction,    
     },
+    messageCode: {
+        core: messageCode_core,
+        entity: messageCode_entity,
+    }
 }

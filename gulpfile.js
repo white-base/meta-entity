@@ -19,12 +19,13 @@ var PreFileName = '_L.Meta.Entity';
 var paths = {
 	js: [
         // 폴리심 + 확장
+        'src/message-code.js', 
+        'src/message-wrap.js', 
         'src/i-control-export.js', 
         'src/i-control-group.js', 
         'src/i-control-import.js', 
         'src/i-control-schema.js', 
         'src/i-transaction.js', 
-        'src/message-code.js', 
         'src/trans-queue.js', 
         'src/collection-transaction.js', 
         'src/meta-row.js', 
