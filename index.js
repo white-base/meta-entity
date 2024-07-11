@@ -1,4 +1,4 @@
-const messageCode_core              = require('logic-core').messageCode;
+// const messageCode_core              = require('logic-core').messageCode;
 const ExtendError                   = require('logic-core').ExtendError;
 const Type                          = require('logic-core').Type;
 const Util                          = require('logic-core').Util;
@@ -21,7 +21,8 @@ const IListControl                  = require('logic-core').IListControl;
 const ISerialize                    = require('logic-core').ISerialize;
 const IArrayCollection              = require('logic-core').IArrayCollection;
 // ################# local export #################
-const messageCode_entity            = require('./src/message-code').messageCode;
+// const messageCode_entity            = require('./src/message-code').messageCode;
+require('./src/message-code');
 const Message                       = require('./src/message-wrap').Message;
 const IExportControl                = require('./src/i-control-export').IExportControl;
 const IGroupControl                 = require('./src/i-control-group').IGroupControl;
@@ -144,8 +145,8 @@ module.exports = {
         ISchemaControl: ISchemaControl,
         ITransaction: ITransaction,    
     },
-    messageCode: {
-        core: messageCode_core,
-        entity: messageCode_entity,
-    }
+    // messageCode: {
+    //     core: messageCode_core,
+    //     entity: messageCode_entity,
+    // }
 }
