@@ -3,15 +3,8 @@
     'use strict';
 
     var isNode = typeof window !== 'undefined' ? false : true;
-
     //==============================================================
-    // 1. namespace declaration
-    _global._L                  = _global._L || {};
-    _global._L.Meta             = _global._L.Meta || {};
-    _global._L.Meta.Entity      = _global._L.Meta.Entity || {};
-
-    //==============================================================
-    // 2. import module
+    // 1. import module
     if (isNode) {                                                                               // strip:
         var _Message                    = require('logic-core').Message;                        // strip:
         var _ExtendError                = require('logic-core').ExtendError;                    // strip:
@@ -59,7 +52,7 @@
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;                       // strip:
     
     //==============================================================
-    // 3. module dependency check
+    // 2. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
     if (typeof IGroupControl === 'undefined') throw new Error(Message.get('ES011', ['IGroupControl', 'i-control-group']));
@@ -75,7 +68,7 @@
     if (typeof BaseColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['BaseColumnCollection', 'meta-column']));
 
     //==============================================================
-    // 4. module implementation
+    // 3. module implementation
     //--------------------------------------------------------------
     // implementation   
     var BaseEntity  = (function (_super) {
@@ -940,8 +933,11 @@
     }(MetaElement));
 
     //==============================================================
-    // 5. module export
+    // 4. module export
     if (isNode) exports.BaseEntity = BaseEntity;        // strip:
+
+    _global._L.Meta                 = _global._L.Meta || {};
+    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 
     _global._L.BaseEntity = BaseEntity;
     _global._L.Meta.Entity.BaseEntity = BaseEntity;

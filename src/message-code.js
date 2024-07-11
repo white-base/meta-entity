@@ -1,4 +1,4 @@
-/**** base-collection.js | _L.Collection.BaseCollection ****/
+/**** message-code.js | _L.messageCode.entity ****/
 (function(_global) {
     'use strict';
 
@@ -205,7 +205,6 @@
 
     _global._L                      = _global._L || {};
     _global._L.messageCode          = _global._L.message || {};
-    _global._L.messageCode.entity   = {};
 
     _global._L.messageCode.entity   = messageCode;
 

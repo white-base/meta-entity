@@ -3,20 +3,8 @@
     'use strict';
 
     var isNode = typeof window !== 'undefined' ? false : true;
-    var Message;
-    var ExtendError;
-    var Type;
-    var Util;
-    var ArrayCollection;
-    var TransactionQueue;
-
     //==============================================================
-    // 1. namespace declaration
-    _global._L                      = _global._L || {};
-    _global._L.Collection           = _global._L.Collection || {};
-
-    //==============================================================
-    // 2. import module
+    // 1. import module
     if (isNode) {                                                                       // strip:
         var _Message                    = require('./message-wrap').Message;            // strip:
         var _ExtendError                = require('logic-core').ExtendError;            // strip:
@@ -40,7 +28,7 @@
     var TransactionQueue        = _TransactionQueue     || $TransactionQueue;           // strip:
 
     //==============================================================
-    // 3. module dependency check
+    // 2. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Type === 'undefined') throw new Error(Message.get('ES011', ['Type', 'type']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
@@ -48,7 +36,7 @@
     if (typeof TransactionQueue === 'undefined') throw new Error(Message.get('ES011', ['TransactionQueue', 'trans-queue']));
 
     //==============================================================
-    // 4. module implementation
+    // 3. module implementation
     var TransactionCollection  = (function (_super) {
         /**
          * 트랜젝션 컬렉션 클래스
@@ -214,9 +202,11 @@
     }(ArrayCollection));
 
     //==============================================================
-    // 5. module export
+    // 4. module export
     if (isNode) exports.TransactionCollection = TransactionCollection;      // strip:
-        
+    
+    _global._L.Collection           = _global._L.Collection || {};
+
     _global._L.TransactionCollection = TransactionCollection;
     _global._L.Collection.TransactionCollection = TransactionCollection;
 

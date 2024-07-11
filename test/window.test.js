@@ -8,6 +8,37 @@
 //==============================================================
 // test
 describe("[L.*]", () => {
+    describe("[Common.*]", () => {
+        describe("message-wrap.js <Message>", () => {
+            beforeEach(() => {
+                jest.resetModules();
+                global._L = null;
+            });
+            it("- 예외 : 전체 로딩이 인된경우", () => {
+                expect(() => require('../src/message-wrap')).toThrow(/Cannot read properties/);
+            });
+            it("- 로딩 성공 ", () => {
+                require('logic-core');
+                delete global._L.Common
+                require('../src/message-code');
+                require('../src/message-wrap');
+        
+                expect(global._L.Message).toBeDefined();
+                // expect(global._L.Common.Message).toBeDefined();
+            });
+        });
+        describe("message-code.js <messageCode>", () => {
+            beforeEach(() => {
+                jest.resetModules();
+                global._L = null;
+            });
+            it("- 로딩 성공 ", () => {
+                require('../src/message-code');
+        
+                expect(global._L.messageCode.entity).toBeDefined();
+            });
+        });
+    });
     describe("[Collection.*]", () => {
         describe("trans-queue.js <TransactionQueue>", () => {
             beforeEach(() => {
@@ -43,6 +74,7 @@ describe("[L.*]", () => {
     
             it("- 로딩 성공 ", () => {
                 require('logic-core');
+                delete global._L.Collection
                 require('../src/trans-queue');
         
                 expect(global._L.TransactionQueue).toBeDefined();
@@ -90,6 +122,7 @@ describe("[L.*]", () => {
             it("- 로딩 성공 ", () => {
                 require('logic-core');
                 require('../src/trans-queue');
+                delete global._L.Collection
                 require('../src/collection-transaction');
         
                 expect(global._L.TransactionCollection).toBeDefined();
@@ -115,6 +148,7 @@ describe("[L.*]", () => {
             });
             it("- namespace : ITransaction ", () => {
                 require('logic-core');
+                delete global._L.Interface
                 require('../src/i-transaction');
                 
                 expect(global._L.ITransaction).toBeDefined();
@@ -137,6 +171,7 @@ describe("[L.*]", () => {
             });
             it("- namespace : IImportControl ", () => {
                 require('logic-core');
+                delete global._L.Interface
                 require('../src/i-control-import');
                 
                 expect(global._L.IImportControl).toBeDefined();
@@ -159,6 +194,7 @@ describe("[L.*]", () => {
             });
             it("- namespace : IGroupControl ", () => {
                 require('logic-core');
+                delete global._L.Interface
                 require('../src/i-control-group');
                 
                 expect(global._L.IGroupControl).toBeDefined();
@@ -181,6 +217,7 @@ describe("[L.*]", () => {
             });
             it("- namespace : IExportControl ", () => {
                 require('logic-core');
+                delete global._L.Interface
                 require('../src/i-control-export');
                 
                 expect(global._L.IExportControl).toBeDefined();
@@ -203,6 +240,7 @@ describe("[L.*]", () => {
             });
             it("- namespace : IList ", () => {
                 require('logic-core');
+                delete global._L.Interface
                 require('../src/i-control-schema');
                 
                 expect(global._L.ISchemaControl).toBeDefined();
@@ -272,9 +310,11 @@ describe("[L.*]", () => {
                 require('logic-core');
                 require('../src/base-column');
                 require('../src/meta-column');
+                delete global._L.Meta
+                require('../src/collection-column');
         
-                expect(global._L.MetaColumn).toBeDefined();  
-                expect(global._L.Meta.Entity.MetaColumn).toBeDefined();
+                expect(global._L.BaseColumnCollection).toBeDefined();  
+                expect(global._L.Meta.Entity.BaseColumnCollection).toBeDefined();
             });
         });
         describe("load: base-entity.js <BaseEntity>", () => {
@@ -411,7 +451,7 @@ describe("[L.*]", () => {
                 require('../src/base-column');
                 require('../src/meta-column');
                 require('../src/collection-column');
-        
+                delete global._L.Meta
                 require('../src/base-entity');
         
                 expect(global._L.BaseEntity).toBeDefined();
@@ -509,6 +549,7 @@ describe("[L.*]", () => {
                 require('../src/meta-column');
                 require('../src/collection-column');
                 require('../src/base-entity');
+                delete global._L.Meta
                 require('../src/meta-table');
         
                 expect(global._L.MetaTable).toBeDefined();
@@ -602,6 +643,7 @@ describe("[L.*]", () => {
                 require('../src/meta-column');
                 require('../src/collection-column');
                 require('../src/base-entity');
+                delete global._L.Meta
                 require('../src/meta-view');
         
                 expect(global._L.MetaView).toBeDefined();
@@ -744,6 +786,7 @@ describe("[L.*]", () => {
                 require('../src/base-entity');
                 require('../src/meta-table');
                 require('../src/meta-view');
+                delete global._L.Meta
                 require('../src/meta-set');
         
                 expect(global._L.MetaSet).toBeDefined();  
@@ -792,6 +835,7 @@ describe("[L.*]", () => {
             
             it("- 로딩 성공 ", () => {
                 require('logic-core');
+                delete global._L.Meta
                 require('../src/base-column');
         
                 expect(global._L.BaseColumn).toBeDefined();  
@@ -839,6 +883,7 @@ describe("[L.*]", () => {
             it("- 로딩 성공 ", () => {
                 require('logic-core');
                 require('../src/base-column');
+                delete global._L.Meta
                 require('../src/meta-column');
         
                 expect(global._L.MetaColumn).toBeDefined();  
@@ -906,6 +951,7 @@ describe("[L.*]", () => {
             it("- 로딩 성공 ", () => {
                 require('logic-core');
                 require('../src/base-column');
+                delete global._L.Meta
                 require('../src/object-column');
         
                 expect(global._L.ObjectColumn).toBeDefined();  
@@ -974,6 +1020,7 @@ describe("[L.*]", () => {
                 require('logic-core');
                 require('../src/trans-queue');
                 require('../src/collection-transaction');
+                delete global._L.Meta
                 require('../src/meta-row');
         
                 expect(global._L.MetaRow).toBeDefined();  

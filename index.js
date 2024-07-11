@@ -1,9 +1,8 @@
-// const messageCode_core              = require('logic-core').messageCode;
 const ExtendError                   = require('logic-core').ExtendError;
 const Type                          = require('logic-core').Type;
 const Util                          = require('logic-core').Util;
 const Observer                      = require('logic-core').Observer;
-// const Message                   = require('logic-core').Message;  NOTE: warp 포 하단에서 호출
+// const Message                   = require('logic-core').Message;  NOTE: warp 하단에서 호출
 const BaseCollection                = require('logic-core').BaseCollection;
 const ArrayCollection               = require('logic-core').ArrayCollection;
 const PropertyCollection            = require('logic-core').PropertyCollection;
@@ -21,7 +20,6 @@ const IListControl                  = require('logic-core').IListControl;
 const ISerialize                    = require('logic-core').ISerialize;
 const IArrayCollection              = require('logic-core').IArrayCollection;
 // ################# local export #################
-// const messageCode_entity            = require('./src/message-code').messageCode;
 require('./src/message-code');
 const Message                       = require('./src/message-wrap').Message;
 const IExportControl                = require('./src/i-control-export').IExportControl;
@@ -145,8 +143,4 @@ module.exports = {
         ISchemaControl: ISchemaControl,
         ITransaction: ITransaction,    
     },
-    // messageCode: {
-    //     core: messageCode_core,
-    //     entity: messageCode_entity,
-    // }
 }

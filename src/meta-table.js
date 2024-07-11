@@ -3,15 +3,8 @@
     'use strict';
 
     var isNode = typeof window !== 'undefined' ? false : true;
-
     //==============================================================
-    // 1. namespace declaration
-    _global._L                      = _global._L || {};
-    _global._L.Meta                 = _global._L.Meta || {};
-    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
-    
-    //==============================================================
-    // 2. import module
+    // 1. import module
     if (isNode) {                                                                                   // strip:   
         var _Message                    = require('./message-wrap').Message;                        // strip:
         var _ExtendError                = require('logic-core').ExtendError;                        // strip:
@@ -48,7 +41,7 @@
     var MetaTableColumnCollection   = _MetaTableColumnCollection    || $MetaTableColumnCollection;  // strip:
 
     //==============================================================
-    // 3. module dependency check
+    // 2. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Type === 'undefined') throw new Error(Message.get('ES011', ['Type', 'type']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
@@ -60,7 +53,7 @@
     if (typeof MetaTableColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['MetaTableColumnCollection', 'meta-column']));
 
     //==============================================================
-    // 4. module implementation   
+    // 3. module implementation   
     //--------------------------------------------------------------
     // implementation
     var MetaTable  = (function (_super) {
@@ -316,12 +309,15 @@
     }(PropertyCollection));
 
     //==============================================================
-    // 5. module export
+    // 4. module export
     if (isNode) {                                               // strip:
         exports.MetaTable = MetaTable;                          // strip:
         exports.MetaTableCollection = MetaTableCollection;      // strip:
     }                                                           // strip:
     
+    _global._L.Meta                 = _global._L.Meta || {};
+    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
+
     _global._L.MetaTable = MetaTable;
     _global._L.MetaTableCollection = MetaTableCollection;
     _global._L.Meta.Entity.MetaTable = MetaTable;

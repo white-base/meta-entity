@@ -3,15 +3,8 @@
     'use strict';
 
     var isNode = typeof window !== 'undefined' ? false : true;
-
     //==============================================================
-    // 1. namespace declaration
-    _global._L                      = _global._L || {};
-    _global._L.Meta                 = _global._L.Meta || {};
-    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
-
-    //==============================================================
-    // 2. import module
+    // 1. import module
     if (isNode) {                                                               // strip:
         var _Message                    = require('./message-wrap').Message;    // strip:
         var _ExtendError                = require('logic-core').ExtendError;    // strip:
@@ -35,7 +28,7 @@
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;       // strip:
 
     //==============================================================
-    // 3. module dependency check
+    // 2. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Type === 'undefined') throw new Error(Message.get('ES011', ['Type', 'type']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011',['Util', 'util']));
@@ -43,7 +36,7 @@
     if (typeof MetaElement === 'undefined') throw new Error(Message.get('ES011', ['MetaElement', 'meta-element']));
 
     //==============================================================
-    // 4. module implementation
+    // 3. module implementation
     //--------------------------------------------------------------
     // implementation   
     var BaseColumn  = (function (_super) {
@@ -318,9 +311,12 @@
 
 
     //==============================================================
-    // 5. module export
+    // 4. module export
     if (isNode) exports.BaseColumn = BaseColumn;    // strip:
         
+    _global._L.Meta                 = _global._L.Meta || {};
+    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
+    
     _global._L.BaseColumn = BaseColumn;
     _global._L.Meta.Entity.BaseColumn = BaseColumn;
 
