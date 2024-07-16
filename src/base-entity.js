@@ -69,8 +69,6 @@
 
     //==============================================================
     // 3. module implementation
-    //--------------------------------------------------------------
-    // implementation   
     var BaseEntity  = (function (_super) {
         /**
          * 기본 엔티티 (최상위)
@@ -934,8 +932,9 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.BaseEntity = BaseEntity;        // strip:
+    if (isNode) exports.BaseEntity  = BaseEntity;        // strip:
 
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

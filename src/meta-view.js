@@ -230,8 +230,6 @@
     
     }(BaseEntity));
     
-    //--------------------------------------------------------------
-    // implementation
     var MetaViewCollection  = (function (_super) {
         /**
          * 뷰 엔티티 컬렉션
@@ -328,11 +326,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) {                                           // strip:
-        exports.MetaView = MetaView;                        // strip:
-        exports.MetaViewCollection = MetaViewCollection;    // strip:
-    }                                                       // strip:
-    
+    if (isNode) exports.MetaView = MetaView;                        // strip:
+    if (isNode) exports.MetaViewCollection = MetaViewCollection;    // strip:
+
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

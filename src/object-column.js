@@ -49,8 +49,6 @@
 
     //==============================================================
     // 3. module implementation
-    //--------------------------------------------------------------
-    // implementation   
     var ObjectColumn  = (function (_super) {
         /**
          * 객체 컬럼
@@ -194,10 +192,11 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.ObjectColumn = ObjectColumn;    // strip:
-
-    _global._L.Meta                 = _global._L.Meta || {};
-    _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
+    if (isNode) exports.ObjectColumn    = ObjectColumn;    // strip:
+    
+    // create namespace
+    _global._L.Meta                     = _global._L.Meta || {};
+    _global._L.Meta.Entity              = _global._L.Meta.Entity || {};
 
     _global._L.ObjectColumn = ObjectColumn;
     _global._L.Meta.Entity.ObjectColumn = ObjectColumn;

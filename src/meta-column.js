@@ -417,8 +417,9 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.MetaColumn = MetaColumn;        // strip:
+    if (isNode) exports.MetaColumn  = MetaColumn;        // strip:
 
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

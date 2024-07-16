@@ -56,9 +56,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.IGroupControl = IGroupControl;      // strip:
+    if (isNode) exports.IGroupControl   = IGroupControl;      // strip:
         
-    _global._L.Interface            = _global._L.Interface || {};
+    // create namespace
+    _global._L.Interface                = _global._L.Interface || {};
 
     _global._L.IGroupControl = IGroupControl;
     _global._L.Interface.IGroupControl = IGroupControl;

@@ -47,9 +47,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.IImportControl = IImportControl;    // strip:
+    if (isNode) exports.IImportControl  = IImportControl;    // strip:
 
-    _global._L.Interface            = _global._L.Interface || {};
+    // create namespace
+    _global._L.Interface                = _global._L.Interface || {};
         
     _global._L.IImportControl = IImportControl;
     _global._L.Interface.IImportControl = IImportControl;

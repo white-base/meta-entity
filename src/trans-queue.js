@@ -184,9 +184,10 @@
     
     //==============================================================
     // 4. module export
-    if (isNode) exports.TransactionQueue = TransactionQueue;    // strip:
-        
-    _global._L.Collection           = _global._L.Collection || {};
+    if (isNode) exports.TransactionQueue    = TransactionQueue;    // strip:
+    
+    // create namespace    
+    _global._L.Collection                   = _global._L.Collection || {};
 
     _global._L.TransactionQueue = TransactionQueue;
     _global._L.Collection.TransactionQueue = TransactionQueue;

@@ -203,9 +203,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.TransactionCollection = TransactionCollection;      // strip:
+    if (isNode) exports.TransactionCollection   = TransactionCollection;      // strip:
     
-    _global._L.Collection           = _global._L.Collection || {};
+    // create namespace
+    _global._L.Collection                       = _global._L.Collection || {};
 
     _global._L.TransactionCollection = TransactionCollection;
     _global._L.Collection.TransactionCollection = TransactionCollection;

@@ -50,8 +50,6 @@
     
     //==============================================================
     // 3. module implementation
-    //--------------------------------------------------------------
-    // implementation
     var BaseColumnCollection  = (function (_super) {
         /**
          * 컬럼 컬렉션 (최상위)
@@ -183,8 +181,6 @@
     
     }(PropertyCollection));
 
-    //--------------------------------------------------------------
-    // implementation
     var MetaTableColumnCollection  = (function (_super) {
         /**
          * 테이블 컬럼 컬렉션  
@@ -256,10 +252,7 @@
         return MetaTableColumnCollection;
     
     }(BaseColumnCollection));
-
-
-    //--------------------------------------------------------------
-    // implementation
+    
     var MetaViewColumnCollection  = (function (_super) {
         /**
          * 메타 뷰 컬럼 컬렉션
@@ -422,12 +415,11 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) {                                                       // strip:
-        exports.BaseColumnCollection = BaseColumnCollection;            // strip:
-        exports.MetaViewColumnCollection = MetaViewColumnCollection;    // strip:
-        exports.MetaTableColumnCollection = MetaTableColumnCollection;  // strip:
-    }                                                                   // strip:
+    if (isNode) exports.BaseColumnCollection = BaseColumnCollection;            // strip:
+    if (isNode) exports.MetaViewColumnCollection = MetaViewColumnCollection;    // strip:
+    if (isNode) exports.MetaTableColumnCollection = MetaTableColumnCollection;  // strip:
 
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

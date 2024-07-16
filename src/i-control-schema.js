@@ -56,9 +56,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.ISchemaControl = ISchemaControl;    // strip:
+    if (isNode) exports.ISchemaControl  = ISchemaControl;    // strip:
 
-    _global._L.Interface            = _global._L.Interface || {};
+    // create namespace
+    _global._L.Interface                = _global._L.Interface || {};
         
     _global._L.ISchemaControl = ISchemaControl;
     _global._L.Interface.ISchemaControl = ISchemaControl;

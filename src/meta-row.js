@@ -463,11 +463,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) {                                           // strip:
-        exports.MetaRow = MetaRow;                          // strip:
-        exports.MetaRowCollection = MetaRowCollection;      // strip:
-    }                                                       // strip:
+    if (isNode) exports.MetaRow = MetaRow;                      // strip:
+    if (isNode) exports.MetaRowCollection = MetaRowCollection;  // strip:
     
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

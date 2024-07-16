@@ -37,8 +37,6 @@
 
     //==============================================================
     // 3. module implementation
-    //--------------------------------------------------------------
-    // implementation   
     var BaseColumn  = (function (_super) {
         /**
          * 컬럼 (최상위)
@@ -312,8 +310,9 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.BaseColumn = BaseColumn;    // strip:
-        
+    if (isNode) exports.BaseColumn  = BaseColumn;    // strip:
+    
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
     

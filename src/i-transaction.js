@@ -55,9 +55,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) exports.ITransaction = ITransaction;    // strip:
+    if (isNode) exports.ITransaction    = ITransaction;    // strip:
 
-    _global._L.Interface            = _global._L.Interface || {};
+    // create namespace
+    _global._L.Interface                = _global._L.Interface || {};
     
     _global._L.ITransaction = ITransaction;
     _global._L.Interface.ITransaction = ITransaction;

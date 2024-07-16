@@ -522,6 +522,7 @@
     // 4. module export
     if (isNode) exports.MetaSet = MetaSet;      // strip:
         
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 

@@ -54,8 +54,6 @@
 
     //==============================================================
     // 3. module implementation   
-    //--------------------------------------------------------------
-    // implementation
     var MetaTable  = (function (_super) {
         /**
          * 테이블 엔티티
@@ -225,8 +223,6 @@
     
     }(BaseEntity));
     
-    //--------------------------------------------------------------
-    // implementation
      var MetaTableCollection  = (function (_super) {
         /**
          * 메타 테이블 컬렉션
@@ -310,11 +306,10 @@
 
     //==============================================================
     // 4. module export
-    if (isNode) {                                               // strip:
-        exports.MetaTable = MetaTable;                          // strip:
-        exports.MetaTableCollection = MetaTableCollection;      // strip:
-    }                                                           // strip:
+    if (isNode) exports.MetaTable = MetaTable;                      // strip:
+    if (isNode) exports.MetaTableCollection = MetaTableCollection;  // strip:
     
+    // create namespace
     _global._L.Meta                 = _global._L.Meta || {};
     _global._L.Meta.Entity          = _global._L.Meta.Entity || {};
 
