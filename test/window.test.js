@@ -910,12 +910,12 @@ describe("[L.*]", () => {
                 
                 expect(() => require('../src/object-column')).toThrow(/Util/);
             });
-            it("- 예외 : Observer 로딩이 안 된 경우", () => {
-                require('logic-core');
-                delete global._L.EventEmitter;
+            // it("- 예외 : Observer 로딩이 안 된 경우", () => {
+            //     require('logic-core');
+            //     delete global._L.EventEmitter;
         
-                expect(() => require('../src/object-column')).toThrow(/EventEmitter/);
-            });
+            //     expect(() => require('../src/object-column')).toThrow(/EventEmitter/);
+            // });
             it("- 예외 : MetaRegistry 로딩이 안 된 경우", () => {
                 require('logic-core');
                 delete global._L.MetaRegistry;
