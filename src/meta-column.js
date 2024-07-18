@@ -10,21 +10,21 @@
         var _ExtendError                = require('logic-core').ExtendError;    // strip:
         var _Type                       = require('logic-core').Type;           // strip:
         var _Util                       = require('logic-core').Util;           // strip:
-        var _Observer                   = require('logic-core').Observer;       // strip:
+        var _EventEmitter               = require('logic-core').EventEmitter;   // strip:
         var _BaseColumn                 = require('./base-column').BaseColumn;  // strip:
     }                                                                           // strip:
     var $Message                    = _global._L.Message;       // modify:
     var $ExtendError                = _global._L.ExtendError;   // modify:
     var $Type                       = _global._L.Type;          // modify:
     var $Util                       = _global._L.Util;          // modify:
-    var $Observer                   = _global._L.Observer;      // modify:
+    var $EventEmitter               = _global._L.EventEmitter;  // modify:
     var $BaseColumn                 = _global._L.BaseColumn;    // modify:
 
     var Message                 = _Message              || $Message;            // strip:
     var ExtendError             = _ExtendError          || $ExtendError;        // strip:
     var Type                    = _Type                 || $Type;               // strip:
     var Util                    = _Util                 || $Util;               // strip:
-    var Observer                = _Observer             || $Observer;           // strip:
+    var EventEmitter            = _EventEmitter         || $EventEmitter;       // strip:
     var BaseColumn              = _BaseColumn           || $BaseColumn;         // strip:
 
     //==============================================================
@@ -32,7 +32,7 @@
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Type === 'undefined') throw new Error(Message.get('ES011', ['Type', 'type']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
-    if (typeof Observer === 'undefined') throw new Error(Message.get('ES011', ['Observer', 'observer']));
+    if (typeof EventEmitter === 'undefined') throw new Error(Message.get('ES011', ['EventEmitter', 'event-emitter']));
     if (typeof BaseColumn === 'undefined') throw new Error(Message.get('ES011', ['BaseColumn', 'base-column']));
 
     //==============================================================
@@ -59,7 +59,7 @@
         function MetaColumn(p_name, p_entity, p_property) {
             _super.call(this, p_name, p_entity);
 
-            var $event          = new Observer(this);
+            var $event          = new EventEmitter(this);
             var required       = false;
             // var optional      = false;
             var constraints     = [];
@@ -69,7 +69,7 @@
             /** 
              * 이벤트 객체
              * @private
-             * @member {Observer} _L.Meta.Entity.MetaColumn#$event  
+             * @member {EventEmitter} _L.Meta.Entity.MetaColumn#$event  
              */
             Object.defineProperty(this, '$event', 
             {
@@ -206,7 +206,7 @@
             Object.defineProperty(this, 'onChanged', 
             {
                 set: function(fun) {
-                    this.$event.subscribe(fun, 'onChanged');
+                    this.$event.on('onChanged', fun);
                 },
                 configurable: false,
                 enumerable: false,
@@ -228,7 +228,7 @@
          */
         MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
             p_oValue = p_oValue || this.$value;
-            this.$event.publish('onChanged', p_nValue, p_oValue, this);
+            this.$event.emit('onChanged', p_nValue, p_oValue, this);
         };
 
         /**
@@ -270,8 +270,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.$event.$subscribers, this.$event._getInitObject())) {
-                obj['$subscribers'] = this.$event.$subscribers;
+            if (!Type.deepEqual(this.$event.$storage, {})) {
+                obj['$storage'] = this.$event.$storage;
             }
             if (this.required !== false) obj['required'] = this.required;
             // if (this.optional !== false) obj['optional'] = this.optional;
@@ -294,8 +294,8 @@
             var origin = p_origin ? p_origin : p_oGuid;
             var entity;
 
-            if (p_oGuid['$subscribers']) {
-                this.$event.$subscribers = p_oGuid['$subscribers'];
+            if (p_oGuid['$storage']) {
+                this.$event.$storage = p_oGuid['$storage'];
             }
             if (p_oGuid['required']) this.required = p_oGuid['required'];
             // if (p_oGuid['optional']) this.optional = p_oGuid['optional'];

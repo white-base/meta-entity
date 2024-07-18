@@ -1,7 +1,7 @@
 const ExtendError                   = require('logic-core').ExtendError;
 const Type                          = require('logic-core').Type;
 const Util                          = require('logic-core').Util;
-const Observer                      = require('logic-core').Observer;
+const EventEmitter                  = require('logic-core').EventEmitter;
 // const Message                   = require('logic-core').Message;  NOTE: warp 하단에서 호출
 const BaseCollection                = require('logic-core').BaseCollection;
 const ArrayCollection               = require('logic-core').ArrayCollection;
@@ -47,7 +47,7 @@ const MetaSet                       = require('./src/meta-set').MetaSet;
 module.exports = {
     Util: Util,
     Type: Type,
-    Observer: Observer,
+    EventEmitter: EventEmitter,
     ExtendError: ExtendError,
     Message: Message,
     IObject: IObject,
@@ -91,7 +91,7 @@ module.exports = {
     Common: {
         Util: Util,
         Type: Type,
-        Observer: Observer,
+        EventEmitter: EventEmitter,
         ExtendError: ExtendError,
         Message: Message,
     },

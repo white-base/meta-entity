@@ -868,11 +868,11 @@ describe("[L.*]", () => {
                 
                 expect(() => require('../src/meta-column')).toThrow(/Util/);
             });
-            it("- 예외 : Observer 로딩이 안 된 경우", () => {
+            it("- 예외 : EventEmitter 로딩이 안 된 경우", () => {
                 require('logic-core');
-                delete global._L.Observer;
+                delete global._L.EventEmitter;
         
-                expect(() => require('../src/meta-column')).toThrow(/Observer/);
+                expect(() => require('../src/meta-column')).toThrow(/EventEmitter/);
             });
             it("- 예외 : BaseColumn 로딩이 안 된 경우", () => {
                 require('logic-core');
@@ -912,9 +912,9 @@ describe("[L.*]", () => {
             });
             it("- 예외 : Observer 로딩이 안 된 경우", () => {
                 require('logic-core');
-                delete global._L.Observer;
+                delete global._L.EventEmitter;
         
-                expect(() => require('../src/object-column')).toThrow(/Observer/);
+                expect(() => require('../src/object-column')).toThrow(/EventEmitter/);
             });
             it("- 예외 : MetaRegistry 로딩이 안 된 경우", () => {
                 require('logic-core');
@@ -984,11 +984,11 @@ describe("[L.*]", () => {
                 
                 expect(() => require('../src/meta-row')).toThrow(/Util/);
             });
-            it("- 예외 : Observer 로딩이 안 된 경우", () => {
+            it("- 예외 : EventEmitter 로딩이 안 된 경우", () => {
                 require('logic-core');
-                delete global._L.Observer;
+                delete global._L.EventEmitter;
         
-                expect(() => require('../src/meta-row')).toThrow(/Observer/);
+                expect(() => require('../src/meta-row')).toThrow(/EventEmitter/);
             });
             
             it("- 예외 : IList 로딩이 안 된 경우", () => {

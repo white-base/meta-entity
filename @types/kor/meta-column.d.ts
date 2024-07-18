@@ -1,5 +1,5 @@
 import BaseColumn           = require("./base-column");
-import Observer             = require("logic-core/observer");
+import EventEmitter         = require("logic-core/event-emitter");
 import BaseEntity           = require("./base-entity");
 
 // import T                    = require("./T");
@@ -23,7 +23,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 이벤트 객체
      */
-    $event: Observer;
+    $event: EventEmitter;
 
     /**
      * 직접 접근 제한 !!

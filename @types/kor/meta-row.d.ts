@@ -1,6 +1,6 @@
 import MetaObject           = require("logic-core/meta-object");
 import BaseEntity           =  require("./base-entity");
-import Observer             = require("logic-core/observer");
+import EventEmitter         = require("logic-core/event-emitter");
 
 /**
  * 메타 로우
@@ -23,7 +23,7 @@ declare class MetaRow extends MetaObject {
      * 이벤트 객체
      * @private
      */
-    $event: Observer;
+    $event: EventEmitter;
 
     /**
      *  로우의 소유 엔티티

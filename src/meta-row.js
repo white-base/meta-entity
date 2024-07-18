@@ -10,7 +10,7 @@
         var _ExtendError                = require('logic-core').ExtendError;                        // strip:
         var _Type                       = require('logic-core').Type;                               // strip:
         var _Util                       = require('logic-core').Util;                               // strip:
-        var _Observer                   = require('logic-core').Observer;                           // strip:
+        var _EventEmitter               = require('logic-core').EventEmitter;                       // strip:
         var _IList                      = require('logic-core').IList;                              // strip:
         var _MetaObject                 = require('logic-core').MetaObject;                         // strip:
         var _TransactionCollection      = require('./collection-transaction').TransactionCollection;// strip:
@@ -20,7 +20,7 @@
     var $ExtendError                = _global._L.ExtendError;               // modify:
     var $Type                       = _global._L.Type;                      // modify:
     var $Util                       = _global._L.Util;                      // modify:
-    var $Observer                   = _global._L.Observer;                  // modify:
+    var $EventEmitter               = _global._L.EventEmitter;              // modify:
     var $MetaObject                 = _global._L.MetaObject;                // modify:
     var $IList                      = _global._L.IList;                     // modify:
     var $TransactionCollection      = _global._L.TransactionCollection;     // modify:
@@ -30,7 +30,7 @@
     var ExtendError             = _ExtendError          || $ExtendError;                            // strip:
     var Type                    = _Type                 || $Type;                                   // strip:
     var Util                    = _Util                 || $Util;                                   // strip:
-    var Observer                = _Observer             || $Observer;                               // strip:
+    var EventEmitter            = _EventEmitter         || $EventEmitter;                           // strip:
     var IList                   = _IList                || $IList;                                  // strip:
     var MetaObject              = _MetaObject           || $MetaObject;                             // strip:
     var TransactionCollection   = _TransactionCollection|| $TransactionCollection;                  // strip:
@@ -41,7 +41,7 @@
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Type === 'undefined') throw new Error(Message.get('ES011', ['Type', 'type']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
-    if (typeof Observer === 'undefined') throw new Error(Message.get('ES011', ['Observer', 'observer']));
+    if (typeof EventEmitter === 'undefined') throw new Error(Message.get('ES011', ['EventEmitter', 'event-emitter']));
     if (typeof IList === 'undefined') throw new Error(Message.get('ES011', ['IList', 'i-list']));
     if (typeof MetaRegistry === 'undefined') throw new Error(Message.get('ES011', ['MetaRegistry', 'meta-registry']));
     if (typeof MetaObject === 'undefined') throw new Error(Message.get('ES011', ['MetaObject', 'meta-object']));
@@ -59,7 +59,7 @@
         function MetaRow(p_entity) {
             _super.call(this);
             
-            var $event  = new Observer(this);
+            var $event  = new EventEmitter(this);
             var _entity  = null;
             var _elements = [];
             var _keys = [];
@@ -83,7 +83,7 @@
             /** 
              * 이벤트 객체
              * @private 
-             * @member {Observer} _L.Meta.Entity.MetaRow#$event  
+             * @member {EventEmitter} _L.Meta.Entity.MetaRow#$event  
              */
             Object.defineProperty(this, '$event', 
             {
@@ -176,7 +176,7 @@
              */
             Object.defineProperty(this, 'onChanging', 
             {
-                set: function(fun) { this.$event.subscribe(fun, 'onChanging'); },
+                set: function(fun) { this.$event.on('onChanging', fun); },
                 configurable: false,
                 enumerable: false,
             });
@@ -191,7 +191,7 @@
              * @param {this}        p_callback.p_this 로우 객체
              */
             Object.defineProperty(this, 'onChanged', {
-                set: function(fun) { this.$event.subscribe(fun, 'onChanged'); },
+                set: function(fun) { this.$event.on('onChanged', fun); },
                 configurable: false,
                 enumerable: false,
             });
@@ -274,7 +274,7 @@
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanging = function(p_idx, p_nValue, p_oValue) {
-            this.$event.publish('onChanging', p_idx, p_nValue, p_oValue, this);
+            this.$event.emit('onChanging', p_idx, p_nValue, p_oValue, this);
         };
 
         /**
@@ -285,7 +285,7 @@
          * @listens _L.Meta.Entity.MetaColumn#_onChanged
          */
         MetaRow.prototype._onChanged = function(p_idx, p_nValue, p_oValue) {
-            this.$event.publish('onChanged', p_idx, p_nValue, p_oValue, this);
+            this.$event.emit('onChanged', p_idx, p_nValue, p_oValue, this);
         };
 
         /**
@@ -305,8 +305,8 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
-            if (!Type.deepEqual(this.$event.$subscribers, this.$event._getInitObject())) {
-                obj['$subscribers'] = this.$event.$subscribers;
+            if (!Type.deepEqual(this.$event.$storage, {})) {
+                obj['$storage'] = this.$event.$storage;
             }
             if (vOpt < 2 && vOpt > -1 && this._entity) {
                 obj['_entity'] = MetaRegistry.createReferObject(this._entity);
@@ -342,8 +342,8 @@
             
             if (p_oGuid['_elem'].length !== p_oGuid['_key'].length) throw new ExtendError(/EL05212/, null, [p_oGuid['_elem'].length, p_oGuid['_key'].length]);
 
-            if (p_oGuid['$subscribers']) {
-                this.$event.$subscribers = p_oGuid['$subscribers'];
+            if (p_oGuid['$storage']) {
+                this.$event.$storage = p_oGuid['$storage'];
             }
             for(var i = 0; i < p_oGuid['_elem'].length; i++) {
                 var elem = p_oGuid['_elem'][i];
@@ -369,8 +369,8 @@
             var clone = new MetaRow(entity);
             var obj = this.getObject();
 
-            if (obj.$subscribers) {
-                clone.$event.$subscribers = obj.$subscribers;
+            if (obj.$storage) {
+                clone.$event.$storage = obj.$storage;
             }
             clone.$elements = Util.deepCopy(obj._elem);
             return clone;

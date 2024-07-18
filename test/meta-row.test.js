@@ -288,7 +288,7 @@ describe("[target: meta-row.js]", () => {
                 a2.setObject(obj2);
 
                 expect(a2.equal(a1)).toBe(true);
-                expect(a2.rows[0].$event._list.length).toBe(1)
+                expect(a2.rows[0].$event.list.length).toBe(1)
                 expect(()=>a2.rows.setObject(obj1)).toThrow(/EL04112/);
                 /**
                  * MEMO:

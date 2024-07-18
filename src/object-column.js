@@ -9,7 +9,7 @@
         var _Message                    = require('./message-wrap').Message;        // strip:
         var _ExtendError                = require('logic-core').ExtendError;        // strip:
         var _Util                       = require('logic-core').Util;               // strip:
-        var _Observer                   = require('logic-core').Observer;           // strip:
+        var _EventEmitter               = require('logic-core').EventEmitter;       // strip:
         var _MetaObject                 = require('logic-core').MetaObject;         // strip:
         var _MetaElement                = require('logic-core').MetaElement;        // strip:
         var _BaseColumn                 = require('./base-column').BaseColumn;      // strip:
@@ -19,7 +19,7 @@
     var $Message                    = _global._L.Message;               // modify:
     var $ExtendError                = _global._L.ExtendError;           // modify:
     var $Util                       = _global._L.Util;                  // modify:
-    var $Observer                   = _global._L.Observer;              // modify:
+    var $EventEmitter               = _global._L.EventEmitter;          // modify:
     var $MetaObject                 = _global._L.MetaObject;            // modify:
     var $MetaElement                = _global._L.MetaElement;           // modify:
     var $BaseColumn                 = _global._L.BaseColumn;            // modify:
@@ -29,7 +29,7 @@
     var Message                 = _Message              || $Message;                // strip:
     var ExtendError             = _ExtendError          || $ExtendError;            // strip:
     var Util                    = _Util                 || $Util;                   // strip:
-    var Observer                = _Observer             || $Observer;               // strip:
+    var EventEmitter            = _EventEmitter         || $EventEmitter;           // strip:
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;           // strip:
     var MetaObject              = _MetaObject           || $MetaObject;             // strip:
     var MetaElement             = _MetaElement          || $MetaElement;            // strip:
@@ -40,7 +40,7 @@
     // 2. module dependency check
     if (typeof ExtendError === 'undefined') throw new Error(Message.get('ES011', ['ExtendError', 'extend-error']));
     if (typeof Util === 'undefined') throw new Error(Message.get('ES011', ['Util', 'util']));
-    if (typeof Observer === 'undefined') throw new Error(Message.get('ES011', ['Observer', 'observer']));
+    if (typeof EventEmitter === 'undefined') throw new Error(Message.get('ES011', ['EventEmitter', 'event-emitter']));
     if (typeof MetaRegistry === 'undefined') throw new Error(Message.get('ES011', ['MetaRegistry', 'meta-registry']));
     if (typeof MetaObject === 'undefined') throw new Error(Message.get('ES011', ['MetaObject', 'meta-object']));
     if (typeof MetaElement === 'undefined') throw new Error(Message.get('ES011', ['MetaElement', 'meta-element']));

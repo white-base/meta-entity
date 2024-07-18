@@ -10,7 +10,7 @@ const index   = require('..');
 describe("[target: index.js]", () => {
     describe('Observer, ExtendError, Util', () => {
         it('- _L.*  ', () => {
-            expect(typeof index.Observer).toBe('function');
+            expect(typeof index.EventEmitter).toBe('function');
             expect(typeof index.ExtendError).toBe('function');
             expect(typeof index.Util.inherits).toBe('function');
             expect(typeof index.Util.getArrayDepth).toBe('function');
@@ -27,7 +27,7 @@ describe("[target: index.js]", () => {
         it('- _L.Common.* ', () => { 
             // namespace
             expect(typeof index.Common).toBe('object');
-            expect(typeof index.Common.Observer).toBe('function');
+            expect(typeof index.Common.EventEmitter).toBe('function');
             expect(typeof index.Common.ExtendError).toBe('function');
             expect(typeof index.Common.Util.inherits).toBe('function');
             expect(typeof index.Common.Util.getArrayDepth).toBe('function');
