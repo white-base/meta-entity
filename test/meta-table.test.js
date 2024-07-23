@@ -815,7 +815,7 @@ describe("[target: meta-table.js]", () => {
                 table1.rows.add(row);
 
                 // 초기화하여서 다시 임으로 불러와야함
-                MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+                MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
                 var table2 = table1.select();
     
                 expect(table2.columns.count).toBe(2);
@@ -858,7 +858,7 @@ describe("[target: meta-table.js]", () => {
                 row['i2'] = 20;
                 table1.rows.add(row);
 
-                MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+                MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
                 var fun1 = function(row) { return row['i1'] < 10}
                 // var table2 = table1.select([], row => row['i1'] < 10);
                 var table2 = table1.select(fun1);
@@ -895,7 +895,7 @@ describe("[target: meta-table.js]", () => {
                 row['i1'] = 10;
                 row['i2'] = 20;
                 table1.rows.add(row);
-                MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+                MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
                 var table2 = table1.select('i1');
                 var table3 = table1.select(row => row['i1'] < 10, ['i1']);
                 var table4 = table1.select(row => row['i1'] < 10, 'i1');
@@ -908,7 +908,7 @@ describe("[target: meta-table.js]", () => {
                 expect(table2.rows[1]['i1']).toBe(10);
             });
             // it("- select(itmms) : 아이템 설정", () => {
-            //     // MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+            //     // MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
             //     var view1 = new MetaView('temp')
             //     var table1 = new MetaTable('T1');
             //     table1.columns.add('i1');
@@ -929,12 +929,12 @@ describe("[target: meta-table.js]", () => {
             });
             // it("- select(itmms) : 예외 <callback>", () => {
             //     var table1 = new MetaTable('T1');
-            //     MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+            //     MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
             //     expect(()=> table1.select('i1', 'ERR')).toThrow(/ES021/)
             // });
             // it("- select(itmms) : 예외 <columnName>", () => {
             //     var table1 = new MetaTable('T1');
-            //     MetaRegistry.ns.add('Meta.Entity.MetaView', MetaView);
+            //     MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
             //     expect(()=> table1.select(100)).toThrow(/ES021/)
             // });
         });

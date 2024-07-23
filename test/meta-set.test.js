@@ -462,7 +462,7 @@ describe("[target: meta-set.js]", () => {
                 // MetaRegistry.init();
                 // const initCnt = MetaRegistry.count;
                 // loadNamespace();    // init() 초기화하여 불러와야함
-                // const load_ns_Cnt = MetaRegistry.ns.count;
+                // const load_ns_Cnt = MetaRegistry.namespace.count;
                 // 생성자를 통해 성성
                 var set2 = new MetaSet('S2');
                 set2.load(str, parse);
@@ -516,7 +516,7 @@ describe("[target: meta-set.js]", () => {
                 // MetaRegistry.init();
                 // const initCnt = MetaRegistry.count;
                 // loadNamespace();    // init() 초기화하여 불러와야함
-                // const load_ns_Cnt = MetaRegistry.ns.count;
+                // const load_ns_Cnt = MetaRegistry.namespace.count;
                 // 등록소를 통해서 생성
                 const set2 = MetaRegistry.createMetaObject({_type: 'MetaSet', _ns: 'Meta.Entity', name: 'S2'});
                 set2.load(str, parse);
@@ -617,7 +617,7 @@ describe("[target: meta-set.js]", () => {
                 // MetaRegistry.init();
                 // const initCnt = MetaRegistry.count;
                 // loadNamespace();
-                // const load_ns_Cnt = MetaRegistry.ns.count;
+                // const load_ns_Cnt = MetaRegistry.namespace.count;
                 // 등록소를 통해서 생성
                 const set2 = MetaRegistry.createMetaObject({_type: 'MetaSet', _ns: 'Meta.Entity', name: 'S2'});
                 set2.load(str, parse);

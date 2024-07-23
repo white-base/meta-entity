@@ -59,11 +59,14 @@
         function MetaRow(p_entity) {
             _super.call(this);
             
+            // private
             var $event  = new EventEmitter(this);
-            var _entity  = null;
-            var _elements = [];
-            var _keys = [];
+            var $elements = [];
+            var $keys = [];
+
+            // protected
             var _this   = this;
+            var _entity  = null;
 
             /**
              * 내부 변수 접근
@@ -73,8 +76,8 @@
              */
             Object.defineProperty(this, '$elements',
             {
-                get: function() { return _elements; },
-                set: function(nVal) { _elements = nVal; },
+                get: function() { return $elements; },
+                set: function(nVal) { $elements = nVal; },
                 configurable: false,
                 enumerable: false,
             });
@@ -92,7 +95,38 @@
                 enumerable: false,
             });
 
-            
+            // /** 
+            //  * 로우 요소값 
+            //  * @readonly
+            //  * @member {Array<any>} _L.Meta.Entity.MetaRow#$elements  
+            //  */
+            // Object.defineProperty(this, '$elements', 
+            // {
+            //     get: function() {
+            //         var arr = [];
+            //         for (var i = 0; i < $elements.length; i++) arr.push($elements[i]);
+            //         return arr;
+            //     },
+            //     configurable: false,
+            //     enumerable: false,
+            // });
+
+            /** 
+             * 요소 키
+             * @readonly
+             * @member {Array<string>} _L.Meta.Entity.MetaRow#$keys  
+             */
+            Object.defineProperty(this, '$keys',
+            {
+                get: function() {
+                    var arr = [];
+                    for (var i = 0; i < $keys.length; i++) arr.push($keys[i]);
+                    return arr;
+                },
+                configurable: false,
+                enumerable: false,
+            });
+
             /**
              * 로우의 소유 엔티티
              * @readonly
@@ -105,38 +139,6 @@
                 enumerable: false
             });
 
-            /** 
-             * 로우 요소값 
-             * @readonly
-             * @member {Array<any>} _L.Meta.Entity.MetaRow#_elements  
-             */
-            Object.defineProperty(this, '_elements', 
-            {
-                get: function() {
-                    var arr = [];
-                    for (var i = 0; i < _elements.length; i++) arr.push(_elements[i]);
-                    return arr;
-                },
-                configurable: false,
-                enumerable: false,
-            });
-
-            /** 
-             * 요소 키
-             * @readonly
-             * @member {Array<string>} _L.Meta.Entity.MetaRow#_keys  
-             */
-            Object.defineProperty(this, '_keys',
-            {
-                get: function() {
-                    var arr = [];
-                    for (var i = 0; i < _keys.length; i++) arr.push(_keys[i]);
-                    return arr;
-                },
-                configurable: false,
-                enumerable: false,
-            });
-
             /**
              * 컬렉션 목록 
              * @readonly
@@ -146,7 +148,7 @@
             {
                 get: function() {
                     var arr = [];
-                    for (var i = 0; i < _elements.length; i++) arr.push(_elements[i]);
+                    for (var i = 0; i < $elements.length; i++) arr.push($elements[i]);
                     return arr;
                 },
                 configurable: false,
@@ -160,7 +162,7 @@
              */
             Object.defineProperty(this, 'count', 
             {
-                get: function() { return _elements.length; },
+                get: function() { return $elements.length; },
                 configurable: false,
                 enumerable: false
             });
@@ -198,13 +200,13 @@
 
             // inner variable access
             // this.__GET$elements = function(call) {
-            //     if (call instanceof MetaRow) return _elements;
+            //     if (call instanceof MetaRow) return $elements;
             // }
             // this.__GET$_keys = function(call) {
             //     if (call instanceof MetaRow) return _keys;
             // };
             // this.__SET$elements = function(val, call) {
-            //     if (call instanceof MetaRow) _elements = val;
+            //     if (call instanceof MetaRow) $elements = val;
             // }
             // this.__SET$_keys = function(val, call) {
             //     if (call instanceof MetaRow) _keys = val;
@@ -222,19 +224,19 @@
             _entity = p_entity;
 
             for (var i = 0; i < _entity.columns.count; i++) {
-                var idx = _elements.length;
+                var idx = $elements.length;
                 var alias = _entity.columns[i].alias;
-                _elements.push(_entity.columns[i].default);  // 기본값 등록
-                _keys.push(alias);
+                $elements.push(_entity.columns[i].default);  // 기본값 등록
+                $keys.push(alias);
                 Object.defineProperty(this, [i], $getPropDescriptor(idx));
                 Object.defineProperty(this, alias, $getPropDescriptor(idx));
             }
 
             function $getPropDescriptor(p_idx) {
                 return {
-                    get: function() { return _elements[p_idx]; },
+                    get: function() { return $elements[p_idx]; },
                     set: function(nVal) { 
-                        var oldValue = _elements[p_idx];
+                        var oldValue = $elements[p_idx];
                         var column;
                         // 엔티티 항상 존재함
                         column = _entity.columns[p_idx];
@@ -249,7 +251,7 @@
                         }
                         // 이벤트 및 처리
                         _this._onChanging(p_idx, nVal, oldValue);
-                        _elements[p_idx] = nVal;
+                        $elements[p_idx] = nVal;
                         _this._onChanged(p_idx, nVal, oldValue);
 
                     },
@@ -321,8 +323,8 @@
                 } else obj['_elem'].push(elem);
             }
             obj['_key'] = [];
-            for (var i = 0; i < this._keys.length; i++) {
-                var key = this._keys[i];
+            for (var i = 0; i < this.$keys.length; i++) {
+                var key = this.$keys[i];
                 obj['_key'].push(key);
             }
             return obj;                        
@@ -406,11 +408,11 @@
          */
         MetaRowCollection.prototype._getPropDescriptor = function(p_idx) {
             return {
-                get: function() { return this._elements[p_idx]; },
+                get: function() { return this.$elements[p_idx]; },
                 set: function(nVal) {
                     if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
                     if (nVal._entity !== this._owner) throw new ExtendError(/EL05221/, null, [this.constructor.name]);
-                    this._transQueue.update(p_idx, nVal, this._elements[p_idx]); 
+                    this._transQueue.update(p_idx, nVal, this.$elements[p_idx]); 
                     this.$elements[p_idx] = nVal;
                 },
                 configurable: true,
@@ -425,7 +427,7 @@
          * @returns {number}
          */
         MetaRowCollection.prototype.add  = function(p_row, p_isCheck) {
-            var pos = this._elements.length;
+            var pos = this.$elements.length;
             this.insertAt(pos, p_row, p_isCheck);  // TODO: try 문으로 묶음 필요
             return pos;
         };

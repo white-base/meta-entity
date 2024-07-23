@@ -701,7 +701,7 @@
 
             try {
                 args = Array.prototype.slice.call(arguments);
-                MetaView = MetaRegistry.ns.find('Meta.Entity.MetaView');
+                MetaView = MetaRegistry.namespace.find('Meta.Entity.MetaView');
                 
                 if (!MetaView) throw new ExtendError(/EL05335/, null, ['Meta.Entity.MetaView']);
                 

@@ -35,13 +35,13 @@ declare class MetaRow extends MetaObject {
      * 로우 요소값 
      * @readonly
      */
-    _elements: any[];
+    $elements: any[];
 
     /**
      * 요소 키
      * @readonly
      */
-    _keys: string[];
+    $keys: string[];
 
     /**
      * 컬렉션 목록 

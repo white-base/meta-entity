@@ -119,7 +119,7 @@
             EL05332: 'BaseEntity.transformSchema(oGuid); 스키마 변환이 실패하였습니다.',
             EL05333: 'setValue(row); row 가 [MetaRow] 타입이 아닙니다.',
             EL05334: 'setValue(row); columns 에 row 설정이 실패하였습니다.',
-            EL05335: 'select(filter, ...); MetaRegistry.ns 에서 \'$1\' 가져오는데 싪패하였습니다.',
+            EL05335: 'select(filter, ...); MetaRegistry.namespace 에서 \'$1\' 가져오는데 싪패하였습니다.',
             EL05336: 'select(filter, ...); 조회가 실패하였습니다.',
             EL05337: 'clone() 은 추상메소드 입니다. 구현해야 합니다.',
             // merge, copy - 8
