@@ -3,84 +3,95 @@ import ITransaction         = require("./i-transaction");
 import MetaTableColumnCollection  = require("./collection-meta-table-column");
 
 /**
- * 테이블 엔티티
+ * 테이블 엔티티 클래스
+ * 
+ * 이 클래스는 데이터베이스 테이블을 모델링하며, 컬럼의 컬렉션과 테이블 이름을 관리합니다.
+ * 또한, 트랜잭션을 지원하여 변경 사항을 커밋하거나 롤백할 수 있습니다.
  */
 declare class MetaTable extends BaseEntity implements ITransaction {
 
     /**
-     * 테이블 엔티티
-     * @param name 테이블명
+     * 주어진 이름으로 테이블 엔티티를 생성합니다.
+     * @param name - 테이블명
      */
     constructor(name: string);
 
     /**
-     * 테이블 이름
+     * 이 속성은 테이블의 이름을 나타냅니다.
      */
     tableName: string;
 
-    /**
-     * 엔티티의 아이템(속성) 컬렉션
-     */
+   /**
+    * 이 엔티티의 아이템(속성) 컬렉션 테이블의 모든 컬럼을 포함합니다.
+    */
     columns: MetaTableColumnCollection;
 
     /**
-     * 현재 객체를 직렬화(guid 타입) 객체로 얻습니다. 
-     * (순환참조는 $ref 값으로 대체된다.) 
-     * @param vOpt [p_vOpt=0] 가져오기 옵션
-     * - opt=0 : 참조 구조(_guid:Yes, $ref:Yes)  
-     * - opt=1 : 중복 구조(_guid:Yes, $ref:Yes)  
-     * - opt=2 : 비침조 구조(_guid:No,  $ref:No) 
-     * @param owned [p_owned={}] 현재 객체를 소유하는 상위 객체들
+     * 현재 객체를 직렬화된(guid 타입) 객체로 반환합니다.
+     * 
+     * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 `$ref` 값으로 대체됩니다.
+     * @param vOpt - 가져오기 옵션 (기본값: 0)
+     * - 0 : 참조 구조(_guid: Yes, $ref: Yes)
+     * - 1 : 중복 구조(_guid: Yes, $ref: Yes)
+     * - 2 : 비참조 구조(_guid: No, $ref: No)
+     * @param owned - 현재 객체를 소유하는 상위 객체들 (기본값: {})
+     * @returns 직렬화된 객체
      * @example
-     * a.getObject(2) == b.getObject(2
+     * const serializedObject = table.getObject(2);
      */
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화(guid 타입) 객체를 현재 객체에 설정합니다.  
-     * (객체는 초기화 된다.)
-     * @param oGuid 직렬화 할 guid 타입의 객체
-     * @param origin [p_origin=p_oGuid] 현재 객체를 설정하는 원본 객체  
+     * 직렬화된(guid 타입) 객체를 현재 객체에 설정합니다.
+     * 
+     * 주어진 직렬화된 객체를 현재 객체에 반영합니다. 이 작업은 객체를 초기화합니다.
+     * @param oGuid - 직렬화할 guid 타입의 객체
+     * @param origin - 현재 객체를 설정하는 원본 객체 (기본값: oGuid)
      */
     setObject(oGuid: object, origin?: object);    
 
     /**
-     * 객체 복제
+     * 현재 객체의 깊은 복사본을 생성하여 반환합니다.
+     * @returns 현재 객체의 복제본
      */
     clone(): this;
 
     /**
-     * 콜백 실행 후 args 컬럼명을 복사한다.
-     * @param filter 
-     * @param args 
+     * 콜백 실행 후 args 컬럼명을 복사합니다.
+     * @param filter 컬럼을 선택하는 필터 함수
+     * @param args 복사할 컬럼명 목록
      */
     copy(filter: Function, args: string[]);
 
     /**
      * 콜백 실행 후 args 컬럼명을 복사한다.
-     * @param filter 
-     * @param args 
+     * @param filter 컬럼을 선택하는 필터 함수
+     * @param args 복사할 컬럼명 목록
      */
     copy(filter: Function, ...args);
 
     /**
      * 대상 컬럼을 복사한다.
-     * @param filter 
+     * @param filter 컬럼을 선택하는 필터 함수
      */
     copy(filter: string[]);
 
     /**
+     * 현재 객체에 대한 모든 변경 사항을 커밋합니다.
      * 변경사항 허락 : commit
      */
     acceptChanges();
 
     /**
+     * 현재 객체에 대한 모든 변경 사항을 롤백합니다.
      * 변경사항 취소 : rollback
      */
     rejectChanges();
 
     /**
+     * 현재 객체에 대한 변경 사항 목록을 반환합니다.
      * 변경목록 얻기
+     * @returns 변경된 항목 목록
      */
     getChanges(): object[];
 }

@@ -3,67 +3,78 @@ import BaseColumn   = require("./base-column");
 
 
 /**
- * 컬럼 기본 컬렉션
+ * 컬럼 기본 컬렉션을 나타내는 추상 클래스입니다.
+ * 이 클래스는 다양한 컬럼들을 관리하고 조작하는 기능을 제공합니다.
+ * @extends PropertyCollection
  */
 declare abstract class BaseColumnCollection extends PropertyCollection {
 
     /**
      * 컬럼 기본 컬렉션을 생성합니다.
-     * @param onwer 소유자
-     * @param baseType 기본 컬럼 타입
+     * @param {object} owner - 컬렉션의 소유자.
+     * @param {BaseColumn} baseType - 기본 컬럼 타입.
      */
     constructor(onwer: object, baseType: BaseColumn);
 
     /**
-     * 기본 컬럼 타입
+     * 기본 컬럼 타입을 저장합니다.
+     * @protected
      */
     _baseType: BaseColumn;
 
     /**
-     * this._onwer 이 엔티티 여부를 확인합니다.
+     * this._owner가 엔티티인지 여부를 확인합니다.
+     * @protected
+     * @returns {boolean} - 엔티티 여부를 나타내는 불리언 값.
      */
     _ownerIsEntity(): boolean;
 
     /**
-     * 컬럼을 컬렉션에 추가
-     * @param name 이름
-     * @param value 값
+     * 컬럼을 컬렉션에 추가합니다.
+     * @param {string} name - 컬럼 이름.
+     * @param {any} value - 컬럼 값.
+     * @returns {number} - 추가된 컬럼의 인덱스.
      */
     add(name: string, value: any): number;
 
     /**
-     * 컬럼을 컬렉션에서 삭제
-     * @param index 인덱스
+     * 지정한 인덱스의 컬럼을 컬렉션에서 삭제합니다.
+     * @param {number} index - 삭제할 컬럼의 인덱스.
+     * @returns {boolean} - 삭제 성공 여부.
      */
     removeAt(index: number): boolean;
 
     /**
-     * 컬렉에 모든 value 값을 default 값으로 초기화
+     * 컬렉션에 있는 모든 컬럼 값을 기본 값으로 초기화합니다.
      */
-    initValue();
+    initValue(): void;
 
     /**
-     * 컬렉션에 별칭 이름(키)가 존재하는지 검사
-     * @param key 키
+     * 컬렉션에 별칭 이름(키)이 존재하는지 검사합니다.
+     * @param {string} key - 별칭 이름.
+     * @returns {boolean} - 별칭 이름 존재 여부.
      */
     existAlias(key: string): boolean;
 
     /**
-     * 컬렉션에 컬럼 이름(키)이 존재하는지 검사
-     * @param key 키
+     * 컬렉션에 컬럼 이름(키)이 존재하는지 검사합니다.
+     * @param {string} key - 컬럼 이름.
+     * @returns {boolean} - 컬럼 이름 존재 여부.
      */
     existColumnName(key: string): boolean;
 
     /**
-     * 별칭에 대한 컬럼 객체 얻기
-     * @param key 키
+     * 별칭에 대한 컬럼 객체를 얻습니다.
+     * @param {string} key - 별칭 이름.
+     * @returns {BaseColumn | undefined} - 별칭에 해당하는 컬럼 객체, 존재하지 않으면 undefined.
      */
     alias(key: string): BaseColumn | undefined;
 
     /**
-     * 
+     * 값을 추가하는 추상 메서드입니다. 서브 클래스에서 구체적인 구현을 제공해야 합니다.
+     * @param {...any[]} args - 추가할 값들.
      */
-    abstract addValue(...args);
+    abstract addValue(...args): void;
 }
 
 export = BaseColumnCollection;

@@ -3,79 +3,80 @@ import BaseEntity           = require("./base-entity");
 import MetaViewColumnCollection = require("./collection-meta-view-column");
 
 /**
- * 메타 뷰
+ * 메타 뷰 클래스
+ * 
+ * 이 클래스는 데이터베이스의 뷰를 모델링하며, 뷰의 컬럼과 기본 엔티티를 관리합니다.
  */
 declare class MetaView extends BaseEntity {
 
     /**
-     * 메타 뷰
-     * @param name 뷰이름
-     * @param baseEntity 기본 엔티티, 컬럼 추가시 기본엔티티에 추가 된다.
+     * 주어진 이름으로 메타 뷰를 생성하며, 기본 엔티티를 설정합니다.
+     * @param name - 뷰 이름
+     * @param baseEntity - 기본 엔티티, 컬럼 추가 시 기본 엔티티에 추가 됩니다.
      */
     constructor(name: string, baseEntity: BaseEntity);
 
     /**
-     * 메타 뷰 이름
+     * 메타 뷰 이름 입니다.
      */
     viewName: string;
 
     /**
-     * 뷰의 컬럼 컬렉션
+     * 뷰의 컬럼 컬렉션 입니다.
      */
     columns: MetaViewColumnCollection;
 
 
     /**
-     * 기본 엔티티
+     * 기본 엔티티 입니다.
      */
     _baseEntity: BaseEntity;
 
     /**
-     * 현재 객체를 직렬화(guid 타입) 객체로 얻습니다. 
-     * (순환참조는 $ref 값으로 대체된다.) 
-     * @param vOpt [p_vOpt=0] 가져오기 옵션
-     * - opt=0 : 참조 구조(_guid:Yes, $ref:Yes)  
-     * - opt=1 : 중복 구조(_guid:Yes, $ref:Yes)  
-     * - opt=2 : 비침조 구조(_guid:No,  $ref:No) 
-     * @param owned [p_owned={}] 현재 객체를 소유하는 상위 객체들
+     * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 $ref 값으로 대체됩니다.
+     * @param vOpt - 가져오기 옵션 (기본값: 0)
+     * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)
+     * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)
+     * - 2 : 비참조 구조 (_guid: No, $ref: No)
+     * @param owned - 현재 객체를 소유하는 상위 객체들 (기본값: {})
+     * @returns 직렬화된 객체
      * @example
-     * a.getObject(2) == b.getObject(2
+     * const serializedObject = metaView.getObject(2);
      */
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화(guid 타입) 객체를 현재 객체에 설정합니다.  
-     * (객체는 초기화 된다.)
-     * @param oGuid 직렬화 할 guid 타입의 객체
-     * @param origin [p_origin=p_oGuid] 현재 객체를 설정하는 원본 객체  
+     * 주어진 직렬화 객체를 현재 객체로 설정합니다. 설정 시 기존 객체는 초기화됩니다.
+     * @param oGuid - 직렬화할 guid 타입의 객체
+     * @param origin - 현재 객체를 설정하는 원본 객체 (기본값: oGuid)
      */
     setObject(oGuid: object, origin?: object);    
 
     /**
-     * 객체 복제
+     * 현재 메타 뷰의 깊은 복사본을 생성하여 반환합니다.
+     * @returns 복제된 메타 뷰 객체
      */
     clone(): this;
 
     /**
-     * 콜백 실행 후 args 컬럼명을 복사한다.
-     * @param filter 
-     * @param args 
+     * 콜백 실행 후 args 컬럼명을 복사합니다.
+     * @param filter 컬럼을 선택하는 필터 함수
+     * @param args 복사할 컬럼명 목록
      */
     copy(filter: Function, args: string[]);
 
     /**
      * 콜백 실행 후 args 컬럼명을 복사한다.
-     * @param filter 
-     * @param args 
+     * @param filter 컬럼을 선택하는 필터 함수
+     * @param args 복사할 컬럼명 목록
      */
     copy(filter: Function, ...args);
 
     /**
      * 대상 컬럼을 복사한다.
-     * @param filter 
+     * @param filter 컬럼을 선택하는 필터 함수
      */
     copy(filter: string[]);
-
 
 }
 
