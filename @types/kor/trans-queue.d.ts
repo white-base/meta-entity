@@ -9,18 +9,21 @@ declare class TransactionQueue {
 
     /**
      * `TransactionQueue` 객체를 생성합니다.
+     * 
      * @param collection - 트랜잭션 큐에서 관리할 배열 컬렉션을 나타냅니다. `IArrayCollection` 인터페이스를 구현해야 합니다.
      */
     constructor(collection: IArrayCollection);
 
     /**
      * 큐에 저장된 트랜잭션 목록입니다.
+     * 
      * @readonly
      */
     queue: object[];
 
     /**
      * 트랜잭션 큐가 작업할 대상 컬렉션입니다.
+     * 
      * @readonly
      */
     collection: IArrayCollection;
@@ -54,6 +57,7 @@ declare class TransactionQueue {
 
     /**
      * 큐에 새로운 트랜잭션 작업을 추가합니다.
+     * 
      * @param pos - 작업을 추가할 큐 내의 위치 인덱스입니다.
      * @param target - 큐에 추가할 대상 객체입니다.
      * @param etc - 기타 관련 데이터입니다. 필요에 따라 추가적인 정보를 포함할 수 있습니다.
@@ -65,6 +69,7 @@ declare class TransactionQueue {
 
     /**
      * 큐에서 트랜잭션 작업을 삭제합니다.
+     * 
      * @param pos - 삭제할 큐 내의 위치 인덱스입니다.
      * @param clone - 삭제할 작업의 복제본입니다.
      * @param etc - 기타 관련 데이터입니다. 필요에 따라 추가적인 정보를 포함할 수 있습니다.
@@ -76,6 +81,7 @@ declare class TransactionQueue {
 
     /**
      * 큐에 있는 트랜잭션 작업을 수정합니다.
+     * 
      * @param pos - 수정할 큐 내의 위치 인덱스입니다.
      * @param target - 수정할 대상 객체입니다.
      * @param clone - 수정 전 작업의 복제본입니다.
@@ -88,6 +94,7 @@ declare class TransactionQueue {
 
     /**
      * 큐의 변경 내역을 조회합니다.
+     * 
      * @returns 현재 큐에 저장된 모든 트랜잭션 작업 목록입니다.
      * 
      * @example

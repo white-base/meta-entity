@@ -20,29 +20,35 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 이름으로 엔티티를 생성합니다.
+     * 
      * @param name - 엔티티명입니다.
      */
     constructor(name: string);
 
     /**
      * 엔티티가 소속되어 있는 메테셋 입니다.
+     * 
+     * @protected
      */
     _metaSet: MetaSet;
 
     /**
      * 엔티티의 아이템(속성) 컬렉션 입니다.
+     * 
      * @readonly
      */
     columns: BaseColumnCollection;
 
     /**
      * 엔티티의 데이터(로우) 컬렉션 입니다.
+     * 
      * @readonly
      */
     rows: MetaRowCollection;
 
     /**
      * 주어진 직렬화 객체를 스키마 객체로 변환합니다.
+     * 
      * @param oGuid - getObject()로 얻은 객체입니다.
      * @returns 변환된 스키마 객체입니다.
      */
@@ -50,6 +56,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 엔티티에 로우를 생성하고 설정합니다.
+     * 
      * @param entity - 빌드 대상 엔티티입니다.
      * @param callback - 로우 생성 후 호출될 콜백입니다.
      * @param items - 선택할 로우명, [] 또는 undefined 시 전체 선택입니다.
@@ -59,6 +66,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 옵션에 따라 엔티티를 읽어옵니다.
+     * 
      * @param entity - 대상 엔티티입니다.
      * @param option - 읽기 옵션입니다.
      */
@@ -66,6 +74,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 객체에서 스키마 정보를 읽어옵니다.
+     * 
      * @param obj - 대상 객체입니다.
      * @param createRow - 컬럼이 없을 경우 로우 이름의 컬럼 생성 여부입니다. (기본값: false)
      * @param origin - 원본 객체입니다.
@@ -73,9 +82,8 @@ declare abstract class BaseEntity extends MetaElemet
     _readSchema(obj: object, createRow?: boolean, origin?: object);
 
     /**
-     * 기본 엔티티 객체를 직렬화(guid 타입) 객체로 반환
-     * 
      * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 $ref 값으로 대체됩니다.
+     * 
      * @param vOpt - 가져오기 옵션입니다. (기본값: 0)
      * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)
      * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)
@@ -101,24 +109,28 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 컬럼 구조에 맞는 새로운 로우를 생성하여 반환합니다.
+     * 
      * @returns 생성된 MetaRow 객체
      */
     newRow(): MetaRow;
 
     /**
      * 컬럼의 value 값을 MetaRow 타입 객체로 반환합니다.
+     * 
      * @returns 컬럼의 값이 설정된 MetaRow 객체
      */
     getValue(): MetaRow;
 
     /**
      * MetaRow 값을 컬럼의 value에 설정합니다.
+     * 
      * @param row - 설정할 MetaRow 객체
      */
     setValue(row: MetaRow): void;
 
     /**
      * 주어진 엔티티와 현재 엔티티를 병합합니다.
+     * 
      * @param target - 병합할 대상 엔티티입니다.
      * @param option - 병합 옵션입니다. (TODO: 타입 정의 필요)
      * @param matchType - 로우 유효성 검사 유무입니다. (기본값: false)
@@ -127,6 +139,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 콜백 함수에 따라 로우를 조회합니다.
+     * 
      * @param callback - 조회 조건을 정의하는 콜백 함수입니다.
      * @returns 조회된 엔티티입니다.
      */
@@ -134,6 +147,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 필터 조건에 맞는 로우를 조회합니다.
+     * 
      * @param filter - 필터 조건입니다.
      * @param args - 필터에 설정할 컬럼명입니다.
      * @returns 조회된 엔티티입니다.
@@ -142,6 +156,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 지정한 컬럼에 맞는 로우를 조회합니다.
+     * 
      * @param args - 컬럼 지정입니다.
      * @returns 조회된 엔티티입니다.
      */
@@ -149,6 +164,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 객체를 현재 엔티티로 불러옵니다. 기존 데이터를 초기화하고 새로운 데이터를 로드합니다.
+     * 
      * @param obj - 불러올 대상 객체입니다.
      * @param parse - 파서 함수입니다. (옵션)
      */
@@ -156,6 +172,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 현재 엔티티를 직렬화된 문자열로 출력합니다.
+     * 
      * @param vOpt vOpt - 옵션입니다. (0, 1, 2)
      * @param stringify -  사용자 정의 파서 함수입니다. (옵션)
      * @param space -  출력 시 사용할 공백 문자열입니다. (옵션)
@@ -165,6 +182,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 객체를 엔티티로 읽어옵니다. JSON 스키마 규칙을 따릅니다.
+     * 
      * @param obj - 읽어올 대상 객체입니다.
      * @param option - 읽기 옵션입니다. (기본값: 3) (TODO: 타입 정의 필요)
      * 
@@ -176,6 +194,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 스키마 객체를 현재 엔티티로 읽어옵니다.
+     * 
      * @param obj - 읽어올 스키마 객체입니다.
      * @param createRow - true일 경우, row[0] 기준으로 컬럼을 추가합니다. (기본값: false)
      */
@@ -183,12 +202,14 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 주어진 객체에서 존재하는 로우만 읽어옵니다.
+     * 
      * @param obj - 읽어올 객체입니다.
      */
     readData(obj: object): void;
 
     /**
      * 현재 엔티티를 스키마 타입의 객체로 변환하여 반환합니다.
+     * 
      * @param vOpt - 옵션입니다. (기본값: 0)
      * @returns 스키마 타입의 객체입니다.
      */
@@ -196,6 +217,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 현재 엔티티의 스키마를 스키마 타입의 객체로 변환하여 반환합니다.
+     * 
      * @param vOpt - 옵션입니다. (기본값: 0)
      * @returns 스키마 타입의 객체입니다.
      */
@@ -203,6 +225,7 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 현재 엔티티의 데이터를 스키마 타입의 객체로 변환하여 반환합니다.
+     * 
      * @param vOpt - 옵션입니다. (기본값: 0)
      * @returns 스키마 타입의 객체입니다.
      */
@@ -210,12 +233,14 @@ declare abstract class BaseEntity extends MetaElemet
 
     /**
      * 현재 엔티티의 깊은 복사본을 생성하여 반환합니다.
+     * 
      * @returns 복제된 엔티티 객체입니다.
      */
     abstract clone(): this;
 
     /**
      * 현재 엔티티의 복사본을 생성하여 반환합니다.
+     * 
      * @returns 복사된 엔티티 객체입니다.
      */
     abstract copy(...args): this;

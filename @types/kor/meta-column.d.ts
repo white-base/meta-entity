@@ -10,6 +10,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * `MetaColumn` 객체를 생성합니다.
+     * 
      * @param name - 컬럼의 이름을 지정합니다.
      * @param entity - 이 컬럼이 소속된 `BaseEntity` 객체입니다. (옵션)
      * @param property - 컬럼의 추가적인 속성을 정의하는 객체입니다. (옵션)
@@ -27,6 +28,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 컬럼의 값에 직접 접근을 제한합니다.
      * 이 속성은 내부에서 값의 설정과 변경을 제어합니다.
+     * 
      * @internal
      */
     $value: ValueType;
@@ -54,6 +56,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 컬럼 값의 getter 함수입니다.
+     * 
      * @returns 컬럼의 현재 값입니다.
      * 
      * @example
@@ -63,6 +66,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 컬럼 값의 setter 함수입니다.
+     * 
      * @param value - 설정할 값입니다.
      * 
      * @example
@@ -72,6 +76,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 컬럼 값이 변경될 때 발생하는 이벤트입니다.
+     * 
      * @event MetaColumn#onChanged
      * @param newVal - 새 값입니다.
      * @param oldVal - 이전 값입니다.
@@ -84,6 +89,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 값이 변경될 때 호출되는 내부 메서드입니다.
+     * 
      * @param nVal - 새 값입니다.
      * @param oVal - 기존 값입니다.
      * @listens MetaColumn#onChanged
@@ -92,6 +98,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 컬럼의 속성을 로드합니다.
+     * 
      * @param property - 로드할 속성 객체입니다.
      * 
      * @example
@@ -102,6 +109,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 현재 `MetaColumn` 객체를 직렬화된 객체로 변환합니다.
      * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 
      * @param vOpt - 직렬화 옵션을 지정합니다.
      *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
      *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
@@ -117,6 +125,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 직렬화된 객체를 현재 `MetaColumn` 객체에 설정합니다.
      * 이 과정에서 객체가 초기화됩니다.
+     * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
      * 
@@ -127,6 +136,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 현재 컬럼을 복제하여 새로운 `MetaColumn` 객체를 생성합니다.
+     * 
      * @param entity - 복제할 대상의 `BaseEntity`입니다. (옵션)
      * @returns 복제된 `MetaColumn` 객체입니다.
      * 
@@ -137,6 +147,7 @@ declare class MetaColumn extends BaseColumn {
 
     /**
      * 제약 조건을 추가합니다.
+     * 
      * @param regex - 적용할 정규 표현식입니다.
      * @param msg - 정규 표현식 실패 시 표시할 메시지입니다.
      * @param code - 정규 표현식 실패 시 코드입니다. (옵션)
@@ -150,6 +161,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 속성의 값이 유효한지 검사합니다.
      * `required` 및 `constraints`를 기준으로 유효성을 검사합니다.
+     * 
      * @param value - 검사할 값입니다.
      * @returns 유효하지 않은 경우 오류 객체를 반환하며, 유효한 경우 `undefined`를 반환합니다.
      * 

@@ -11,6 +11,7 @@ declare class TransactionCollection extends ArrayCollection {
     /**
      * `TransactionCollection` 객체를 생성합니다.
      * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.
+     * 
      * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
      */
     constructor(owner: object);
@@ -35,8 +36,10 @@ declare class TransactionCollection extends ArrayCollection {
 
     /**
      * 지정된 인덱스에 대한 프로퍼티 기술자를 반환합니다.
+     * 
      * @param idx - 프로퍼티 기술자를 가져올 인덱스입니다.
      * @returns 지정된 인덱스에 대한 프로퍼티 기술자 객체입니다.
+     * 
      * @example
      * const descriptor = collection._getPropDescriptor(0); // 인덱스 0의 프로퍼티 기술자 가져오기
      */
@@ -45,12 +48,14 @@ declare class TransactionCollection extends ArrayCollection {
     /**
      * 현재 `TransactionCollection` 객체를 직렬화된 객체로 변환합니다.
      * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 
      * @param vOpt - 직렬화 옵션을 지정합니다.
      *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
      *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
      *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
+     * 
      * @example
      * const serialized = collection.getObject(2); // 비침조 구조로 직렬화된 객체 가져오기
      */
@@ -59,8 +64,10 @@ declare class TransactionCollection extends ArrayCollection {
     /**
      * 직렬화된 객체를 현재 `TransactionCollection` 객체에 설정합니다.
      * 이 과정에서 객체가 초기화됩니다.
+     * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
+     * 
      * @example
      * collection.setObject(serializedObject); // 직렬화된 객체를 현재 컬렉션에 설정
      */
@@ -68,6 +75,7 @@ declare class TransactionCollection extends ArrayCollection {
 
     /**
      * 지정된 위치에서 요소를 삭제합니다.
+     * 
      * @param pos - 삭제할 요소의 인덱스 위치입니다.
      * @returns 삭제 성공 여부를 나타내는 `boolean` 값입니다. 삭제가 성공하면 `true`, 실패하면 `false`입니다.
      * 
@@ -84,6 +92,7 @@ declare class TransactionCollection extends ArrayCollection {
 
     /**
      * 지정된 위치에 요소를 추가합니다.
+     * 
      * @param pos - 요소를 추가할 인덱스 위치입니다.
      * @param elem - 추가할 요소입니다.
      * @param desc - 프로퍼티 기술자 객체입니다.

@@ -16,6 +16,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * `MetaSet` 객체를 생성합니다.
+     * 
      * @param name - 메타셋의 이름입니다.
      */
     constructor(name: string);
@@ -42,6 +43,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋을 스키마 객체로 변환합니다.
+     * 
      * @param oGuid - `getObject()`로 얻은 직렬화된 객체입니다.
      * @returns 변환된 스키마 객체입니다.
      * 
@@ -53,6 +55,7 @@ declare class MetaSet extends MetaElemet
     /**
      * 현재 `MetaSet` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.
      * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 
      * @param vOpt - 직렬화 옵션을 지정합니다.
      *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
      *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
@@ -68,6 +71,7 @@ declare class MetaSet extends MetaElemet
     /**
      * 직렬화된 GUID 타입의 객체를 현재 `MetaSet` 객체에 설정합니다.
      * 이 과정에서 객체가 초기화됩니다.
+     * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
      * 
@@ -78,6 +82,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 현재 `MetaSet` 객체를 복제하여 새로운 객체를 생성합니다.
+     * 
      * @returns 복제된 `MetaSet` 객체입니다.
      * 
      * @example
@@ -104,6 +109,7 @@ declare class MetaSet extends MetaElemet
     /**
      * 데이터를 불러오거나 가져옵니다. (병합 용도가 아님)
      * 기존의 데이터를 초기화하고 새로운 데이터를 불러옵니다.
+     * 
      * @param obj - 불러올 데이터입니다. 객체 또는 문자열을 받을 수 있습니다.
      * @param parse - 선택적인 파서 함수입니다.
      * 
@@ -114,6 +120,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋 객체를 출력(직렬화)합니다.
+     * 
      * @param vOpt - 직렬화 옵션입니다.
      *   - `0`: 참조 구조로 출력
      *   - `1`: 중복 구조로 출력
@@ -130,6 +137,7 @@ declare class MetaSet extends MetaElemet
     /**
      * 객체를 읽어와 메타셋을 로딩합니다.
      * JSON 스키마 규칙을 따릅니다.
+     * 
      * @param obj - 메타셋 객체, 엔티티 또는 기타 객체입니다.
      * @param opt - 선택적인 옵션입니다. 기본값은 `3`입니다.
      * 
@@ -141,6 +149,7 @@ declare class MetaSet extends MetaElemet
     /**
      * 스키마를 읽어와서 메타셋에 적용합니다.
      * 없으면 빈 컬럼을 생성해야 하는지 여부를 설정합니다.
+     * 
      * @param obj - 스키마 객체 또는 GUID 객체입니다.
      * @param createRow - `true`이면, 첫 번째 행을 기준으로 컬럼을 추가합니다.
      * 
@@ -151,6 +160,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 데이터를 읽어와서 메타셋의 로우를 설정합니다.
+     * 
      * @param obj - 읽을 데이터입니다.
      * 
      * @example
@@ -160,6 +170,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋을 스키마 타입의 객체로 내보냅니다.
+     * 
      * @param vOpt - 내보내기 옵션입니다.
      * @returns 내보낸 스키마 객체입니다.
      * 
@@ -170,6 +181,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋의 스키마(컬럼)를 스키마 타입의 객체로 내보냅니다.
+     * 
      * @param vOpt - 내보내기 옵션입니다.
      * @returns 내보낸 스키마 객체입니다.
      * 
@@ -180,6 +192,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋의 데이터(로우)를 스키마 타입의 객체로 내보냅니다.
+     * 
      * @param vOpt - 내보내기 옵션입니다.
      * @returns 내보낸 데이터 객체입니다.
      * 
@@ -207,6 +220,7 @@ declare class MetaSet extends MetaElemet
 
     /**
      * 메타셋에 변경 사항이 있는지 확인합니다.
+     * 
      * @returns 변경 사항이 있으면 `true`, 없으면 `false`를 반환합니다.
      * 
      * @example

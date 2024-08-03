@@ -9,6 +9,7 @@ declare class ObjectColumn extends BaseColumn {
 
     /**
      * `ObjectColumn` 객체를 생성합니다.
+     * 
      * @param name - 객체 컬럼의 이름입니다.
      * @param entity - 이 컬럼을 소유하는 `BaseEntity` 객체입니다.
      * @param prop - 객체 컬럼의 속성입니다.
@@ -17,6 +18,7 @@ declare class ObjectColumn extends BaseColumn {
     
     /**
      * 객체의 속성을 로딩합니다.
+     * 
      * @param prop - 로드할 속성 객체입니다.
      * 
      * @example
@@ -27,6 +29,7 @@ declare class ObjectColumn extends BaseColumn {
     /**
      * 현재 `ObjectColumn` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.
      * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 
      * @param vOpt - 직렬화 옵션입니다.
      *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
      *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
@@ -42,6 +45,7 @@ declare class ObjectColumn extends BaseColumn {
     /**
      * 직렬화된 GUID 타입의 객체를 현재 `ObjectColumn` 객체에 설정합니다.
      * 이 과정에서 객체가 초기화됩니다.
+     * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
      * 
@@ -52,6 +56,7 @@ declare class ObjectColumn extends BaseColumn {
 
     /**
      * `ObjectColumn` 객체를 복제하여 새로운 객체를 생성합니다.
+     * 
      * @param entity - 복제할 엔티티입니다. 지정하지 않으면 현재 엔티티로 복제됩니다.
      * @returns 복제된 `ObjectColumn` 객체입니다.
      * 
