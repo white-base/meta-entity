@@ -11,6 +11,7 @@ declare class MetaRow extends MetaObject {
     /**
      * `MetaRow` 객체를 생성합니다.
      * @param entity - 이 `MetaRow`가 소속된 `BaseEntity` 객체입니다.
+     * 
      * @example
      * const row = new MetaRow(entity);
      */
@@ -63,6 +64,7 @@ declare class MetaRow extends MetaObject {
      * @param nVal - 새로 변경될 값입니다.
      * @param oVal - 기존의 값입니다.
      * @param _this - 이벤트를 발생시킨 객체입니다.
+     * 
      * @example
      * row.onChanging = (idx, nVal, oVal, _this) => { console.log('Value is about to change'); };
      */
@@ -75,6 +77,7 @@ declare class MetaRow extends MetaObject {
      * @param nVal - 새로 변경된 값입니다.
      * @param oVal - 이전의 값입니다.
      * @param _this - 이벤트를 발생시킨 객체입니다.
+     * 
      * @example
      * row.onChanged = (idx, nVal, oVal, _this) => { console.log('Value has changed'); };
      */
@@ -87,7 +90,7 @@ declare class MetaRow extends MetaObject {
      * @param oVal - 기존의 값입니다.
      * @listens MetaRow#onChanging
      */
-    _onChanging(idx: number, nVal: any, oVal: any);
+    _onChanging(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 요소 변경 후 이벤트를 처리합니다.
@@ -96,7 +99,7 @@ declare class MetaRow extends MetaObject {
      * @param oVal - 이전의 값입니다.
      * @listens MetaRow#onChanged
      */
-    _onChanged(idx: number, nVal: any, oVal: any);
+    _onChanged(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 현재 `MetaRow` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.
@@ -107,6 +110,7 @@ declare class MetaRow extends MetaObject {
      *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
+     * 
      * @example
      * const serialized = row.getObject(2); // 비침조 구조로 직렬화된 객체 가져오기
      */
@@ -117,15 +121,17 @@ declare class MetaRow extends MetaObject {
      * 이 과정에서 객체가 초기화됩니다.
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
+     * 
      * @example
      * row.setObject(serializedObject); // 직렬화된 객체를 현재 행에 설정
      */
-    setObject(oGuid: object, origin?: object);
+    setObject(oGuid: object, origin?: object): void;
 
     /**
      * 현재 `MetaRow` 객체를 복제하여 새로운 객체를 생성합니다.
      * @param entity - 복제할 대상의 `BaseEntity`입니다. (옵션)
      * @returns 복제된 `MetaRow` 객체입니다.
+     * 
      * @example
      * const clone = row.clone(entity);
      */

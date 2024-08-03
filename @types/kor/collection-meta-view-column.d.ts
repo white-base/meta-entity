@@ -17,6 +17,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
 
     /**
      * 이 컬렉션이 참조하는 엔티티 목록입니다. 각 엔티티는 `BaseEntity` 타입입니다.
+     * 
      * @example
      * const entities = collection._refEntities; // 엔티티 목록을 가져옴
      */
@@ -31,6 +32,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
      *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
+     * 
      * @example
      * const serialized = collection.getObject(2); // 비침조 구조로 직렬화된 객체를 가져옴
      */
@@ -45,6 +47,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
      * @param column - 추가할 컬럼입니다. `MetaColumn` 객체 또는 컬럼명(문자열)을 받을 수 있습니다.
      * @param refCollection - 참조 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.
      * @returns 추가된 컬럼의 인덱스입니다. 인덱스는 컬렉션 내에서 컬럼의 위치를 나타냅니다.
+     * 
      * @example
      * const index = collection.add(new MetaColumn("price"), refCollection); // `MetaColumn` 객체로 컬럼 추가
      * const index = collection.add("quantity", refCollection); // 문자열(컬럼명)으로 컬럼 추가
@@ -57,6 +60,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
      * @param value - 컬럼의 기본값입니다. 문자열, 숫자 또는 불리언 값을 받을 수 있습니다.
      * @param refCollection - 참조 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.
      * @returns 새로 추가된 컬럼의 인덱스입니다.
+     * 
      * @example
      * const index = collection.addValue("discount", 10, refCollection); // 이름과 값으로 컬럼 추가
      */
@@ -65,10 +69,11 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
     /**
      * 주어진 엔티티의 모든 컬럼을 컬렉션에 추가합니다.
      * @param entity - 컬렉션에 추가할 엔티티입니다. `BaseEntity` 타입의 객체입니다.
+     * 
      * @example
      * collection.addEntity(entity); // 주어진 엔티티의 모든 컬럼을 추가
      */
-    addEntity(entity: BaseEntity);
+    addEntity(entity: BaseEntity): void;
 }
 
 export = MetaViewColumnCollection;

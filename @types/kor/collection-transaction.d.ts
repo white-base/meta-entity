@@ -70,6 +70,7 @@ declare class TransactionCollection extends ArrayCollection {
      * 지정된 위치에서 요소를 삭제합니다.
      * @param pos - 삭제할 요소의 인덱스 위치입니다.
      * @returns 삭제 성공 여부를 나타내는 `boolean` 값입니다. 삭제가 성공하면 `true`, 실패하면 `false`입니다.
+     * 
      * @example
      * const success = collection.removeAt(2); // 인덱스 2의 요소 삭제
      */
@@ -79,7 +80,7 @@ declare class TransactionCollection extends ArrayCollection {
      * 컬렉션의 모든 요소를 초기화합니다.
      * 컬렉션이 비워지고, 모든 요소가 삭제됩니다.
      */
-    clear();
+    clear(): void;
 
     /**
      * 지정된 위치에 요소를 추가합니다.
@@ -87,6 +88,7 @@ declare class TransactionCollection extends ArrayCollection {
      * @param elem - 추가할 요소입니다.
      * @param desc - 프로퍼티 기술자 객체입니다.
      * @returns 요소 추가 성공 여부를 나타내는 `boolean` 값입니다. 추가가 성공하면 `true`, 실패하면 `false`입니다.
+     * 
      * @example
      * const success = collection.insertAt(1, newItem, descriptor); // 인덱스 1에 요소 추가
      */
@@ -96,13 +98,13 @@ declare class TransactionCollection extends ArrayCollection {
      * 컬렉션에 대한 변경 사항을 반영하여 커밋합니다.
      * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 적용합니다.
      */
-    commit();
+    commit(): void;
 
     /**
      * 컬렉션에 대한 변경 사항을 이전 상태로 롤백합니다.
      * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 취소합니다.
      */
-    rollback();
+    rollback(): void;
 }
 
 export = TransactionCollection;

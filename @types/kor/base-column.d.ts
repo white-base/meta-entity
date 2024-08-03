@@ -71,6 +71,7 @@ declare abstract class BaseColumn extends MetaElemet {
      *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
+     * 
      * @example
      * const serialized = column.getObject(0);
      */
@@ -81,6 +82,7 @@ declare abstract class BaseColumn extends MetaElemet {
      * 이 과정에서 현재 객체는 초기화됩니다.
      * @param oGuid - 직렬화된 `guid` 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
+     * 
      * @example
      * column.setObject(serializedObject);
      */
@@ -91,7 +93,7 @@ declare abstract class BaseColumn extends MetaElemet {
      * 현재 컬럼 객체의 복제본을 생성합니다. 이 메서드는 추상 메서드로, 서브클래스에서 구현되어야 합니다.
      * @returns 현재 객체의 복제본입니다.
      */
-    abstract clone();
+    abstract clone(): this;
 }
 
 export = BaseColumn;

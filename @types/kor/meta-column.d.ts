@@ -13,6 +13,7 @@ declare class MetaColumn extends BaseColumn {
      * @param name - 컬럼의 이름을 지정합니다.
      * @param entity - 이 컬럼이 소속된 `BaseEntity` 객체입니다. (옵션)
      * @param property - 컬럼의 추가적인 속성을 정의하는 객체입니다. (옵션)
+     * 
      * @example
      * const column = new MetaColumn('name', entity, { required: true });
      */
@@ -54,6 +55,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 컬럼 값의 getter 함수입니다.
      * @returns 컬럼의 현재 값입니다.
+     * 
      * @example
      * const value = column.getter(); // 컬럼 값 가져오기
      */
@@ -62,6 +64,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 컬럼 값의 setter 함수입니다.
      * @param value - 설정할 값입니다.
+     * 
      * @example
      * column.setter('newValue'); // 컬럼 값 설정
      */
@@ -73,6 +76,7 @@ declare class MetaColumn extends BaseColumn {
      * @param newVal - 새 값입니다.
      * @param oldVal - 이전 값입니다.
      * @param _this - 이벤트를 발생시킨 객체입니다.
+     * 
      * @example
      * column.onChanged = (newVal, oldVal, _this) => { console.log('Value changed'); };
      */
@@ -84,15 +88,16 @@ declare class MetaColumn extends BaseColumn {
      * @param oVal - 기존 값입니다.
      * @listens MetaColumn#onChanged
      */
-    _onChanged(nVal: ValueType, oVal: ValueType);
+    _onChanged(nVal: ValueType, oVal: ValueType): void;
 
     /**
      * 컬럼의 속성을 로드합니다.
      * @param property - 로드할 속성 객체입니다.
+     * 
      * @example
      * column._load({ required: true, constraints: [...] });
      */
-    _load(property: object);    // TODO: object 타입 분리 필요
+    _load(property: object): void;    // TODO: object 타입 분리 필요
 
     /**
      * 현재 `MetaColumn` 객체를 직렬화된 객체로 변환합니다.
@@ -103,6 +108,7 @@ declare class MetaColumn extends BaseColumn {
      *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
+     * 
      * @example
      * const serialized = column.getObject(2); // 비침조 구조로 직렬화된 객체 가져오기
      */
@@ -113,15 +119,17 @@ declare class MetaColumn extends BaseColumn {
      * 이 과정에서 객체가 초기화됩니다.
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
+     * 
      * @example
      * column.setObject(serializedObject); // 직렬화된 객체를 현재 컬럼에 설정
      */
-    setObject(oGuid: object, origin?: object);
+    setObject(oGuid: object, origin?: object): void;
 
     /**
      * 현재 컬럼을 복제하여 새로운 `MetaColumn` 객체를 생성합니다.
      * @param entity - 복제할 대상의 `BaseEntity`입니다. (옵션)
      * @returns 복제된 `MetaColumn` 객체입니다.
+     * 
      * @example
      * const clone = column.clone(entity);
      */
@@ -133,16 +141,18 @@ declare class MetaColumn extends BaseColumn {
      * @param msg - 정규 표현식 실패 시 표시할 메시지입니다.
      * @param code - 정규 표현식 실패 시 코드입니다. (옵션)
      * @param condition - 제약 조건의 성공/실패 여부를 결정하는 조건입니다. 기본값은 `false`입니다.
+     * 
      * @example
      * column.addConstraint(/^\d+$/, 'Value must be a number');
      */
-    addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean);
+    addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean): void;
 
     /**
      * 속성의 값이 유효한지 검사합니다.
      * `required` 및 `constraints`를 기준으로 유효성을 검사합니다.
      * @param value - 검사할 값입니다.
      * @returns 유효하지 않은 경우 오류 객체를 반환하며, 유효한 경우 `undefined`를 반환합니다.
+     * 
      * @example
      * const validationResult = column.valid('valueToCheck');
      */
