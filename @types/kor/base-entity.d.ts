@@ -26,7 +26,7 @@ declare abstract class BaseEntity extends MetaElemet
     constructor(name: string);
 
     /**
-     * 엔티티가 소속되어 있는 메테셋 입니다.
+     * 엔티티가 소속되어 있는 메타셋 입니다.
      * 
      * @protected
      */
