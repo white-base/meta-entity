@@ -18,12 +18,12 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     constructor(name: string);
 
     /**
-     * 이 속성은 테이블의 이름을 나타냅니다.
+     * 테이블의 이름을 나타냅니다.
      */
     tableName: string;
 
    /**
-    * 이 엔티티의 아이템(속성) 컬렉션 테이블의 모든 컬럼을 포함합니다.
+    * 테이블의 컬럼 컬렉션 입니다.
     */
     columns: MetaTableColumnCollection;
 
@@ -58,22 +58,21 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     clone(): this;
 
     /**
-     * 콜백 실행 후 args 컬럼명을 복사합니다.
+     * 콜백 실행 후 cols 컬럼명을 복사합니다.
      * 
      * @param filter - 컬럼을 선택하는 필터 함수입니다.
-     * @param args - 복사할 컬럼명 목록입니다.
+     * @param cols - 복사할 컬럼명 목록입니다.
      * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
      */
-    copy(filter: Function, args: string[]): this;
+    copy(filter: Function, cols: string[]): this;
 
     /**
-     * 콜백 실행 후 args 컬럼명을 복사한다.
+     * 콜백 실행 후 cols 컬럼명을 복사한다.
      * 
-     * @param filter - 컬럼을 선택하는 필터 함수입니다.
-     * @param args - 복사할 컬럼명 목록입니다.
+     * @param cols - 복사할 컬럼명 목록입니다.
      * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
      */
-    copy(filter: Function, ...args): this;
+    copy(...cols): this;
 
     /**
      * 대상 컬럼을 복사한다.
@@ -97,8 +96,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
 
     /**
      * 현재 객체에 대한 변경 사항 목록을 반환합니다.
-     * 변경목록 얻기
-     * @returns 변경된 항목 목록
+     * @returns 변경된 목록입니다.
      */
     getChanges(): object[];
 }

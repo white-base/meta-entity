@@ -163,7 +163,7 @@ declare class MetaColumn extends BaseColumn {
      * `required` 및 `constraints`를 기준으로 유효성을 검사합니다.
      * 
      * @param value - 검사할 값입니다.
-     * @returns 유효하지 않은 경우 오류 객체를 반환하며, 유효한 경우 `undefined`를 반환합니다.
+     * @returns 유효하지 않은 경우 객체를 반환하며, 유효한 경우 `undefined`를 반환합니다.
      * 
      * @example
      * const validationResult = column.valid('valueToCheck');
