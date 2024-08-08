@@ -83,7 +83,9 @@ declare class MetaColumn extends BaseColumn {
      * @param _this - 이벤트를 발생시킨 객체입니다.
      * 
      * @example
-     * column.onChanged = (newVal, oldVal, _this) => { console.log('Value changed'); };
+     * column.onChanged = function(newVal, oldVal, _this) { 
+     *  console.log('Value changed'); 
+     * };
      */
     onChanged: (newVal: ValueType, oldVal: ValueType, _this: this) => void;
 

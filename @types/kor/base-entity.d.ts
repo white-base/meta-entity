@@ -110,21 +110,21 @@ declare abstract class BaseEntity extends MetaElemet
     /**
      * 컬럼 구조에 맞는 새로운 로우를 생성하여 반환합니다.
      * 
-     * @returns 생성된 MetaRow 객체
+     * @returns 생성된 MetaRow 객체입니다.
      */
     newRow(): MetaRow;
 
     /**
      * 컬럼의 value 값을 MetaRow 타입 객체로 반환합니다.
      * 
-     * @returns 컬럼의 값이 설정된 MetaRow 객체
+     * @returns 컬럼의 값이 설정된 MetaRow 객체입니다.
      */
     getValue(): MetaRow;
 
     /**
      * MetaRow 값을 컬럼의 value에 설정합니다.
      * 
-     * @param row - 설정할 MetaRow 객체
+     * @param row - 설정할 MetaRow 객체입니다.
      */
     setValue(row: MetaRow): void;
 
@@ -140,42 +140,42 @@ declare abstract class BaseEntity extends MetaElemet
     /**
      * 주어진 콜백 함수에 따라 로우를 조회합니다.
      * 
-     * @param callback - 조회 조건을 정의하는 콜백 함수입니다.
+     * @param filter - 조회 조건을 정의하는 콜백 함수입니다.
      * @returns 조회된 엔티티입니다.
      */
-    select(callback: Function): BaseEntity; // TODO: 함수 세부로 정의 필요
+    select(filter: Function): MetaView; // TODO: 함수 세부로 정의 필요
 
     /**
      * 주어진 필터 조건에 맞는 로우를 조회합니다.
      * 
      * @param filter - 필터 조건입니다.
-     * @param args - 필터에 설정할 컬럼명입니다.
+     * @param cols - 필터에 설정할 컬럼명입니다.
      * @returns 조회된 엔티티입니다.
      */
-    select(filter: string[], ...args): BaseEntity;
+    select(filter: string[], ...cols): MetaView;
 
     /**
      * 지정한 컬럼에 맞는 로우를 조회합니다.
      * 
-     * @param args - 컬럼 지정입니다.
+     * @param cols - 컬럼 지정입니다.
      * @returns 조회된 엔티티입니다.
      */
-    select(...args): BaseEntity;
+    select(...cols): MetaView;
 
     /**
      * 주어진 객체를 현재 엔티티로 불러옵니다. 기존 데이터를 초기화하고 새로운 데이터를 로드합니다.
      * 
      * @param obj - 불러올 대상 객체입니다.
-     * @param parse - 파서 함수입니다. (옵션)
+     * @param parse - 파서 함수입니다. (선택)
      */
     load(obj: object | string, parse?: Function): void;
 
     /**
      * 현재 엔티티를 직렬화된 문자열로 출력합니다.
      * 
-     * @param vOpt vOpt - 옵션입니다. (0, 1, 2)
-     * @param stringify -  사용자 정의 파서 함수입니다. (옵션)
-     * @param space -  출력 시 사용할 공백 문자열입니다. (옵션)
+     * @param vOpt - 옵션입니다. (0, 1, 2)
+     * @param stringify -  사용자 정의 파서 함수입니다. (선택)
+     * @param space -  출력 시 사용할 공백 문자열입니다. (선택)
      * @returns 직렬화된 문자열입니다.
      */
     output(vOpt: number, stringify?: Function, space?: string): string;
@@ -187,8 +187,17 @@ declare abstract class BaseEntity extends MetaElemet
      * @param option - 읽기 옵션입니다. (기본값: 3) (TODO: 타입 정의 필요)
      * 
      * @example
-     * var schema1 = { table: { columns: {}, rows: {} }}
-     * var schema1 = { columns: {...}, rows: {} }
+     * var schema1 = { 
+	 *    table: { 
+	 *	    columns: {}, 
+	 *	    rows: {} 
+	 *   }
+     * };
+     * 
+     * var schema1 = { 
+     *  columns: {...}, 
+     *  rows: {} 
+     * };
      */
     read(obj: object, option: number): void;
 
