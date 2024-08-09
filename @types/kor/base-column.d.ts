@@ -21,6 +21,11 @@ declare abstract class BaseColumn extends MetaElemet {
     $key: string;
 
     /**
+     * 컬럼 value 의 내부값입니다.
+     */
+    $value: string;
+
+    /**
      * 컬럼의 별칭을 나타냅니다. 별칭은 컬럼의 다른 이름으로 사용됩니다.
      */
     $alias: string;
