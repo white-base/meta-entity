@@ -305,7 +305,7 @@ describe("[target: i-* ]", () => {
     //         expect(()=> s.contains()).toThrow(/EL02213/);
     //         expect(()=> s.indexOf()).toThrow(/EL02214/);
     //         // expect(()=> s.exist()).toThrow(/ES013/);
-    //         expect(()=> s.keyOf()).toThrow(/EL02231/);
+    //         expect(()=> s.indexToKey()).toThrow(/EL02231/);
     //         // expect(()=> s.removeByProp()).toThrow(/ES013/);
     //         // expect(()=> s.indexOfProp()).toThrow(/ES013/);
     //         // create
@@ -316,7 +316,7 @@ describe("[target: i-* ]", () => {
     //         expect(()=> i.contains()).toThrow(/EL02213/);
     //         expect(()=> i.indexOf()).toThrow(/EL02214/);
     //         // expect(()=> i.exist()).toThrow(/ES013/);
-    //         expect(()=> i.keyOf()).toThrow(/EL02231/);
+    //         expect(()=> i.indexToKey()).toThrow(/EL02231/);
     //         // expect(()=> i.removeByProp()).toThrow(/ES013/);
     //         // expect(()=> i.indexOfProp()).toThrow(/ES013/);
     //     });
