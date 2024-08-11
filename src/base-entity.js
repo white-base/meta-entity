@@ -120,29 +120,27 @@
             });
             
             /**
-             * 엔티티의 데이터(로우) 컬렉션
-             * @readonly
-             * @member {MetaRowCollection} _L.Meta.Entity.BaseEntity#rows
-             */
-            Object.defineProperty(this, 'rows', 
-            {
-                get: function() { return rows; },
-                configurable: false,
-                enumerable: true
-            });
-
-            /**
              * columns 별칭
              * @member {object} _L.Meta.Entity.BaseEntity#cols 
              */
             Object.defineProperty(this, 'cols', 
             {
-                    get: function() { return this.columns; },
-                    set: function(nVal) { this.columns = nVal;},
-                    configurable: true,
-                    enumerable: false
+                get: function() { return this.columns; },
+                set: function(nVal) { this.columns = nVal;},
+                configurable: true,
+                enumerable: false
             });
 
+            /**
+             * 엔티티의 데이터(로우) 컬렉션
+             * @readonly
+             * @member {MetaRowCollection} _L.Meta.Entity.BaseEntity#rows
+             */
+            Object.defineProperty(this, 'rows', {
+                get: function() { return rows; },
+                configurable: false,
+                enumerable: true
+            });
 
             Util.implements(BaseEntity, this);      // strip:
         }
