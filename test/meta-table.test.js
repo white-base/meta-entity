@@ -82,6 +82,7 @@ describe("[target: meta-table.js]", () => {
             it("- 예외 : 다른타입 ", () => {
                 var table1 = new MetaTable('T1');
                 expect(()=> table1.columns = {}).toThrow(/EL05412/)
+                expect(()=> table1.cols = {}).toThrow(/EL05412/)
             });
             it("- 예외 : row 존재시 ", () => {
                 var table1 = new MetaTable('T1');

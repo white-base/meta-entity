@@ -196,12 +196,12 @@ describe("[target: meta-column.js ]", () => {
             it("- getter/setter ", () => {
                 var item1 = new MetaColumn('i1');
                 var item_value = 10;
-                item1.value = 'V1';
+                item1.val = 'V1';
                 item1.getter = function() { return item_value; }
                 item1.setter = function(val) { item_value = val; };
-                item1.value = 'V11';
+                item1.val = 'V11';
         
-                expect(item1.value).toBe('V11');
+                expect(item1.val).toBe('V11');
                 expect(item_value).toBe('V11');
             });
         });

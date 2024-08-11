@@ -56,8 +56,8 @@ describe("[target: meta-column.js]", () => {
         describe("BaseColumnCollection.existAlias(key): bool <별칭 유무 검사>", () => {
             it("- existAlias(key) : 기본값 ", () => {
                 var view1 = new MetaView('T1');
-                view1.columns.addValue('i1', 'V1');
-                view1.columns.addValue('i2', 'V2');
+                view1.cols.addValue('i1', 'V1');
+                view1.cols.addValue('i2', 'V2');
                 
                 // view1.columns.existAlias('a1');
                 // view1.existAlias('a1');
