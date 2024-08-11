@@ -223,6 +223,19 @@
                 enumerable: true
             });
 
+            /**
+             * value 별칭
+             * this.value
+             * @member {object} _L.Meta.Entity.BaseColumn#val 
+             */
+            Object.defineProperty(this, 'val', 
+            {
+                    get: function() { return this.value; },
+                    set: function(nVal) { this.value = nVal;},
+                    configurable: true,
+                    enumerable: false
+            });
+
             if (p_entity) _entity = p_entity;
         }
         Util.inherits(BaseColumn, _super);

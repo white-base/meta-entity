@@ -38,7 +38,7 @@ describe("[target: base-column.js]", () => {
                 s1.default = 10
                 s1.default = 'STR'
                 expect(()=> s1.default = {}).toThrow(/EL0130B/)
-                s1.value = 10
+                s1.val = 10
                 s1.value = 'STR'
                 expect(()=> s1.value = {}).toThrow(/EL0130B/)
 

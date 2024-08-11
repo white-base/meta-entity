@@ -131,6 +131,19 @@
                 enumerable: true
             });
 
+            /**
+             * columns 별칭
+             * @member {object} _L.Meta.Entity.BaseEntity#cols 
+             */
+            Object.defineProperty(this, 'cols', 
+            {
+                    get: function() { return this.columns; },
+                    set: function(nVal) { this.columns = nVal;},
+                    configurable: true,
+                    enumerable: false
+            });
+
+
             Util.implements(BaseEntity, this);      // strip:
         }
         Util.inherits(BaseEntity, _super);
