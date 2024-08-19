@@ -8,6 +8,7 @@ import MetaSet              = require("./meta-set");
 import BaseColumnCollection = require("./base-column-collection");
 import MetaRowCollection    = require("./collection-meta-row");
 import MetaRow              = require("./meta-row");
+import MetaView             = require("./meta-view");
 
 /**
  * 기본 엔티티 클래스 (최상위)

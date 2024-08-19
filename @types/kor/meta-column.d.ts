@@ -29,9 +29,9 @@ declare class MetaColumn extends BaseColumn {
      * 컬럼의 값에 직접 접근을 제한합니다.
      * 이 속성은 내부에서 값의 설정과 변경을 제어합니다.
      * 
-     * @internal
+     * @override
      */
-    $value: ValueType;
+    $value: any;
 
     /**
      * 컬럼 값의 필수 여부를 설정합니다.
