@@ -1,6 +1,6 @@
 {
   "name": "logic-entity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "logic framwork entity",
   "main": "index.js",
   "scripts": {
