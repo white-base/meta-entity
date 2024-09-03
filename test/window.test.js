@@ -438,6 +438,23 @@ describe("[L.*]", () => {
         
                 expect(() => require('../src/base-entity')).toThrow(/BaseColumnCollection/);
             });
+
+            it("- 예외 : MetaColumn 로딩이 안 된 경우", () => {
+                require('logic-core');
+                require('../src/i-control-group');
+                require('../src/i-control-schema');
+                require('../src/i-control-import');
+                require('../src/i-control-export');
+                require('../src/trans-queue');
+                require('../src/collection-transaction');
+                require('../src/meta-row');
+                require('../src/base-column');
+                require('../src/meta-column');
+                require('../src/collection-column');
+                delete global._L.MetaColumn;
+
+                expect(() => require('../src/base-entity')).toThrow(/MetaColumn/);
+            });
             
             it("- 로딩 성공 ", () => {
                 require('logic-core');
