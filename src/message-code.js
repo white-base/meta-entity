@@ -122,6 +122,7 @@
             EL05335: 'select(filter, ...); MetaRegistry.namespace 에서 \'$1\' 가져오는데 싪패하였습니다.',
             EL05336: 'select(filter, ...); 조회가 실패하였습니다.',
             EL05337: 'clone() 은 추상메소드 입니다. 구현해야 합니다.',
+            EL05338: 'validate(); 모든 컬럼이 MetaColumn 타입일 경우 유효성 검사를 수행할 수 있습니다. ',
             // merge, copy - 8
             EL05340: '',
             EL05341: 'merge(target, opt, isMath); target 이 [BaseEntity] 타입이 아닙니다.',

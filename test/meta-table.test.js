@@ -1594,6 +1594,45 @@ describe("[target: meta-table.js]", () => {
             });
         });
 
+        describe("BaseEntity.validate(): 전체 컬럼 유효성 검사 ", () => {
+            it("- validate(); 성공 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.cols.add('aa')
+                table1.cols.add('bb')
+                table1.cols.add('cc')
+
+                expect(table1.validate()).toBe(true);
+            });
+            it("- validate(); 성공2 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.cols.add('aa')
+                table1.cols.add('bb')
+                table1.cols.add('cc')
+                table1.cols['cc'].required = true;
+                table1.cols['cc'].value = 'Yes';
+
+                expect(table1.validate()).toBe(true);
+            });
+            it("- validate(); 실패 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.cols.add('aa')
+                table1.cols.add('bb')
+                table1.cols.add('cc')
+                table1.cols['cc'].required = true;
+
+                expect(table1.validate()).toBe(false);
+            });
+            it("- 예외 : 타입 다름 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.cols.add('aa')
+                table1.cols.add('bb')
+                table1.cols.add(new ObjectColumn('cc'))
+                
+                expect(()=> table1.validate()).toThrow(/EL05338/)
+            });
+        });
+
+
         
 
         describe("MetaTable.getObject(): obj<ref> <객체 얻기>", () => {

@@ -1,5 +1,5 @@
-import BaseColumn           = require("./base-column");
-import BaseEntity           = require("./base-entity");
+import BaseColumn           from './base-column';
+import BaseEntity           from './base-entity';
 
 /**
  * `ObjectColumn` 클래스는 `BaseColumn`을 상속하여 객체 속성을 다루는 컬럼을 정의합니다.

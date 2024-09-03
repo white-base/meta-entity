@@ -1,5 +1,5 @@
-import TransactionCollection    = require("./collection-transaction");
-import MetaRow                  = require("./meta-row");
+import TransactionCollection    from './collection-transaction';
+import MetaRow                  from './meta-row';
 
 declare class MetaRowCollection extends TransactionCollection {
 

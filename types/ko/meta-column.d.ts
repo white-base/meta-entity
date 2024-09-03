@@ -1,6 +1,6 @@
-import BaseColumn           = require("./base-column");
-import {EventEmitter}       from "logic-core";
-import BaseEntity           = require("./base-entity");
+import BaseColumn           from './base-column';
+import {EventEmitter}       from 'logic-core';
+import BaseEntity           from './base-entity';
 
 /**
  * `MetaColumn` 클래스는 데이터 컬럼을 정의하며, 해당 컬럼에 대한 메타 정보를 관리합니다.

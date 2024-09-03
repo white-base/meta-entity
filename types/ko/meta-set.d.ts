@@ -1,11 +1,11 @@
-import {MetaElement}          from "logic-core";
-import {ISerialize}           from "logic-core";
-import ISchemaControl       = require("./i-control-schema");
-import IExportControl       = require("./i-control-export");
-import IImportControl       = require("./i-control-import");
-import ITransaction         = require("./i-transaction");
-import MetaTableCollection  = require("./collection-meta-table");
-import MetaViewCollection   = require("./collection-meta-view");
+import {MetaElement}            from "logic-core";
+import {ISerialize}             from "logic-core";
+import ISchemaControl           from './i-control-schema';
+import IExportControl           from './i-control-export';
+import IImportControl           from './i-control-import';
+import ITransaction             from './i-transaction';
+import MetaTableCollection      from './collection-meta-table';
+import MetaViewCollection       from './collection-meta-view';
 
 /**
  * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.

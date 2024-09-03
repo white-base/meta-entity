@@ -1,6 +1,5 @@
-// import BaseEntity           = require("./base-column");
-import BaseEntity           = require("./base-entity");
-import MetaViewColumnCollection = require("./collection-meta-view-column");
+import BaseEntity               from './base-entity';
+import MetaViewColumnCollection from './collection-meta-view-column';
 
 /**
  * 메타 뷰 클래스

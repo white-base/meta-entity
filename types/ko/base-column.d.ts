@@ -1,6 +1,5 @@
-import {MetaElement}           from "logic-core";
-// import MetaElement           from "logic-core/meta-element");
-import BaseEntity           = require("./base-entity");
+import {MetaElement}            from 'logic-core';
+import BaseEntity               from './base-entity';
 
 /**
  * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.

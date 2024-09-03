@@ -1,6 +1,6 @@
-import {MetaObject}           from "logic-core";
-import BaseEntity           =  require("./base-entity");
-import {EventEmitter}         from "logic-core";
+import {MetaObject}         from 'logic-core';
+import BaseEntity           from './base-entity';
+import {EventEmitter}       from 'logic-core';
 
 /**
  * `MetaRow` 클래스는 데이터 테이블의 각 행(row)을 나타내며, 데이터와 관련된 이벤트를 관리합니다.

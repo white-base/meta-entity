@@ -1,6 +1,6 @@
-import BaseEntity           = require("./base-entity");
-import ITransaction         = require("./i-transaction");
-import MetaTableColumnCollection  = require("./collection-meta-table-column");
+import BaseEntity                   from './base-entity';
+import ITransaction                 from './i-transaction';
+import MetaTableColumnCollection    from './collection-meta-table-column';
 
 /**
  * 테이블 엔티티 클래스

@@ -1,7 +1,5 @@
-// import PropertyCollection   = require("logic-core/collection-property");
-import {PropertyCollection}   from "logic-core";
-import BaseColumn   = require("./base-column");
-
+import {PropertyCollection}     from 'logic-core';
+import BaseColumn               from './base-column';
 
 /**
  * 컬럼 기본 컬렉션을 나타내는 추상 클래스입니다.

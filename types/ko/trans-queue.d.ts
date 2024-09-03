@@ -1,5 +1,4 @@
-// import MetaElement           = require("logic-core/meta-element");
-import {IArrayCollection}           from "logic-core";
+import {IArrayCollection}   from "logic-core";
 
 /**
  * `TransactionQueue` 클래스는 트랜잭션 작업을 큐에 저장하고 관리하는 기능을 제공합니다.

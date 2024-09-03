@@ -19,6 +19,7 @@
         var _MetaRowCollection          = require('./meta-row').MetaRowCollection;              // strip:
         var _MetaRow                    = require('./meta-row').MetaRow;                        // strip:
         var _BaseColumnCollection       = require('./collection-column').BaseColumnCollection;  // strip:
+        var _MetaColumn                 = require('./meta-column').MetaColumn;                  // strip:
         var _MetaRegistry               = require('logic-core').MetaRegistry;                   // strip:
     }                                                                                           // strip:
     var $Message                    = _global._L.Message;               // modify:
@@ -34,6 +35,7 @@
     var $MetaRowCollection          = _global._L.MetaRowCollection;     // modify:
     var $MetaRow                    = _global._L.MetaRow;               // modify:
     var $BaseColumnCollection       = _global._L.BaseColumnCollection;  // modify:
+    var $MetaColumn                 = _global._L.MetaColumn;            // modify:
     var $MetaRegistry               = _global._L.MetaRegistry;          // modify:
 
     var Message                 = _Message              || $Message;                            // strip:
@@ -49,6 +51,7 @@
     var MetaRowCollection       = _MetaRowCollection    || $MetaRowCollection;                  // strip:
     var MetaRow                 = _MetaRow              || $MetaRow;                            // strip:
     var BaseColumnCollection    = _BaseColumnCollection || $BaseColumnCollection;               // strip:
+    var MetaColumn              = _MetaColumn           || $MetaColumn;                         // strip:
     var MetaRegistry            = _MetaRegistry         || $MetaRegistry;                       // strip:
     
     //==============================================================
@@ -65,7 +68,8 @@
     if (typeof MetaElement === 'undefined') throw new Error(Message.get('ES011', ['MetaElement', 'meta-element']));
     if (typeof MetaRowCollection === 'undefined') throw new Error(Message.get('ES011', ['MetaRowCollection', 'meta-row']));
     if (typeof MetaRow === 'undefined') throw new Error(Message.get('ES011', ['MetaRow', 'meta-row']));
-    if (typeof BaseColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['BaseColumnCollection', 'meta-column']));
+    if (typeof BaseColumnCollection === 'undefined') throw new Error(Message.get('ES011', ['BaseColumnCollection', 'collection-column']));
+    if (typeof MetaColumn === 'undefined') throw new Error(Message.get('ES011', ['MetaColumn', 'meta-column']));
 
     //==============================================================
     // 3. module implementation
@@ -917,6 +921,27 @@
             schema = this.write(vOpt);
             schema.columns = {};
             return schema;
+        };
+
+        /** 
+         * columns 컬렉션에 포함된 MetaColumn의 유효성을 검사합니다. 
+         * column.valid() 메서드는 required 속성과 constraints를 기준으로 value 값의 유효성을 확인합니다.
+         *  
+         * @abstract 
+         * @returns {boolean} 모든 컬럼이 유효성 검사를 통과한 경우 true 
+         */
+        BaseEntity.prototype.validate = function() {
+            // 컬럼 타입 검사
+            var typeCheck = this.columns.every(function(elem) {
+                if (elem instanceof MetaColumn) return true;
+            });
+
+            if (!typeCheck) throw new ExtendError(/EL05338/, null, []);
+            
+            if (this.columns.every(function(elem) {
+                if (typeof elem.valid(elem.value) === 'undefined') return true;
+            })) return true;
+            else return false;
         };
 
         /** 

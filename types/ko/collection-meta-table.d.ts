@@ -1,7 +1,5 @@
-import {PropertyCollection}       from "logic-core";
-// import T                        = require("logic-core/T");
-
-import MetaTable                = require("./meta-table");
+import {PropertyCollection}     from 'logic-core';
+import MetaTable                from './meta-table';
 
 /**
  * `MetaTableCollection` 클래스는 메타 테이블을 관리하는 컬렉션을 정의합니다.

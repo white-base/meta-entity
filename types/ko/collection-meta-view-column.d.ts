@@ -1,6 +1,6 @@
-import BaseColumnCollection           = require("./base-column-collection");
-import BaseEntity           = require("./base-entity");
-import MetaColumn           = require("./meta-column");
+import BaseColumnCollection     from './base-column-collection';
+import BaseEntity               from './base-entity';
+import MetaColumn               from './meta-column';
 
 /**
  * `MetaViewColumnCollection` 클래스는 메타 뷰 컬럼을 관리하는 컬렉션을 정의합니다.

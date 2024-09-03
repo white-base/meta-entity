@@ -1,14 +1,14 @@
-import {MetaElement}        from "logic-core";
-import IGroupControl        = require("./i-control-group");
-import IExportControl       = require("./i-control-export");
-import IImportControl       = require("./i-control-import");
-import ISchemaControl       = require("./i-control-schema");
-import {ISerialize}         from "logic-core";
-import MetaSet              = require("./meta-set");
-import BaseColumnCollection = require("./base-column-collection");
-import MetaRowCollection    = require("./collection-meta-row");
-import MetaRow              = require("./meta-row");
-import MetaView             = require("./meta-view");
+import {MetaElement}        from 'logic-core';
+import IGroupControl        from './i-control-group';
+import IExportControl       from './i-control-export';
+import IImportControl       from './i-control-import';
+import ISchemaControl       from './i-control-schema';
+import {ISerialize}         from 'logic-core';
+import MetaSet              from './meta-set';
+import BaseColumnCollection from './base-column-collection';
+import MetaRowCollection    from './collection-meta-row';
+import MetaRow              from './meta-row';
+import MetaView             from './meta-view';
 
 /**
  * 기본 엔티티 클래스 (최상위)

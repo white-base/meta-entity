@@ -1,5 +1,5 @@
-import BaseColumnCollection           = require("./base-column-collection");
-import BaseColumn           = require("./base-column");
+import BaseColumnCollection     from './base-column-collection';
+import BaseColumn               from './base-column';
 
 /**
  * `MetaTableColumnCollection` 클래스는 테이블의 컬럼을 관리하는 컬렉션을 정의합니다.

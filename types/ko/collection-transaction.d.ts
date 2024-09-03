@@ -1,6 +1,5 @@
-import {ArrayCollection}          from "logic-core";
-// import T                        = require("logic-core/T");
-import TransactionQueue         = require("./trans-queue");
+import {ArrayCollection}        from 'logic-core';
+import TransactionQueue         from './trans-queue';
 
 /**
  * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.

@@ -1,6 +1,6 @@
-import {PropertyCollection}           from "logic-core";
-import MetaView           = require("./meta-view");
-import BaseColumnCollection = require("./base-column-collection");
+import {PropertyCollection}         from 'logic-core';
+import MetaView                     from './meta-view';
+import BaseColumnCollection         from './base-column-collection';
 
 /**
  * `MetaViewCollection` 클래스는 뷰 엔티티를 관리하는 컬렉션을 정의합니다.
