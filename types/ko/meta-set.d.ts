@@ -1,5 +1,5 @@
-import MetaElemet           = require("logic-core/meta-element");
-import ISerialize           = require("logic-core/i-serialize");
+import {MetaElement}          from "logic-core";
+import {ISerialize}           from "logic-core";
 import ISchemaControl       = require("./i-control-schema");
 import IExportControl       = require("./i-control-export");
 import IImportControl       = require("./i-control-import");
@@ -11,7 +11,7 @@ import MetaViewCollection   = require("./collection-meta-view");
  * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.
  * 이 클래스는 데이터의 직렬화, 스키마 변환, 데이터 로딩 및 저장 등의 기능을 제공합니다.
  */
-declare class MetaSet extends MetaElemet 
+declare class MetaSet extends MetaElement 
     implements ISerialize, ISchemaControl, IExportControl, IImportControl, ITransaction {
 
     /**

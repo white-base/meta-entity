@@ -1,11 +1,12 @@
-import MetaElemet           = require("logic-core/meta-element");
+import {MetaElement}           from "logic-core";
+// import MetaElement           from "logic-core/meta-element");
 import BaseEntity           = require("./base-entity");
 
 /**
  * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.
  * 이 추상 클래스는 컬럼의 이름, 별칭, 기본값 및 기타 속성을 관리하는 기능을 제공합니다.
  */
-declare abstract class BaseColumn extends MetaElemet {
+declare abstract class BaseColumn extends MetaElement {
 
     /**
      * `BaseColumn` 객체를 생성합니다.

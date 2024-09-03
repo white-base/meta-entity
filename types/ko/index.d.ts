@@ -1,26 +1,27 @@
 /// <reference path="T.d.ts" />
 
-import ExtendError          = require("logic-core/extend-error");
-import EventEmitter         = require("logic-core/event-emitter");
-import Util                 = require("logic-core/util");
-import Type                 = require("logic-core/type");
-import Message              = require("logic-core/message");
-import IObject              = require("logic-core/i-object");
-import IMarshal             = require("logic-core/i-marshal");
-import ICollection          = require("logic-core/i-collection");
-import IPropertyCollection  = require("logic-core/i-collection-property");
-import IElement             = require("logic-core/i-element");
-import IList                = require("logic-core/i-list");
-import IListControl         = require("logic-core/i-control-list");
-import ISerialize           = require("logic-core/i-serialize");
-import IArrayCollection     = require("logic-core/i-collction-array");
-import NamespaceManager     = require("logic-core/namespace-manager");
-import MetaRegistry         = require("logic-core/meta-registry");
-import MetaObject           = require("logic-core/meta-object");
-import MetaElement          = require("logic-core/meta-element");
-import BaseCollection       = require("logic-core/base-collection");
-import ArrayCollection      = require("logic-core/collection-array");
-import PropertyCollection   = require("logic-core/collection-property");
+// import {ExtendError}          = require("logic-core/extend-error");
+// import {EventEmitter}         = require("logic-core/event-emitter");
+// import {Util}                 = require("logic-core/util");
+// import {Type}                 = require("logic-core/type");
+// import {Message}              = require("logic-core/message");
+// import {IObject}              = require("logic-core/i-object");
+// import {IMarshal}             = require("logic-core/i-marshal");
+// import {ICollection}          = require("logic-core/i-collection");
+// import {IPropertyCollection}  = require("logic-core/i-collection-property");
+// import {IElement}             = require("logic-core/i-element");
+// import {IList}                = require("logic-core/i-list");
+// import {IListControl}         = require("logic-core/i-control-list");
+// import {ISerialize}           = require("logic-core/i-serialize");
+// import {IArrayCollection}     = require("logic-core/i-collction-array");
+// import {NamespaceManager}     = require("logic-core/namespace-manager");
+// import {MetaRegistry}         = require("logic-core/meta-registry");
+// import {MetaObject}           = require("logic-core/meta-object");
+// import {MetaElement}          = require("logic-core/meta-element");
+// import {BaseCollection}       = require("logic-core/base-collection");
+// import {ArrayCollection}      = require("logic-core/collection-array");
+// import {PropertyCollection}   = require("logic-core/collection-property");
+export * from 'logic-core';
 
 // ################# local export #################
 import BaseColumn               = require("./base-column");
@@ -47,27 +48,27 @@ import TransactionQueue         = require("./trans-queue");
 
 export {
     // Core_T,
-    ExtendError,
-    EventEmitter,
-    Util,
-    Type,
-    Message,
-    IObject,
-    IMarshal,
-    ICollection,
-    IPropertyCollection,
-    IElement,
-    IList,
-    IListControl,
-    ISerialize,
-    IArrayCollection,
-    NamespaceManager,
-    MetaRegistry,
-    MetaObject,
-    MetaElement,
-    BaseCollection,
-    ArrayCollection,
-    PropertyCollection,
+    // ExtendError,
+    // EventEmitter,
+    // Util,
+    // Type,
+    // Message,
+    // IObject,
+    // IMarshal,
+    // ICollection,
+    // IPropertyCollection,
+    // IElement,
+    // IList,
+    // IListControl,
+    // ISerialize,
+    // IArrayCollection,
+    // NamespaceManager,
+    // MetaRegistry,
+    // MetaObject,
+    // MetaElement,
+    // BaseCollection,
+    // ArrayCollection,
+    // PropertyCollection,
     // local
     BaseColumn,
     BaseEntity,
@@ -91,22 +92,22 @@ export {
     MetaTableColumnCollection,
     MetaViewColumnCollection
 };
-export namespace Common {
-    /** Util 네임스페이스 TODO: */
-    let Util;
-    /** Type 네임스페이스 TODO: */
-    let Type;
-}
+// export namespace Common {
+//     /** Util 네임스페이스 TODO: */
+//     let Util;
+//     /** Type 네임스페이스 TODO: */
+//     let Type;
+// }
 export namespace Interface {
-    var IObject : IObject;
-    var IMarshal : IMarshal;
-    var ICollection : ICollection;
-    var IPropertyCollection : IPropertyCollection;
-    var IElement : IElement;
-    var IList : IList;
-    var IListControl : IListControl;
-    var ISerialize : ISerialize;
-    var IArrayCollection : IArrayCollection;
+    // var IObject : IObject;
+    // var IMarshal : IMarshal;
+    // var ICollection : ICollection;
+    // var IPropertyCollection : IPropertyCollection;
+    // var IElement : IElement;
+    // var IList : IList;
+    // var IListControl : IListControl;
+    // var ISerialize : ISerialize;
+    // var IArrayCollection : IArrayCollection;
     // local
     var IExportControl : IExportControl;
     var IGroupControl : IGroupControl;
@@ -115,18 +116,18 @@ export namespace Interface {
     var ITransaction : ITransaction;
 }
 export namespace Collection {
-    var BaseCollection : BaseCollection;
-    var ArrayCollection : ArrayCollection;
-    var PropertyCollection : PropertyCollection;
+    // var BaseCollection : BaseCollection;
+    // var ArrayCollection : ArrayCollection;
+    // var PropertyCollection : PropertyCollection;
     // local
     var TransactionCollection : TransactionCollection;
     var TransactionQueue : TransactionQueue;
 }
 export namespace Meta {
-    var NamespaceManager : NamespaceManager;
-    var MetaRegistry : MetaRegistry;
-    var MetaObject : MetaObject;
-    var MetaElement : MetaElement;
+    // var NamespaceManager : NamespaceManager;
+    // var MetaRegistry : MetaRegistry;
+    // var MetaObject : MetaObject;
+    // var MetaElement : MetaElement;
 }
 export namespace Meta.Entity {
     var BaseColumn : BaseColumn;

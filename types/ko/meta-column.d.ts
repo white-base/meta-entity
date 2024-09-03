@@ -1,5 +1,5 @@
 import BaseColumn           = require("./base-column");
-import EventEmitter         = require("logic-core/event-emitter");
+import {EventEmitter}       from "logic-core";
 import BaseEntity           = require("./base-entity");
 
 /**

@@ -1,4 +1,5 @@
-import PropertyCollection   = require("logic-core/collection-property");
+// import PropertyCollection   = require("logic-core/collection-property");
+import {PropertyCollection}   from "logic-core";
 import BaseColumn   = require("./base-column");
 
 

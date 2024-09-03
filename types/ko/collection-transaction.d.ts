@@ -1,4 +1,4 @@
-import ArrayCollection          = require("logic-core/collection-array");
+import {ArrayCollection}          from "logic-core";
 // import T                        = require("logic-core/T");
 import TransactionQueue         = require("./trans-queue");
 

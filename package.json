@@ -11,12 +11,13 @@
     "doc:j": "jsdoc -c jaguar.json",
     "doc:2": "jsdoc -c jsdoc.json",
     "http": "npx http-server",
-    "type:eng": "npx typedoc --out eDocs @types/eng/index.d.ts @types/kor/T.d.ts",
-    "type:kor": "npx typedoc --out kDocs @types/kor/index.d.ts @types/kor/T.d.ts",
+    "type:en": "npx typedoc --out eDocs types/en/index.d.ts types/en/T.d.ts",
+    "type:ko": "npx typedoc --out kDocs types/ko/index.d.ts types/ko/T.d.ts",
     "gulp:meta": "gulp meta"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "types": "./types/ko/index.d.ts",
   "devDependencies": {
     "docdash": "github:white-base/docdash",
     "gulp": "^5.0.0",

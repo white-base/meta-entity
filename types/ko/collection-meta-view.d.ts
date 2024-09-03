@@ -1,4 +1,4 @@
-import PropertyCollection           = require("logic-core/collection-property");
+import {PropertyCollection}           from "logic-core";
 import MetaView           = require("./meta-view");
 import BaseColumnCollection = require("./base-column-collection");
 

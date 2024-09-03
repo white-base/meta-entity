@@ -1,4 +1,4 @@
-import PropertyCollection       = require("logic-core/collection-property");
+import {PropertyCollection}       from "logic-core";
 // import T                        = require("logic-core/T");
 
 import MetaTable                = require("./meta-table");

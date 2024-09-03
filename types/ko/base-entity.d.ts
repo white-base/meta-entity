@@ -1,9 +1,9 @@
-import MetaElemet           = require("logic-core/meta-element");
+import {MetaElement}        from "logic-core";
 import IGroupControl        = require("./i-control-group");
 import IExportControl       = require("./i-control-export");
 import IImportControl       = require("./i-control-import");
 import ISchemaControl       = require("./i-control-schema");
-import ISerialize           = require("logic-core/i-serialize");
+import {ISerialize}         from "logic-core";
 import MetaSet              = require("./meta-set");
 import BaseColumnCollection = require("./base-column-collection");
 import MetaRowCollection    = require("./collection-meta-row");
@@ -16,7 +16,7 @@ import MetaView             = require("./meta-view");
  * 이 클래스는 데이터베이스의 엔티티(예: 테이블, 뷰 등)를 모델링하며, 컬럼과 로우 데이터를 관리합니다.
  * 다양한 인터페이스를 구현하여 트랜잭션, 직렬화, 스키마 변환 등을 지원합니다.
  */
-declare abstract class BaseEntity extends MetaElemet 
+declare abstract class BaseEntity extends MetaElement 
     implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
 
     /**

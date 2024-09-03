@@ -9,8 +9,8 @@
     // 2. module dependency check
     //==============================================================
     var messageCode = {
-        eng: {},
-        kor: {
+        en: {},
+        ko: {
             // Interface.*
             // i-control-export.js
             EL02210: '',
