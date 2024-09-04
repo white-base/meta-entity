@@ -927,7 +927,6 @@
          * columns 컬렉션에 포함된 MetaColumn의 유효성을 검사합니다. 
          * column.valid() 메서드는 required 속성과 constraints를 기준으로 value 값의 유효성을 확인합니다.
          *  
-         * @abstract 
          * @returns {boolean} 모든 컬럼이 유효성 검사를 통과한 경우 true 
          */
         BaseEntity.prototype.validate = function() {

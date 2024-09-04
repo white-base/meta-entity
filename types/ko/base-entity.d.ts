@@ -242,6 +242,14 @@ declare abstract class BaseEntity extends MetaElement
     writeData(vOpt?: number): object;
 
     /**
+     * columns 컬렉션에 포함된 MetaColumn의 유효성을 검사합니다. 
+     * - required 속성과 constraints 를 기준으로 value 값의 유효성을 검사합니다.
+     * 
+     * @returns 전체컬럼의 유효성 검사 결과를 반환합니다.
+     */
+    validate(): boolean;
+
+    /**
      * 현재 엔티티의 깊은 복사본을 생성하여 반환합니다.
      * 
      * @returns 복제된 엔티티 객체입니다.
