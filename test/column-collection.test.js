@@ -22,7 +22,7 @@ const { MetaColumn }            = require('../src/meta-column');
 
 //==============================================================
 // test
-describe("[target: meta-column.js]", () => {
+describe("[target: column-collection.js]", () => {
     describe("BaseColumnCollection :: 클래스", () => {
         beforeAll(() => {
             // jest.resetModules();
@@ -247,7 +247,18 @@ describe("[target: meta-column.js]", () => {
             });
 
         });
-        
+        describe("for in 열거 속성 검사", () => {
+            it("- for in", () => {
+                var arr = [];
+                var table1 = new MetaTable('T1');
+                table1.columns.add('c1');
+                for (var prop in table1.columns) {
+                    arr.push(prop);
+                }
+            
+                expect(arr.length).toBe(1);
+            });
+        });
 
     });
     describe("MetaViewColumnCollection :: 테이블", () => {
@@ -420,7 +431,7 @@ describe("[target: meta-column.js]", () => {
                 // 비교
                 expect(view1.columns['i1']).toEqual(view2.columns['i1']);
                 expect(view1.columns['i2']).toEqual(view2.columns['i2']);
-                expect(view1.columns).not.toEqual(view2.columns);
+                expect(view1.columns !== view2.columns).toBe(true);
             });
             it("- addEntity(?) : 예외, COVER ", () => {
                 var view1 = new MetaView('T1');
@@ -447,6 +458,19 @@ describe("[target: meta-column.js]", () => {
                 expect(()=> view1.columns.addEntity({})).toThrow(/EL05164/)
             });
         });
+        describe("for in 열거 속성 검사", () => {
+            it("- for in", () => {
+                var arr = [];
+                var view1 = new MetaView('T1');
+                view1.columns.add('c1');
+                for (var prop in view1.columns) {
+                    arr.push(prop);
+                }
+            
+                expect(arr.length).toBe(1);
+            });
+        });
+
     });
 
 

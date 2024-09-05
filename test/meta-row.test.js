@@ -426,6 +426,19 @@ describe("[target: meta-row.js]", () => {
                  */
             });
         });
+        describe("for in 열거 속성 검사", () => {
+            it("- for in", () => {
+                var arr = [];
+                var table1 = new MetaTable('T1');
+                table1.columns.addValue('i1', 'V1');
+                var row1 = new MetaRow(table1);
+                for (var prop in row1) {
+                    arr.push(prop);
+                }
+            
+                expect(arr.length).toBe(1);
+            });
+        });
         describe("예외 및 커버리지", () => {
             
             // it("- 커버리지 : this.__SET$_keys() ", () => {
@@ -851,6 +864,20 @@ describe("[target: meta-row.js]", () => {
                 table1.rows.add(row1);
     
                 expect(()=> table1.rows.insertAt(-1, row2)).toThrow(/EL04214/);
+            });
+        });
+        describe("for in 열거 속성 검사", () => {
+            it("- for in", () => {
+                var arr = [];
+                var table1 = new MetaTable('T1');
+                table1.columns.addValue('i1', 'V1');
+                var row1 = new MetaRow(table1);
+                table1.rows.add(row1);
+                for (var prop in table1.rows) {
+                    arr.push(prop);
+                }
+            
+                expect(arr.length).toBe(1);
             });
         });
         describe("예외 및 커버리지", () => {

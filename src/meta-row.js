@@ -228,12 +228,13 @@
                 var alias = _entity.columns[i].alias;
                 $elements.push(_entity.columns[i].default);  // 기본값 등록
                 $keys.push(alias);
-                Object.defineProperty(this, [i], $getPropDescriptor(idx));
+                Object.defineProperty(this, [i], $getPropDescriptor(idx, false));
                 Object.defineProperty(this, alias, $getPropDescriptor(idx));
             }
 
-            function $getPropDescriptor(p_idx) {
-                return {
+            function $getPropDescriptor(p_idx, p_enum) {
+            if (typeof p_enum !== 'boolean') p_enum = true;
+            return {
                     get: function() { return $elements[p_idx]; },
                     set: function(nVal) { 
                         var oldValue = $elements[p_idx];
@@ -255,8 +256,8 @@
                         _this._onChanged(p_idx, nVal, oldValue);
 
                     },
-                    enumerable: true,
-                    configurable: false
+                    configurable: false,
+                    enumerable: p_enum
                 };
             }
 
@@ -278,6 +279,9 @@
         MetaRow.prototype._onChanging = function(p_idx, p_nValue, p_oValue) {
             this.$event.emit('onChanging', p_idx, p_nValue, p_oValue, this);
         };
+        Object.defineProperty(MetaRow.prototype, '_onChanging', {
+            enumerable: false
+        });
 
         /**
          * 로우 요소 변경후 이벤트
@@ -289,6 +293,9 @@
         MetaRow.prototype._onChanged = function(p_idx, p_nValue, p_oValue) {
             this.$event.emit('onChanged', p_idx, p_nValue, p_oValue, this);
         };
+        Object.defineProperty(MetaRow.prototype, '_onChanged', {
+            enumerable: false
+        });
 
         /**
          * 현재 객체의 guid 타입의 객체를 가져옵니다.  
@@ -329,6 +336,9 @@
             }
             return obj;                        
         };
+        Object.defineProperty(MetaRow.prototype, 'getObject', {
+            enumerable: false
+        });
 
         /**
          * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
@@ -360,6 +370,9 @@
                 } else this.$elements[i] = elem;   
             }
         };
+        Object.defineProperty(MetaRow.prototype, 'setObject', {
+            enumerable: false
+        });
 
        /**
          * 객체 복제
@@ -377,6 +390,9 @@
             clone.$elements = Util.deepCopy(obj._elem);
             return clone;
         };
+        Object.defineProperty(MetaRow.prototype, 'clone', {
+            enumerable: false
+        });
         
         return MetaRow;
     
@@ -419,6 +435,9 @@
                 enumerable: true,
             };
         };
+        Object.defineProperty(MetaRowCollection.prototype, '_getPropDescriptor', {
+            enumerable: false
+        });
 
         /**
          * MetaRow 추가 idx 를 기준으로 검사한다.
@@ -431,6 +450,9 @@
             this.insertAt(pos, p_row, p_isCheck);  // TODO: try 문으로 묶음 필요
             return pos;
         };
+        Object.defineProperty(MetaRowCollection.prototype, 'add', {
+            enumerable: false
+        });
 
         /**
          * pos 위치에 추가
@@ -458,6 +480,9 @@
             }
             return _super.prototype.insertAt.call(this, p_pos, p_row);
         };
+        Object.defineProperty(MetaRowCollection.prototype, 'insertAt', {
+            enumerable: false
+        });
 
         return MetaRowCollection;
         

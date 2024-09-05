@@ -102,6 +102,9 @@
         BaseColumnCollection.prototype._ownerIsEntity = function() {
             return this._owner instanceof MetaElement && this._owner.instanceOf('BaseEntity');
         };
+        Object.defineProperty(BaseColumnCollection.prototype, '_ownerIsEntity', {
+            enumerable: false
+        });
 
         /**
          * 컬럼을 컬렉션에 추가
@@ -117,6 +120,9 @@
             
             return _super.prototype.add.call(this, p_name, p_value);
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'add', {
+            enumerable: false
+        });
 
         /**
          * 컬럼을 컬렉션에서 삭제
@@ -127,6 +133,9 @@
             if (this._owner.rows.count > 0) throw new ExtendError(/EL05146/, null, [this._owner.rows.count]);
             return _super.prototype.removeAt.call(this, p_idx); 
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'removeAt', {
+            enumerable: false
+        });
 
         /**
          * 컬렉에 모든 value 값을 default 값으로 초기화
@@ -136,6 +145,9 @@
                 this[i].value = this[i].default;
             }
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'initValue', {
+            enumerable: false
+        });
 
         /**
          * 컬렉션에 별칭 이름(키)가 존재하는지 검사
@@ -148,6 +160,9 @@
             }
             return false;
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'existAlias', {
+            enumerable: false
+        });
 
         /**
          * 컬렉션에 컬럼 이름(키)이 존재하는지 검사
@@ -160,6 +175,9 @@
             }
             return false;
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'existColumnName', {
+            enumerable: false
+        });
 
         /**
          * 별칭에 대한 컬럼 객체 얻기
@@ -171,11 +189,17 @@
                 if (this[i].alias === p_key) return this[i];
             }
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'alias', {
+            enumerable: false
+        });
 
         /** @abstract */
         BaseColumnCollection.prototype.addValue = function() {
             throw new ExtendError(/EL05147/, null, []);
         };
+        Object.defineProperty(BaseColumnCollection.prototype, 'addValue', {
+            enumerable: false
+        });
 
         return BaseColumnCollection;
     
@@ -228,6 +252,9 @@
 
             return _super.prototype.add.call(this, key, column);
         };
+        Object.defineProperty(MetaTableColumnCollection.prototype, 'add', {
+            enumerable: false
+        });
 
         /**
          * 이름과 값으로 컬렉션에 추가 (내부에서 생성)
@@ -248,6 +275,9 @@
 
             return this[this.add(item)];
         };
+        Object.defineProperty(MetaTableColumnCollection.prototype, 'addValue', {
+            enumerable: false
+        });
 
         return MetaTableColumnCollection;
     
@@ -319,6 +349,9 @@
             }
             return obj;                  
         };
+        Object.defineProperty(MetaViewColumnCollection.prototype, 'getObject', {
+            enumerable: false
+        });
 
         /**
          * 뷰컬렉션에 컬럼을 추가(등록/설정)한다.  
@@ -373,6 +406,9 @@
 
             return _super.prototype.add.call(this, key, column);
         };
+        Object.defineProperty(MetaViewColumnCollection.prototype, 'add', {
+            enumerable: false
+        });
 
         /**
          *  이름과 값으로 컬럼 생성하여 컬렉션에 추가
@@ -394,6 +430,9 @@
 
             return this[this.add(item, p_refCollection)];
         };
+        Object.defineProperty(MetaViewColumnCollection.prototype, 'addValue', {
+            enumerable: false
+        });
 
         /**
          * 엔티티의 모든 컬럼을 추가
@@ -408,6 +447,9 @@
                 this.add(p_entity.columns[i]);
             }
         };
+        Object.defineProperty(MetaViewColumnCollection.prototype, 'addEntity', {
+            enumerable: false
+        });
         
         return MetaViewColumnCollection;
     

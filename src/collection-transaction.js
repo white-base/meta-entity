@@ -118,6 +118,9 @@
                 enumerable: true,
             };
         };
+        Object.defineProperty(TransactionCollection.prototype, '_getPropDescriptor', {
+            enumerable: false
+        });
 
         /**
          * 현재 객체의 guid 타입의 객체를 가져옵니다.  
@@ -140,6 +143,9 @@
             if (this.autoChanges !== false) obj['autoChanges'] = this.autoChanges;
             return obj;                        
         };
+        Object.defineProperty(TransactionCollection.prototype, 'getObject', {
+            enumerable: false
+        });
 
         /**
          * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
@@ -152,6 +158,9 @@
             this._transQueue.init();
             if (p_oGuid['autoChanges']) this.autoChanges = p_oGuid['autoChanges'];
         };
+        Object.defineProperty(TransactionCollection.prototype, 'setObject', {
+            enumerable: false
+        });
 
         /**
          * 지정 위치에 요소 삭제
@@ -162,6 +171,9 @@
             if (!this.autoChanges) this._transQueue.delete(p_pos, this[p_pos]);
             return _super.prototype.removeAt.call(this, p_pos);
         };
+        Object.defineProperty(TransactionCollection.prototype, 'removeAt', {
+            enumerable: false
+        });
 
         /**
          * 전체 초기화
@@ -170,6 +182,9 @@
             _super.prototype.clear.call(this);
             this._transQueue.init();
         };
+        Object.defineProperty(TransactionCollection.prototype, 'clear', {
+            enumerable: false
+        });
 
         /**
          * 지정 위치에 요소 추가
@@ -182,6 +197,9 @@
             if (!this.autoChanges) this._transQueue.insert(p_pos, p_elem);
             return _super.prototype.insertAt.call(this, p_pos, p_elem, p_desc);
         };
+        Object.defineProperty(TransactionCollection.prototype, 'insertAt', {
+            enumerable: false
+        });
 
         /**
          * 변경사항 반영
@@ -189,6 +207,9 @@
         TransactionCollection.prototype.commit = function() {
             this._transQueue.commit();
         };
+        Object.defineProperty(TransactionCollection.prototype, 'commit', {
+            enumerable: false
+        });
 
         /**
          * 변경사항 이전으로 복귀
@@ -196,6 +217,9 @@
         TransactionCollection.prototype.rollback = function() {
             this._transQueue.rollback();
         };
+        Object.defineProperty(TransactionCollection.prototype, 'rollback', {
+            enumerable: false
+        });
 
         return TransactionCollection;
 

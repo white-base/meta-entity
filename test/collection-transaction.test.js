@@ -524,6 +524,18 @@ describe("[target: collection-trans.js]", () => {
                 expect(s.rows._list.length).toBe(0);
             });
         });
+        describe("for in 열거 속성 검사", () => {
+            it("- for in", () => {
+                var arr = [];
+                let s = new Student();
+                s.rows.add('A1');
+                for (var prop in s.rows) {
+                    arr.push(prop);
+                }
+            
+                expect(arr.length).toBe(1);
+            });
+        });
         describe("예외, 커버리지", () => {
             it("- this.autoChanges 예외 ", () => {
                 let s = new Student();
