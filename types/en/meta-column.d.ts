@@ -2,6 +2,7 @@ import BaseColumn           from './base-column';
 import {EventEmitter}       from 'logic-core';
 import BaseEntity           from './base-entity';
 
+declare type ValueType = string | number | boolean;
 /**
  * The 'MetaColumn' class defines a data column and manages meta information for that column.
  * This class provides the ability to set and process values, constraints, events, and more for a column.

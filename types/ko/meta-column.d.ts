@@ -2,6 +2,8 @@ import BaseColumn           from './base-column';
 import {EventEmitter}       from 'logic-core';
 import BaseEntity           from './base-entity';
 
+declare type ValueType = string | number | boolean;
+
 /**
  * `MetaColumn` 클래스는 데이터 컬럼을 정의하며, 해당 컬럼에 대한 메타 정보를 관리합니다.
  * 이 클래스는 컬럼의 값, 제약 조건, 이벤트 등을 설정하고 처리할 수 있는 기능을 제공합니다.

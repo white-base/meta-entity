@@ -28,6 +28,6 @@
 //     long: string;
 // }
 
-declare type ValueType = string | number | boolean;
+// declare type ValueType = string | number | boolean;
 
 // export {};
