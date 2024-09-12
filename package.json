@@ -17,7 +17,7 @@
   },
   "author": "",
   "license": "MIT",
-  "types": "./types/ko/index.d.ts",
+  "types": "./types/en/index.d.ts",
   "devDependencies": {
     "docdash": "github:white-base/docdash",
     "gulp": "^5.0.0",
