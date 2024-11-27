@@ -231,7 +231,9 @@ describe("[target: column-collection.js]", () => {
             });
             it("- add(?) : 예외 ", () => {
                 var table1 = new MetaTable('T1');
+                table1.columns.add('aa');
 
+                expect(() => table1.columns['aa'] = 10).toThrow(/EL05148/);
                 expect(() => table1.columns.add(1)).toThrow(/EL05151/);
                 expect(() => table1.columns.add({})).toThrow(/EL05151/);
                 expect(() => table1.columns.add(/err/)).toThrow(/EL05151/);

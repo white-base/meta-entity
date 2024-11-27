@@ -106,6 +106,32 @@
             enumerable: false
         });
 
+
+        /**
+         * 컬렉션에 요소를 추가할 때 설정되는 기본 기술자입니다.
+         * @protected
+         * @param {number} p_idx 인덱스 번호
+         */
+        BaseColumnCollection.prototype._getPropDescriptor = function(p_idx, p_enum) {
+            if (typeof p_enum !== 'boolean') p_enum = true;
+            return {
+                get: function() { return this.$elements[p_idx]; },
+                set: function(nVal) {
+                    throw new ExtendError(/EL05148/, null, []);
+                    // var oVal = this.$elements[p_idx];
+                    // if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
+                    // this._onChanging(p_idx, nVal, oVal);  // before event
+                    // this.$elements[p_idx] = nVal;
+                    // this._onChanged(p_idx, nVal, oVal);   // after event
+                },
+                configurable: true,
+                enumerable: p_enum,
+            };
+        };
+        Object.defineProperty(BaseColumnCollection.prototype, '_getPropDescriptor', {
+            enumerable: false
+        });
+
         /**
          * 컬럼을 컬렉션에 추가
          * @param {string} p_name 컬럼명

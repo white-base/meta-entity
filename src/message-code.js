@@ -65,6 +65,7 @@
             EL05145: 'add(name, vlaue); cannot be added because alias \'$2\' exists in $1',
             EL05146: 'removeAt(idx); cannot remove columnColleciton because _onwer rows exist. _onwer.rows.count = $1',
             EL05147: 'addValue(name, value) is an abstract method. Must be implemented',
+            EL05148: 'Column collection cannot use setter property. Add(), remove() method must be used',
             // MetaTableColumnCollection
             EL05150: '',
             EL05151: 'add(any); any 는 \'string\' | [BaseColumn] 타입입니다. typeof any = $1',
@@ -250,6 +251,7 @@
             EL05145: 'add(name, vlaue); $1 에 alias \'$2\'이 존재하여 추가할 수 없습니다.',
             EL05146: 'removeAt(idx); _onwer 의 rows 가 존재하여 columnColleciton 을 제거할 수 없습니다. _onwer.rows.count  = $1',
             EL05147: 'addValue(name, value) 은 추상메소드 입니다. 구현해야 합니다.',
+            EL05148: '컬럼 컬렉션은 setter 속성을 사용할 수 없습니다. add(), remove() 메소드를 사용해야 합니다.',
             // MetaTableColumnCollection
             EL05150: '',
             EL05151: 'add(any); any 는 \'string\' | [BaseColumn] 타입입니다. typeof any = $1',
