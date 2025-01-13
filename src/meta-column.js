@@ -332,6 +332,7 @@
 
         /**
          * 제약조건을 추가  
+         * 
          * REVIEW: 정규식으로 반대 조건을 모두 나열 할수 있으므로, 항상 실패조건을 하는게 맞을지? 검토
          * @param {Regexp} p_regex 정규표현식
          * @param {string} p_msg  regexp 입력시
