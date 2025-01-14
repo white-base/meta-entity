@@ -342,7 +342,7 @@
          * @param {boolean} p_condition.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
          */
         MetaColumn.prototype.addConstraint = function(p_regex, p_msg, p_code, p_condition) {
-            p_condition = p_condition || false;
+            p_condition = typeof p_condition === 'boolean' ? p_condition : true;
 
             var constraint = {};
             if (typeof p_regex === 'function') {
@@ -390,7 +390,7 @@
             
             // 3. 실패조건 검사
             if (this.required === true && this.constraints.length === 0 && value.length === 0) {
-                result.msg   = Message.get('ES055', [this.name]);
+                result.msg   = Message.get('EL05138', [this.name]);
                 result.code  = 0;
                 return result;
             }
@@ -398,7 +398,20 @@
             // 4. 제약조건 검사
             for(var i = 0; this.constraints.length > i; i++) {
                 if (typeof this.constraints[i] === 'function') {
-                    return this.constraints[i].call(this, this, value);     // 함수형 제약조건  
+                    // return this.constraints[i].call(this, this, value);     // 함수형 제약조건 REVIEW: 제거대상 
+
+                    // 함수는 false 또는 object 타입의 경우 실패로 처리
+                    var funReturn = this.constraints[i].call(this, value, this);     // 함수형 제약조건
+                    if (funReturn === true || typeof funReturn === 'undefined') continue;
+                    
+                    if (typeof funReturn === 'object' && typeof funReturn.msg === 'string') {
+                        result.msg   = funReturn.msg;
+                        result.code  = funReturn.code;
+                    } else {
+                        result.msg = Message.get('EL05139', [this.name]);
+                    }
+                    return result;
+
                 } else {
                     match = value.match(this.constraints[i].regex);
                     if ((this.constraints[i].condition === false && match !== null) ||    // 실패 조건

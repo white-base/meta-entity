@@ -56,6 +56,8 @@
             EL05135: '$1.setter is of type \'function\', type of setter = \'$2\'',
             EL05136: 'addConstraint (regex, msg, code, condition); regex is not a RegExp instance',
             EL05137: 'addConstraint(regex, msg, code, condition); msg 는 \'string\' 타입입니다. typeof msg = \'$1\'',
+            EL05138: 'valid(value); value is a required value. columnName = "$1" ',
+            EL05139: 'valid(value); function constraint failed. columnName = "$1" ',
             // BaseColumnCollection
             EL05140: '',
             EL05141: '$1._baseType is of type \'function\', type of getter = \'$2\'',
@@ -242,6 +244,8 @@
             EL05135: '$1.setter 는 \'function\' 타입입니다. typeof setter = \'$2\'',
             EL05136: 'addConstraint(regex, msg, code, condition); regex 는 RegExp 인스턴스가 아닙니다.',
             EL05137: 'addConstraint(regex, msg, code, condition); msg 는 \'string\' 타입입니다. typeof msg = \'$1\'',
+            EL05138: 'valid(value); value 는 필수값 입니다. columnName = "$1" ',
+            EL05139: 'valid(value); 함수 제약조건이 실패하였습니다. columnName = "$1" ',
             // BaseColumnCollection
             EL05140: '',
             EL05141: '$1._baseType 는 \'function\' 타입입니다. typeof getter = \'$2\'',

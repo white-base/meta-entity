@@ -569,18 +569,17 @@ describe("[target: meta-column.js ]", () => {
             });
         });
 
-        describe("MetaColumn.valid(value, r_result) <제약조건 검사>", () => {
+        describe("MetaColumn.valid(value) <제약조건 검사>", () => {
             it("- valid(value): return  <제약조건 검사> ", () => {     // REVIEW: r_result => 존재시 object 이어야함, 검사 추가
                 var item1 = new MetaColumn('i1');
                 item1.required = true;
 
-                item1.addConstraint(/10/, '10 시작...', 100, true);
-                item1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 200, false);
-                item1.addConstraint(/\D/, '숫자만...', 300);   // return 기본값 = false
-                item1.addConstraint(/\D/, '숫자만...', 300);
+                item1.addConstraint(/10/, '10 시작...', 'C100', true);            // 매칭
+                item1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 'C200', false);  // 미매칭
+                item1.addConstraint(/\D/, '숫자가 아님...', 'C300', false);
                 // true
-                expect(item1.valid('10')).not.toBeDefined(); 
-                expect(item1.valid('1000')).not.toBeDefined(); 
+                expect(item1.valid('10')).toBe(undefined);
+                expect(item1.valid('1000')).toBe(undefined);
                 // false
                 expect(item1.valid('')).toBeDefined();        // 실패 : 10로 시작을 안해서
                 expect(item1.valid('10000')).toBeDefined();   // 실패 : 5자리 이상
@@ -597,7 +596,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('')).not.toBeDefined();
                 expect(item2.valid('')).toBeDefined();
             });
-            it("- valid(value, r_result) : required ", () => {
+            it("- valid(value) : required ", () => {
                 var item1 = new MetaColumn('i1');
                 item1.required      = false;
                 // item1.optional     = true;
@@ -607,20 +606,53 @@ describe("[target: meta-column.js ]", () => {
                 var result1 = {};
                 var result2 = {};
         
-                expect(item1.valid('', result1)).not.toBeDefined();
-                expect(item2.valid('', result2)).toBeDefined();
+                expect(item1.valid('')).toBe(undefined);
+                expect(item2.valid('')).toBeDefined();
             });
-            it("- valid(value, r_result) : required ", () => {
+            it("- valid(value) : required ", () => {
                 var item1 = new MetaColumn('i1');
                 item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
                     result = v;
-                    return true 
+                    return true;
                 }
                 item1.addConstraint(fun1);
         
-                expect(item1.valid('10')).toBe(true);
+                expect(item1.valid('10')).toBe(undefined);
+            });
+            it("- valid(value) : required, return  = undefined ", () => {
+                var item1 = new MetaColumn('i1');
+                item1.required = false;
+                var result;
+                var fun1 = function(c, v) { 
+                    return;
+                }
+                item1.addConstraint(fun1);
+        
+                expect(item1.valid('10')).toBe(undefined);
+            });
+            it("- valid(value) : required, return  = {msg:..} ", () => {
+                var item1 = new MetaColumn('i1');
+                item1.required = false;
+                var result;
+                var fun1 = function(c, v) { 
+                    return {msg: 'err', code: 'c1' };
+                }
+                item1.addConstraint(fun1);
+        
+                expect(item1.valid('10')).toEqual({msg: 'err', code: 'c1', value: '10' });
+            });
+            it("- valid(value) : required, return  = {msg:..} ", () => {
+                var item1 = new MetaColumn('i1');
+                item1.required = false;
+                var result;
+                var fun1 = function(c, v) { 
+                    return false;
+                }
+                item1.addConstraint(fun1);
+        
+                expect(item1.valid('10')).toBeDefined();
             });
             it("- valid(value): return  <제약조건 검사> ", () => {
                 var item1 = new MetaColumn('i1');
