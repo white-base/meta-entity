@@ -54,9 +54,8 @@
             var $alias          = null;
             var _entity         = null;
             var _valueTypes     = this._type._VALUE_TYPE || [];
-            var value           = null;
-            var caption         = null;
-            
+            var _default        = '';
+            var caption         = '';
             /**
              * 컬럼 컬렉션의 키
              * @member {string} _L.Meta.Entity.BaseColumn#$key
@@ -184,10 +183,10 @@
              */
             Object.defineProperty(this, 'default', 
             {
-                get: function() { return value; },
+                get: function() { return _default; },
                 set: function(nVal) { 
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
-                    value = nVal; 
+                    _default = nVal;
                 },
                 configurable: false,
                 enumerable: true
@@ -276,11 +275,11 @@
                 obj['_entity'] = MetaRegistry.createReferObject(this._entity);
             }
             obj['columnName'] = this.columnName;
-            if (this.default !== null) obj['default'] = this.default;
-            if (this.caption !== null) obj['caption'] = this.caption;            
-            if (this.$alias !== null) obj['alias'] = this.$alias;
+            if (this.default !== '') obj['default'] = this.default;
+            if (this.caption !== '') obj['caption'] = this.caption;            
+            if (this.$alias !== null) obj['$alias'] = this.$alias;
             // if (this.__GET$alias(this) !== null) obj['alias'] = this.__GET$alias(this);
-            if (this.value !== null) obj['value'] = this.value;
+            if (this.$value !== null) obj['$value'] = this.$value;
             return obj;                        
         };
 
@@ -304,8 +303,8 @@
             this.columnName = p_oGuid['columnName'];
             if (p_oGuid['default']) this.default = p_oGuid['default'];
             if (p_oGuid['caption']) this.caption = p_oGuid['caption'];
-            if (p_oGuid['alias']) this.alias = p_oGuid['alias'];
-            if (p_oGuid['value']) this.value = p_oGuid['value'];
+            if (p_oGuid['$alias']) this.$alias = p_oGuid['$alias'];
+            if (p_oGuid['$value']) this.$value = p_oGuid['$value'];
         };
 
         /** 

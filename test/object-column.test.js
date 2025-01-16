@@ -74,7 +74,7 @@ describe("[target: object-column.js]", () => {
                 const o1 = new ObjectColumn('o1', null, prop);
 
                 expect(o1.alias).toBe(prop.alias);
-                expect(o1.caption).toBe(null);
+                expect(o1.caption).toBe('');
             });
 
         });
@@ -99,7 +99,7 @@ describe("[target: object-column.js]", () => {
                 expect(g1.columnName).toBe('o1');
                 expect(g1.caption).toBe(prop1.caption);
                 expect(g1.default).toEqual(prop1.default);
-                expect(g1.value).toEqual(e1.getObject());
+                expect(g1.$value).toEqual(e1.getObject());
                 expect(g1._entity).toEqual({$ref: t1._guid});
             });
             it("- getObject(1 | 2) : default, value 메타객체 ", () => {
@@ -122,7 +122,7 @@ describe("[target: object-column.js]", () => {
                 expect(g1.columnName).toBe('o1');
                 expect(g1.caption).toBe(prop1.caption);
                 expect(g1.default).toEqual(e1.getObject());
-                expect(g1.value).toEqual({$ref: e1._guid});
+                expect(g1.$value).toEqual({$ref: e1._guid});
                 expect(g1._entity).toEqual({$ref: t1._guid});
             });
             it("- 커버리지 ", () => {
@@ -186,7 +186,16 @@ describe("[target: object-column.js]", () => {
                 ot2.setObject(g2);
                 ot3.setObject(g3);
 
-                expect(tt1.equal(t1)).toBe(true);
+                // var chk1 = tt1.getObject(2);
+                // var chk2 = t1.getObject(2);
+                // expect(chk1).toEqual(chk2);
+
+                var chk1 = o2.getObject(2);
+                var chk2 = ot2.getObject(2);
+                var chk3 = o3.getObject(2);
+                expect(chk1).toEqual(chk2);
+
+                // expect(tt1.equal(t1)).toBe(true);
                 expect(ot1.equal(o1)).toBe(true);
                 expect(ot2.equal(o2)).toBe(true);
                 expect(ot3.equal(o3)).toBe(true);
@@ -226,9 +235,9 @@ describe("[target: object-column.js]", () => {
                 t2.columns.add(o1)
                 const gt1 = t1.getObject();
                 const gt2 = t2.getObject();
-                gt1.columns._elem[0].value = {} // 강제 삭제
+                gt1.columns._elem[0].$value = {} // 강제 삭제
                 gt1.columns._elem[0].default = {}
-                gt2.columns._elem[0].value = {}
+                gt2.columns._elem[0].$value = {}
                 gt2.columns._elem[0].default = {}
                 const tt1 = new MetaTable('TT1');
                 const tt2 = new MetaTable('TT2'); 

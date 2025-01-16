@@ -103,7 +103,7 @@
             var vOpt = p_vOpt || 0;
             var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
             var defValue = this.default;
-            var value = this.value;
+            var $value = this.$value;
 
             if (defValue instanceof MetaObject) {
                 if (MetaRegistry.hasGuidObject(defValue, owned)) {
@@ -111,10 +111,11 @@
                 } else obj['default'] = defValue.getObject(vOpt, owned);
             }
 
-            if (value instanceof MetaObject) {
-                if (MetaRegistry.hasGuidObject(value, owned)) {
-                    obj['value'] = MetaRegistry.createReferObject(value);
-                } else obj['value'] = value.getObject(vOpt, owned);
+            // $value 재정의
+            if ($value instanceof MetaObject) {
+                if (MetaRegistry.hasGuidObject($value, owned)) {
+                    obj['$value'] = MetaRegistry.createReferObject($value);
+                } else obj['$value'] = $value.getObject(vOpt, owned);
             }
             return obj;                        
         };
@@ -146,17 +147,17 @@
                 }
             }
 
-            elem = p_oGuid['value'];
+            elem = p_oGuid['$value'];
             if (typeof elem === 'object' && elem !== null) {
                 if (MetaRegistry.isGuidObject(elem)) {
                     var obj = MetaRegistry.createMetaObject(elem, origin);
                     obj.setObject(elem, origin);
-                    this.value = obj;
+                    this.$value = obj;
                 
                 } else if (elem['$ref']) {
                     var meta = MetaRegistry.findSetObject(elem['$ref'], origin);
                     if (!meta) throw new ExtendError(/EL05123/, null, [elem['$ref']]);
-                    this.value = meta;
+                    this.$value = meta;
                 }
             }
         };
@@ -169,15 +170,14 @@
          */
         ObjectColumn.prototype.clone = function(p_entity) {
             var clone;
-            var rObj = this.getObject();
             var entity = p_entity ? p_entity : this._entity;
-
+            
             clone = new ObjectColumn(this.columnName, entity);
 
-            if (rObj['default']) clone.default = this['default'];
-            if (rObj['caption']) clone.caption = rObj['caption'];
-            if (rObj['alias']) clone.alias = rObj['alias'];
-            if (rObj['value']) clone.value = this.value;
+            if (this['$value']) clone.$value = this.$value;
+            if (this['$alias']) clone.$alias = this['$alias'];
+            if (this['default']) clone.default = this['default'];
+            if (this['caption']) clone.caption = this['caption'];
 
             return clone;
         };

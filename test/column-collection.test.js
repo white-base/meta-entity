@@ -168,6 +168,7 @@ describe("[target: column-collection.js]", () => {
                 table1.columns.addValue('i2', 'V2');
         
                 expect(table1.columns.count).toBe(2);
+                var aa = table1.columns['i1'].value
                 expect(table1.columns['i1'].value).toBe('V1');
                 expect(table1.columns['i2'].value).toBe('V2');
             });

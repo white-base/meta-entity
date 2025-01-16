@@ -147,7 +147,8 @@
                      *  - this.$value 초기화 되지 않은 경우
                      *  - getter 리턴이 없는 경우
                      */
-                    if (typeof __val === 'undefined' || __val === null) __val = this.$value || this.default;  
+                    // if (typeof __val === 'undefined' || __val === null) __val = this.$value || this.default;  REVIEW: 제거 대상
+                    if (typeof __val === 'undefined' || __val === null) __val = this.$value;  
                     return __val; 
                 },
                 set:  function(val) { 
@@ -240,10 +241,8 @@
                 for(var prop in p_property) {
                     // if (p_property.hasOwnProperty(prop) &&
                     if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
-                        [
-                            '_valueTypes', 'alias', 'default', 'caption', 'value',          // BaseColumn
-                            'required', 'constraints', 'getter', 'setter'    // MetaColumn                        
-                        ].indexOf(prop) > -1) {
+                        ['_valueTypes', 'alias', 'default', 'caption', 'value', 
+                        'required', 'constraints', 'getter', 'setter'].indexOf(prop) > -1) {
                         this[prop] = p_property[prop];
                     }
                 }
@@ -278,7 +277,7 @@
             if (this.constraints.length > 0) obj['constraints'] = Util.deepCopy(this.constraints);
             if (this.getter !== null) obj['getter'] = this.getter;
             if (this.setter !== null) obj['setter'] = this.setter;
-            if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
+            // if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
             return obj;                        
         };
 
@@ -302,7 +301,7 @@
             if (p_oGuid['constraints']) this.constraints = p_oGuid['constraints'];
             if (p_oGuid['getter']) this.getter = p_oGuid['getter'];
             if (p_oGuid['setter']) this.setter = p_oGuid['setter'];
-            if (p_oGuid['value']) this.value = p_oGuid['value'];
+            // if (p_oGuid['value']) this.value = p_oGuid['value'];
         };
 
         /**
@@ -312,21 +311,23 @@
          */
         MetaColumn.prototype.clone = function(p_entity) {
             var clone;
-            var rObj = this.getObject();
+            // var rObj = this.getObject();
             var entity = p_entity ? p_entity : this._entity;
             
             clone = new MetaColumn(this.columnName, entity);
             
-            if (rObj['default']) clone.default = rObj['default'];
-            if (rObj['caption']) clone.caption = rObj['caption'];
-            if (rObj['required']) clone.required = rObj['required'];
-            // if (rObj['optional']) clone.optional = rObj['optional'];
-            if (rObj['constraints']) clone.constraints = rObj['constraints'];
-            if (rObj['getter']) clone.getter = rObj['getter'];
-            if (rObj['setter']) clone.setter = rObj['setter'];
-            if (rObj['alias']) clone.alias = rObj['alias'];
-            clone.value = rObj['value'];
-
+            // BaseColumn
+            if (this['default']) clone.default = this['default'];
+            if (this['caption']) clone.caption = this['caption'];
+            if (this['$alias']) clone.$alias = this['$alias'];
+            if (this['$value']) clone.$value = this['$value'];
+            
+            // MetaColumn
+            if (this['required']) clone.required = this['required'];
+            if (this['constraints']) clone.constraints = this['constraints'];
+            if (this['getter']) clone.getter = this['getter'];
+            if (this['setter']) clone.setter = this['setter'];
+            
             return clone;
         };
 

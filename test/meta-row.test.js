@@ -334,8 +334,8 @@ describe("[target: meta-row.js]", () => {
 
                 expect(a1.rows[0]['a1']).toBe('V1');
                 expect(a1.rows[0]['a2']).toBe('V2');
-                expect(row1['a1']).toBe(null);
-                expect(row1['a2']).toBe(null);
+                expect(row1['a1']).toBe('');
+                expect(row1['a2']).toBe('');
                 row1.setObject(obj1)
                 expect(row1['a1']).toBe('V1');
                 expect(row1['a2']).toBe('V2');
@@ -351,8 +351,8 @@ describe("[target: meta-row.js]", () => {
 
                 expect(a1.rows[0]['a1']).toBe('V1');
                 expect(a1.rows[0]['a2']).toBe('V2');
-                expect(row1['a1']).toBe(null);
-                expect(row1['a2']).toBe(null);
+                expect(row1['a1']).toBe('');
+                expect(row1['a2']).toBe('');
                 row1.setObject(obj1)
                 expect(row1['a1']).toBe('V1');
                 expect(row1['a2']).toBe('V2');

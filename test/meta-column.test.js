@@ -384,7 +384,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.default).toBe('D1');
                 expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
-                expect(obj1.value).toBe('V1');
+                expect(obj1.$value).toBe('V1');
                 expect(obj1._entity).toBe(undefined);
                 /**
                  * MEMO:
@@ -416,7 +416,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.default).toBe('D1');
                 expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
-                expect(obj1.value).toBe('V1');
+                expect(obj1.$value).toBe('V1');
                 expect(obj1._entity.$ref).toBe(t1._guid);
                 /**
                  * MEMO:
@@ -444,7 +444,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1.default).toBe('D1');
                 expect(obj1.required).toBe(true);
                 expect(obj1.name).toBe('c1');
-                expect(obj1.value).toBe('V1');
+                expect(obj1.$value).toBe('V1');
                 /**
                  * MEMO:
                  * - _entity, _guid 가 없는 개체 확인
@@ -469,6 +469,7 @@ describe("[target: meta-column.js ]", () => {
                     setter: fun2,
                 };
                 const c1 = new MetaColumn('c1', null, prop1);
+                var aa = c1.$value;
                 const c2 = new MetaColumn('c2', t1, prop1);
                 const fun3 = function(){return 'F1'}
                 c1.onChanged = fun3;

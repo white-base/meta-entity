@@ -337,8 +337,8 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.rows.count).toBe(1);   // rows 갯수
                 expect(view2.rows.count).toBe(1);
                 expect(view3.rows.count).toBe(1);
-                expect(view1.rows[0]['c3']).toBe(null);
-                expect(view2.rows[0]['c3']).toBe(null);
+                expect(view1.rows[0]['c3']).toBe('');
+                expect(view2.rows[0]['c3']).toBe('');
                 expect(view3.rows[0]['c3']).toBe('R3');
             });
         });
@@ -469,6 +469,24 @@ describe("[target: meta-view.js]", () => {
             });
         });
         describe("BaseEntity.merge(entity, opt) <병합>", () => {
+            it("- merge(view, 0) : 같은 구조 ", () => {
+                const view1 = new MetaView('V1');
+                view1.columns.addValue('c1', 'R1');
+                view1.columns.addValue('c2', 'R2');
+                const view2 = new MetaView('V2');
+                view2.columns.addValue('c1', 'R10');
+                view2.columns.addValue('c2', 'R20');
+                view1.rows.add(view1.getValue()); // row 추가
+                view2.rows.add(view2.getValue());
+                view1.merge(view2, 0);
+
+                expect(view1.columns.count).toBe(2);
+                expect(view1.rows.count).toBe(2);
+                expect(view1.rows[0]['c1']).toBe('R1');
+                expect(view1.rows[0]['c2']).toBe('R2');
+                expect(view1.rows[1]['c1']).toBe('R10');
+                expect(view1.rows[1]['c2']).toBe('R20');
+            });
             it("- merge(view, 0) : 다른 구조 ", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.addValue('c1', 'R1');
@@ -488,11 +506,11 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.rows[0]['c1']).toBe('R1');
                 expect(view1.rows[0]['c2']).toBe('R2');
                 expect(view1.rows[0]['c3']).toBe('R3');
-                expect(view1.rows[1]['c1']).toBe(null);
+                expect(view1.rows[1]['c1']).toBe('');
                 expect(view1.rows[1]['c2']).toBe('R2');
                 expect(view1.rows[1]['c3']).toBe('R3');
-                expect(view1.rows[2]['c1']).toBe(null);
-                expect(view1.rows[2]['c2']).toBe(null);
+                expect(view1.rows[2]['c1']).toBe('');
+                expect(view1.rows[2]['c2']).toBe('');
                 expect(view1.rows[2]['c3']).toBe('R3');
                 /**
                  * MEMO: 로우 기준 병합, 로우가 쌓여감 확인 => 로우 병합
@@ -518,7 +536,7 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.rows[0]['c1']).toBe('R1');
                 expect(view1.rows[0]['c2']).toBe('R2');
                 expect(view1.rows[0]['c3']).toBe('R3');
-                expect(view1.rows[1]['c1']).toBe(null);
+                expect(view1.rows[1]['c1']).toBe('');
                 expect(view1.rows[1]['c2']).toBe('R2');
                 expect(view1.rows[1]['c3']).toBe('R3');
                 /**
@@ -567,13 +585,13 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.rows[0]['c1']).toBe('R1'); // rows[0]
                 expect(view1.rows[0]['c2']).toBe('R2');
                 expect(view1.rows[0]['c3']).toBe('R3');
-                expect(view1.rows[0]['c4']).toBe(null);
-                expect(view1.rows[1]['c1']).toBe(null); // rows[1]
+                expect(view1.rows[0]['c4']).toBe('');
+                expect(view1.rows[1]['c1']).toBe(''); // rows[1]
                 expect(view1.rows[1]['c2']).toBe('R2');
                 expect(view1.rows[1]['c3']).toBe('R3');
-                expect(view1.rows[1]['c4']).toBe(null);
-                expect(view1.rows[2]['c1']).toBe(null); // rows[2]
-                expect(view1.rows[2]['c2']).toBe(null);
+                expect(view1.rows[1]['c4']).toBe('');
+                expect(view1.rows[2]['c1']).toBe(''); // rows[2]
+                expect(view1.rows[2]['c2']).toBe('');
                 expect(view1.rows[2]['c3']).toBe('R3');                
                 expect(view1.rows[2]['c4']).toBe('R4');                
                 /**

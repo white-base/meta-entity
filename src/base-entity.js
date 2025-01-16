@@ -221,8 +221,8 @@
                         }
                         if (column.getter) obj[key].getter = column['getter'];
                         if (column.setter) obj[key].setter = column['setter'];
-                        if (column.alias) obj[key].alias = column['alias'];
-                        if (column.value) obj[key].value = column['value'];
+                        if (column.$alias) obj[key].alias = column['$alias'];
+                        if (column.$value) obj[key].value = column['$value'];
                     }
 
                 }
@@ -489,9 +489,10 @@
          */
         BaseEntity.prototype.getValue  = function() {
             var row = this.newRow();
-            
+
             for(var i = 0; this.columns.count > i; i++) {
-                 row[i] = this.columns[i].value;
+                var value = this.columns[i].value;    
+                row[i] = value === null ? this.columns[i].default : value;
             }
             return row;
         };
