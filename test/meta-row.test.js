@@ -426,6 +426,23 @@ describe("[target: meta-row.js]", () => {
                  */
             });
         });
+        describe("MetaRow._changeKey(): Row <키 변경>", () => {
+            it("- _changeKey() : 키 변경 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('i2', 'V2');
+                var row1 = new MetaRow(table1);
+                row1['i1'] = 'R1';
+                row1['i2'] = 'R2';
+                table1.rows.add(row1);
+                table1.rows[0]._changeKey('i1', 'ii1');
+
+                expect(table1.rows.count).toBe(1);
+                expect(table1.rows[0].count).toBe(2);
+                expect(table1.rows[0]['ii1']).toBe('R1');
+                expect(table1.rows[0]['i2']).toBe('R2');
+            });
+        });
         describe("for in 열거 속성 검사", () => {
             it("- for in", () => {
                 var arr = [];

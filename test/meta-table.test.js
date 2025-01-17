@@ -335,6 +335,41 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.columns['i2'].value).toBe('');
                 expect(table1.columns['i3'].value).toBe('RR3');
             });
+            it("- setValue(row) :row 설정(단일), 별칭 사용, 중간에 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.columns.add('i1');
+                table1.columns.add('i2');
+                table1.columns.add('i3');
+                
+                table1.rows.add(table1.newRow());
+                table1.rows[0]['i1'] = '1'
+                table1.rows[0]['i2'] = '2'
+                table1.rows[0]['i3'] = '3'
+                // 별칭
+                table1.columns['i2'].alias = 'ii2';
+                table1.columns['i3'].alias = 'ii3';
+                table1.rows.add(table1.newRow());
+                table1.rows[1]['i1'] = '10'
+                table1.rows[1]['ii2'] = '20'
+                table1.rows[1]['ii3'] = '30'
+                
+                table1.setValue(table1.rows[0]);
+                expect(table1.columns['i1'].value).toBe('1');
+                expect(table1.columns['i2'].value).toBe('2');
+                expect(table1.columns['i3'].value).toBe('3');
+                table1.setValue(table1.rows[1]);
+                expect(table1.columns['i1'].value).toBe('10');
+                expect(table1.columns['i2'].value).toBe('20');
+                expect(table1.columns['i3'].value).toBe('30');
+                
+                expect(table1.rows[0]['i1']).toBe('1');
+                expect(table1.rows[0]['ii2']).toBe('2');
+                expect(table1.rows[0]['ii3']).toBe('3');
+                expect(table1.rows[1]['i1']).toBe('10');
+                expect(table1.rows[1]['ii2']).toBe('20');
+                expect(table1.rows[1]['ii3']).toBe('30');
+
+            });
             it("- 예외 : 타입 실패 ", () => {
                 var table1 = new MetaTable('T1');
                 expect(()=> table1.setValue({})).toThrow(/EL05333/)
@@ -526,6 +561,8 @@ describe("[target: meta-table.js]", () => {
                 table1.read(json1, 3);
                 table2.read(json2, 3);
                 table2.columns['i2'].alias = 'ii2'; // 별칭 처리
+                // table2.rows.add(table2.newRow())
+
                 table1.merge(table2, 1);
     
                 expect(table1.columns.count).toBe(4);

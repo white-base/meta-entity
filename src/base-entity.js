@@ -672,7 +672,7 @@
                 // 3-3. 컬럼 추가
                 for (var i = 0; i < tarColumns.count; i++) {
                     clone = tarColumns[i].clone(_this);
-                    clone.name = tarColumns[i].alias;
+                    clone.columnName = tarColumns[i].alias;
                     _this.columns.add(clone);
                 }
                 // 3-4. 로우 추가 (idx)

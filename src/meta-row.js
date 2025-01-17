@@ -119,9 +119,10 @@
             Object.defineProperty(this, '$keys',
             {
                 get: function() {
-                    var arr = [];
-                    for (var i = 0; i < $keys.length; i++) arr.push($keys[i]);
-                    return arr;
+                    // var arr = [];
+                    // for (var i = 0; i < $keys.length; i++) arr.push($keys[i]);
+                    // return arr;
+                    return $keys;
                 },
                 configurable: false,
                 enumerable: false,
@@ -228,38 +229,11 @@
                 var alias = _entity.columns[i].alias;
                 $elements.push(_entity.columns[i].default);  // 기본값 등록
                 $keys.push(alias);
-                Object.defineProperty(this, [i], $getPropDescriptor(idx, false));
-                Object.defineProperty(this, alias, $getPropDescriptor(idx));
+                Object.defineProperty(this, [i], this._getPropDescriptor(idx, false));
+                Object.defineProperty(this, alias, this._getPropDescriptor(idx));
             }
 
-            function $getPropDescriptor(p_idx, p_enum) {
-            if (typeof p_enum !== 'boolean') p_enum = true;
-            return {
-                    get: function() { return $elements[p_idx]; },
-                    set: function(nVal) { 
-                        var oldValue = $elements[p_idx];
-                        var column;
-                        // 엔티티 항상 존재함
-                        column = _entity.columns[p_idx];
-                        if (column && column._valueTypes.length > 0) Type.matchType([column._valueTypes], nVal);
-                        // 트렌젹션 처리 => 함수로 추출 검토
-                        if (_entity && !_entity.rows.autoChanges) {
-                            var etc = 'idx:'+ p_idx +', new:' + nVal + ', old:'+ oldValue;
-                            var pos = _entity.rows.indexOf(this);
-                            if (pos > -1) {     // 컬력션에 포힘때 : 변경시점에 큐에 추가
-                                _entity.rows._transQueue.update(pos, this, this.clone(), etc);
-                            }
-                        }
-                        // 이벤트 및 처리
-                        _this._onChanging(p_idx, nVal, oldValue);
-                        $elements[p_idx] = nVal;
-                        _this._onChanged(p_idx, nVal, oldValue);
-
-                    },
-                    configurable: false,
-                    enumerable: p_enum
-                };
-            }
+            
 
             Util.implements(MetaRow, this);         // strip:
         }
@@ -269,6 +243,111 @@
         MetaRow._NS = 'Meta.Entity';
         MetaRow._PARAMS = ['_entity'];
 
+        // local function
+        function _isString(obj) {    // 공백아닌 문자 여부
+            if (typeof obj === 'string' && obj.length > 0) return true;
+            return false;
+        }
+       
+        /**
+         * TODO:
+         * @param {*} p_idx 
+         * @param {*} p_enum 
+         * @returns 
+         */
+        MetaRow.prototype._getPropDescriptor = function(p_idx, p_enum) {
+            if (typeof p_enum !== 'boolean') p_enum = true;
+            return {
+                get: function() { return this.$elements[p_idx]; },
+                set: function(nVal) {
+                    var oldValue = this.$elements[p_idx];
+                    var column;
+                    // 엔티티 항상 존재함
+                    column = this._entity.columns[p_idx];
+                    if (column && column._valueTypes.length > 0) Type.matchType([column._valueTypes], nVal);
+                    // 트렌젹션 처리 => 함수로 추출 검토
+                    if (this._entity && !this._entity.rows.autoChanges) {
+                        var etc = 'idx:'+ p_idx +', new:' + nVal + ', old:'+ oldValue;
+                        var pos = this._entity.rows.indexOf(this);
+                        if (pos > -1) {     // 컬력션에 포힘때 : 변경시점에 큐에 추가
+                            this._entity.rows._transQueue.update(pos, this, this.clone(), etc);
+                        }
+                    }
+                    // 이벤트 및 처리
+                    this._onChanging(p_idx, nVal, oldValue);
+                    this.$elements[p_idx] = nVal;
+                    this._onChanged(p_idx, nVal, oldValue);
+
+                },
+                configurable: true,
+                enumerable: p_enum
+            };
+        };
+        Object.defineProperty(MetaRow.prototype, '_getPropDescriptor', {
+            enumerable: false
+        });
+
+        /**
+         * 속성명 변경
+         * @param {string} [p_entity] 대상의 엔티티 기준으로 생성
+         * @returns {MetaRow}
+         */
+        MetaRow.prototype._changeKey  = function(p_oldKey, p_newKey) {
+            var idx;
+
+            // 타입 검사
+            if (!_isString(p_oldKey)) throw new ExtendError(/EL05214/, null, ['oldKey']);
+            if (!_isString(p_newKey)) throw new ExtendError(/EL05214/, null, ['newKey']);
+
+            
+            // 새로운 키 중복 검사
+            if (this.$keys.indexOf(p_oldKey) < 0) throw new ExtendError(/EL05215/, null, [p_oldKey]);  // 기존에 키가 존재하지 않습니다. TODO:
+            if (this.$keys.indexOf(p_newKey) > -1) throw new ExtendError(/EL05216/, null, [p_newKey]); // 교체할 키가 기존 키와 중복됩니다. TODO:
+
+            // 기존 idx 조회
+            idx = this.$keys.indexOf(p_oldKey);
+
+            // 기존 제거 및 설정
+            delete this[p_oldKey];
+            Object.defineProperty(this, p_newKey, this._getPropDescriptor(idx));
+
+            // $keys 값 교체
+            this.$keys.splice(idx, 1, p_newKey); 
+        };
+        Object.defineProperty(MetaRow.prototype, '_changeKey', {
+            enumerable: false
+        });
+
+
+        // function $getPropDescriptor(p_idx, p_enum) {
+        //     if (typeof p_enum !== 'boolean') p_enum = true;
+        //     return {
+        //         get: function() { return this.$elements[p_idx]; },
+        //         set: function(nVal) {
+        //             var oldValue = this.$elements[p_idx];
+        //             var column;
+        //             // 엔티티 항상 존재함
+        //             column = this._entity.columns[p_idx];
+        //             if (column && column._valueTypes.length > 0) Type.matchType([column._valueTypes], nVal);
+        //             // 트렌젹션 처리 => 함수로 추출 검토
+        //             if (this._entity && !this._entity.rows.autoChanges) {
+        //                 var etc = 'idx:'+ p_idx +', new:' + nVal + ', old:'+ oldValue;
+        //                 var pos = this._entity.rows.indexOf(this);
+        //                 if (pos > -1) {     // 컬력션에 포힘때 : 변경시점에 큐에 추가
+        //                     this._entity.rows._transQueue.update(pos, this, this.clone(), etc);
+        //                 }
+        //             }
+        //             // 이벤트 및 처리
+        //             this._onChanging(p_idx, nVal, oldValue);
+        //             this.$elements[p_idx] = nVal;
+        //             this._onChanged(p_idx, nVal, oldValue);
+
+        //         },
+        //         configurable: false,
+        //         enumerable: p_enum
+        //     };
+        // }
+        
         /**
          * 로우 요소 변경전 이벤트
          * @param {*} p_idx 인덱스
@@ -374,7 +453,7 @@
             enumerable: false
         });
 
-       /**
+        /**
          * 객체 복제
          * @param {BaseEntity} [p_entity] 대상의 엔티티 기준으로 생성
          * @returns {MetaRow}
@@ -393,6 +472,10 @@
         Object.defineProperty(MetaRow.prototype, 'clone', {
             enumerable: false
         });
+
+        
+
+
         
         return MetaRow;
     

@@ -85,6 +85,9 @@
             EL05211: '$1.constructor(entity) value is not of type [BaseEntity',
             EL05212: 'setObject(oGuid, origin); oGuid[\'_elem\'].length = $1 length and oGuid[\'_key\'].length = $2 length are different.',
             EL05213: 'setObject(oGuid, origin); oGuid[\'_elem\'][$1] guid not found. guid = $2',
+            EL05214: 'changeKey(oldKey, newKey); parameter [$1] is not of type \'string\'',
+            EL05215: 'changeKey(oldKey, newKey); existing key does not exist. [$1]',
+            EL05216: 'changeKey(oldKey, newKey); the key to be replaced overlaps with the existing key.[$1]',
             // MetaRowCollection
             EL05220: '',
             EL05221: 'The target\'s _entity object and $1._onwer object must be the same',
@@ -273,6 +276,9 @@
             EL05211: '$1.constructor(entity) 값이 [BaseEntity] 타입이 아닙니다.',
             EL05212: 'setObject(oGuid, origin); oGuid[\'_elem\'].length = $1 길이와 oGuid[\'_key\'].length = $2 길이가 서로 다릅니다.',
             EL05213: 'setObject(oGuid, origin); oGuid[\'_elem\'][$1] guid 를 찾을 수 없습니다. guid = $2',
+            EL05214: 'changeKey(oldKey, newKey); 매개변수 [$1]이 \'string\' 타입이 아닙니다.',
+            EL05215: 'changeKey(oldKey, newKey); 기존에 키가 존재하지 않습니다. [$1]',
+            EL05216: 'changeKey(oldKey, newKey); 교체할 키가 기존키와 중복됩니다. [$1]',
             // MetaRowCollection
             EL05220: '',
             EL05221: 'target의 _entity 객체와 $1._onwer 객체가 같이야 합니다.',

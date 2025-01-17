@@ -168,10 +168,20 @@
             {
                 get: function() { return typeof $alias === 'string' ? $alias : this.columnName; },
                 set: function(nVal) { 
-                   var entity = this._entity;
-                   if(typeof nVal !== 'string') throw new ExtendError(/EL05115/, null, [this.constructor.name, typeof nVal]); 
-                   if (entity && entity.columns.existAlias(nVal)) throw new ExtendError(/EL05116/, null, [this.constructor.name, nVal]);
-                   $alias = nVal;
+                    var entity = this._entity;
+                    var oldKey = this.$alias || this.columnName;
+
+                    if(typeof nVal !== 'string') throw new ExtendError(/EL05115/, null, [this.constructor.name, typeof nVal]); 
+                    if (entity && entity.columns.existAlias(nVal)) throw new ExtendError(/EL05116/, null, [this.constructor.name, nVal]);
+                   
+                    // 기존에 rows 에 기존 명칭이 존재하면 MetaRow 변경
+                    if (this._entity) {
+                        for (var i = 0; i < this._entity.rows.count; i++) {
+                            var row = this._entity.rows[i];
+                            row._changeKey(oldKey, nVal);
+                        }
+                    }
+                    $alias = nVal;
                 },
                 configurable: false,
                 enumerable: true
