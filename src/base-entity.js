@@ -705,15 +705,15 @@
          * 엔티티의 지정한 컬럼과 조건의 row 를 조회
          * @param {function | array<string>| arguments<string>} p_filter 필터
          * @param {array<string> | arguments<string>} [p_args] filter 설정시 컬럼명
-         * @returns {MetaView}
+         * @returns {MetaRow[]}
          */
         BaseEntity.prototype.select  = function(p_filter, p_args) {
             var args = Array.prototype.slice.call(arguments);
-            var _this = this;
             var MetaView;
             var columnNames = [];
             var callback;
             var view;
+            var selectList = [];
 
             try {
                 args = Array.prototype.slice.call(arguments);
@@ -734,7 +734,14 @@
                     columnNames = args.splice(0);
                 }
                 // 엔티티 빌드
-                return this._buildEntity(view, callback, columnNames);
+                // return this._buildEntity(view, callback, columnNames);
+
+                this._buildEntity(view, callback, columnNames);
+                
+                for (var i = 0; i < view.rows.count; i++) {
+                    selectList.push(view.rows[i]);
+                }
+                return selectList;
 
             } catch (error) {
                 throw new ExtendError(/EL05336/, error, []);

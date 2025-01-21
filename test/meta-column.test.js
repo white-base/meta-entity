@@ -25,10 +25,10 @@ describe("[target: meta-column.js ]", () => {
     describe("MetaColumn :: 클래스", () => {
         describe("MetaColumn.columnName", () => {
             it("- this.columnName : 컬럼명 변경시 메타명 변경 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 
-                expect(item1.columnName).toBe('i1');
-                expect(item1._name).toBe('i1');
+                expect(item1.columnName).toBe('c1');
+                expect(item1._name).toBe('c1');
                 // 변경
                 item1.columnName = 'ii1';
                 expect(item1.columnName).toBe('ii1');
@@ -37,7 +37,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("MetaColumn() <생성자>", () => {
             it("- new MetaColumn(name, null, property) : 생성시 속성 설정 ", () => {
-                var item1 = new MetaColumn('i1', null, {
+                var item1 = new MetaColumn('c1', null, {
                     // type: 'text',
                     // size: 100,
                     default: 'D1',
@@ -127,7 +127,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("this.onChanged <변경후 이벤트>", () => {
             it("- onChanged : 변경 이벤트 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var evt;
                 item1.onChanged = function(val) {evt = val};
                 item1.value = 10;
@@ -139,7 +139,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("this.addConstraint(regexp, msg, code, return) <제약조건 등록>", () => {
             it("- addConstraint(regexp, msg, code, return) : 제약조건 등록 ", () => {   // REVIEW: 검사해야함
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.addConstraint(/10/, '10 시작...', 100, true);
                 item1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 200, false);
                 item1.addConstraint(/\D/, '5자리 이하만...', 300);   // return 기본값 = false
@@ -152,7 +152,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("this.getter <value 겟터>", () => {
             it("- getter : value getter 만 설정 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var item_value = 10;
                 item1.value = 'V1';
                 item1.getter = function() { return item_value; };
@@ -162,7 +162,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("this.setter <value 셋터>", () => {
             it("- setter : value setter 만 등록 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var item_value = 10;
                 item1.value = 'V1';
                 item1.setter = function(val) { item_value = val; };
@@ -172,7 +172,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item_value).toBe('V11');
             });
             it("- setter : 내부값과 와부값이 다른 경우 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var item_value = 10;
                 item1.value = 'V1';
                 item1.setter = function(val) { item_value = val + 'R'; };
@@ -182,7 +182,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item_value).toBe('V11R');
             });
             it("- setter : 리턴이 있는 경우 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var item_value = 10;
                 item1.value = 'V1';
                 item1.setter = function(val) { return item_value = val + 'R'; };
@@ -194,7 +194,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("this.geter/setter <value 갯터/셋터>", () => {
             it("- getter/setter ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 var item_value = 10;
                 item1.val = 'V1';
                 item1.getter = function() { return item_value; }
@@ -226,10 +226,10 @@ describe("[target: meta-column.js ]", () => {
             it("- equal() : 각각 테이블에서 생성 비교 ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table2.columns.addValue('i1', 'V1');
-                const c1 = table1.columns['i1'];
-                const c2 = table1.columns['i1'];
+                table1.columns.addValue('c1', 'V1');
+                table2.columns.addValue('c1', 'V1');
+                const c1 = table1.columns['c1'];
+                const c2 = table1.columns['c1'];
 
                 expect(c1.equal(c2)).toBe(true);
             });
@@ -238,15 +238,15 @@ describe("[target: meta-column.js ]", () => {
                 var table2 = new MetaTable('T2');   // 테이블명 다름
                 var table3 = new MetaTable('T1');   // row 추가
                 var table4 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table2.columns.addValue('i1', 'V1');
-                table3.columns.addValue('i1', 'V1');
-                table4.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
+                table2.columns.addValue('c1', 'V1');
+                table3.columns.addValue('c1', 'V1');
+                table4.columns.addValue('c1', 'V1');
                 table3.rows.add(table3.newRow()); 
-                const c1 = table1.columns['i1'];
-                const c2 = table2.columns['i1'];
-                const c3 = table3.columns['i1'];
-                const c4 = table3.columns['i1'];
+                const c1 = table1.columns['c1'];
+                const c2 = table2.columns['c1'];
+                const c3 = table3.columns['c1'];
+                const c4 = table3.columns['c1'];
 
                 expect(c1.equal(c2)).toBe(true);
                 expect(c1.equal(c3)).toBe(true);
@@ -507,7 +507,7 @@ describe("[target: meta-column.js ]", () => {
                 var table = new MetaTable('T1');
                 var fun1 = function() {return 'F1'}
                 var fun2 = function() {return 'F2'}
-                var item1 = new MetaColumn('i1', table, {
+                var item1 = new MetaColumn('c1', table, {
                     // type: 'text',
                     // size: 100,
                     default: 'D1',
@@ -550,7 +550,7 @@ describe("[target: meta-column.js ]", () => {
         });
         describe("MetaColumn.addContraint(regex, msg, code, condition) <제약조건 추가>", () => {
             it("- addContraint(value, mss, code) : 제약조건 추가 ", () => {
-                var c1 = new MetaColumn('i1');
+                var c1 = new MetaColumn('c1');
                 c1.addConstraint(/10/, '10 시작...', 100, true);
                 c1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 200, false);
                 c1.addConstraint(/\D/, '숫자만...', 300);   // return 기본값 = false
@@ -572,7 +572,7 @@ describe("[target: meta-column.js ]", () => {
 
         describe("MetaColumn.valid(value) <제약조건 검사>", () => {
             it("- valid(value): return  <제약조건 검사> ", () => {     // REVIEW: r_result => 존재시 object 이어야함, 검사 추가
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = true;
 
                 item1.addConstraint(/10/, '10 시작...', 'C100', true);            // 매칭
@@ -587,9 +587,9 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('100a')).toBeDefined();    // 실패 : 문자가 들어가서
             });
             it("- valid(value) : required 여부 ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
-                var item2 = new MetaColumn('i2');
+                var item2 = new MetaColumn('c2');
                 item2.required = true;     // 공백허용 안함
                 var result1 = {};
                 var result2 = {};
@@ -598,10 +598,10 @@ describe("[target: meta-column.js ]", () => {
                 expect(item2.valid('')).toBeDefined();
             });
             it("- valid(value) : required ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required      = false;
                 // item1.optional     = true;
-                var item2 = new MetaColumn('i2');
+                var item2 = new MetaColumn('c2');
                 item2.required     = true;     // 공백 불가
                 // item2.optional    = true;     
                 var result1 = {};
@@ -611,7 +611,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item2.valid('')).toBeDefined();
             });
             it("- valid(value) : required ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
@@ -623,7 +623,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('10')).toBe(undefined);
             });
             it("- valid(value) : required, return  = undefined ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
@@ -634,7 +634,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('10')).toBe(undefined);
             });
             it("- valid(value) : required, return  = {msg:..} ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
@@ -645,7 +645,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('10')).toEqual({msg: 'err', code: 'c1', value: '10' });
             });
             it("- valid(value) : required, return  = {msg:..} ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
                 var result;
                 var fun1 = function(c, v) { 
@@ -656,19 +656,19 @@ describe("[target: meta-column.js ]", () => {
                 expect(item1.valid('10')).toBeDefined();
             });
             it("- valid(value): return  <제약조건 검사> ", () => {
-                var item1 = new MetaColumn('i1');
+                var item1 = new MetaColumn('c1');
                 item1.required = false;
                 // item1.optional = false;
 
-                // var item2 = new MetaColumn('i2');
+                // var item2 = new MetaColumn('c2');
                 // // item2.required = false;
                 // item2.optional = true;
 
-                var item3 = new MetaColumn('i3');
+                var item3 = new MetaColumn('c3');
                 item3.required = true;
                 // item3.optional = false;
 
-                // var item4 = new MetaColumn('i4');
+                // var item4 = new MetaColumn('c4');
                 // item4.required = true;
                 // item4.optional = false;
 

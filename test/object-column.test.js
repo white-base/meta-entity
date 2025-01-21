@@ -280,7 +280,7 @@ describe("[target: object-column.js]", () => {
                     caption: 'C1',
                     alias: 'ii1',
                 }
-                var item1 = new ObjectColumn('i1', table, prop);            
+                var item1 = new ObjectColumn('c1', table, prop);            
                 var item2 = item1.clone();
         
                 // item1

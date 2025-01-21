@@ -71,7 +71,7 @@ describe("[target: meta-view.js]", () => {
             });
             it("- 예외 : row 존재시 ", () => {
                 var view1 = new MetaView('T1');
-                view1.columns.add('i1');
+                view1.columns.add('c1');
                 view1.rows.add(view1.newRow())
                 var col = new MetaViewColumnCollection(view1);
 
@@ -79,7 +79,7 @@ describe("[target: meta-view.js]", () => {
             });
             it("- 커버리지 : columns ", () => {
                 var view1 = new MetaView('T1');
-                view1.columns.add('i1');
+                view1.columns.add('c1');
                 var col = new MetaViewColumnCollection(view1);
                 view1.columns = col
             });
@@ -630,98 +630,92 @@ describe("[target: meta-view.js]", () => {
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R10', i2: 'R20' }
+                        { c1: 'R10', c2: 'R20' }
                     ]
                 }, 3);
                 v1.merge(v2, 0);
 
                 expect(v1.columns.count).toBe(2);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[1]['i1']).toBe('R10');
-                expect(v1.rows[1]['i2']).toBe('R20');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[1]['c1']).toBe('R10');
+                expect(v1.rows[1]['c2']).toBe('R20');
             });
             it("- merge(view, 0) : 컬럼 일부 매칭", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R10', i3: 'R30' }
+                        { c1: 'R10', c3: 'R30' }
                     ]
                 }, 3);
                 v1.merge(v2, 0);
 
                 expect(v1.columns.count).toBe(2);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[1]['i1']).toBe('R10');
-                expect(v1.rows[1]['i2']).toBe('');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[1]['c1']).toBe('R10');
+                expect(v1.rows[1]['c2']).toBe('');
             });
             it("- merge(view, 0) : 컬럼 전부 비매칭 ", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' }
+                        { c1: 'R1', c2: 'R2' }
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R30', i4: 'R40' }
+                        { c3: 'R30', c4: 'R40' }
                     ]
                 }, 3);
                 v1.merge(v2, 0);
 
                 expect(v1.columns.count).toBe(2);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[1]['i1']).toBe('');
-                expect(v1.rows[1]['i2']).toBe('');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[1]['c1']).toBe('');
+                expect(v1.rows[1]['c2']).toBe('');
             });
             it("- merge(view, 0) : 컬럼 별칭으로 매칭 ", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' }
+                        { c1: 'R1', c2: 'R2' }
                     ]
                 }, 3);
                 v2.read({
-                    /**
-                     * REVIEW: 별칭을 컬럼에 설정하면 설정후 가져와서 교체가 안됨
-                     * 후처리 방식이면 가능하지만, 복잡해짐
-                     */
-                    // columns: {
-                    //     i3: { alias: 'i1' },
-                    //     i4: { alias: 'i2' },
-                    // },
+                    columns: {
+                        c3: { alias: 'c1' },
+                        c4: { alias: 'c2' },
+                    },
                     rows: [
-                        { i3: 'R30', i4: 'R40' }
+                        { c1: 'R30', c2: 'R40' }    // 별칭의 이름의 레코드
                     ]
                 }, 3);
-                v2.columns['i3'].alias = 'i1';
-                v2.columns['i4'].alias = 'i2';
                 v1.merge(v2, 0);
 
                 expect(v1.columns.count).toBe(2);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[1]['i1']).toBe('R30');
-                expect(v1.rows[1]['i2']).toBe('R40');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[1]['c1']).toBe('R30');
+                expect(v1.rows[1]['c2']).toBe('R40');
             });
             // 1 : 컬럼 기준 병합, 초과 로우 무시
             it("- merge(view, 1) : 컬럼 전부 비매칭, 로우 초과", () => {
@@ -729,85 +723,85 @@ describe("[target: meta-view.js]", () => {
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' }
+                        { c1: 'R1', c2: 'R2' }
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' }
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' }
                     ]
                 }, 3);
                 v1.merge(v2, 1);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(1);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('R3');
-                expect(v1.rows[0]['i4']).toBe('R4');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('R3');
+                expect(v1.rows[0]['c4']).toBe('R4');
             });
             it("- merge(view, 1) : 컬럼 전부 비매칭, 로우 미만", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' }
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' }
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
+                        { c3: 'R3', c4: 'R4' },
                     ]
                 }, 3);
                 v1.merge(v2, 1);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('R3');
-                expect(v1.rows[0]['i4']).toBe('R4');
-                expect(v1.rows[1]['i1']).toBe('R10');
-                expect(v1.rows[1]['i2']).toBe('R20');
-                expect(v1.rows[1]['i3']).toBe('');
-                expect(v1.rows[1]['i4']).toBe('');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('R3');
+                expect(v1.rows[0]['c4']).toBe('R4');
+                expect(v1.rows[1]['c1']).toBe('R10');
+                expect(v1.rows[1]['c2']).toBe('R20');
+                expect(v1.rows[1]['c3']).toBe('');
+                expect(v1.rows[1]['c4']).toBe('');
             });
             it("- merge(view, 1) : 컬럼 별칭으로 매칭", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' }
+                        { c1: 'R1', c2: 'R2' }
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R3', i4: 'R4' }
+                        { c1: 'R3', c4: 'R4' }
                     ]
                 }, 3);
-                v2.columns['i1'].alias = 'i3';
+                v2.columns['c1'].alias = 'c3';
                 v1.merge(v2, 1);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(1);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('R3');
-                expect(v1.rows[0]['i4']).toBe('R4');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('R3');
+                expect(v1.rows[0]['c4']).toBe('R4');
             });
             it("- merge(view, 1) : 컬럼 일부 매칭 => 예외", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' }
+                        { c1: 'R1', c2: 'R2' }
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R10', i4: 'R4' }
+                        { c1: 'R10', c4: 'R4' }
                     ]
                 }, 3);
 
@@ -819,97 +813,97 @@ describe("[target: meta-view.js]", () => {
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R10', i2: 'R20' }
+                        { c1: 'R10', c2: 'R20' }
                     ]
                 }, 3);
                 v1.merge(v2, 2);
 
                 expect(v1.columns.count).toBe(2);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[1]['i1']).toBe('R10');
-                expect(v1.rows[1]['i2']).toBe('R20');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[1]['c1']).toBe('R10');
+                expect(v1.rows[1]['c2']).toBe('R20');
             });
             it("- merge(view, 2) : 컬럼 일부 매칭", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R10', i3: 'R30' }
+                        { c1: 'R10', c3: 'R30' }
                     ]
                 }, 3);
                 v1.merge(v2, 2);
 
                 expect(v1.columns.count).toBe(3);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('');
-                expect(v1.rows[1]['i1']).toBe('R10');
-                expect(v1.rows[1]['i2']).toBe('');
-                expect(v1.rows[1]['i3']).toBe('R30');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('');
+                expect(v1.rows[1]['c1']).toBe('R10');
+                expect(v1.rows[1]['c2']).toBe('');
+                expect(v1.rows[1]['c3']).toBe('R30');
             });
             it("- merge(view, 2) : 컬럼 전부 비매칭", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R30', i4: 'R40' }
+                        { c3: 'R30', c4: 'R40' }
                     ]
                 }, 3);
                 v1.merge(v2, 2);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('');
-                expect(v1.rows[0]['i4']).toBe('');
-                expect(v1.rows[1]['i1']).toBe('');
-                expect(v1.rows[1]['i2']).toBe('');
-                expect(v1.rows[1]['i3']).toBe('R30');
-                expect(v1.rows[1]['i4']).toBe('R40');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('');
+                expect(v1.rows[0]['c4']).toBe('');
+                expect(v1.rows[1]['c1']).toBe('');
+                expect(v1.rows[1]['c2']).toBe('');
+                expect(v1.rows[1]['c3']).toBe('R30');
+                expect(v1.rows[1]['c4']).toBe('R40');
             });
             it("- merge(view, 2) : 컬럼 별칭으로 매칭", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R30', i4: 'R40' }
+                        { c3: 'R30', c4: 'R40' }
                     ]
                 }, 3);
-                v2.columns['i4'].alias = 'i1';
+                v2.columns['c4'].alias = 'c1';
                 v1.merge(v2, 2);
 
                 expect(v1.columns.count).toBe(3);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('');
-                expect(v1.rows[1]['i1']).toBe('R40');
-                expect(v1.rows[1]['i2']).toBe('');
-                expect(v1.rows[1]['i3']).toBe('R30');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('');
+                expect(v1.rows[1]['c1']).toBe('R40');
+                expect(v1.rows[1]['c2']).toBe('');
+                expect(v1.rows[1]['c3']).toBe('R30');
             });
             // 3 : 컬럼 기준 병합, 초과 로우 채움
             it("- merge(view, 3) : 컬럼 전부 비매칭, 로우 초과", () => {
@@ -917,40 +911,40 @@ describe("[target: meta-view.js]", () => {
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 }, 3);
                 v1.merge(v2, 3);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(2);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('R3');
-                expect(v1.rows[0]['i4']).toBe('R4');
-                expect(v1.rows[1]['i1']).toBe('');
-                expect(v1.rows[1]['i2']).toBe('');
-                expect(v1.rows[1]['i3']).toBe('R30');
-                expect(v1.rows[1]['i4']).toBe('R40');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('R3');
+                expect(v1.rows[0]['c4']).toBe('R4');
+                expect(v1.rows[1]['c1']).toBe('');
+                expect(v1.rows[1]['c2']).toBe('');
+                expect(v1.rows[1]['c3']).toBe('R30');
+                expect(v1.rows[1]['c4']).toBe('R40');
             });
             it("- merge(view, 3) : 컬럼 전부 비매칭, 로우 미만 => 예외", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 }, 3);
 
@@ -961,35 +955,36 @@ describe("[target: meta-view.js]", () => {
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i2: 'R3', i4: 'R4' }
+                        { c2: 'R3', c4: 'R4' }
                     ]
                 }, 3);
-                v2.columns['i2'].alias = 'i3';
+                // 로드 후 별칭 지정
+                v2.columns['c2'].alias = 'c3';
                 v1.merge(v2, 3);
 
                 expect(v1.columns.count).toBe(4);
                 expect(v1.rows.count).toBe(1);
-                expect(v1.rows[0]['i1']).toBe('R1');
-                expect(v1.rows[0]['i2']).toBe('R2');
-                expect(v1.rows[0]['i3']).toBe('R3');
-                expect(v1.rows[0]['i4']).toBe('R4');
+                expect(v1.rows[0]['c1']).toBe('R1');
+                expect(v1.rows[0]['c2']).toBe('R2');
+                expect(v1.rows[0]['c3']).toBe('R3');
+                expect(v1.rows[0]['c4']).toBe('R4');
             });
             it("- merge(view, 3) : 컬럼 일부 매칭 => 예외", () => {
                 var v1 = new MetaView('v1');
                 var v2 = new MetaView('v2');
                 v1.read({
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 }, 3);
                 v2.read({
                     rows: [
-                        { i1: 'R30', i4: 'R40' },
+                        { c1: 'R30', c4: 'R40' },
                     ]
                 }, 3);
 
@@ -1000,83 +995,73 @@ describe("[target: meta-view.js]", () => {
             it("- select() : 기본값 조회 ", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
-                    columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
-                    },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
-                var view2 = view1.select();
+                var rows = view1.select();
     
-                expect(view2.columns.count).toBe(2);
-                expect(view2.rows.count).toBe(2);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.columns['i2'].caption).toBe('C2');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[0]['i2']).toBe(2);
-                expect(view2.rows[1]['i1']).toBe(10);
-                expect(view2.rows[1]['i2']).toBe(20);
-                // 참조 검사
-                expect(view2.columns['i1'] === view1.columns['i1']).toBe(true);
-                expect(view2.columns['i2'] === view1.columns['i2']).toBe(true);
-                expect(view2.instanceOf(MetaView)).toBe(true);
+                expect(rows.length).toBe(2);
+                expect(rows[0]['c1']).toBe(1);
+                expect(rows[0]['c2']).toBe(2);
+                expect(rows[1]['c1']).toBe(10);
+                expect(rows[1]['c2']).toBe(20);
             });
             it("- select([], filter) : 필터 설정 ", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
-                    columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
-                    },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
-                var view2 = view1.select(row => row['i1'] < 10);
+                var rows = view1.select(row => row['c1'] < 10);
     
-                expect(view2.columns.count).toBe(2);
-                expect(view2.rows.count).toBe(1);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.columns['i2'].caption).toBe('C2');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[0]['i2']).toBe(2);
-                /**
-                 * MEMO: filter 함수 조건에 따라 조회 확인
-                 */
+                expect(rows.length).toBe(1);
+                expect(rows[0]['c1']).toBe(1);
+                expect(rows[0]['c2']).toBe(2);
             });
             it("- select(name) : 컬럼명 설정", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
-                    columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
-                    },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
-                var view2 = view1.select(['i1']);
+                var rows = view1.select(['c1']);
     
-                expect(view2.columns.count).toBe(1);
-                expect(view2.rows.count).toBe(2);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[1]['i1']).toBe(10);
-                /**
-                 * MEMO: 지정한 컬럼만 조회 확인
-                 */
+                expect(rows.length).toBe(2);
+                expect(rows[0]['c1']).toBe(1);
+                expect(rows[1]['c1']).toBe(10);
             });
         });
 
         describe("BaseEntity.load() <가져오기>", () => {
+            it("- load(str) : 객체 가져오기", () => {
+                const view1 = new MetaView('v1');
+                const view2 = new MetaView('v2');
+                const view3 = new MetaView('v3');
+
+                view1.columns.addValue('c1', 'C1');
+                
+                const data1 = view1.output(0);
+                const data2 = view1.getObject();
+                
+                view2.load(data1)
+                view3.load(data2)
+
+                expect(view1.viewName).toBe('v1');
+                expect(view1.columns['c1'].value).toBe('C1');
+                expect(view2.viewName).toBe('v1');
+                expect(view2.columns['c1'].value).toBe('C1');
+                expect(view3.viewName).toBe('v1');
+                expect(view3.columns['c1'].value).toBe('C1');
+            });
             it("- load(str) : str로 가져오기 ", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.add('c1');
@@ -1707,49 +1692,49 @@ describe("[target: meta-view.js]", () => {
         describe("MetaView(name, baseEntity) <생성자>", () => {
             it("- new MetaView(name, baseEntity) ", () => {
                 var view1 = new MetaView('E1');        // 일반 뷰
-                view1.columns.add('i1');
-                view1.columns.add('i2');
-                view1.columns['i2'].caption = 'C1';
+                view1.columns.add('c1');
+                view1.columns.add('c2');
+                view1.columns['c2'].caption = 'C1';
                 // var row = view1.newRow();
-                // row['i1'] = 'R1';
-                // row['i2'] = 'R2';
+                // row['c1'] = 'R1';
+                // row['c2'] = 'R2';
                 // view1.rows.add(row);
                 var view3 = new MetaView('T3');
-                view3.columns.addValue('i5','V5');
+                view3.columns.addValue('c5','V5');
                 var view2 = new MetaView('T2', view1); // 참조 뷰
-                view2.columns.add(view1.columns['i1']);
-                view2.columns.add('i2');                  // 기존에 있는 속성명
-                view2.columns.add('i3');                  // 신규 속성명
-                view2.columns.addValue('i4', 'V4');       // 신규 속성명 + value
-                view2.columns.add('i5', view3.columns);     // 참조로 등록
-                view2.columns['i2'].caption = 'C2';
-                view2.columns['i3'].caption = 'C3';
+                view2.columns.add(view1.columns['c1']);
+                view2.columns.add('c2');                  // 기존에 있는 속성명
+                view2.columns.add('c3');                  // 신규 속성명
+                view2.columns.addValue('c4', 'V4');       // 신규 속성명 + value
+                view2.columns.add('c5', view3.columns);     // 참조로 등록
+                view2.columns['c2'].caption = 'C2';
+                view2.columns['c3'].caption = 'C3';
         
                 // view1
                 expect(view1.viewName).toBe('E1');
                 expect(view1.columns.count).toBe(4);
                 // expect(view1.rows.count).toBe(1);
-                expect(view1.columns['i2'].caption).toBe('C2');
-                expect(view1.columns['i3'].caption).toBe('C3');
-                expect(view1.columns['i4'].value).toBe('V4');
+                expect(view1.columns['c2'].caption).toBe('C2');
+                expect(view1.columns['c3'].caption).toBe('C3');
+                expect(view1.columns['c4'].value).toBe('V4');
                 expect(view1.columns._baseCollection).toBe(undefined);
-                expect(view1.columns['i1']._entity._name).toBe('E1');
-                expect(view1.columns['i2']._entity._name).toBe('E1');
-                // expect(view1.rows[0]['i1']).toBe('R1');
-                // expect(view1.rows[0]['i2']).toBe('R2');
+                expect(view1.columns['c1']._entity._name).toBe('E1');
+                expect(view1.columns['c2']._entity._name).toBe('E1');
+                // expect(view1.rows[0]['c1']).toBe('R1');
+                // expect(view1.rows[0]['c2']).toBe('R2');
                 // view2
                 var aa = view2.columns._refEntities
                 expect(view2.columns._refEntities[0]._name).toBe('E1');
                 expect(view2.columns._refEntities[1]._name).toBe('T3');
-                expect(view2.columns['i2'].caption).toBe('C2');
-                expect(view2.columns['i3'].caption).toBe('C3');
-                expect(view2.columns['i4'].value).toBe('V4');
+                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c3'].caption).toBe('C3');
+                expect(view2.columns['c4'].value).toBe('V4');
                 expect(view2._baseEntity._name).toBe('E1');
                 expect(view2.viewName).toBe('T2');
                 expect(view2.columns.count).toBe(5);
                 expect(view2.rows.count).toBe(0);
-                expect(view2.columns['i1']._entity._name).toBe('E1');
-                expect(view2.columns['i2']._entity._name).toBe('E1');
+                expect(view2.columns['c1']._entity._name).toBe('E1');
+                expect(view2.columns['c2']._entity._name).toBe('E1');
             });
         });
 
@@ -2197,12 +2182,12 @@ describe("[target: meta-view.js]", () => {
         describe("MetaView.clone() <뷰 복제>", () => {
             it("- clone() : 복제, 일반 뷰 ", () => {
                 var view1 = new MetaView('E1');
-                view1.columns.add('i1');
-                view1.columns.add('i2');
-                view1.columns['i2'].caption = 'C1';
+                view1.columns.add('c1');
+                view1.columns.add('c2');
+                view1.columns['c2'].caption = 'C1';
                 var row = view1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 view1.rows.add(row);
                 var view2 = view1.clone();
         
@@ -2210,21 +2195,21 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.viewName).toBe('E1');
                 expect(view1.columns.count).toBe(2);
                 expect(view1.rows.count).toBe(1);
-                expect(view1.columns['i2'].caption).toBe('C1');
-                expect(view1.rows[0]['i1']).toBe('R1');
-                expect(view1.rows[0]['i2']).toBe('R2');
+                expect(view1.columns['c2'].caption).toBe('C1');
+                expect(view1.rows[0]['c1']).toBe('R1');
+                expect(view1.rows[0]['c2']).toBe('R2');
                 // view2
                 expect(view2.viewName).toBe('E1');
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(1);
-                expect(view2.columns['i2'].caption).toBe('C1');
-                expect(view2.rows[0]['i1']).toBe('R1');
-                expect(view2.rows[0]['i2']).toBe('R2');
+                expect(view2.columns['c2'].caption).toBe('C1');
+                expect(view2.rows[0]['c1']).toBe('R1');
+                expect(view2.rows[0]['c2']).toBe('R2');
                 // 비교
                 expect(view1 === view2).toBe(false);
                 expect(view1.columns === view2.columns).toBe(false);
-                expect(view1.columns['i1'] === view2.columns['i1']).toBe(false);
-                expect(view1.columns['i2'] === view2.columns['i2']).toBe(false);
+                expect(view1.columns['c1'] === view2.columns['c1']).toBe(false);
+                expect(view1.columns['c2'] === view2.columns['c2']).toBe(false);
                 expect(view1.rows[0] === view2.rows[0]).toBe(false);
             });
         });
@@ -2233,12 +2218,12 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
@@ -2246,60 +2231,60 @@ describe("[target: meta-view.js]", () => {
     
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(2);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.columns['i2'].caption).toBe('C2');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[0]['i2']).toBe(2);
-                expect(view2.rows[1]['i1']).toBe(10);
-                expect(view2.rows[1]['i2']).toBe(20);
+                expect(view2.columns['c1'].caption).toBe('C1');
+                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.rows[0]['c1']).toBe(1);
+                expect(view2.rows[0]['c2']).toBe(2);
+                expect(view2.rows[1]['c1']).toBe(10);
+                expect(view2.rows[1]['c2']).toBe(20);
                 // 참조 검사
                 expect(view2 === view1).toBe(false);
-                expect(view2.columns['i1'] === view1.columns['i1']).toBe(true); // REVIEW: copy 한 column 의 참조 여부
-                expect(view2.columns['i2'] === view1.columns['i2']).toBe(true);
+                expect(view2.columns['c1'] === view1.columns['c1']).toBe(true); // REVIEW: copy 한 column 의 참조 여부
+                expect(view2.columns['c2'] === view1.columns['c2']).toBe(true);
                 expect(view2.instanceOf(MetaView)).toBe(true);
             });
             it("- copy(filter) : 필터 설정 ", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
-                var view2 = view1.copy(row => row['i1'] < 10);
+                var view2 = view1.copy(row => row['c1'] < 10);
     
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(1);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.columns['i2'].caption).toBe('C2');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[0]['i2']).toBe(2);
+                expect(view2.columns['c1'].caption).toBe('C1');
+                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.rows[0]['c1']).toBe(1);
+                expect(view2.rows[0]['c2']).toBe(2);
             });
             it("- copy(itmms) : 아이템 설정", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 1, i2: 2 },
-                        { i1: 10, i2: 20 },
+                        { c1: 1, c2: 2 },
+                        { c1: 10, c2: 20 },
                     ]
                 };
                 view1.read(json1, 3);
-                var view2 = view1.copy('i1');
+                var view2 = view1.copy('c1');
     
                 expect(view2.columns.count).toBe(1);
                 expect(view2.rows.count).toBe(2);
-                expect(view2.columns['i1'].caption).toBe('C1');
-                expect(view2.rows[0]['i1']).toBe(1);
-                expect(view2.rows[1]['i1']).toBe(10);
+                expect(view2.columns['c1'].caption).toBe('C1');
+                expect(view2.rows[0]['c1']).toBe(1);
+                expect(view2.rows[1]['c1']).toBe(10);
             });
             it("- copy(itmms) : 아이템 설정", () => {
                 const view1 = new MetaView('V1');

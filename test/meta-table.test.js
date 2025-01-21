@@ -33,25 +33,25 @@ describe("[target: meta-table.js]", () => {
             it("- 테이블 등록후 속성 검사 ", () => {
                 const table1 = new MetaTable('T1');
                 const table2 = new MetaTable('T2');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].value = 'R1';
-                table1.columns['i2'].value = 'R2';
-                table2.columns.add('i1');
-                table2.columns.add(table1.columns['i2']); // 내부 복제됨
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].value = 'R1';
+                table1.columns['c2'].value = 'R2';
+                table2.columns.add('c1');
+                table2.columns.add(table1.columns['c2']); // 내부 복제됨
         
                 // table1
-                expect(table1.columns['i1'].value).toBe('R1');
-                expect(table1.columns['i2'].value).toBe('R2');
+                expect(table1.columns['c1'].value).toBe('R1');
+                expect(table1.columns['c2'].value).toBe('R2');
                 expect(table1.tableName).toBe('T1');
-                expect(table1.columns['i1']._entity.tableName).toBe('T1');
-                expect(table1.columns['i2']._entity.tableName).toBe('T1');
+                expect(table1.columns['c1']._entity.tableName).toBe('T1');
+                expect(table1.columns['c2']._entity.tableName).toBe('T1');
                 // table2
-                expect(table2.columns['i1'].value).toBe(null);
-                expect(table2.columns['i2'].value).toBe('R2');
+                expect(table2.columns['c1'].value).toBe(null);
+                expect(table2.columns['c2'].value).toBe('R2');
                 expect(table2.tableName).toBe('T2');
-                expect(table2.columns['i1']._entity.tableName).toBe('T2');
-                expect(table2.columns['i2']._entity.tableName).toBe('T2');
+                expect(table2.columns['c1']._entity.tableName).toBe('T2');
+                expect(table2.columns['c2']._entity.tableName).toBe('T2');
             });
         });
         describe("MetaTable.tableName <테이블명>", () => {
@@ -86,7 +86,7 @@ describe("[target: meta-table.js]", () => {
             });
             it("- 예외 : row 존재시 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
+                table1.columns.add('c1');
                 table1.rows.add(table1.newRow())
                 var col = new MetaTableColumnCollection(table1);
 
@@ -186,11 +186,11 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.clear() : <지우기 (rows)>", () => {
             it("- clear() : 지우기 (rows) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 table1.clear();
         
@@ -201,11 +201,11 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.reset() <지우기 (rows, columns)>", () => {
             it("- reset() : 지우기 (rows, columns) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 table1.reset();
         
@@ -216,19 +216,19 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.newRow(): Row <MetaRow 생성>", () => {
             it("- newRow() : MetaRow 생성 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
                 var row = table1.newRow();
-                row['i1'] = 'R1';
+                row['c1'] = 'R1';
         
-                expect(row['i1']).toBeDefined();
-                expect(row['i2']).toBeDefined();
-                expect(row['i3']).toBeDefined();
+                expect(row['c1']).toBeDefined();
+                expect(row['c2']).toBeDefined();
+                expect(row['c3']).toBeDefined();
                 expect(row[0]).toBeDefined();
                 expect(row[1]).toBeDefined();
                 expect(row[2]).toBeDefined();
-                expect(row['i1']).toBe('R1');
+                expect(row['c1']).toBe('R1');
                 expect(row[0]).toBe('R1');
                 expect(row['0']).toBe('R1');        
             });
@@ -236,65 +236,65 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.getValue(): row <value 얻기>", () => {
             it("- getValue() : row 얻기(단일) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
-                table1.columns['i1'].value = 'R1';
-                table1.columns['i2'].value = 'R2';
-                table1.columns['i3'].value = 'R3';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
+                table1.columns['c1'].value = 'R1';
+                table1.columns['c2'].value = 'R2';
+                table1.columns['c3'].value = 'R3';
                 var row = table1.getValue();
         
-                expect(row['i1']).toBe('R1');
-                expect(row['i2']).toBe('R2');
-                expect(row['i3']).toBe('R3');
+                expect(row['c1']).toBe('R1');
+                expect(row['c2']).toBe('R2');
+                expect(row['c3']).toBe('R3');
                 expect(row[0]).toBe('R1');
                 expect(row[1]).toBe('R2');
                 expect(row[2]).toBe('R3');
             });
             it("- getValue() : row 얻기(빈값) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
                 var row = table1.getValue();
         
-                expect(row['i1']).toBe('');
-                expect(row['i2']).toBe('');
-                expect(row['i3']).toBe('');
+                expect(row['c1']).toBe('');
+                expect(row['c2']).toBe('');
+                expect(row['c3']).toBe('');
                 expect(row[0]).toBe('');
                 expect(row[1]).toBe('');
                 expect(row[2]).toBe('');
             });
             it("- getValue() : row 얻기(default) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
-                table1.columns['i1'].default = 'D1';
-                table1.columns['i2'].default = 'D2';
-                table1.columns['i3'].default = 'D3';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
+                table1.columns['c1'].default = 'D1';
+                table1.columns['c2'].default = 'D2';
+                table1.columns['c3'].default = 'D3';
                 var row = table1.getValue();
                 
-                expect(table1.columns['i1'].value).toBe(null);
-                expect(table1.columns['i2'].value).toBe(null);
-                expect(table1.columns['i3'].value).toBe(null);
-                expect(row['i1']).toBe('D1');
-                expect(row['i2']).toBe('D2');
-                expect(row['i3']).toBe('D3');
+                expect(table1.columns['c1'].value).toBe(null);
+                expect(table1.columns['c2'].value).toBe(null);
+                expect(table1.columns['c3'].value).toBe(null);
+                expect(row['c1']).toBe('D1');
+                expect(row['c2']).toBe('D2');
+                expect(row['c3']).toBe('D3');
             });
             it("- getValue() : row 얻기(단일), 별칭 사용 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
-                table1.columns['i2'].alias = 'ii2';    // 별칭
-                table1.columns['i3'].alias = 'ii3';    // 별칭
-                table1.columns['i1'].value = 'R1';
-                table1.columns['i2'].value = 'R2';
-                table1.columns['i3'].value = 'R3';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
+                table1.columns['c2'].alias = 'ii2';    // 별칭
+                table1.columns['c3'].alias = 'ii3';    // 별칭
+                table1.columns['c1'].value = 'R1';
+                table1.columns['c2'].value = 'R2';
+                table1.columns['c3'].value = 'R3';
                 var row = table1.getValue();
         
-                expect(row['i1']).toBe('R1');
+                expect(row['c1']).toBe('R1');
                 expect(row['ii2']).toBe('R2');
                 expect(row['ii3']).toBe('R3');
                 expect(row[0]).toBe('R1');
@@ -305,67 +305,67 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.setValue(row) <value 설정>", () => {
             it("- setValue(row) : row 설정(단일) ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
-                row['i3'] = 'R3';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
+                row['c3'] = 'R3';
                 table1.setValue(row);
                 
-                expect(table1.columns['i1'].value).toBe('R1');
-                expect(table1.columns['i2'].value).toBe('R2');
-                expect(table1.columns['i3'].value).toBe('R3');
+                expect(table1.columns['c1'].value).toBe('R1');
+                expect(table1.columns['c2'].value).toBe('R2');
+                expect(table1.columns['c3'].value).toBe('R3');
             });
             it("- setValue(row) :row 설정(단일), 별칭 사용 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
-                table1.columns['i2'].alias = 'ii2';    // 별칭
-                table1.columns['i3'].alias = 'ii3';    // 별칭
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
+                table1.columns['c2'].alias = 'ii2';    // 별칭
+                table1.columns['c3'].alias = 'ii3';    // 별칭
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 row['ii3'] = 'RR3';
                 table1.setValue(row);
         
-                expect(table1.columns['i1'].value).toBe('R1');
-                expect(table1.columns['i2'].value).toBe('');
-                expect(table1.columns['i3'].value).toBe('RR3');
+                expect(table1.columns['c1'].value).toBe('R1');
+                expect(table1.columns['c2'].value).toBe('');
+                expect(table1.columns['c3'].value).toBe('RR3');
             });
             it("- setValue(row) :row 설정(단일), 별칭 사용, 중간에 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns.add('i3');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
                 
                 table1.rows.add(table1.newRow());
-                table1.rows[0]['i1'] = '1'
-                table1.rows[0]['i2'] = '2'
-                table1.rows[0]['i3'] = '3'
+                table1.rows[0]['c1'] = '1'
+                table1.rows[0]['c2'] = '2'
+                table1.rows[0]['c3'] = '3'
                 // 별칭
-                table1.columns['i2'].alias = 'ii2';
-                table1.columns['i3'].alias = 'ii3';
+                table1.columns['c2'].alias = 'ii2';
+                table1.columns['c3'].alias = 'ii3';
                 table1.rows.add(table1.newRow());
-                table1.rows[1]['i1'] = '10'
+                table1.rows[1]['c1'] = '10'
                 table1.rows[1]['ii2'] = '20'
                 table1.rows[1]['ii3'] = '30'
                 
                 table1.setValue(table1.rows[0]);
-                expect(table1.columns['i1'].value).toBe('1');
-                expect(table1.columns['i2'].value).toBe('2');
-                expect(table1.columns['i3'].value).toBe('3');
+                expect(table1.columns['c1'].value).toBe('1');
+                expect(table1.columns['c2'].value).toBe('2');
+                expect(table1.columns['c3'].value).toBe('3');
                 table1.setValue(table1.rows[1]);
-                expect(table1.columns['i1'].value).toBe('10');
-                expect(table1.columns['i2'].value).toBe('20');
-                expect(table1.columns['i3'].value).toBe('30');
+                expect(table1.columns['c1'].value).toBe('10');
+                expect(table1.columns['c2'].value).toBe('20');
+                expect(table1.columns['c3'].value).toBe('30');
                 
-                expect(table1.rows[0]['i1']).toBe('1');
+                expect(table1.rows[0]['c1']).toBe('1');
                 expect(table1.rows[0]['ii2']).toBe('2');
                 expect(table1.rows[0]['ii3']).toBe('3');
-                expect(table1.rows[1]['i1']).toBe('10');
+                expect(table1.rows[1]['c1']).toBe('10');
                 expect(table1.rows[1]['ii2']).toBe('20');
                 expect(table1.rows[1]['ii3']).toBe('30');
 
@@ -382,12 +382,12 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -396,38 +396,38 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(4);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
-                expect(table2.rows[0]['i1']).toBe('R1');
-                expect(table2.rows[0]['i2']).toBe('R2');
-                expect(table2.rows[1]['i1']).toBe('R10');
-                expect(table2.rows[1]['i2']).toBe('R20');
-                expect(table2.rows[2]['i1']).toBe('R1');
-                expect(table2.rows[2]['i2']).toBe('R2');
-                expect(table2.rows[3]['i1']).toBe('R10');
-                expect(table2.rows[3]['i2']).toBe('R20');
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.rows[0]['c1']).toBe('R1');
+                expect(table2.rows[0]['c2']).toBe('R2');
+                expect(table2.rows[1]['c1']).toBe('R10');
+                expect(table2.rows[1]['c2']).toBe('R20');
+                expect(table2.rows[2]['c1']).toBe('R1');
+                expect(table2.rows[2]['c2']).toBe('R2');
+                expect(table2.rows[3]['c1']).toBe('R10');
+                expect(table2.rows[3]['c2']).toBe('R20');
             });
             it("- merge() : opt = 0 (다른 구조) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i3: { caption: 'C3'},
+                        c1: { caption: 'C1'},
+                        c3: { caption: 'C3'},
                     },
                     rows: [
-                        { i1: 'R1', i3: 'R3' },
-                        { i1: 'R10', i3: 'R30' },
+                        { c1: 'R1', c3: 'R3' },
+                        { c1: 'R10', c3: 'R30' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -436,16 +436,16 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(2);
                 expect(table1.rows.count).toBe(4);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[2]['i1']).toBe('R1');
-                expect(table1.rows[2]['i2']).toBe('');
-                expect(table1.rows[3]['i1']).toBe('R10');
-                expect(table1.rows[3]['i2']).toBe('');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[2]['c1']).toBe('R1');
+                expect(table1.rows[2]['c2']).toBe('');
+                expect(table1.rows[3]['c1']).toBe('R10');
+                expect(table1.rows[3]['c2']).toBe('');
                 /**
                  * MEMO: row 기준으로 병합할때, 나닌 컬럼은 무시되며, 없는 rows 는 null 확인
                  */
@@ -455,22 +455,22 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        // { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        // { c3: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -479,41 +479,41 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.columns['i4'].caption).toBe('C4');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('R3');
-                expect(table1.rows[0]['i4']).toBe('R4');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('');
-                expect(table1.rows[1]['i4']).toBe('');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('R3');
+                expect(table1.rows[0]['c4']).toBe('R4');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('');
+                expect(table1.rows[1]['c4']).toBe('');
             });
             it("- merge() : opt = 1 (다른 구조, 로우가 클 때) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
-                        { i3: 'R300', i4: 'R400' }
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
+                        { c3: 'R300', c4: 'R400' }
                     ]
                 };
                 table1.read(json1, 3);
@@ -522,63 +522,63 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.columns['i4'].caption).toBe('C4');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('R3');
-                expect(table1.rows[0]['i4']).toBe('R4');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('R30');
-                expect(table1.rows[1]['i4']).toBe('R40');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('R3');
+                expect(table1.rows[0]['c4']).toBe('R4');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('R30');
+                expect(table1.rows[1]['c4']).toBe('R40');
             });
             it("- merge() : opt = 1 (타겟 별칭 사용) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i2: { caption: 'CC2'},
-                        i4: { caption: 'C4'},
+                        c2: { caption: 'CC2'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i2: 'R2', i4: 'R4' },
-                        { i2: 'R20', i4: 'R40' },
+                        { c2: 'R2', c4: 'R4' },
+                        { c2: 'R20', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
                 table2.read(json2, 3);
-                table2.columns['i2'].alias = 'ii2'; // 별칭 처리
+                table2.columns['c2'].alias = 'ii2'; // 별칭 처리
                 // table2.rows.add(table2.newRow())
 
                 table1.merge(table2, 1);
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 expect(table1.columns['ii2'].caption).toBe('CC2');
-                expect(table1.columns['i4'].caption).toBe('C4');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
+                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['ii2']).toBe('R2');
-                expect(table1.rows[0]['i4']).toBe('R4');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
+                expect(table1.rows[0]['c4']).toBe('R4');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
                 expect(table1.rows[1]['ii2']).toBe('R20');
-                expect(table1.rows[1]['i4']).toBe('R40');
+                expect(table1.rows[1]['c4']).toBe('R40');
             });
 
             it("- merge() : opt = 1 (원본 별칭 사용) ", () => {
@@ -586,65 +586,65 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
                 table2.read(json2, 3);
-                table1.columns['i1'].alias = 'ii1'; // 별칭 처리
+                table1.columns['c1'].alias = 'ii1'; // 별칭 처리
                 table1.merge(table2, 1);
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
                 expect(table1.columns.alias('ii1').caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.columns['i4'].caption).toBe('C4');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c4'].caption).toBe('C4');
                 expect(table1.rows[0]['ii1']).toBe('R1');   // 별칭 접근
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('R3');
-                expect(table1.rows[0]['i4']).toBe('R4');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('R3');
+                expect(table1.rows[0]['c4']).toBe('R4');
                 expect(table1.rows[1]['ii1']).toBe('R10');  // 별칭 접근
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('R30');
-                expect(table1.rows[1]['i4']).toBe('R40');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('R30');
+                expect(table1.rows[1]['c4']).toBe('R40');
             });
             it("- merge() : opt = 1 (예외 : 컬럼 중복 1) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i1: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c1: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i1: 'R3', i4: 'R4' },
-                        { i1: 'R30', i4: 'R40' },
+                        { c1: 'R3', c4: 'R4' },
+                        { c1: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -657,27 +657,27 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
                 table2.read(json2, 3);
-                table2.columns['i3'].alias = 'i1'; // 별칭 처리
+                table2.columns['c3'].alias = 'c1'; // 별칭 처리
     
                 expect(() => table1.merge(table2, 1)).toThrow('EL05343');
             });
@@ -686,27 +686,27 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
                         ii1: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { ii1: 'R3', i4: 'R4' },
-                        { ii1: 'R30', i4: 'R40' },
+                        { ii1: 'R3', c4: 'R4' },
+                        { ii1: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
                 table2.read(json2, 3);
-                table1.columns['i1'].alias = 'ii1';
+                table1.columns['c1'].alias = 'ii1';
     
                 expect(() => table1.merge(table2, 1)).toThrow('EL05344');
             });
@@ -715,28 +715,28 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
                 table2.read(json2, 3);
-                table1.columns['i1'].alias = 'ii1';
-                table2.columns['i3'].alias = 'ii1';
+                table1.columns['c1'].alias = 'ii1';
+                table2.columns['c3'].alias = 'ii1';
     
                 expect(() => table1.merge(table2, 1)).toThrow('EL05344');
             });
@@ -745,22 +745,22 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i2: { caption: 'C2'},
-                        i3: { caption: 'C3'},
+                        c2: { caption: 'C2'},
+                        c3: { caption: 'C3'},
                     },
                     rows: [
-                        { i2: 'R200', i3: 'R300' },
-                        { i2: 'R2000', i3: 'R3000' },
+                        { c2: 'R200', c3: 'R300' },
+                        { c2: 'R2000', c3: 'R3000' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -769,42 +769,42 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(3);
                 expect(table1.rows.count).toBe(4);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('');
-                expect(table1.rows[2]['i1']).toBe('');
-                expect(table1.rows[2]['i2']).toBe('R200');
-                expect(table1.rows[2]['i3']).toBe('R300');
-                expect(table1.rows[3]['i1']).toBe('');
-                expect(table1.rows[3]['i2']).toBe('R2000');
-                expect(table1.rows[3]['i3']).toBe('R3000');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('');
+                expect(table1.rows[2]['c1']).toBe('');
+                expect(table1.rows[2]['c2']).toBe('R200');
+                expect(table1.rows[2]['c3']).toBe('R300');
+                expect(table1.rows[3]['c1']).toBe('');
+                expect(table1.rows[3]['c2']).toBe('R2000');
+                expect(table1.rows[3]['c3']).toBe('R3000');
             });
             it("- merge() : opt = 2 (다른 구조, 로우 다름) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i2: { caption: 'C2'},
-                        i3: { caption: 'C3'},
+                        c2: { caption: 'C2'},
+                        c3: { caption: 'C3'},
                     },
                     rows: [
-                        { i2: 'R200', i3: 'R300' }
+                        { c2: 'R200', c3: 'R300' }
                     ]
                 };
                 table1.read(json1, 3);
@@ -813,44 +813,44 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(3);
                 expect(table1.rows.count).toBe(3);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('');
-                expect(table1.rows[2]['i1']).toBe('');
-                expect(table1.rows[2]['i2']).toBe('R200');
-                expect(table1.rows[2]['i3']).toBe('R300');
-                // expect(table1.rows[3]['i1']).toBe('');
-                // expect(table1.rows[3]['i2']).toBe('R2000');
-                // expect(table1.rows[3]['i3']).toBe('R3000');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('');
+                expect(table1.rows[2]['c1']).toBe('');
+                expect(table1.rows[2]['c2']).toBe('R200');
+                expect(table1.rows[2]['c3']).toBe('R300');
+                // expect(table1.rows[3]['c1']).toBe('');
+                // expect(table1.rows[3]['c2']).toBe('R2000');
+                // expect(table1.rows[3]['c3']).toBe('R3000');
             });
             it("- merge() : opt = 3 (다른 구조, 로우 길이 다름, 더 큼) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
-                        { i3: 'R300', i4: 'R400' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
+                        { c3: 'R300', c4: 'R400' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -859,43 +859,43 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(3);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i3'].caption).toBe('C3');
-                expect(table1.columns['i4'].caption).toBe('C4');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('R3');
-                expect(table1.rows[0]['i4']).toBe('R4');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('R30');
-                expect(table1.rows[1]['i4']).toBe('R40');
-                expect(table1.rows[2]['i1']).toBe('');
-                expect(table1.rows[2]['i2']).toBe('');
-                expect(table1.rows[2]['i3']).toBe('R300');
-                expect(table1.rows[2]['i4']).toBe('R400');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('R3');
+                expect(table1.rows[0]['c4']).toBe('R4');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('R30');
+                expect(table1.rows[1]['c4']).toBe('R40');
+                expect(table1.rows[2]['c1']).toBe('');
+                expect(table1.rows[2]['c2']).toBe('');
+                expect(table1.rows[2]['c3']).toBe('R300');
+                expect(table1.rows[2]['c4']).toBe('R400');
             });
             it("- merge() : opt = 3 (다른 구조, 로우 길이 다름, 더 작음) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
+                        { c3: 'R3', c4: 'R4' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -908,22 +908,22 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 var json2 = { 
                     columns: {
-                        i3: { caption: 'C3'},
-                        i4: { caption: 'C4'},
+                        c3: { caption: 'C3'},
+                        c4: { caption: 'C4'},
                     },
                     rows: [
-                        { i3: 'R3', i4: 'R4' },
-                        { i3: 'R30', i4: 'R40' },
+                        { c3: 'R3', c4: 'R4' },
+                        { c3: 'R30', c4: 'R40' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -932,28 +932,28 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe('R3');
-                expect(table1.rows[0]['i4']).toBe('R4');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[1]['i3']).toBe('R30');
-                expect(table1.rows[1]['i4']).toBe('R40');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe('R3');
+                expect(table1.rows[0]['c4']).toBe('R4');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[1]['c3']).toBe('R30');
+                expect(table1.rows[1]['c4']).toBe('R40');
             });
             it("- 예외 : merge() : opt = 3 별칭 충돌 ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1', alias: 'ii1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1', alias: 'ii1'},
+                        c2: { caption: 'C2'},
                     },
                 };
                 var json2 = { 
                     columns: {
                         ii1: { caption: 'CC2'},
-                        i4: { caption: 'C4'},
+                        c4: { caption: 'C4'},
                     },
                 };
                 table1.read(json1, 3);
@@ -975,145 +975,134 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         i1: { caption: 'C1'},
-                //         i2: { caption: 'C2'},
+                //         c1: { caption: 'C1'},
+                //         c2: { caption: 'C2'},
                 //     },
                 //     rows: [
-                //         { i1: 1, i2: 2 },
-                //         { i1: 10, i2: 20 },
+                //         { c1: 1, c2: 2 },
+                //         { c1: 10, c2: 20 },
                 //     ]
                 // };
                 // table1.load(json1, 3);
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
                 // 초기화하여서 다시 임으로 불러와야함
                 MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
-                var table2 = table1.select();
+                var rows = table1.select();
     
-                expect(table2.columns.count).toBe(2);
-                expect(table2.rows.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[0]['i2']).toBe(2);
-                expect(table2.rows[1]['i1']).toBe(10);
-                expect(table2.rows[1]['i2']).toBe(20);
-                // 참조 검사
-                expect(table2.columns['i1'] === table1.columns['i1']).toBe(true);
-                expect(table2.columns['i2'] === table1.columns['i2']).toBe(true);
-                expect(table2.instanceOf(MetaView)).toBe(true);
+                expect(rows.length).toBe(2);
+                expect(rows[0]['c1']).toBe(1);
+                expect(rows[0]['c2']).toBe(2);
+                expect(rows[1]['c1']).toBe(10);
+                expect(rows[1]['c2']).toBe(20);
             });
             it("- select(filter) : 필터 설정 ", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         i1: { caption: 'C1'},
-                //         i2: { caption: 'C2'},
+                //         c1: { caption: 'C1'},
+                //         c2: { caption: 'C2'},
                 //     },
                 //     rows: [
-                //         { i1: 1, i2: 2 },
-                //         { i1: 10, i2: 20 },
+                //         { c1: 1, c2: 2 },
+                //         { c1: 10, c2: 20 },
                 //     ]
                 // };
                 // table1.load(json1, 3);
                 // setter 방식
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
                 MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
-                var fun1 = function(row) { return row['i1'] < 10}
-                // var table2 = table1.select([], row => row['i1'] < 10);
-                var table2 = table1.select(fun1);
+                var fun1 = function(row) { return row['c1'] < 10}
+                // var table2 = table1.select([], row => row['c1'] < 10);
+                var rows = table1.select(fun1);
                 
-                expect(table2.columns.count).toBe(2);
-                expect(table2.rows.count).toBe(1);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[0]['i2']).toBe(2);
+                expect(rows.length).toBe(1);
+                expect(rows[0]['c1']).toBe(1);
+                expect(rows[0]['c2']).toBe(2);
             });
             it("- select(itmms) : 아이템 설정", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         i1: { caption: 'C1'},
-                //         i2: { caption: 'C2'},
+                //         c1: { caption: 'C1'},
+                //         c2: { caption: 'C2'},
                 //     },
                 //     rows: [
-                //         { i1: 1, i2: 2 },
-                //         { i1: 10, i2: 20 },
+                //         { c1: 1, c2: 2 },
+                //         { c1: 10, c2: 20 },
                 //     ]
                 // };
                 // table1.load(json1, 3);
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
                 MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
-                var table2 = table1.select('i1');
-                var table3 = table1.select(row => row['i1'] < 10, ['i1']);
-                var table4 = table1.select(row => row['i1'] < 10, 'i1');
+                var rows1 = table1.select('c1');
+                var rows2 = table1.select(row => row['c1'] < 10, ['c1']);
+                var rows3 = table1.select(row => row['c1'] < 10, 'c1');
     
-                expect(table4.equal(table3)).toBe(true);
-                expect(table2.columns.count).toBe(1);
-                expect(table2.rows.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[1]['i1']).toBe(10);
+                expect(rows1.length).toBe(2);
+                expect(rows1[0]['c1']).toBe(1);
+                expect(rows1[1]['c1']).toBe(10);
+
+                expect(rows2).toEqual(rows3);
             });
             // it("- select(itmms) : 아이템 설정", () => {
             //     // MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
             //     var view1 = new MetaView('temp')
             //     var table1 = new MetaTable('T1');
-            //     table1.columns.add('i1');
-            //     table1.columns.add('i2');
+            //     table1.columns.add('c1');
+            //     table1.columns.add('c2');
             //     var row = table1.newRow();
-            //     row['i1'] = 1;
-            //     row['i2'] = 2;
+            //     row['c1'] = 1;
+            //     row['c2'] = 2;
             //     table1.rows.add(row);
-            //     var table2 = table1.select('i1', 'i3');
+            //     var table2 = table1.select('c1', 'c3');
             // });
 
             it("- select(itmms) : 예외 <초기화>", () => {
                 var table1 = new MetaTable('T1');
                 MetaRegistry.init();
 
-                expect(()=> table1.select('i1')).toThrow(/EL05335/)
-                expect(()=> table1.select('i1')).toThrow(/EL05336/)
+                expect(()=> table1.select('c1')).toThrow(/EL05335/)
+                expect(()=> table1.select('c1')).toThrow(/EL05336/)
             });
             // it("- select(itmms) : 예외 <callback>", () => {
             //     var table1 = new MetaTable('T1');
             //     MetaRegistry.namespace.add('Meta.Entity.MetaView', MetaView);
-            //     expect(()=> table1.select('i1', 'ERR')).toThrow(/ES021/)
+            //     expect(()=> table1.select('c1', 'ERR')).toThrow(/ES021/)
             // });
             // it("- select(itmms) : 예외 <columnName>", () => {
             //     var table1 = new MetaTable('T1');
@@ -1124,21 +1113,21 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.load(rObj | mObj) <가져오기>", () => {
             it("- load(rObj) : rObj 가져오기 ", () => {
                 var table1 = new MetaTable('TT1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 'R10';
-                row['i2'] = 'R20';
+                row['c1'] = 'R10';
+                row['c2'] = 'R20';
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 'R100';
-                row['i2'] = 'R200';
+                row['c1'] = 'R100';
+                row['c2'] = 'R200';
                 table1.rows.add(row);
                 var rObj = table1.getObject();
                 // MetaRegistry.init();
@@ -1150,31 +1139,31 @@ describe("[target: meta-table.js]", () => {
                 // table1
                 expect(table1.tableName).toBe('TT1');
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 expect(table1.rows.count).toBe(3);
                 // table2
                 expect(table2.tableName).toBe('TT1');
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
                 expect(table2.rows.count).toBe(3);
-                expect(table2.rows[0]['i1']).toBe('R1');
-                expect(table2.rows[0]['i2']).toBe('R2');
-                expect(table2.rows[1]['i1']).toBe('R10');
-                expect(table2.rows[1]['i2']).toBe('R20');
-                expect(table2.rows[2]['i1']).toBe('R100');
-                expect(table2.rows[2]['i2']).toBe('R200');
+                expect(table2.rows[0]['c1']).toBe('R1');
+                expect(table2.rows[0]['c2']).toBe('R2');
+                expect(table2.rows[1]['c1']).toBe('R10');
+                expect(table2.rows[1]['c2']).toBe('R20');
+                expect(table2.rows[2]['c1']).toBe('R100');
+                expect(table2.rows[2]['c2']).toBe('R200');
             });
             it("- load(rObj) : string 가져오기 ", () => {
                 var table1 = new MetaTable('TT1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 var row = table1.newRow();
                 
@@ -1194,27 +1183,27 @@ describe("[target: meta-table.js]", () => {
                 // table1
                 expect(table1.tableName).toBe('TT1');
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 expect(table1.rows.count).toBe(1);
                 // table2
                 expect(table2.tableName).toBe('TT1');
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
                 expect(table2.rows.count).toBe(1);
-                expect(table2.rows[0]['i1']).toBe('R1');
-                expect(table2.rows[0]['i2']).toBe('R2');
+                expect(table2.rows[0]['c1']).toBe('R1');
+                expect(table2.rows[0]['c2']).toBe('R2');
             });
             it("- load(entity) : 예외(엔티티는 삽입 불가) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table2.columns.add('i1');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table2.columns.add('c1');
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
     
                 expect(() => table2.load(table1)).toThrow('EL05351');
@@ -1330,19 +1319,19 @@ describe("[target: meta-table.js]", () => {
                 var table5 = new MetaTable('T5');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
-                        { i1: 'R100', i2: 'R200' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
+                        { c1: 'R100', c2: 'R200' },
                     ]
                 };
                 var json2 = { 
                     entity: {
                         columns: {
-                            i1: { caption: 'C1'},
+                            c1: { caption: 'C1'},
                         },
                     }
                 };
@@ -1360,33 +1349,33 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.rows.count).toBe(0);
                 // table2
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
                 expect(table2.rows.count).toBe(0);
                 // table3
                 expect(table3.columns.count).toBe(0);
                 expect(table3.rows.count).toBe(0);
                 // table4
                 expect(table4.columns.count).toBe(2);
-                expect(table4.columns['i1'].caption).toBe('C1');
-                expect(table4.columns['i2'].caption).toBe('C2');
+                expect(table4.columns['c1'].caption).toBe('C1');
+                expect(table4.columns['c2'].caption).toBe('C2');
                 expect(table4.rows.count).toBe(3);
-                expect(table4.rows[0]['i1']).toBe('R1');
-                expect(table4.rows[0]['i2']).toBe('R2');
-                expect(table4.rows[1]['i1']).toBe('R10');
-                expect(table4.rows[1]['i2']).toBe('R20');
-                expect(table4.rows[2]['i1']).toBe('R100');
-                expect(table4.rows[2]['i2']).toBe('R200');
+                expect(table4.rows[0]['c1']).toBe('R1');
+                expect(table4.rows[0]['c2']).toBe('R2');
+                expect(table4.rows[1]['c1']).toBe('R10');
+                expect(table4.rows[1]['c2']).toBe('R20');
+                expect(table4.rows[2]['c1']).toBe('R100');
+                expect(table4.rows[2]['c2']).toBe('R200');
                 // table5
                 expect(table5.columns.count).toBe(1);
-                expect(table5.columns['i1'].caption).toBe('C1');
+                expect(table5.columns['c1'].caption).toBe('C1');
                 expect(table5.rows.count).toBe(3);
-                expect(table5.rows[0]['i1']).toBe('R1');
-                expect(table5.rows[0]['i2']).toBe(undefined);
-                expect(table5.rows[1]['i1']).toBe('R10');
-                expect(table5.rows[1]['i2']).toBe(undefined);
-                expect(table5.rows[2]['i1']).toBe('R100');
-                expect(table5.rows[2]['i2']).toBe(undefined);
+                expect(table5.rows[0]['c1']).toBe('R1');
+                expect(table5.rows[0]['c2']).toBe(undefined);
+                expect(table5.rows[1]['c1']).toBe('R10');
+                expect(table5.rows[1]['c2']).toBe(undefined);
+                expect(table5.rows[2]['c1']).toBe('R100');
+                expect(table5.rows[2]['c2']).toBe(undefined);
             });
             it("- read(rObj, opt) : obj<ref> 가져오기", () => {
                 var table0 = new MetaTable('T0');
@@ -1397,19 +1386,19 @@ describe("[target: meta-table.js]", () => {
                 var table5 = new MetaTable('T5');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
-                        { i1: 'R100', i2: 'R200' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
+                        { c1: 'R100', c2: 'R200' },
                     ]
                 };
                 var json2 = { 
                     table: {
                         columns: {
-                            i1: { caption: 'C1'},
+                            c1: { caption: 'C1'},
                         },
                     }
                 };
@@ -1427,33 +1416,33 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.rows.count).toBe(0);
                 // table2
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
                 expect(table2.rows.count).toBe(0);
                 // table3
                 expect(table3.columns.count).toBe(0);
                 expect(table3.rows.count).toBe(0);
                 // table4
                 expect(table4.columns.count).toBe(2);
-                expect(table4.columns['i1'].caption).toBe('C1');
-                expect(table4.columns['i2'].caption).toBe('C2');
+                expect(table4.columns['c1'].caption).toBe('C1');
+                expect(table4.columns['c2'].caption).toBe('C2');
                 expect(table4.rows.count).toBe(3);
-                expect(table4.rows[0]['i1']).toBe('R1');
-                expect(table4.rows[0]['i2']).toBe('R2');
-                expect(table4.rows[1]['i1']).toBe('R10');
-                expect(table4.rows[1]['i2']).toBe('R20');
-                expect(table4.rows[2]['i1']).toBe('R100');
-                expect(table4.rows[2]['i2']).toBe('R200');
+                expect(table4.rows[0]['c1']).toBe('R1');
+                expect(table4.rows[0]['c2']).toBe('R2');
+                expect(table4.rows[1]['c1']).toBe('R10');
+                expect(table4.rows[1]['c2']).toBe('R20');
+                expect(table4.rows[2]['c1']).toBe('R100');
+                expect(table4.rows[2]['c2']).toBe('R200');
                 // table5
                 expect(table5.columns.count).toBe(1);
-                expect(table5.columns['i1'].caption).toBe('C1');
+                expect(table5.columns['c1'].caption).toBe('C1');
                 expect(table5.rows.count).toBe(3);
-                expect(table5.rows[0]['i1']).toBe('R1');
-                expect(table5.rows[0]['i2']).toBe(undefined);
-                expect(table5.rows[1]['i1']).toBe('R10');
-                expect(table5.rows[1]['i2']).toBe(undefined);
-                expect(table5.rows[2]['i1']).toBe('R100');
-                expect(table5.rows[2]['i2']).toBe(undefined);
+                expect(table5.rows[0]['c1']).toBe('R1');
+                expect(table5.rows[0]['c2']).toBe(undefined);
+                expect(table5.rows[1]['c1']).toBe('R10');
+                expect(table5.rows[1]['c2']).toBe(undefined);
+                expect(table5.rows[2]['c1']).toBe('R100');
+                expect(table5.rows[2]['c2']).toBe(undefined);
             });
             it("- read(oSch) : obj<Schema> 가져오기", () => {
                 var table1 = new MetaTable('T1');
@@ -1473,8 +1462,8 @@ describe("[target: meta-table.js]", () => {
                         },
                     },
                     rows: [
-                        { ii1: 'R1', i2: 'R2' },
-                        { ii1: 'R10', i2: 'R20' },
+                        { ii1: 'R1', c2: 'R2' },
+                        { ii1: 'R10', c2: 'R20' },
                     ]
                 }
                 table1.read(json1, 3);
@@ -1510,8 +1499,8 @@ describe("[target: meta-table.js]", () => {
                         },
                     },
                     rows: [
-                        { ii1: 'R1', i2: 'R2' },
-                        { ii1: 'R10', i2: 'R20' },
+                        { ii1: 'R1', c2: 'R2' },
+                        { ii1: 'R10', c2: 'R20' },
                     ]
                 }
                 expect(()=> table1.read(json1, 3)).toThrow(/EL0532D/)
@@ -1526,16 +1515,16 @@ describe("[target: meta-table.js]", () => {
                 var json1 = { 
                     name: 'T1',
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     }
                 };
                 table1.readSchema(json1);
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 expect(table1.columns[0].caption).toBe('C1');
                 expect(table1.columns[1].caption).toBe('C2');
             });
@@ -1545,28 +1534,28 @@ describe("[target: meta-table.js]", () => {
                 var json1 = { 
                     name: 'T1',
                     columns: {
-                        $key: ['i2', 'i1'],
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        $key: ['c2', 'c1'],
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     }
                 };
                 table1.readSchema(json1);
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i2'].caption).toBe('C2');
-                expect(table1.columns['i1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
                 expect(table1.columns[0].caption).toBe('C2');
                 expect(table1.columns[1].caption).toBe('C1');
             });
             it("- readSchema(JSON) : 중복 예외 ", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { columns: {
-                    i1: { caption: 'C1'},
-                    i2: { caption: 'C2'},
+                    c1: { caption: 'C1'},
+                    c2: { caption: 'C2'},
                     }
                 };
-                table1.columns.addValue('i1', '');
+                table1.columns.addValue('c1', '');
     
                 expect(() => table1.readSchema(json1)).toThrow('EL0532E');
             });
@@ -1575,14 +1564,14 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
+                        c1: { caption: 'C1'},
                     },
                     rows: [
-                        { i1: 'R1'},
+                        { c1: 'R1'},
                     ]
                 };
                 var json2 = { columns: {
-                    i2: { caption: 'C2'},
+                    c2: { caption: 'C2'},
                     }
                 };
                 table1.read(json1, 3);  // 스키마 + 데이터 가져오기
@@ -1595,19 +1584,19 @@ describe("[target: meta-table.js]", () => {
                 var table3 = new MetaTable('T3');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     }
                 };
                 var json2 = { 
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
+                        { c1: 'R1', c2: 'R2' },
                     ]
                 };
                 var json3 = { columns: {
-                        i1: { caption: 'C1'},
+                        c1: { caption: 'C1'},
                     },
-                    rows: { i1: 'R1', i2: 'R2' },
+                    rows: { c1: 'R1', c2: 'R2' },
                     
                 };
                 table1.readSchema(json1, true);
@@ -1616,13 +1605,13 @@ describe("[target: meta-table.js]", () => {
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 // table2
                 expect(table2.columns.count).toBe(2);
                 // table3
                 expect(table3.columns.count).toBe(2);
-                expect(table3.columns['i1'].caption).toBe('C1');
+                expect(table3.columns['c1'].caption).toBe('C1');
             });
             it("- readSchema(obj) : entiry가 아닌 meta 객체 넣기 <예외>", () => {
                 var e1  = new MetaElement('E1')
@@ -1640,13 +1629,13 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
-                        { i1: 'R100', i2: 'R200' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
+                        { c1: 'R100', c2: 'R200' },
                     ]
                 };
                 table1.readSchema(json1);
@@ -1654,15 +1643,15 @@ describe("[target: meta-table.js]", () => {
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['i1'].caption).toBe('C1');
-                expect(table1.columns['i2'].caption).toBe('C2');
+                expect(table1.columns['c1'].caption).toBe('C1');
+                expect(table1.columns['c2'].caption).toBe('C2');
                 expect(table1.rows.count).toBe(3);
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[1]['i1']).toBe('R10');
-                expect(table1.rows[1]['i2']).toBe('R20');
-                expect(table1.rows[2]['i1']).toBe('R100');
-                expect(table1.rows[2]['i2']).toBe('R200');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[1]['c1']).toBe('R10');
+                expect(table1.rows[1]['c2']).toBe('R20');
+                expect(table1.rows[2]['c1']).toBe('R100');
+                expect(table1.rows[2]['c2']).toBe('R200');
             });
             it("- readSchema(obj) : entiry가 아닌 meta 객체 넣기 <예외>", () => {
                 var e1  = new MetaElement('E1')
@@ -1677,13 +1666,13 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        i1: { 
-                            caption: 'C1', alias: 'ii1'},
-                        i2: { caption: 'C2'},
+                        c1: { 
+                            caption: 'C1', alias: 'cc1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { ii1: 'R1', i2: 'R2' },
-                        { ii1: 'R10', i2: 'R20' },
+                        { cc1: 'R1', c2: 'R2' },
+                        { cc1: 'R10', c2: 'R20' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -1691,19 +1680,19 @@ describe("[target: meta-table.js]", () => {
                     _guid: table1._guid,
                     // name: 'T1',
                     columns: {
-                        $key: ['i1', 'i2'],
-                        i1: { 
-                            _guid: table1.columns.i1._guid,
-                            caption: 'C1', alias: 'ii1'
+                        $key: ['c1', 'c2'],
+                        c1: { 
+                            _guid: table1.columns.c1._guid,
+                            caption: 'C1', alias: 'cc1'
                         },
-                        i2: { 
-                            _guid: table1.columns.i2._guid,
+                        c2: { 
+                            _guid: table1.columns.c2._guid,
                             caption: 'C2'
                         },
                     },
                     rows: [
-                        { ii1: 'R1', i2: 'R2' },
-                        { ii1: 'R10', i2: 'R20' },
+                        { cc1: 'R1', c2: 'R2' },
+                        { cc1: 'R10', c2: 'R20' },
                     ]
                 }
                 const obj = table1.write(0);
@@ -1717,13 +1706,13 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        i1: { 
-                            caption: 'C1', alias: 'ii1'},
-                        i2: { caption: 'C2'},
+                        c1: { 
+                            caption: 'C1', alias: 'cc1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 table1.read(json1, 3);
@@ -1731,13 +1720,13 @@ describe("[target: meta-table.js]", () => {
                     _guid: table1._guid,
                     // name: 'T1',
                     columns: {
-                        $key: ['i1', 'i2'],
-                        i1: { 
-                            _guid: table1.columns.i1._guid,
-                            caption: 'C1', alias: 'ii1'
+                        $key: ['c1', 'c2'],
+                        c1: { 
+                            _guid: table1.columns.c1._guid,
+                            caption: 'C1', alias: 'cc1'
                         },
-                        i2: { 
-                            _guid: table1.columns.i2._guid,
+                        c2: { 
+                            _guid: table1.columns.c2._guid,
                             caption: 'C2'
                         },
                     },
@@ -1753,20 +1742,20 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        i1: { caption: 'C1'},
-                        i2: { caption: 'C2'},
+                        c1: { caption: 'C1'},
+                        c2: { caption: 'C2'},
                     },
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 };
                 const json2 = {
                     // name: 'T1',
                     columns: {},
                     rows: [
-                        { i1: 'R1', i2: 'R2' },
-                        { i1: 'R10', i2: 'R20' },
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
                     ]
                 }
                 table1.read(json1, 3);
@@ -1919,12 +1908,12 @@ describe("[target: meta-table.js]", () => {
         describe("MetaTable.clone(): Row <복제>", () => {
             it("- clone() : 복제 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i2'].caption = 'C1';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c2'].caption = 'C1';
                 var row = table1.newRow();
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 var table2 = table1.clone();
         
@@ -1932,197 +1921,197 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.tableName).toBe('T1');
                 expect(table1.columns.count).toBe(2);
                 expect(table1.rows.count).toBe(1);
-                expect(table1.columns['i2'].caption).toBe('C1');
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
+                expect(table1.columns['c2'].caption).toBe('C1');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
                 // table2
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['i2'].caption).toBe('C1');
-                expect(table2.rows[0]['i1']).toBe('R1');
-                expect(table2.rows[0]['i2']).toBe('R2');
+                expect(table2.columns['c2'].caption).toBe('C1');
+                expect(table2.rows[0]['c1']).toBe('R1');
+                expect(table2.rows[0]['c2']).toBe('R2');
                 // 비교
                 expect(table1 === table2).toBe(false);
                 expect(table1.columns === table2.columns).toBe(false);
-                expect(table1.columns['i1'] === table2.columns['i1']).toBe(false);
-                expect(table1.columns['i2'] === table2.columns['i2']).toBe(false);
+                expect(table1.columns['c1'] === table2.columns['c1']).toBe(false);
+                expect(table1.columns['c2'] === table2.columns['c2']).toBe(false);
                 expect(table1.rows[0] === table2.rows[0]).toBe(false);
             });
         });
         describe("MetaTable.copy(filter, args) <테이블 복사>", () => {
             it("- copy() : 기본값 조회 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
                 var table2 = table1.copy();
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[0]['i2']).toBe(2);
-                expect(table2.rows[1]['i1']).toBe(10);
-                expect(table2.rows[1]['i2']).toBe(20);
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.rows[0]['c1']).toBe(1);
+                expect(table2.rows[0]['c2']).toBe(2);
+                expect(table2.rows[1]['c1']).toBe(10);
+                expect(table2.rows[1]['c2']).toBe(20);
                 // 참조 검사
                 expect(table2 === table1).toBe(false);
-                expect(table2.columns['i1'] === table1.columns['i1']).toBe(false);
-                expect(table2.columns['i2'] === table1.columns['i2']).toBe(false);
+                expect(table2.columns['c1'] === table1.columns['c1']).toBe(false);
+                expect(table2.columns['c2'] === table1.columns['c2']).toBe(false);
                 expect(table2.instanceOf(MetaTable)).toBe(true);
             });
             it("- copy(filter) : 필터 설정 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
-                var table2 = table1.copy(row => row['i1'] < 10);
+                var table2 = table1.copy(row => row['c1'] < 10);
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.columns['i2'].caption).toBe('C2');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[0]['i2']).toBe(2);
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.rows[0]['c1']).toBe(1);
+                expect(table2.rows[0]['c2']).toBe(2);
             });
             it("- copy(itmms) : 아이템 설정", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
-                var table2 = table1.copy('i1');
-                var table3 = table1.copy(['i2']);
+                var table2 = table1.copy('c1');
+                var table3 = table1.copy(['c2']);
     
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(1);
                 expect(table2.rows.count).toBe(2);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.rows[0]['i1']).toBe(1);
-                expect(table2.rows[1]['i1']).toBe(10);
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.rows[0]['c1']).toBe(1);
+                expect(table2.rows[1]['c1']).toBe(10);
                 // table3
                 expect(table3.tableName).toBe('T1');
                 expect(table3.columns.count).toBe(1);
                 expect(table3.rows.count).toBe(2);
-                expect(table3.columns['i2'].caption).toBe('C2');
-                expect(table3.rows[0]['i2']).toBe(2);
-                expect(table3.rows[1]['i2']).toBe(20);
+                expect(table3.columns['c2'].caption).toBe('C2');
+                expect(table3.rows[0]['c2']).toBe(2);
+                expect(table3.rows[1]['c2']).toBe(20);
             });
             
             it("- copy(itmms) : 아이템 설정", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
-                table1.columns.add('i2');
-                table1.columns['i1'].caption = 'C1';
-                table1.columns['i2'].caption = 'C2';
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns['c1'].caption = 'C1';
+                table1.columns['c2'].caption = 'C2';
                 var row = table1.newRow();
-                row['i1'] = 1;
-                row['i2'] = 2;
+                row['c1'] = 1;
+                row['c2'] = 2;
                 table1.rows.add(row);
                 var row = table1.newRow();
-                row['i1'] = 10;
-                row['i2'] = 20;
+                row['c1'] = 10;
+                row['c2'] = 20;
                 table1.rows.add(row);
 
-                var table2 = table1.copy(row => row['i1'] < 10, 'i1');
-                var table3 = table1.copy(row => row['i1'] < 10, ['i1']);
+                var table2 = table1.copy(row => row['c1'] < 10, 'c1');
+                var table3 = table1.copy(row => row['c1'] < 10, ['c1']);
     
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(1);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['i1'].caption).toBe('C1');
-                expect(table2.rows[0]['i1']).toBe(1);
+                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.rows[0]['c1']).toBe(1);
                 // table3
                 expect(table3.tableName).toBe('T1');
                 expect(table3.columns.count).toBe(1);
                 expect(table3.rows.count).toBe(1);
-                expect(table3.columns['i1'].caption).toBe('C1');
-                expect(table3.rows[0]['i1']).toBe(1);
+                expect(table3.columns['c1'].caption).toBe('C1');
+                expect(table3.rows[0]['c1']).toBe(1);
             });
             it("- 예외 및 커버리지", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1');
+                table1.columns.add('c1');
                 var row = table1.newRow();
-                row['i1'] = 1;
+                row['c1'] = 1;
                 table1.rows.add(row);
 
                 expect(()=> table1.copy([{}])).toThrow(/EL05321/)
-                expect(()=> table1.copy('i2')).toThrow(/EL05322/)
+                expect(()=> table1.copy('c2')).toThrow(/EL05322/)
 
-                expect(()=> table1.copy('i2')).toThrow(/EL05323/)
+                expect(()=> table1.copy('c2')).toThrow(/EL05323/)
             });
 
             /// SKIP
             // it.skip("- copy(filter, start) : 엔티티 복사 ", () => {
             //     var table1 = new MetaTable('T1');
             //     var filter = {
-            //         __except: ['i1'],                   // 제외
-            //         i2: { caption: 'C3' }  // 속성 오버라이딩(필터)
+            //         __except: ['c1'],                   // 제외
+            //         c2: { caption: 'C3' }  // 속성 오버라이딩(필터)
             //     };
-            //     table1.columns.add('i1');
-            //     table1.columns.add('i2');
+            //     table1.columns.add('c1');
+            //     table1.columns.add('c2');
             //     var row = table1.newRow();
-            //     row['i1'] = 'R1';
-            //     row['i2'] = 'R2';
+            //     row['c1'] = 'R1';
+            //     row['c2'] = 'R2';
             //     table1.rows.add(row);
             //     var row = table1.newRow();
-            //     row['i1'] = 'R10';
-            //     row['i2'] = 'R20';
+            //     row['c1'] = 'R10';
+            //     row['c2'] = 'R20';
             //     table1.rows.add(row);
             //     var row = table1.newRow();
-            //     row['i1'] = 'R100';
-            //     row['i2'] = 'R200';
+            //     row['c1'] = 'R100';
+            //     row['c2'] = 'R200';
             //     table1.rows.add(row);
             //     var table2 = table1.copy(filter, 1);
-            //     table1.columns['i2'].caption = 'C30';  // 복사후 덮어쓰기 REVIEW:
+            //     table1.columns['c2'].caption = 'C30';  // 복사후 덮어쓰기 REVIEW:
         
             //     // table1
             //     expect(table1.columns.count).toBe(2);
             //     expect(table1.rows.count).toBe(3);
             //     expect(table1.rows[0][0]).toBe('R1');
             //     expect(table1.rows[0][1]).toBe('R2');
-            //     expect(table1.rows[0]['i1']).toBe('R1');
-            //     expect(table1.rows[0]['i2']).toBe('R2');
-            //     expect(table1.columns['i2'].caption).toBe('C30');
+            //     expect(table1.rows[0]['c1']).toBe('R1');
+            //     expect(table1.rows[0]['c2']).toBe('R2');
+            //     expect(table1.columns['c2'].caption).toBe('C30');
             //     // 비교
-            //     expect(table1.columns['i2'] !== table2.columns['i2']).toBe(true);
+            //     expect(table1.columns['c2'] !== table2.columns['c2']).toBe(true);
             //     // table2
             //     expect(table2.columns.count).toBe(1);
             //     expect(table2.rows.count).toBe(2);
             //     expect(table2.rows[0][0]).toBe('R20');
             //     expect(table2.rows[1][0]).toBe('R200');
-            //     expect(table2.rows[0]['i2']).toBe('R20');
-            //     expect(table2.rows[1]['i2']).toBe('R200');
+            //     expect(table2.rows[0]['c2']).toBe('R20');
+            //     expect(table2.rows[1]['c2']).toBe('R200');
             // });
         });
 
@@ -2131,7 +2120,7 @@ describe("[target: meta-table.js]", () => {
             it("- hasChanges : 변경 유무", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 // 초기
                 expect(table1.rows.hasChanges).toBe(false);
@@ -2149,7 +2138,7 @@ describe("[target: meta-table.js]", () => {
             it("- add() : 추가 후 롤백", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 // 초기                
                 var row = table1.newRow();
@@ -2167,7 +2156,7 @@ describe("[target: meta-table.js]", () => {
             it("- add(), remove() : 등록 -> 삭제 -> 조회 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
                 
                 var row1 = table1.newRow();
                 row1[0] = 'R1';

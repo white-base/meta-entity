@@ -27,8 +27,8 @@ describe("[target: meta-row.js]", () => {
         describe("MetaRow._entity <엔티티>", () => {
             it.skip("- this._entity ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 var row1 = new MetaRow(table1);
                 
                 expect(()=> row1._entity = {}).toThrow(/ES032/) 
@@ -38,25 +38,25 @@ describe("[target: meta-row.js]", () => {
         describe("MetaRow.onChanging <변경 이벤트>", () => {
             it("- this.onChanging ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 var row1 = new MetaRow(table1);
                 var count = 0
                 const fun1 = function() { count++}
                 row1.onChanging = fun1;
                 row1.onChanged = fun1;
-                row1['i1'] = 'R1';
-                row1['i2'] = 'R2';
-                expect(row1['i1']).toBe('R1')
-                expect(row1['i2']).toBe('R2')
+                row1['c1'] = 'R1';
+                row1['c2'] = 'R2';
+                expect(row1['c1']).toBe('R1')
+                expect(row1['c2']).toBe('R2')
                 expect(count).toBe(4)
             });
         });
         describe("MetaRow(entity) <생성자>", () => {
             it("- new MetaRow(entity) : 생성 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 // var row1 = new MetaRow();
                 var row2 = new MetaRow(table1);
                 // table1.rows.add(row1);
@@ -66,12 +66,12 @@ describe("[target: meta-row.js]", () => {
                 expect(row2.count).toBe(2);
                 expect(table1.rows[0].count).toBe(2);
                 // expect(table1.rows[1].count).toBe(2);
-                // expect(row2['i1']).toBe(null);
-                // expect(row2['i2']).toBe(null);
+                // expect(row2['c1']).toBe(null);
+                // expect(row2['c2']).toBe(null);
                 expect(row2[0]).toBeDefined();
                 expect(row2[1]).toBeDefined();
-                expect(row2['i1']).toBeDefined();
-                expect(row2['i2']).toBeDefined();
+                expect(row2['c1']).toBeDefined();
+                expect(row2['c2']).toBeDefined();
             });
             it("- BaseColumn._valueTypes = [] 로우 생성 : 제한없음  ", () => {
                 class SubColumn extends BaseColumn {
@@ -111,8 +111,8 @@ describe("[target: meta-row.js]", () => {
             it("- equal() : $event ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table2.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
+                table2.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
                 var row2 = new MetaRow(table2);
                 var fun1 = function(){return 'Fun1'};
@@ -123,7 +123,7 @@ describe("[target: meta-row.js]", () => {
             });
             it("- equal() : 하나의 _entity 로 비교 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
                 var row2 = new MetaRow(table1);
                 
@@ -132,20 +132,20 @@ describe("[target: meta-row.js]", () => {
             it("- equal() : 다른 _entity 비교, 값 삽입 ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table2.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
+                table2.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
                 var row2 = new MetaRow(table2);
                 
                 expect(row1.equal(row2)).toBe(true);
-                row2['i1'] = 'R1';
+                row2['c1'] = 'R1';
                 expect(row1.equal(row2)).toBe(false);
             });
             it("- equal() : $elements, $keys 비교 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c2', 'V2');
                 var row2 = new MetaRow(table1);
                 
                 expect(row1.equal(row2)).toBe(false);
@@ -393,25 +393,25 @@ describe("[target: meta-row.js]", () => {
         describe("MetaRow.clone(): Row <복제>", () => {
             it("- clone() : 복사 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 var row1 = new MetaRow(table1);
                 const fun1 = function(){return 'F1'};
                 row1.onChanged = fun1;
-                row1['i1'] = 'R1';
-                row1['i2'] = 'R2';
+                row1['c1'] = 'R1';
+                row1['c2'] = 'R2';
                 table1.rows.add(row1);
                 var row2 = row1.clone();
                 table1.rows.add(row2);
                 // table1
                 expect(row1.count).toBe(2);
                 expect(table1.rows[0].count).toBe(2);
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
                 // clone row
                 expect(row2.count).toBe(2);
-                expect(row2['i1']).toBe('R1');
-                expect(row2['i2']).toBe('R2');
+                expect(row2['c1']).toBe('R1');
+                expect(row2['c2']).toBe('R2');
                 expect(row1.equal(row2)).toBe(true);
                 // 비교 : 
                 // REVIEW: new 일반 new 생성으로 guid 의 차이점가 있음
@@ -429,25 +429,25 @@ describe("[target: meta-row.js]", () => {
         describe("MetaRow._changeKey(): Row <키 변경>", () => {
             it("- _changeKey() : 키 변경 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 var row1 = new MetaRow(table1);
-                row1['i1'] = 'R1';
-                row1['i2'] = 'R2';
+                row1['c1'] = 'R1';
+                row1['c2'] = 'R2';
                 table1.rows.add(row1);
-                table1.rows[0]._changeKey('i1', 'ii1');
+                table1.rows[0]._changeKey('c1', 'ii1');
 
                 expect(table1.rows.count).toBe(1);
                 expect(table1.rows[0].count).toBe(2);
                 expect(table1.rows[0]['ii1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
+                expect(table1.rows[0]['c2']).toBe('R2');
             });
         });
         describe("for in 열거 속성 검사", () => {
             it("- for in", () => {
                 var arr = [];
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
                 for (var prop in row1) {
                     arr.push(prop);
@@ -493,49 +493,49 @@ describe("[target: meta-row.js]", () => {
     describe("MetaRowCollection :: 클래스", () => {
         // it.skip("- add() : 빈 row 등록 ", () => {
         //     var table1 = new MetaTable('T1');
-        //     table1.columns.addValue('i1', 'V1');
-        //     table1.columns.addValue('i2', 'V2');
+        //     table1.columns.addValue('c1', 'V1');
+        //     table1.columns.addValue('c2', 'V2');
         //     table1.rows.add();
             
         //     expect(table1.rows[0].count).toBe(2);
-        //     expect(table1.rows[0]['i1']).toBe(null);  // REVIEW: '' 인데 null 리턴함
-        //     expect(table1.rows[0]['i2']).toBe(null);
-        //     expect(table1.rows[0]['i3']).toBe(undefined);
+        //     expect(table1.rows[0]['c1']).toBe(null);  // REVIEW: '' 인데 null 리턴함
+        //     expect(table1.rows[0]['c2']).toBe(null);
+        //     expect(table1.rows[0]['c3']).toBe(undefined);
         // });
         describe("this.add(row): bool <row 등록>", () => {
             it("- add(row) : row 등록 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
-                table1.columns.addValue('i2', 'V2');
+                table1.columns.addValue('c1', 'V1');
+                table1.columns.addValue('c2', 'V2');
                 var row = new MetaRow(table1);
-                row['i1'] = 'R1';
-                row['i2'] = 'R2';
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
                 table1.rows.add(row);
                 
                 expect(table1.rows[0].count).toBe(2);
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe('R2');
-                expect(table1.rows[0]['i3']).toBe(undefined);
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe(undefined);
             });
             it("- add(row, true) : 유효성 검사 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', '');
-                table1.columns.addValue('i2', '');
-                table1.columns['i1'].required = true;
-                table1.columns['i2'].addConstraint(/\d/, '숫자', 'E1', true);
+                table1.columns.addValue('c1', '');
+                table1.columns.addValue('c2', '');
+                table1.columns['c1'].required = true;
+                table1.columns['c2'].addConstraint(/\d/, '숫자', 'E1', true);
                 var row = new MetaRow(table1);
-                row['i1'] = 'R1';
-                row['i2'] = 10;
+                row['c1'] = 'R1';
+                row['c2'] = 10;
                 table1.rows.add(row, true); // 검사활성화 옵션
                 var row2 = new MetaRow(table1);
-                row2['i1'] = 'R1';
-                row2['i2'] = 'ERR';
+                row2['c1'] = 'R1';
+                row2['c2'] = 'ERR';
                 var row3 = new MetaRow(table1);
-                row3['i1'] = '';
-                row3['i2'] = 10;
+                row3['c1'] = '';
+                row3['c2'] = 10;
         
-                expect(table1.rows[0]['i1']).toBe('R1');
-                expect(table1.rows[0]['i2']).toBe(10);
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe(10);
                 expect(() => table1.rows.add(row2, true)).toThrow(/EL05224/);
                 expect(() => table1.rows.add(row3, true)).toThrow('EL05224');
             });
@@ -547,9 +547,9 @@ describe("[target: meta-row.js]", () => {
             it("- add(row) : 예외(다른 객체) ", () => {
                 var table1 = new MetaTable('T1');
                 var table2 = new MetaTable('T2');
-                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
                 var row = new MetaRow(table1);
-                row['i1'] = 'R1';
+                row['c1'] = 'R1';
                 table1.rows.add(row);
             
                 expect(() => table2.rows.add(row)).toThrow('EL05223');        
@@ -560,7 +560,7 @@ describe("[target: meta-row.js]", () => {
             it("- hasChanges : 변경 유무", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 // 초기
                 expect(table1.rows.hasChanges).toBe(false);
@@ -579,7 +579,7 @@ describe("[target: meta-row.js]", () => {
             it("- add() : 추가 후 롤백", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 // 초기                
                 var row = table1.newRow();
@@ -594,7 +594,7 @@ describe("[target: meta-row.js]", () => {
             it("- remove() : 추가 커밋 -> 삭제 -> 롤백", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
                 
                 // 추가 커밋 
                 var row = table1.newRow();
@@ -614,7 +614,7 @@ describe("[target: meta-row.js]", () => {
             it("- add(), remove() : 추가 커밋 -> 삭제 -> 커밋 -> 추가 -> 롤백 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 
                 // 추가 커밋 
                 var row = table1.newRow();
@@ -646,7 +646,7 @@ describe("[target: meta-row.js]", () => {
             it("- add(), insertAt() remove() : 중복 추가 삭제시 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 
                 // 추가 커밋 
                 var row1 = table1.newRow();
@@ -675,7 +675,7 @@ describe("[target: meta-row.js]", () => {
             it("- rows 수정 후 롤백 (단일)", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 var row = table1.newRow();
                 row[0] = 'R1';
@@ -698,7 +698,7 @@ describe("[target: meta-row.js]", () => {
             it("- rows 수정 후 롤백 (단일)", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 var row = table1.newRow();
                 row[0] = 'R1';
@@ -723,7 +723,7 @@ describe("[target: meta-row.js]", () => {
             it("- rows[0] = row : row 설정 롤백", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
     
                 var row1 = table1.newRow();
                 row1[0] = 'R1';
@@ -734,20 +734,20 @@ describe("[target: meta-row.js]", () => {
                 table1.rows.add(row1);
                 expect(table1.rows.count).toBe(1);
                 expect(table1.rows[0][0]).toBe('R1');
-                expect(table1.rows[0]['i1']).toBe('R1');
+                expect(table1.rows[0]['c1']).toBe('R1');
                 table1.rows.commit();
     
                 // 변경
                 table1.rows[0] = row2;
                 expect(table1.rows.count).toBe(1);
                 expect(table1.rows[0][0]).toBe('R2');
-                expect(table1.rows[0]['i1']).toBe('R2');
+                expect(table1.rows[0]['c1']).toBe('R2');
     
                 // 롤백 후
                 table1.rows.rollback();
                 expect(table1.rows.count).toBe(1);
                 expect(table1.rows[0][0]).toBe('R1');
-                expect(table1.rows[0]['i1']).toBe('R1');
+                expect(table1.rows[0]['c1']).toBe('R1');
             });
     
         });
@@ -757,7 +757,7 @@ describe("[target: meta-row.js]", () => {
             it("- rows[0] = row : row 설정 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.rows.autoChanges = false;
-                table1.columns.add('i1');
+                table1.columns.add('c1');
                 var table2 = new MetaTable('T2');
                 table2.rows.autoChanges = false;
                 table2.columns.add('ii1');
@@ -780,7 +780,7 @@ describe("[target: meta-row.js]", () => {
         describe("this.insertAt(pos, row, chkValid): bool <지정 위치에 삽입> ", () => {
             it("- insertAt(idx, value) : 첫째 요소 추가", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row0 = table1.newRow();
                 row0[0] = 'R0';
                 var row1 = table1.newRow();
@@ -803,7 +803,7 @@ describe("[target: meta-row.js]", () => {
             });
             it("- insertAt(idx, value) : 중간 요소 추가", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row0 = table1.newRow();
                 row0[0] = 'R0';
                 var row1 = table1.newRow();
@@ -826,7 +826,7 @@ describe("[target: meta-row.js]", () => {
             });
             it("- insertAt(idx, value) : 마지막 요소 추가 후 add()", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row0 = table1.newRow();
                 row0[0] = 'R0';
                 var row1 = table1.newRow();
@@ -854,7 +854,7 @@ describe("[target: meta-row.js]", () => {
             });
             it("- insertAt(pos) : 예외 : 사이즈 초과", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row0 = table1.newRow();
                 row0[0] = 'R0';
                 var row1 = table1.newRow();
@@ -869,7 +869,7 @@ describe("[target: meta-row.js]", () => {
             });
             it("- insertAt(pos) : 예외 : 0 보다 작을 경우", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row0 = table1.newRow();
                 row0[0] = 'R0';
                 var row1 = table1.newRow();
@@ -887,7 +887,7 @@ describe("[target: meta-row.js]", () => {
             it("- for in", () => {
                 var arr = [];
                 var table1 = new MetaTable('T1');
-                table1.columns.addValue('i1', 'V1');
+                table1.columns.addValue('c1', 'V1');
                 var row1 = new MetaRow(table1);
                 table1.rows.add(row1);
                 for (var prop in table1.rows) {
@@ -901,7 +901,7 @@ describe("[target: meta-row.js]", () => {
             
             it("- 커버리지 : _elemTypes = [] 제거 ", () => {
                 var table1 = new MetaTable('T1');
-                table1.columns.add('i1')
+                table1.columns.add('c1')
                 var row1 = table1.newRow();
                 table1.rows.add(row1);  // 정상 등록
                 
