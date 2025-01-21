@@ -224,7 +224,6 @@
                         if (column.$alias) obj[key].alias = column['$alias'];
                         if (column.$value) obj[key].value = column['$value'];
                     }
-
                 }
                 obj['$key'] = oGuid['_key'];
                 return obj;
@@ -815,14 +814,12 @@
 
                 if (p_obj instanceof BaseEntity) {
                     this._readEntity(p_obj, p_option);
-                } else {    // REVIEW: entity, table 필요성 검토
+                } else {    
+                    // REVIEW: entity, table 필요성 검토
                     if (p_obj['entity']) entity = p_obj['entity'];
                     else if (p_obj['table']) entity = p_obj['table'];
                     else entity = p_obj;
 
-                    if (entity.viewName) this.viewName = entity.viewName;
-                    if (entity.tableName) this.tableName = entity.tableName;
-                    
                     // 스키마 및 데이터 읽기
                     if (opt % 2 === 1) this.readSchema(entity, opt === 3 ? true : false); // opt: 1, 3
                     if (Math.floor(opt / 2) >= 1) this.readData(entity); // opt: 2, 3
@@ -849,7 +846,10 @@
                     obj = BaseEntity.transformSchema(obj); // gObj >> sObj<요약>
                 }
                 if (!_isSchema(obj)) throw new ExtendError(/EL05359/, null, [obj.columns, obj.rows]);
-    
+
+                if (obj.viewName) this.viewName = obj.viewName;
+                if (obj.tableName) this.tableName = obj.tableName;
+
                 this._readSchema(obj, p_createRow);
                 
             } catch (error) {

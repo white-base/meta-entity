@@ -21,6 +21,9 @@ const { replacer, reviver, stringify, parse }   = require('telejson');
 const {MetaRegistry}                = require('logic-core');
 // const { loadNamespace } = require('../src/load-namespace');
 
+const T = true, F = false;
+
+
 //==============================================================
 // test
 describe("[target: meta-view.js]", () => {
@@ -1111,6 +1114,18 @@ describe("[target: meta-view.js]", () => {
 
                 expect(str1).toBe(str2);
             });
+            it("- output() 출력 및 로드", () => {
+                const view1 = new MetaView('V1');
+                view1.columns.add('c1');
+                const c1 = view1.columns['c1'];
+                const str1 = view1.output();
+                const view2= new MetaView('V2');
+                view2.load(str1)
+
+                expect(view1 === view2).toBe(false);
+                expect(view1._guid !== view2._guid).toBe(T);
+                expect(view1.viewName === view2.viewName).toBe(T);
+            });
         });
         describe("BaseEntity.read(view | oGuid | oSch, rOpt) <읽기>", () => {
             it("- read(view, 3) : 엔티티 읽기 ", () => {
@@ -1240,7 +1255,7 @@ describe("[target: meta-view.js]", () => {
                     ]
                 };
                 const v1 = new MetaView('V1')
-                v1.read(sch1);
+                v1.read(sch1);  // opt = 3
 
                 expect(v1.columns.count).toBe(1)
                 expect(v1.rows.count).toBe(1)

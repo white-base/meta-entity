@@ -1653,6 +1653,21 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.rows[2]['c1']).toBe('R100');
                 expect(table1.rows[2]['c2']).toBe('R200');
             });
+            it("- readData() : 컬럼 없이 로우만 가져오기 ", () => {
+                var table1 = new MetaTable('T1');
+                var json1 = { 
+                    rows: [
+                        { c1: 'R1', c2: 'R2' },
+                        { c1: 'R10', c2: 'R20' },
+                        { c1: 'R100', c2: 'R200' },
+                    ]
+                };
+                table1.readData(json1);
+        
+                // table1
+                expect(table1.columns.count).toBe(0);
+                expect(table1.rows.count).toBe(0);
+            });
             it("- readSchema(obj) : entiry가 아닌 meta 객체 넣기 <예외>", () => {
                 var e1  = new MetaElement('E1')
                 var table1 = new MetaTable('T1');
