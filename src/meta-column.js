@@ -317,14 +317,16 @@
             clone = new MetaColumn(this.columnName, entity);
             
             // BaseColumn
-            if (this['default']) clone.default = this['default'];
-            if (this['caption']) clone.caption = this['caption'];
-            if (this['$alias']) clone.$alias = this['$alias'];
-            if (this['$value']) clone.$value = this['$value'];
+            if (this['default'] !== '') clone.default = this['default'];
+            if (this['caption'] !== '') clone.caption = this['caption'];
+            if (this['$alias'] !== null) clone.$alias = this['$alias'];
+            if (this['$value'] !== null) clone.$value = this['$value'];
             
             // MetaColumn
             if (this['required']) clone.required = this['required'];
+            // REVIEW: 배열 깊은 복제 해야 하는지 확인 필요
             if (this['constraints']) clone.constraints = this['constraints'];
+            // REVIEW: 함수 깊은 복사 확인 필요
             if (this['getter']) clone.getter = this['getter'];
             if (this['setter']) clone.setter = this['setter'];
             
