@@ -211,18 +211,18 @@
                             obj[key]._entity = {};
                             obj[key]._entity['$ref'] = column['_entity']['$ref'];
                         } 
-                        if (column._guid) obj[key]._guid = column['_guid'];
-                        if (column.default) obj[key].default = column['default'];
-                        if (column.caption) obj[key].caption = column['caption'];            
-                        if (column.required) obj[key].required = column['required'];
+                        if (typeof column._guid !== 'undefined') obj[key]._guid = column['_guid'];
+                        if (typeof column.default !== 'undefined') obj[key].default = column['default'];
+                        if (typeof column.caption !== 'undefined') obj[key].caption = column['caption'];            
+                        if (typeof column.required !== 'undefined') obj[key].required = column['required'];
                         // if (column.optional) obj[key].optional = column['optional'];
                         if (Array.isArray(column.constraints)) {
                             obj[key]['constraints'] = Util.deepCopy(column['constraints']);
                         }
-                        if (column.getter) obj[key].getter = column['getter'];
-                        if (column.setter) obj[key].setter = column['setter'];
-                        if (column.$alias) obj[key].alias = column['$alias'];
-                        if (column.$value) obj[key].value = column['$value'];
+                        if (typeof column.getter !== 'undefined') obj[key].getter = column['getter'];
+                        if (typeof column.setter !== 'undefined') obj[key].setter = column['setter'];
+                        if (typeof column.$alias !== 'undefined') obj[key].alias = column['$alias'];
+                        if (typeof column.$value !== 'undefined') obj[key].value = column['$value'];
                     }
                 }
                 obj['$key'] = oGuid['_key'];
@@ -406,6 +406,9 @@
             // innner function
             function $addColumn(key, columns) {
                 var column;
+                
+                if (!_isObject(columns[key])) columns[key] = { value: columns[key] }; 
+                // REVIEW: 조건문 필요성 검토
                 if (_isObject(columns[key])) {
                     if (_this.rows.count > 0 ) throw new ExtendError(/EL0532B/, null, []);
                     var prop = columns[key];
@@ -913,7 +916,7 @@
             var schema;
 
             schema = this.write(vOpt);
-            schema.rows = [];
+            delete schema.rows;
             return schema;                
         };
 
@@ -927,7 +930,8 @@
             var schema;
             
             schema = this.write(vOpt);
-            schema.columns = {};
+            delete schema.columns;
+
             return schema;
         };
 

@@ -1603,7 +1603,6 @@ describe("[target: meta-view.js]", () => {
                             alias: 'cc3'
                         },
                     },
-                    rows: []
                 }
                 const json2 = {
                     _guid: view2._guid,
@@ -1613,7 +1612,6 @@ describe("[target: meta-view.js]", () => {
                         c2: {$ref: view1.columns.c2._guid},
                         c3: {$ref: view1.columns.c3._guid},
                     },
-                    rows: []
                 }
                 const json3 = {
                     _guid: view3._guid,
@@ -1621,7 +1619,6 @@ describe("[target: meta-view.js]", () => {
                         $key: ['c3'],
                         c3: {$ref: view1.columns.c3._guid},
                     },
-                    rows: []
                 }
                 const obj1 = view1.writeSchema(); // 0
                 const obj2 = view2.writeSchema();
@@ -1651,7 +1648,6 @@ describe("[target: meta-view.js]", () => {
                 view3.rows.add(view3.getValue());
                 const json1 = {
                     _guid: view1._guid,
-                    columns: {},
                     rows: [
                         { c1: 'V1', c2: 'V2', cc3: 'V3' },
                     ]
@@ -1659,14 +1655,12 @@ describe("[target: meta-view.js]", () => {
                 const json2 = {
                     _guid: view2._guid,
                     _baseEntity: {$ref: view1._guid},
-                    columns: {},
                     rows: [
                         { c2: 'V2', cc3: 'V3' },
                     ]
                 }
                 const json3 = {
                     _guid: view3._guid,
-                    columns: {},
                     rows: [
                         { cc3: 'V3' },
                     ]

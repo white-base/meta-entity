@@ -419,7 +419,7 @@
                     match = value.match(this.constraints[i].regex);
                     if ((this.constraints[i].condition === false && match !== null) ||    // 실패 조건
                         (this.constraints[i].condition === true && match === null)) {     // 성공 조건
-                        result.msg   = Message.get('ES056', [this.name, this.constraints[i].msg]);
+                        result.msg   = Message.get('EL0513A', [this.name, this.constraints[i].msg]);
                         result.code  = this.constraints[i].code;
                         return result;
                     }

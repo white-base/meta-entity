@@ -318,6 +318,23 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.columns['c2'].value).toBe('R2');
                 expect(table1.columns['c3'].value).toBe('R3');
             });
+            it("- setValue(row) : 다른 테이블, 같은 구조 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.columns.add('c3');
+                var table2 = table1.clone();
+
+                var row = table2.newRow();
+                row['c1'] = 'R1';
+                row['c2'] = 'R2';
+                row['c3'] = 'R3';
+                table1.setValue(row);
+                
+                expect(table1.columns['c1'].value).toBe('R1');
+                expect(table1.columns['c2'].value).toBe('R2');
+                expect(table1.columns['c3'].value).toBe('R3');
+            });
             it("- setValue(row) :row 설정(단일), 별칭 사용 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
@@ -1479,7 +1496,7 @@ describe("[target: meta-table.js]", () => {
                 }
                 table1.read(json1, 3);
 
-                expect(table1.columns.count).toBe(0);
+                expect(table1.columns.count).toBe(1);
             });
             it("- 예외 : 스키마 참조연결 실패", () => {
                 var table1 = new MetaTable('T1');
@@ -1745,7 +1762,6 @@ describe("[target: meta-table.js]", () => {
                             caption: 'C2'
                         },
                     },
-                    rows: []
                 }
                 const obj = table1.writeSchema(1);
 
@@ -1767,7 +1783,6 @@ describe("[target: meta-table.js]", () => {
                 };
                 const json2 = {
                     // name: 'T1',
-                    columns: {},
                     rows: [
                         { c1: 'R1', c2: 'R2' },
                         { c1: 'R10', c2: 'R20' },
