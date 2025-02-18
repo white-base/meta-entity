@@ -436,10 +436,10 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.columns.count).toBe(3)
                 expect(view2.columns.count).toBe(2)
                 expect(view3.columns.count).toBe(1)
-                expect(view1.columns['c1'].value).toBe(null);
-                expect(view1.columns['c2'].value).toBe(null);
+                expect(view1.columns['c1'].value).toBe('');
+                expect(view1.columns['c2'].value).toBe('');
                 expect(view1.columns['c3'].value).toBe('R3');
-                expect(view2.columns['c2'].value).toBe(null);
+                expect(view2.columns['c2'].value).toBe('');
                 expect(view2.columns['c3'].value).toBe('R3');
                 expect(view3.columns['c3'].value).toBe('R3');
                 /**

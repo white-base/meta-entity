@@ -223,7 +223,9 @@
              */
             Object.defineProperty(this, 'value', 
             {
-                get: function() { return $value; },
+                get: function() { 
+                    return $value === null ? this.default : $value; 
+                },
                 set: function(nVal) {
                     if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
                     $value = nVal;

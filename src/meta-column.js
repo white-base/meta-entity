@@ -148,7 +148,9 @@
                      *  - getter 리턴이 없는 경우
                      */
                     // if (typeof __val === 'undefined' || __val === null) __val = this.$value || this.default;  REVIEW: 제거 대상
-                    if (typeof __val === 'undefined' || __val === null) __val = this.$value;  
+                    // if (typeof __val === 'undefined' || __val === null) __val = this.$value;  
+                    if (typeof __val === 'undefined' || __val === null) __val = this.default;
+
                     return __val; 
                 },
                 set:  function(val) { 

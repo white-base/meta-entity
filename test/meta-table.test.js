@@ -47,7 +47,7 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.columns['c1']._entity.tableName).toBe('T1');
                 expect(table1.columns['c2']._entity.tableName).toBe('T1');
                 // table2
-                expect(table2.columns['c1'].value).toBe(null);
+                expect(table2.columns['c1'].value).toBe('');
                 expect(table2.columns['c2'].value).toBe('R2');
                 expect(table2.tableName).toBe('T2');
                 expect(table2.columns['c1']._entity.tableName).toBe('T2');
@@ -275,9 +275,9 @@ describe("[target: meta-table.js]", () => {
                 table1.columns['c3'].default = 'D3';
                 var row = table1.getValue();
                 
-                expect(table1.columns['c1'].value).toBe(null);
-                expect(table1.columns['c2'].value).toBe(null);
-                expect(table1.columns['c3'].value).toBe(null);
+                expect(table1.columns['c1'].value).toBe('D1');
+                expect(table1.columns['c2'].value).toBe('D2');
+                expect(table1.columns['c3'].value).toBe('D3');
                 expect(row['c1']).toBe('D1');
                 expect(row['c2']).toBe('D2');
                 expect(row['c3']).toBe('D3');
