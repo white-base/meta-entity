@@ -3,18 +3,22 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {MetaObject}              = require('logic-core');
-const {MetaElement}             = require('logic-core');
-const {BaseEntity}              = require('logic-core');
-const {IObject}                 = require('logic-core');
-const {IMarshal}                = require('logic-core');
-const {Util}                    = require('logic-core');
-const { MetaTable }             = require('../src/meta-table');
-const { MetaView }              = require('../src/meta-view');
-const { MetaRow }               = require('../src/meta-row');
-const { BaseColumn }            = require('../src/base-column');
-const { MetaColumn }            = require('../src/meta-column');
+// 'use strict';
+
+import { jest } from '@jest/globals';
+
+import {MetaObject}             from 'logic-core';
+import {MetaElement}            from 'logic-core';
+import {BaseEntity}             from '../src/base-entity';
+import {IObject}                from 'logic-core';
+import {IMarshal}               from 'logic-core';
+import {Util}                   from 'logic-core';
+import { MetaTable }            from '../src/meta-table';
+import { MetaView }             from '../src/meta-view';
+import { MetaRow }              from '../src/meta-row';
+import { BaseColumn }           from '../src/base-column';
+import { MetaColumn }           from '../src/meta-column';
+import { Message }              from '../src/message-wrap';
 
 //==============================================================
 // test

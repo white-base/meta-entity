@@ -3,22 +3,23 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {MetaObject}                  = require('logic-core');
-const {MetaElement}                 = require('logic-core');
-const {BaseEntity}                  = require('../src/base-entity');
-const {IObject}                     = require('logic-core');
-const {IMarshal}                    = require('logic-core');
-const {Util}                        = require('logic-core');
-const { MetaTable }                 = require('../src/meta-table');
-const { MetaView, MetaViewCollection }                  = require('../src/meta-view');
-const { MetaRow }                   = require('../src/meta-row');
-const  {MetaSet}                    = require('../src/meta-set');
-const { MetaColumn }                = require('../src/meta-column');  
-const { MetaViewColumnCollection }  = require('../src/collection-column');  
+// 'use strict';
+import { jest } from '@jest/globals';
 
-const { replacer, reviver, stringify, parse }   = require('telejson');
-const {MetaRegistry}                = require('logic-core');
+import {MetaObject}                  from 'logic-core';
+import {MetaElement}                 from 'logic-core';
+import {BaseEntity}                  from '../src/base-entity';
+import {IObject}                     from 'logic-core';
+import {IMarshal}                    from 'logic-core';
+import {Util}                        from 'logic-core';
+import { MetaTable }                 from '../src/meta-table';
+import { MetaRow }                   from '../src/meta-row';
+import  {MetaSet}                    from '../src/meta-set';
+import { MetaColumn }                from '../src/meta-column';  
+import { MetaViewColumnCollection }  from '../src/collection-column';  
+import {MetaRegistry}                from 'logic-core';
+import { MetaView, MetaViewCollection }                  from '../src/meta-view';
+import { replacer, reviver, stringify, parse }   from 'telejson';
 // const { loadNamespace } = require('../src/load-namespace');
 
 const T = true, F = false;

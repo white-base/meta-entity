@@ -3,24 +3,26 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {MetaObject}              = require('logic-core');
-const {MetaElement}             = require('logic-core');
-const {BaseEntity}              = require('../src/base-entity');
-const {IObject}                 = require('logic-core');
-const {IMarshal}                = require('logic-core');
-const {Util}                    = require('logic-core');
-const { MetaTable }             = require('../src/meta-table');
-const { MetaView }              = require('../src/meta-view');
-const { MetaRow }               = require('../src/meta-row');
-const { MetaColumn }            =  require('../src/meta-column');
+// 'use strict';
+import { jest } from '@jest/globals';
+
+import {MetaObject}              from 'logic-core';
+import {MetaElement}             from 'logic-core';
+import {BaseEntity}              from '../src/base-entity';
+import {IObject}                 from 'logic-core';
+import {IMarshal}                from 'logic-core';
+import {Util}                    from 'logic-core';
+import { MetaTable }             from '../src/meta-table';
+import { MetaView }              from '../src/meta-view';
+import { MetaRow }               from '../src/meta-row';
+import { MetaColumn }            from '../src/meta-column';
 
 //==============================================================
 // test
 describe("[target: base-entity.js]", () => {
     describe("BaseEntity :: 추상 클래스", () => {
         beforeAll(() => {
-            // jest.resetModules();
+            jest.resetModules();
         });
         describe("BaseEntity.rows <로우 속성>", () => {
             it("- this.rows : 타입 조회 ", () => {

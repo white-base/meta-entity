@@ -3,20 +3,22 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {Util}                = require('logic-core');
-const {MetaObject}          = require('logic-core');
-const {MetaElement}         = require('logic-core');
-const {BaseColumn}          = require('../src/base-column');
-const {ObjectColumn}        = require('../src/object-column');
-const { MetaTable }         = require('../src/meta-table');
-const { MetaView }          = require('../src/meta-view');
-const { MetaRow }           = require('../src/meta-row');
+// 'use strict';
+import { jest } from '@jest/globals';
+
+import {Util}                from 'logic-core';
+import {MetaObject}          from 'logic-core';
+import {MetaElement}         from 'logic-core';
+import {BaseColumn}          from '../src/base-column';
+import {ObjectColumn}        from '../src/object-column';
+import { MetaTable }         from '../src/meta-table';
+import { MetaView }          from '../src/meta-view';
+import { MetaRow }           from '../src/meta-row';
+import { MetaRegistry }      from 'logic-core';
 // const ComplexElement        = require('../src/meta-element-complex');
 // const {IObject}               = require('../src/i-object');
 // const {IMarshal}              = require('../src/i-marshal');
 // const {IPropertyCollection}   = require('../src/i-collection-property');
-const { MetaRegistry }      = require('logic-core');
 
 let MetaObjectSub, MetaElementSub, ComplexElementSub, EmpytClass;
 

@@ -3,22 +3,24 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {MetaObject}              = require('logic-core');
-const {MetaElement}             = require('logic-core');
-const {BaseEntity}              = require('../src/base-entity');
-const {IObject}                 = require('logic-core');
-const {IMarshal}                = require('logic-core');
-const Util                      = require('logic-core');
-const { BaseColumn }            = require('../src/base-column');
-const { MetaTable }             = require('../src/meta-table');
-const { MetaView }              = require('../src/meta-view');
-const { MetaViewCollection }    = require('../src/meta-view');
-const { MetaRow }               = require('../src/meta-row');
-const { BaseColumnCollection }  = require('../src/collection-column');
-const { MetaViewColumnCollection }      = require('../src/collection-column');
-const { MetaTableColumnCollection }     = require('../src/collection-column');
-const { MetaColumn }            = require('../src/meta-column');
+// 'use strict';
+import { jest } from '@jest/globals';
+
+import {MetaObject}              from 'logic-core';
+import {MetaElement}             from 'logic-core';
+import {BaseEntity}              from '../src/base-entity';
+import {IObject}                 from 'logic-core';
+import {IMarshal}                from 'logic-core';
+import {Util}                    from 'logic-core';
+import { BaseColumn }            from '../src/base-column';
+import { MetaTable }             from '../src/meta-table';
+import { MetaView }              from '../src/meta-view';
+import { MetaViewCollection }    from '../src/meta-view';
+import { MetaRow }               from '../src/meta-row';
+import { BaseColumnCollection }  from '../src/collection-column';
+import { MetaViewColumnCollection }      from '../src/collection-column';
+import { MetaTableColumnCollection }     from '../src/collection-column';
+import { MetaColumn }            from '../src/meta-column';
 
 //==============================================================
 // test

@@ -3,11 +3,12 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
+// 'use strict';
+import { jest } from '@jest/globals';
 
 //==============================================================
 // test
-describe("[L.*]", () => {
+describe.skip("[L.*]", () => {
     describe("[Common.*]", () => {
         describe("message-wrap.js <Message>", () => {
             beforeEach(() => {

@@ -3,7 +3,10 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
+// 'use strict';
+
+import { jest } from '@jest/globals';
+
 
 // const {Util}                    = require('../src/util');
 // const {MetaObject}              = require('../src/meta-object');
@@ -14,15 +17,15 @@
 // const {IMarshal}                = require('../src/i-marshal');
 // const {IPropertyCollection}     = require('../src/i-collection-property');
 // const {ICollection}             = require('../src/i-collection');
-const {IExportControl}          = require('../src/i-control-export');
-const {IGroupControl}           = require('../src/i-control-group');
-const {IImportControl}          = require('../src/i-control-import');
-const {ISchemaControl}          = require('../src/i-control-schema');
+import {IExportControl}          from '../src/i-control-export';
+import {IGroupControl}           from '../src/i-control-group';
+import {IImportControl}          from '../src/i-control-import';
+import {ISchemaControl}          from '../src/i-control-schema';
 // const {IList}                   = require('../src/i-list');
 // const {IListControl}            = require('../src/i-control-list');
 // const {IElement}                = require('../src/i-element');
 // const {ISerialize}              = require('../src/i-serialize');
-const {ITransaction}            = require('../src/i-transaction');
+import {ITransaction}            from '../src/i-transaction';
 // const {IArrayCollection}        = require('../src/i-collection-array');
 
 //==============================================================
@@ -260,7 +263,7 @@ describe("[target: i-* ]", () => {
     //         // expect(()=> s.clear()).toThrow(/ES013/);
     //         expect(()=> s.contains()).toThrow(/EL02213/);
     //         expect(()=> s.indexOf()).toThrow(/EL02214/);
-    //         // expect(()=> s.exist()).toThrow(/ES013/);
+    //         // expect(()=> s.exists()).toThrow(/ES013/);
     //         // create
     //         expect(()=> i.add()).toThrow(/EL02211/);
     //         expect(()=> i.remove()).toThrow(/EL02212/);
@@ -268,7 +271,7 @@ describe("[target: i-* ]", () => {
     //         // expect(()=> i.clear()).toThrow(/ES013/);
     //         expect(()=> i.contains()).toThrow(/EL02213/);
     //         expect(()=> i.indexOf()).toThrow(/EL02214/);
-    //         // expect(()=> i.exist()).toThrow(/ES013/);
+    //         // expect(()=> i.exists()).toThrow(/ES013/);
     //     });
     // });
     // describe("ArrayCollection :: 인터페이스", () => {
@@ -304,7 +307,7 @@ describe("[target: i-* ]", () => {
     //         // expect(()=> s.clear()).toThrow(/ES013/);
     //         expect(()=> s.contains()).toThrow(/EL02213/);
     //         expect(()=> s.indexOf()).toThrow(/EL02214/);
-    //         // expect(()=> s.exist()).toThrow(/ES013/);
+    //         // expect(()=> s.exists()).toThrow(/ES013/);
     //         expect(()=> s.indexToKey()).toThrow(/EL02231/);
     //         // expect(()=> s.removeByProp()).toThrow(/ES013/);
     //         // expect(()=> s.indexOfProp()).toThrow(/ES013/);
@@ -315,7 +318,7 @@ describe("[target: i-* ]", () => {
     //         // expect(()=> i.clear()).toThrow(/ES013/);
     //         expect(()=> i.contains()).toThrow(/EL02213/);
     //         expect(()=> i.indexOf()).toThrow(/EL02214/);
-    //         // expect(()=> i.exist()).toThrow(/ES013/);
+    //         // expect(()=> i.exists()).toThrow(/ES013/);
     //         expect(()=> i.indexToKey()).toThrow(/EL02231/);
     //         // expect(()=> i.removeByProp()).toThrow(/ES013/);
     //         // expect(()=> i.indexOfProp()).toThrow(/ES013/);

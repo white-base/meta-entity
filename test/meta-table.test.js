@@ -3,22 +3,24 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
-const {MetaObject}                  = require('logic-core');
-const {MetaElement}                 = require('logic-core');
-const {BaseEntity}                  = require('../src/base-entity');
-const {IObject}                     = require('logic-core');
-const {IMarshal}                    = require('logic-core');
-const { MetaTable, MetaTableCollection }                 = require('../src/meta-table');
-const { MetaView }                  = require('../src/meta-view');
-const {Util}                        = require('logic-core');
-const { MetaRow }                   = require('../src/meta-row');
-const { MetaColumn }                = require('../src/meta-column');
-const { MetaTableColumnCollection } = require('../src/collection-column');
-const {ObjectColumn}                = require('../src/object-column');
-const  {MetaSet}                    = require('../src/meta-set');
-const { replacer, reviver, stringify, parse }              = require('telejson');
-const {MetaRegistry}                = require('logic-core');
+// 'use strict';
+import { jest } from '@jest/globals';
+
+import {MetaObject}                  from 'logic-core';
+import {MetaElement}                 from 'logic-core';
+import {BaseEntity}                  from '../src/base-entity';
+import {IObject}                     from 'logic-core';
+import {IMarshal}                    from 'logic-core';
+import { MetaView }                  from '../src/meta-view';
+import {Util}                        from 'logic-core';
+import { MetaRow }                   from '../src/meta-row';
+import { MetaColumn }                from '../src/meta-column';
+import { MetaTableColumnCollection } from '../src/collection-column';
+import {ObjectColumn }               from '../src/object-column';
+import { MetaSet }                   from '../src/meta-set';
+import {MetaRegistry}                from 'logic-core';
+import { MetaTable, MetaTableCollection }                 from '../src/meta-table';
+import { replacer, reviver, stringify, parse }            from 'telejson';
 // const { loadNamespace } = require('../src/load-namespace');
 
 //==============================================================

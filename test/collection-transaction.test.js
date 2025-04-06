@@ -3,10 +3,12 @@
  */
 //==============================================================
 // gobal defined
-'use strict';
+// 'use strict';
+import { jest } from '@jest/globals';
 
-const {TransactionCollection}          = require('../src/collection-transaction');
-const { MetaObject } = require('logic-core');
+
+import {TransactionCollection}          from '../src/collection-transaction';
+import { MetaObject } from 'logic-core';
 let Student, School, Corp, Member, House, Space;
 
 //==============================================================
@@ -704,20 +706,20 @@ describe("[target: collection-trans.js]", () => {
             expect(result1 > -1).toBeTruthy();
             expect(result2).toBeTruthy();
         });
-        it.skip("- 유무 검사 : exist(key) ", () => {
+        it.skip("- 유무 검사 : exists(key) ", () => {
             const i = new Corp();
             const result1 = i.rows.add('A1');
             const result2 = i.rows.add(true);
             
             expect(result1 > -1).toBeTruthy();
             expect(result2).toBeTruthy();
-            expect(i.rows.exist(0)).toBe(true);
-            expect(i.rows.exist(1)).toBe(true);
-            expect(i.rows.exist(2)).toBe(false);
-            expect(i.rows.exist('0')).toBe(true);
-            expect(i.rows.exist('1')).toBe(true);
-            expect(i.rows.exist('2')).toBe(false);
-            expect(()=> i.rows.exist(true)).toThrow(/ES021/);
+            expect(i.rows.exists(0)).toBe(true);
+            expect(i.rows.exists(1)).toBe(true);
+            expect(i.rows.exists(2)).toBe(false);
+            expect(i.rows.exists('0')).toBe(true);
+            expect(i.rows.exists('1')).toBe(true);
+            expect(i.rows.exists('2')).toBe(false);
+            expect(()=> i.rows.exists(true)).toThrow(/ES021/);
         });
     });
 });
