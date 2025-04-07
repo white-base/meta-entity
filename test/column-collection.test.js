@@ -15,11 +15,11 @@ import {Util}                    from 'logic-core';
 import { BaseColumn }            from '../src/base-column';
 import { MetaTable }             from '../src/meta-table';
 import { MetaView }              from '../src/meta-view';
-import { MetaViewCollection }    from '../src/meta-view';
+import { MetaViewCollection }    from '../src/collection-meta-view';
 import { MetaRow }               from '../src/meta-row';
-import { BaseColumnCollection }  from '../src/collection-column';
-import { MetaViewColumnCollection }      from '../src/collection-column';
-import { MetaTableColumnCollection }     from '../src/collection-column';
+import { BaseColumnCollection }  from '../src/base-column-collection';
+import { MetaViewColumnCollection }      from '../src/collection-meta-view-column';
+import { MetaTableColumnCollection }     from '../src/collection-meta-table-column';
 import { MetaColumn }            from '../src/meta-column';
 
 //==============================================================

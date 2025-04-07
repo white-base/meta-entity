@@ -1,137 +1,97 @@
-/**
- * ES6 + CJS
- */
 //==============================================================
 // gobal defined
-const index   = require('..');
+import { EventEmitter } from 'logic-entity';
+import { ExtendError } from 'logic-entity';
+import { Util } from 'logic-entity';
+import { Type } from 'logic-entity';
+import { IObject } from 'logic-entity';
+import { IMarshal } from 'logic-entity';
+import { ICollection } from 'logic-entity';
+import { IPropertyCollection } from 'logic-entity';
+
+import { IElement } from 'logic-entity';
+import { IList } from 'logic-entity';
+import { IListControl } from 'logic-entity';
+import { ISerialize } from 'logic-entity';
+import { IArrayCollection } from 'logic-entity';
+import { NamespaceManager } from 'logic-entity';
+import { MetaRegistry } from 'logic-entity';
+import { MetaObject } from 'logic-entity';
+import { MetaElement } from 'logic-entity';
+import { BaseCollection  } from 'logic-entity';
+import { ArrayCollection } from 'logic-entity';
+import { PropertyCollection } from 'logic-entity';
+
+import { Message } from 'logic-entity'; 
+import { IExportControl } from 'logic-entity'; 
+import { IGroupControl } from 'logic-entity'; 
+import { IImportControl } from 'logic-entity'; 
+import { ISchemaControl } from 'logic-entity'; 
+import { ITransaction } from 'logic-entity'; 
+import { TransactionQueue } from 'logic-entity'; 
+import { TransactionCollection } from 'logic-entity'; 
+import { MetaRowCollection } from 'logic-entity'; 
+import { MetaRow } from 'logic-entity'; 
+import { BaseColumn } from 'logic-entity'; 
+import { MetaColumn } from 'logic-entity'; 
+import { ObjectColumn } from 'logic-entity'; 
+import { BaseColumnCollection } from 'logic-entity'; 
+import { MetaViewColumnCollection } from 'logic-entity'; 
+import { MetaTableColumnCollection } from 'logic-entity'; 
+import { BaseEntity } from 'logic-entity'; 
+import { MetaTable } from 'logic-entity'; 
+import { MetaTableCollection } from 'logic-entity'; 
+import { MetaView } from 'logic-entity'; 
+import { MetaViewCollection } from 'logic-entity'; 
+import { MetaSet } from 'logic-entity'; 
 
 //==============================================================
 // test
 describe("[target: index.js]", () => {
     describe('Observer, ExtendError, Util', () => {
         it('- _L.*  ', () => {
-            expect(typeof index.EventEmitter).toBe('function');
-            expect(typeof index.ExtendError).toBe('function');
-            expect(typeof index.Util.inherits).toBe('function');
-            expect(typeof index.Util.getArrayDepth).toBe('function');
-            expect(typeof index.Util.createGuid).toBe('function');
-            expect(typeof index.Type.isMatchType).toBe('function');
-            // expect(typeof index.Util.checkUnionType).toBe('function');
-            expect(typeof index.Type.matchType).toBe('function');
-            // expect(typeof index.Util.validUnionType).toBe('function');
-            expect(typeof index.Type.getAllProperties).toBe('function');
-            expect(typeof index.Util.implements).toBe('function');
-            expect(typeof index.Util.deepCopy).toBe('function');
-            expect(typeof index.Type.deepEqual).toBe('function');
-        });
-        it('- _L.Common.* ', () => { 
-            // namespace
-            expect(typeof index.Common).toBe('object');
-            expect(typeof index.Common.EventEmitter).toBe('function');
-            expect(typeof index.Common.ExtendError).toBe('function');
-            expect(typeof index.Common.Util.inherits).toBe('function');
-            expect(typeof index.Common.Util.getArrayDepth).toBe('function');
-            expect(typeof index.Common.Util.createGuid).toBe('function');
-            expect(typeof index.Common.Type.isMatchType).toBe('function');
-            // expect(typeof index.Common.Util.checkUnionType).toBe('function');
-            expect(typeof index.Common.Type.matchType).toBe('function');
-            // expect(typeof index.Common.Util.validUnionType).toBe('function');
-            expect(typeof index.Common.Type.getAllProperties).toBe('function');
-            expect(typeof index.Common.Util.implements).toBe('function');
-            expect(typeof index.Common.Util.deepCopy).toBe('function');
-            expect(typeof index.Common.Type.deepEqual).toBe('function');
-        });
-    });
-    describe(`IObject, IMarshal, 
-    ICollection, IPropertyCollection,
-    IAllControl, IGroupControl, ILookupControl, IPartControl,
-    IExportControl, IImportControl`, () => {
-        it('- _L.* ', () => {
-            expect(typeof index.IObject).toBe('function');
-            expect(typeof index.IMarshal).toBe('function');
-            expect(typeof index.ICollection).toBe('function');
-            expect(typeof index.IPropertyCollection).toBe('function');
-            expect(typeof index.IExportControl).toBe('function');
-            expect(typeof index.IGroupControl).toBe('function');
-            expect(typeof index.IImportControl).toBe('function');
-        });
-        it('- _L.Interface.* ', () => { 
-            // namespace
-            expect(typeof index.Interface).toBe('object');
-            expect(typeof index.Interface.IObject).toBe('function');
-            expect(typeof index.Interface.IMarshal).toBe('function');
-            expect(typeof index.Interface.ICollection).toBe('function');
-            expect(typeof index.Interface.IPropertyCollection).toBe('function');
-            expect(typeof index.Interface.IExportControl).toBe('function');
-            expect(typeof index.Interface.IGroupControl).toBe('function');
-            expect(typeof index.Interface.IImportControl).toBe('function');    
-        });
-    });
-    describe('BaseCollection, ArrayCollection, PropertyCollection', () => {
-        it('- _L.* ', () => {
-            expect(typeof index.BaseCollection).toBe('function');
-            expect(typeof index.ArrayCollection).toBe('function');
-            expect(typeof index.PropertyCollection).toBe('function');
-        });
-        
-        it('- _L.Collection.* ', () => {
-            // namespace
-            expect(typeof index.Collection).toBe('object');
-            expect(typeof index.Collection.BaseCollection).toBe('function');
-            expect(typeof index.Collection.ArrayCollection).toBe('function');
-            expect(typeof index.Collection.PropertyCollection).toBe('function');
-        });
-    });
-    describe('MetaObject, MetaElement', () => {
-        it('- _L.* ', () => {
-            expect(typeof index.MetaObject).toBe('function');
-            expect(typeof index.MetaElement).toBe('function');
-            expect(typeof index.MetaRegistry).toBe('function');
-            expect(typeof index.NamespaceManager).toBe('function');
-        });
-        
-        it('- _L.Meta.* ', () => {
-            // namespace
-            expect(typeof index.Meta).toBe('object');
-            expect(typeof index.Meta.MetaObject).toBe('function');
-            expect(typeof index.Meta.MetaElement).toBe('function');
-            expect(typeof index.Meta.MetaRegistry).toBe('function');
-            expect(typeof index.Meta.NamespaceManager).toBe('function');
-        });
-    });
-    describe(`BaseEntity, 
-    MetaView, MetaViewCollection, 
-    MetaTable, MetaTableCollection,
-    MetaColumn, BaseColumnCollection, 
-    MetaViewColumnCollection, MetaTableColumnCollection,
-    MetaRow, MetaRowCollection`, () => {
-        it('- _L.* ', () => {
-            expect(typeof index.BaseEntity).toBe('function');
-            expect(typeof index.MetaView).toBe('function');
-            expect(typeof index.MetaViewCollection).toBe('function');
-            expect(typeof index.MetaTable).toBe('function');
-            expect(typeof index.MetaTableCollection).toBe('function');
-            expect(typeof index.MetaColumn).toBe('function');
-            expect(typeof index.BaseColumnCollection).toBe('function');
-            expect(typeof index.MetaViewColumnCollection).toBe('function');
-            expect(typeof index.MetaTableColumnCollection).toBe('function');
-            expect(typeof index.MetaRow).toBe('function');
-            expect(typeof index.MetaRowCollection).toBe('function');
-            // namespace
-        });
-        it('- _L.Meta.Entity.* ', () => {
-            expect(typeof index.Meta.Entity).toBe('object');
-            expect(typeof index.Meta.Entity.BaseEntity).toBe('function');
-            expect(typeof index.Meta.Entity.MetaView).toBe('function');
-            expect(typeof index.Meta.Entity.MetaViewCollection).toBe('function');
-            expect(typeof index.Meta.Entity.MetaTable).toBe('function');
-            expect(typeof index.Meta.Entity.MetaTableCollection).toBe('function');
-            expect(typeof index.Meta.Entity.MetaColumn).toBe('function');
-            expect(typeof index.Meta.Entity.BaseColumnCollection).toBe('function');
-            expect(typeof index.Meta.Entity.MetaViewColumnCollection).toBe('function');
-            expect(typeof index.Meta.Entity.MetaTableColumnCollection).toBe('function');
-            expect(typeof index.Meta.Entity.MetaRow).toBe('function');
-            expect(typeof index.Meta.Entity.MetaRowCollection).toBe('function');
+            expect(typeof EventEmitter).toBe('function');
+            expect(typeof ExtendError).toBe('function');
+            expect(typeof Util).toBe('object');
+            expect(typeof Type).toBe('object');
+            expect(typeof IObject).toBe('function');
+            expect(typeof IMarshal).toBe('function');
+            expect(typeof ICollection).toBe('function');
+            expect(typeof IPropertyCollection).toBe('function');
+            expect(typeof IElement).toBe('function');
+            expect(typeof IList).toBe('function');
+            expect(typeof IListControl).toBe('function');
+            expect(typeof ISerialize).toBe('function');
+            expect(typeof IArrayCollection).toBe('function');
+            expect(typeof IExportControl).toBe('function');
+            expect(typeof IGroupControl).toBe('function');
+            expect(typeof IImportControl).toBe('function');
+            expect(typeof ISchemaControl).toBe('function');
+            expect(typeof ITransaction).toBe('function');
+            expect(typeof TransactionQueue).toBe('function');
+            expect(typeof TransactionCollection).toBe('function');
+            expect(typeof BaseCollection).toBe('function');
+            expect(typeof ArrayCollection).toBe('function');
+            expect(typeof PropertyCollection).toBe('function');
+            expect(typeof Message).toBe('function');
+            expect(typeof MetaObject).toBe('function');
+            expect(typeof MetaElement).toBe('function');
+            expect(typeof MetaRegistry).toBe('function');
+            expect(typeof NamespaceManager).toBe('function');
+            expect(typeof BaseEntity).toBe('function');
+            expect(typeof MetaView).toBe('function');
+            expect(typeof MetaViewCollection).toBe('function');
+            expect(typeof MetaTable).toBe('function');
+            expect(typeof MetaTableCollection).toBe('function');
+            expect(typeof MetaColumn).toBe('function');
+            expect(typeof ObjectColumn).toBe('function');
+            expect(typeof BaseColumnCollection).toBe('function');
+            expect(typeof MetaViewColumnCollection).toBe('function');
+            expect(typeof MetaTableColumnCollection).toBe('function');
+            expect(typeof MetaRow).toBe('function');
+            expect(typeof BaseColumn).toBe('function');
+            expect(typeof MetaRowCollection).toBe('function');
+            expect(typeof MetaSet).toBe('function');
         });
     });
 });

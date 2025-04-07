@@ -16,9 +16,10 @@ import { MetaTable }                 from '../src/meta-table';
 import { MetaRow }                   from '../src/meta-row';
 import  {MetaSet}                    from '../src/meta-set';
 import { MetaColumn }                from '../src/meta-column';  
-import { MetaViewColumnCollection }  from '../src/collection-column';  
+import { MetaViewColumnCollection }  from '../src/collection-meta-view-column.js';  
 import {MetaRegistry}                from 'logic-core';
-import { MetaView, MetaViewCollection }                  from '../src/meta-view';
+import { MetaView }                  from '../src/meta-view';
+import { MetaViewCollection }        from '../src/collection-meta-view';
 import { replacer, reviver, stringify, parse }   from 'telejson';
 // const { loadNamespace } = require('../src/load-namespace');
 

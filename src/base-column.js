@@ -1,6 +1,5 @@
 /**** base-column.js | _L.Meta.Entity.BaseColumn ****/
 //==============================================================
-import { Message } from './message-wrap';
 import { ExtendError } from 'logic-core';
 import { Type } from 'logic-core';
 import { Util } from 'logic-core';

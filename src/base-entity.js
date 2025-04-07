@@ -7,11 +7,9 @@ import { IGroupControl } from './i-control-group.js';
 import { ISchemaControl } from './i-control-schema.js';
 import { IImportControl } from './i-control-import.js';
 import { IExportControl } from './i-control-export.js';
-import { MetaObject } from 'logic-core';
 import { MetaElement } from 'logic-core';
-import { MetaRowCollection } from './meta-row.js';
+import { MetaRowCollection } from './collection-meta-row.js';
 import { MetaRow } from './meta-row.js';
-import { BaseColumnCollection } from './collection-column.js';
 import { MetaColumn } from './meta-column.js';
 import { MetaRegistry } from 'logic-core';
 

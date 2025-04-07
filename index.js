@@ -1,6 +1,5 @@
 /// <reference path="./types/en/index.d.ts" />
 
-// import { Message } from 'logic-core';
 import { ExtendError } from 'logic-core';
 import { Type } from 'logic-core';
 import { Util } from 'logic-core';
@@ -18,7 +17,7 @@ import { NamespaceManager } from 'logic-core';
 import { MetaRegistry } from 'logic-core';
 import { MetaObject } from 'logic-core';
 import { MetaElement } from 'logic-core';
-import { BaseCollection  } from 'logic-core';
+import { BaseCollection } from 'logic-core';
 import { ArrayCollection } from 'logic-core';
 import { PropertyCollection } from 'logic-core';
 
@@ -30,21 +29,22 @@ import { ISchemaControl } from './src/i-control-schema.js';
 import { ITransaction } from './src/i-transaction.js'; 
 import { TransactionQueue } from './src/trans-queue.js'; 
 import { TransactionCollection } from './src/collection-transaction.js'; 
-import { MetaRowCollection } from './src/meta-row.js'; 
+import { MetaRowCollection } from './src/collection-meta-row.js'; 
 import { MetaRow } from './src/meta-row.js'; 
 import { BaseColumn } from './src/base-column.js'; 
 import { MetaColumn } from './src/meta-column.js'; 
 import { ObjectColumn } from './src/object-column.js'; 
-import { BaseColumnCollection } from './src/collection-column.js'; 
-import { MetaViewColumnCollection } from './src/collection-column.js';  
-import { MetaTableColumnCollection } from './src/meta-table.js'; 
+import { BaseColumnCollection } from './src/base-column-collection.js'; 
+import { MetaViewColumnCollection } from './src/collection-meta-view-column.js';  
+import { MetaTableColumnCollection } from './src/collection-meta-table-column.js';  
 import { BaseEntity } from './src/base-entity.js'; 
 import { MetaTable } from './src/meta-table.js'; 
-import { MetaTableCollection } from './src/meta-table.js'; 
+import { MetaTableCollection } from './src/collection-meta-table.js'; 
 import { MetaView } from './src/meta-view.js'; 
-import { MetaViewCollection } from'./src/meta-view.js'; 
+import { MetaViewCollection } from'./src/collection-meta-view.js'; 
 import { MetaSet } from './src/meta-set.js'; 
 
+// logic-core
 export { 
     ExtendError,
     Type,

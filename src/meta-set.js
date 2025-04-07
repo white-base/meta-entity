@@ -10,8 +10,8 @@ import { ISchemaControl } from './i-control-schema.js';
 import { IImportControl } from './i-control-import.js';
 import { IExportControl } from './i-control-export.js';
 import { ITransaction } from './i-transaction.js';
-import { MetaTableCollection } from './meta-table.js';
-import { MetaViewCollection } from './meta-view.js';
+import { MetaTableCollection } from './collection-meta-table.js';
+import { MetaViewCollection } from './collection-meta-view.js';
 
 var MetaSet  = (function (_super) {
     /**

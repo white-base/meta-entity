@@ -15,11 +15,12 @@ import { MetaView }                  from '../src/meta-view';
 import {Util}                        from 'logic-core';
 import { MetaRow }                   from '../src/meta-row';
 import { MetaColumn }                from '../src/meta-column';
-import { MetaTableColumnCollection } from '../src/collection-column';
+import { MetaTableColumnCollection } from '../src/collection-meta-table-column';
 import {ObjectColumn }               from '../src/object-column';
 import { MetaSet }                   from '../src/meta-set';
 import {MetaRegistry}                from 'logic-core';
-import { MetaTable, MetaTableCollection }                 from '../src/meta-table';
+import { MetaTable }                 from '../src/meta-table';
+import { MetaTableCollection }       from '../src/collection-meta-table';
 import { replacer, reviver, stringify, parse }            from 'telejson';
 // const { loadNamespace } = require('../src/load-namespace');
 
