@@ -1,12 +1,12 @@
-import {PropertyCollection}         from 'logic-core';
-import MetaView                     from './meta-view';
-import BaseColumnCollection         from './base-column-collection';
+import type {PropertyCollection}         from 'logic-core/ko';
+import type MetaView                     from './meta-view.d.ts';
+// import type BaseColumnCollection         from './base-column-collection.d.ts';
 
 /**
  * `MetaViewCollection` 클래스는 뷰 엔티티를 관리하는 컬렉션을 정의합니다.
  * 이 클래스는 메타 뷰를 추가하고, 컬렉션에 있는 뷰의 존재 여부를 확인하는 기능을 제공합니다.
  */
-declare class MetaViewCollection extends PropertyCollection {
+declare class MetaViewCollection extends PropertyCollection<MetaView> {
 
     /**
      * `MetaViewCollection` 객체를 생성합니다.
@@ -37,7 +37,7 @@ declare class MetaViewCollection extends PropertyCollection {
      * const index1 = collection.add("viewName", baseCollection); // 문자열(뷰 이름)으로 뷰 추가
      * const index2 = collection.add(new MetaView("viewName"), baseCollection); // `MetaView` 객체로 뷰 추가
      */
-    add(view: string | MetaView, baseEntity: BaseColumnCollection): number;
+    add(view: string | MetaView, baseEntity: MetaView): number;
 
     /**
      * 지정된 뷰 이름이 컬렉션에 존재하는지 여부를 확인합니다.
@@ -52,4 +52,5 @@ declare class MetaViewCollection extends PropertyCollection {
 
 }
 
-export = MetaViewCollection;
+export default MetaViewCollection;
+export { MetaViewCollection };

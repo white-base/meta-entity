@@ -1,11 +1,11 @@
-import BaseColumnCollection     from './base-column-collection';
-import BaseColumn               from './base-column';
+import type BaseColumnCollection     from './base-column-collection.d.ts';
+import type BaseColumn               from './base-column.d.ts';
 
 /**
  * `MetaTableColumnCollection` 클래스는 테이블의 컬럼을 관리하는 컬렉션을 정의합니다.
  * 이 클래스는 컬럼의 추가 및 관리 기능을 제공합니다.
  */
-declare class MetaTableColumnCollection extends BaseColumnCollection {
+declare class MetaTableColumnCollection<T> extends BaseColumnCollection<T> {
 
     /**
      * `MetaTableColumnCollection` 객체를 생성합니다.
@@ -41,4 +41,5 @@ declare class MetaTableColumnCollection extends BaseColumnCollection {
     addValue(name: string, value: string | number | boolean): BaseColumn; 
 }
 
-export = MetaTableColumnCollection;
+export default MetaTableColumnCollection;
+export { MetaTableColumnCollection };

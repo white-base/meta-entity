@@ -24,7 +24,7 @@ var MetaRow  = (function (_super) {
         var $keys = [];
 
         // protected
-        var _this   = this;
+        // var _this   = this;
         var _entity  = null;
 
         /**
@@ -33,8 +33,7 @@ var MetaRow  = (function (_super) {
          * @readonly
          * @private
          */
-        Object.defineProperty(this, '$elements',
-        {
+        Object.defineProperty(this, '$elements', {
             get: function() { return $elements; },
             set: function(nVal) { $elements = nVal; },
             configurable: false,
@@ -47,8 +46,7 @@ var MetaRow  = (function (_super) {
          * @private 
          * @member {EventEmitter} _L.Meta.Entity.MetaRow#$event  
          */
-        Object.defineProperty(this, '$event', 
-        {
+        Object.defineProperty(this, '$event', {
             get: function() { return $event; },
             configurable: false,
             enumerable: false,
@@ -75,8 +73,7 @@ var MetaRow  = (function (_super) {
          * @readonly
          * @member {Array<string>} _L.Meta.Entity.MetaRow#$keys  
          */
-        Object.defineProperty(this, '$keys',
-        {
+        Object.defineProperty(this, '$keys', {
             get: function() {
                 // var arr = [];
                 // for (var i = 0; i < $keys.length; i++) arr.push($keys[i]);
@@ -92,8 +89,7 @@ var MetaRow  = (function (_super) {
          * @readonly
          * @member {BaseEntity} _L.Meta.Entity.MetaRow#_entity
          */
-        Object.defineProperty(this, '_entity', 
-        {
+        Object.defineProperty(this, '_entity', {
             get: function() { return _entity; },
             configurable: false,
             enumerable: false
@@ -104,8 +100,7 @@ var MetaRow  = (function (_super) {
          * @readonly
          * @member {Array<any>}  _L.Meta.Entity.MetaRow#_list  
          */
-        Object.defineProperty(this, '_list', 
-        {
+        Object.defineProperty(this, '_list', {
             get: function() {
                 var arr = [];
                 for (var i = 0; i < $elements.length; i++) arr.push($elements[i]);
@@ -120,8 +115,7 @@ var MetaRow  = (function (_super) {
          * @readonly
          * @member {Number} _L.Meta.Entity.MetaRow#count 
          */
-        Object.defineProperty(this, 'count', 
-        {
+        Object.defineProperty(this, 'count', {
             get: function() { return $elements.length; },
             configurable: false,
             enumerable: false
@@ -136,8 +130,7 @@ var MetaRow  = (function (_super) {
          * @param {any}         p_callback.p_oValue 기존 값
          * @param {this}        p_callback.p_this 로우 객체
          */
-        Object.defineProperty(this, 'onChanging', 
-        {
+        Object.defineProperty(this, 'onChanging', {
             set: function(fun) { this.$event.on('onChanging', fun); },
             configurable: false,
             enumerable: false,
@@ -368,8 +361,8 @@ var MetaRow  = (function (_super) {
             } else obj['_elem'].push(elem);
         }
         obj['_key'] = [];
-        for (var i = 0; i < this.$keys.length; i++) {
-            var key = this.$keys[i];
+        for (var k = 0; k < this.$keys.length; k++) {
+            var key = this.$keys[k];
             obj['_key'].push(key);
         }
         return obj;                        
@@ -388,7 +381,7 @@ var MetaRow  = (function (_super) {
         _super.prototype.setObject.call(this, p_oGuid, p_origin);
         
         var origin = p_origin ? p_origin : p_oGuid;
-        var entity;
+        // var entity;
         
         if (p_oGuid['_elem'].length !== p_oGuid['_key'].length) throw new ExtendError(/EL05212/, null, [p_oGuid['_elem'].length, p_oGuid['_key'].length]);
 

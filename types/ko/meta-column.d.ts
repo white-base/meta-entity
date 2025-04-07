@@ -1,6 +1,6 @@
-import BaseColumn           from './base-column';
-import {EventEmitter}       from 'logic-core';
-import BaseEntity           from './base-entity';
+import type BaseColumn           from './base-column.d.ts';
+import type {EventEmitter}       from 'logic-core/ko';
+import type BaseEntity           from './base-entity.d.ts';
 
 declare type ValueType = string | number | boolean;
 
@@ -175,4 +175,5 @@ declare class MetaColumn extends BaseColumn {
     valid(value: ValueType): object | undefined;
 }
 
-export = MetaColumn;
+export default MetaColumn;
+export { MetaColumn };

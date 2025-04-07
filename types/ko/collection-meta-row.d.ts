@@ -1,7 +1,7 @@
-import TransactionCollection    from './collection-transaction';
-import MetaRow                  from './meta-row';
+import type TransactionCollection    from './collection-transaction.d.ts';
+import type MetaRow                  from './meta-row.d.ts';
 
-declare class MetaRowCollection extends TransactionCollection {
+declare class MetaRowCollection extends TransactionCollection<MetaRow> {
 
     /**
      * `MetaRowCollection` 클래스의 생성자입니다.
@@ -47,4 +47,5 @@ declare class MetaRowCollection extends TransactionCollection {
     insertAt(pos: number, row: MetaRow, isCheck?: boolean): boolean;
 }
 
-export = MetaRowCollection;
+export default MetaRowCollection;
+export { MetaRowCollection };

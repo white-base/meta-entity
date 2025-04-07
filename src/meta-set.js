@@ -35,8 +35,7 @@ var MetaSet  = (function (_super) {
          * 테이블 이름
          * @member {string} _L.Meta.Entity.MetaSet#setName
          */
-        Object.defineProperty(this, 'setName', 
-        {
+        Object.defineProperty(this, 'setName', {
             get: function() { return this._name; },
             set: function(nVal) { 
                 if (typeof nVal !== 'string') throw new ExtendError(/EL05451/, null, [this.constructor.name, typeof nVal]);
@@ -51,8 +50,7 @@ var MetaSet  = (function (_super) {
          * @readonly
          * @member {MetaTableCollection} _L.Meta.Entity.MetaSet#tables
          */
-        Object.defineProperty(this, 'tables', 
-        {
+        Object.defineProperty(this, 'tables', {
             get: function() { return tables; },
             configurable: false,
             enumerable: true
@@ -63,8 +61,7 @@ var MetaSet  = (function (_super) {
          * @readonly
          * @member {MetaViewCollection} _L.Meta.Entity.MetaSet#views
          */
-        Object.defineProperty(this, 'views', 
-        {
+        Object.defineProperty(this, 'views', {
             get: function() { return views; },
             configurable: false,
             enumerable: true
@@ -198,8 +195,8 @@ var MetaSet  = (function (_super) {
             clone.tables.add(this.tables[i].clone());
         }
 
-        for(var i = 0; i < this.views.count; i++) {
-            clone.views.add(this.views[i].clone());
+        for(var k = 0; k < this.views.count; k++) {
+            clone.views.add(this.views[k].clone());
         }
         return clone;
     };
@@ -209,7 +206,7 @@ var MetaSet  = (function (_super) {
      */
     MetaSet.prototype.clear  = function() {
         for(var i = 0; i < this.tables.count; i++) this.tables[i].clear();
-        for(var i = 0; i < this.views.count; i++) this.views[i].clear();
+        for(var k = 0; k < this.views.count; k++) this.views[k].clear();
     };
     
     /**
@@ -228,7 +225,7 @@ var MetaSet  = (function (_super) {
      */
     MetaSet.prototype.load = function(p_obj, p_parse) {
         var obj = p_obj;
-        var mObj;
+        // var mObj;
 
         if (p_obj instanceof MetaSet) throw new ExtendError(/ES022/, null, []);
 
@@ -255,7 +252,7 @@ var MetaSet  = (function (_super) {
         var rObj = this.getObject(p_vOpt);
         var str;
         
-        if (typeof p_stringify === 'function') str = p_stringify(rObj, {space: p_space} );
+        if (typeof p_stringify === 'function') str = p_stringify(rObj, { space: p_space } );
         else str = JSON.stringify(rObj, null, p_space);
         return str;
     };
@@ -274,6 +271,7 @@ var MetaSet  = (function (_super) {
     MetaSet.prototype.read  = function(p_obj, p_opt) {
         var opt = typeof p_opt === 'undefined' ? 3 : p_opt;
         var entity;
+        var key;
 
         if (typeof p_obj !== 'object' || p_obj === null) throw new ExtendError(/EL05456/, null, [typeof p_obj]);
         if (typeof opt !== 'number') throw new ExtendError(/EL05457/, null, [typeof opt]);
@@ -282,13 +280,13 @@ var MetaSet  = (function (_super) {
             this.setName = p_obj.setName;
 
             for (var i = 0; i < p_obj.tables.count; i++) {
-                var key = p_obj.tables.indexToKey(i);
+                key = p_obj.tables.indexToKey(i);
                 if (this.tables.keyToIndex(key) < 0) this.tables.add(key);
                 entity = this.tables[key];
                 entity._readEntity(p_obj.tables[key], p_opt);
             }
-            for (var i = 0; i < p_obj.views.count; i++) {
-                var key = p_obj.views.indexToKey(i);
+            for (var k = 0; k < p_obj.views.count; k++) {
+                key = p_obj.views.indexToKey(k);
                 if (this.views.keyToIndex(key) < 0) this.views.add(key);
                 entity = this.views[key];
                 entity._readEntity(p_obj.views[key], p_opt);
@@ -306,7 +304,7 @@ var MetaSet  = (function (_super) {
      * @param {boolean} p_createRow true 이면, row[0] 기준으로 컬럼을 추가함
      */
     MetaSet.prototype.readSchema  = function(p_obj, p_createRow) {
-        var _this = this;
+        // var _this = this;
         var metaSet = null;
         var obj;
         var entity;
@@ -334,10 +332,10 @@ var MetaSet  = (function (_super) {
         if (obj['views']) {
             entity = obj['views'];
             if (entity['$key'] && Array.isArray(entity['$key'])) {
-                for (var i = 0; i < entity['$key'].length; i++) {
-                    $addEntity(entity['$key'][i], entity, this.views);
+                for (var k = 0; k < entity['$key'].length; k++) {
+                    $addEntity(entity['$key'][k], entity, this.views);
                 }
-            } else for (var key in entity) $addEntity(key, entity, this.views);
+            } else for (var key2 in entity) $addEntity(key2, entity, this.views);
         }
         return;
 
@@ -388,8 +386,8 @@ var MetaSet  = (function (_super) {
      * @returns {object} 스키마 타입
      */
     MetaSet.prototype.write  = function(p_vOpt) {
-        var vOpt = p_vOpt || 0;
-        var oSch;
+        // var vOpt = p_vOpt || 0;
+        // var oSch;
         var oGuid = this.getObject(p_vOpt);
 
         return MetaSet.transformSchema(oGuid);
@@ -407,8 +405,8 @@ var MetaSet  = (function (_super) {
         for (var prop in schema.tables) {
             if (prop.indexOf('$') < 0) schema.tables[prop].rows = [];
         }
-        for (var prop in schema.views) {
-            if (prop.indexOf('$') < 0) schema.views[prop].rows = [];
+        for (var prop2 in schema.views) {
+            if (prop2.indexOf('$') < 0) schema.views[prop2].rows = [];
         }
         return schema;
         
@@ -426,8 +424,8 @@ var MetaSet  = (function (_super) {
         for (var prop in schema.tables) {
             if (prop.indexOf('$') < 0) schema.tables[prop].columns = {};
         }
-        for (var prop in schema.views) {
-            if (prop.indexOf('$') < 0) schema.views[prop].columns = {};
+        for (var prop2 in schema.views) {
+            if (prop2.indexOf('$') < 0) schema.views[prop2].columns = {};
         }
         return schema;
     };

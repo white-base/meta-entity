@@ -1,7 +1,7 @@
 /**** trans-queue.js | _L.Collection.TransactionQueue ****/
 //==============================================================
 import { ExtendError } from 'logic-core';
-import { Util } from 'logic-core';
+// import { Util } from 'logic-core';
 import { MetaObject } from 'logic-core';
 import { ArrayCollection } from 'logic-core';
 
@@ -21,8 +21,7 @@ var TransactionQueue  = (function () {
          * @readonly
          * @member {array<object>} _L.Collection.TransactionQueue#queue
          */
-        Object.defineProperty(this, 'queue', 
-        {
+        Object.defineProperty(this, 'queue', {
             get: function() { return queue; },
             configurable: false,
             enumerable: true
@@ -32,8 +31,7 @@ var TransactionQueue  = (function () {
          * 대상 컬랙션
          * @member {Number} _L.Collection.TransactionQueue#count 
          */
-        Object.defineProperty(this, 'collection', 
-        {
+        Object.defineProperty(this, 'collection', {
             get: function() { return collection; },
             set: function(nVal) { 
                 if (!(nVal instanceof MetaObject)) {

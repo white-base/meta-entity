@@ -22,8 +22,7 @@ var MetaTableCollection  = (function (_super) {
          * 기본 생성 타입
          * @member {BaseColumnCollection} _L.Meta.Entity.MetaTableCollection#_baseType
          */
-        Object.defineProperty(this, '_baseType', 
-        {
+        Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
             set: function(nVal) { 
                 if (!(typeof nVal === 'function')) throw new ExtendError(/EL05421/, null, [this.constructor.name, typeof nVal]);

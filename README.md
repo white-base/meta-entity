@@ -1,8 +1,9 @@
 # logic-entity
 
+## MetaTable
 
-https://jeongkyun-it.tistory.com/195
+## MetaView
 
+## MetaColumn
 
-
-TODO: MetaViewColumnCollection.prototype.add(, refCollection) : 컬렉션 또는 엔티티도 추가 가능하게 ...
+## MetaSet

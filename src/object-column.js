@@ -4,8 +4,8 @@ import { ExtendError } from 'logic-core';
 import { Util } from 'logic-core';
 import { MetaRegistry } from 'logic-core';
 import { MetaObject } from 'logic-core';
-import { MetaElement } from 'logic-core';
-import { PropertyCollection } from 'logic-core';
+// import { MetaElement } from 'logic-core';
+// import { PropertyCollection } from 'logic-core';
 import { BaseColumn } from './base-column.js';
 
 var ObjectColumn  = (function (_super) {
@@ -113,14 +113,14 @@ var ObjectColumn  = (function (_super) {
         elem = p_oGuid['$value'];
         if (typeof elem === 'object' && elem !== null) {
             if (MetaRegistry.isGuidObject(elem)) {
-                var obj = MetaRegistry.createMetaObject(elem, origin);
-                obj.setObject(elem, origin);
-                this.$value = obj;
+                var obj2 = MetaRegistry.createMetaObject(elem, origin);
+                obj2.setObject(elem, origin);
+                this.$value = obj2;
             
             } else if (elem['$ref']) {
-                var meta = MetaRegistry.findSetObject(elem['$ref'], origin);
-                if (!meta) throw new ExtendError(/EL05123/, null, [elem['$ref']]);
-                this.$value = meta;
+                var meta2 = MetaRegistry.findSetObject(elem['$ref'], origin);
+                if (!meta2) throw new ExtendError(/EL05123/, null, [elem['$ref']]);
+                this.$value = meta2;
             }
         }
     };

@@ -1,12 +1,12 @@
-import {PropertyCollection}     from 'logic-core';
-import BaseColumn               from './base-column';
+import type {PropertyCollection}     from 'logic-core/ko';
+import type BaseColumn               from './base-column.d.ts';
 
 /**
  * 컬럼 기본 컬렉션을 나타내는 추상 클래스입니다.
  * 이 클래스는 다양한 컬럼들을 관리하고 조작하는 기능을 제공합니다.
  * @extends PropertyCollection
  */
-declare abstract class BaseColumnCollection extends PropertyCollection {
+declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
 
     /**
      * 컬럼 기본 컬렉션을 생성합니다.
@@ -85,4 +85,5 @@ declare abstract class BaseColumnCollection extends PropertyCollection {
     abstract addValue(...args): void;
 }
 
-export = BaseColumnCollection;
+export default BaseColumnCollection;
+export { BaseColumnCollection };

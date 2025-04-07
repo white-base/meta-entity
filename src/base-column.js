@@ -31,8 +31,7 @@ var BaseColumn  = (function (_super) {
          * @readonly
          * @private
          */
-        Object.defineProperty(this, '$key',
-        {
+        Object.defineProperty(this, '$key', {
             get: function() { return $key; },
             set: function(nVal) { 
                 if (_isString(nVal)) $key = nVal;
@@ -47,8 +46,7 @@ var BaseColumn  = (function (_super) {
          * @readonly
          * @private
          */
-        Object.defineProperty(this, '$value',
-        {
+        Object.defineProperty(this, '$value', {
             get: function() { return $value; },
             set: function(nVal) { $value = nVal; },
             configurable: false,
@@ -61,8 +59,7 @@ var BaseColumn  = (function (_super) {
          * @readonly
          * @private
          */
-        Object.defineProperty(this, '$alias',
-        {
+        Object.defineProperty(this, '$alias', {
             get: function() { return $alias; },
             set: function(nVal) { 
                 if (_isString(nVal)) $alias = nVal;
@@ -76,8 +73,7 @@ var BaseColumn  = (function (_super) {
          * @member {BaseEntity} _L.Meta.Entity.BaseColumn#_entity
          * @protected
          */
-        Object.defineProperty(this, '_entity', 
-        {
+        Object.defineProperty(this, '_entity', {
             get: function() { return _entity; },
             set: function(nVal) { 
                 if (typeof nVal !== 'undefined' && !(nVal instanceof MetaElement && nVal.instanceOf('BaseEntity'))) {
@@ -94,8 +90,7 @@ var BaseColumn  = (function (_super) {
          * @member {any} _L.Meta.Entity.BaseColumn#_valueTypes
          * @protected
          */
-        Object.defineProperty(this, '_valueTypes', 
-        {
+        Object.defineProperty(this, '_valueTypes', {
             get: function() { return _valueTypes; },
             set: function(nVal) { 
                 var arr = [];
@@ -111,8 +106,7 @@ var BaseColumn  = (function (_super) {
          * 컬럼명, _name 과 동일
          * @member {string} _L.Meta.Entity.BaseColumn#columnName
          */
-        Object.defineProperty(this, 'columnName', 
-        {
+        Object.defineProperty(this, 'columnName', {
             get: function() { return this._name; },
             set: function(nVal) { 
                 if (nVal === this.columnName) return;
@@ -133,8 +127,7 @@ var BaseColumn  = (function (_super) {
          * - getValue() : row 에 활용함  
          * @member {string} _L.Meta.Entity.BaseColumn#alias
          */
-        Object.defineProperty(this, 'alias', 
-        {
+        Object.defineProperty(this, 'alias', {
             get: function() { return typeof $alias === 'string' ? $alias : this.columnName; },
             set: function(nVal) { 
                 var entity = this._entity;
@@ -160,8 +153,7 @@ var BaseColumn  = (function (_super) {
          * 컬럼 value 의 기본값 (내부속성)
          * @member {string | number | boolean} _L.Meta.Entity.BaseColumn#default
          */
-        Object.defineProperty(this, 'default', 
-        {
+        Object.defineProperty(this, 'default', {
             get: function() { return _default; },
             set: function(nVal) { 
                 if (this._valueTypes.length > 0) Type.matchType([this._valueTypes], nVal);
@@ -175,8 +167,7 @@ var BaseColumn  = (function (_super) {
          * 컬럼 설명
          * @member {string} _L.Meta.Entity.BaseColumn#caption
          */
-        Object.defineProperty(this, 'caption', 
-        {
+        Object.defineProperty(this, 'caption', {
             get: function() { return caption; },
             set: function(nVal) { 
                 if(typeof nVal !== 'string') throw new ExtendError(/EL05117/, null, [this.constructor.name, typeof nVal]); 
@@ -190,8 +181,7 @@ var BaseColumn  = (function (_super) {
          * 컬럼 값
          * @member {any} _L.Meta.Entity.BaseColumn#value
          */
-        Object.defineProperty(this, 'value', 
-        {
+        Object.defineProperty(this, 'value', {
             get: function() { 
                 return $value === null ? this.default : $value; 
             },
@@ -208,12 +198,11 @@ var BaseColumn  = (function (_super) {
          * this.value
          * @member {object} _L.Meta.Entity.BaseColumn#val 
          */
-        Object.defineProperty(this, 'val', 
-        {
-                get: function() { return this.value; },
-                set: function(nVal) { this.value = nVal;},
-                configurable: true,
-                enumerable: false
+        Object.defineProperty(this, 'val', {
+            get: function() { return this.value; },
+            set: function(nVal) { this.value = nVal;},
+            configurable: true,
+            enumerable: false
         });
 
         if (p_entity) _entity = p_entity;
@@ -250,7 +239,7 @@ var BaseColumn  = (function (_super) {
     BaseColumn.prototype.getObject = function(p_vOpt, p_owned) {
         var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
         var vOpt = p_vOpt || 0;
-        var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
         if (vOpt < 2 && vOpt > -1 && this._entity) {
             obj['_entity'] = MetaRegistry.createReferObject(this._entity);

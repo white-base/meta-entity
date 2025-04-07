@@ -8,9 +8,9 @@ import bundleSize from 'rollup-plugin-bundle-size';
 import aliasPlugin from '@rollup/plugin-alias';
 import { cleandir } from 'rollup-plugin-cleandir';
 import path from 'path';
-import copy from 'rollup-plugin-copy';
+// import copy from 'rollup-plugin-copy';
 
-import mergeLocalesPlugin from './rollup-mergePlugin';
+import mergeLocalesPlugin from './plugin-merge-locales.js';
 
 const lib = require("./package.json");
 const outputFileName = 'logic-entity';

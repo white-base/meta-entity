@@ -24,8 +24,7 @@ var MetaViewColumnCollection  = (function (_super) {
          * @readonly
          * @member {array<BaseEntity>} _L.Meta.Entity.MetaViewColumnCollection#_refEntities
          */
-        Object.defineProperty(this, '_refEntities', 
-        {
+        Object.defineProperty(this, '_refEntities', {
             get: function() { 
                 var arr = [];
                 for (var i = 0; i < this.count; i++) {

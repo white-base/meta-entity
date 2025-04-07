@@ -1,14 +1,16 @@
-import {MetaElement}        from 'logic-core';
-import IGroupControl        from './i-control-group';
-import IExportControl       from './i-control-export';
-import IImportControl       from './i-control-import';
-import ISchemaControl       from './i-control-schema';
-import {ISerialize}         from 'logic-core';
-import MetaSet              from './meta-set';
-import BaseColumnCollection from './base-column-collection';
-import MetaRowCollection    from './collection-meta-row';
-import MetaRow              from './meta-row';
-import MetaView             from './meta-view';
+import type {MetaElement}        from 'logic-core';
+import type IGroupControl   from './i-control-group.d.ts';
+import type IExportControl       from './i-control-export.d.ts';
+import type IImportControl       from './i-control-import.d.ts';
+import type ISchemaControl       from './i-control-schema.d.ts';
+import type {ISerialize}         from 'logic-core';
+import type MetaSet              from './meta-set.d.ts';
+import type BaseColumnCollection from './base-column-collection.d.ts';
+import type MetaRowCollection    from './collection-meta-row.d.ts';
+import type MetaRow              from './meta-row.d.ts';
+import type MetaView             from './meta-view.d.ts';
+
+import type BaseColumn             from './base-column.d.ts';
 
 /**
  * 기본 엔티티 클래스 (최상위)
@@ -38,7 +40,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @readonly
      */
-    columns: BaseColumnCollection;
+    columns: BaseColumnCollection<BaseColumn>
 
     /**
      * 엔티티의 데이터(로우) 컬렉션 입니다.
@@ -264,4 +266,5 @@ declare abstract class BaseEntity extends MetaElement
     abstract copy(...args): this;
 }
 
-export = BaseEntity;
+export default BaseEntity;
+export { BaseEntity };

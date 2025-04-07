@@ -1,12 +1,12 @@
-import {PropertyCollection}     from 'logic-core';
-import BaseColumn               from './base-column';
+import type {PropertyCollection}     from 'logic-core';
+import type BaseColumn               from './base-column.d.ts';
 
 /**
  * An abstract class that represents the column default collection.
  * This class provides the ability to manage and manipulate various columns.
  * @extends PropertyCollection
  */
-declare abstract class BaseColumnCollection extends PropertyCollection {
+declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
 
     /**
      * Creates a column default collection.

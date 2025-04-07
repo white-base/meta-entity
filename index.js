@@ -1,4 +1,4 @@
-/// <reference path="./types/en/index.d.ts" />
+/// <reference path="./types/index.d.ts" />
 
 import { ExtendError } from 'logic-core';
 import { Type } from 'logic-core';

@@ -1,5 +1,6 @@
-import BaseEntity               from './base-entity';
-import MetaViewColumnCollection from './collection-meta-view-column';
+import type BaseEntity               from './base-entity.d.ts';
+import type MetaViewColumnCollection from './collection-meta-view-column.d.ts';
+import type MetaColumn    from './meta-column.d.ts';
 
 /**
  * 메타 뷰 클래스
@@ -24,8 +25,7 @@ declare class MetaView extends BaseEntity {
     /**
      * 뷰의 컬럼 컬렉션 입니다.
      */
-    columns: MetaViewColumnCollection;
-
+    columns: MetaViewColumnCollection<MetaColumn>;
 
     /**
      * 기본 엔티티 입니다.
@@ -90,4 +90,5 @@ declare class MetaView extends BaseEntity {
 
 }
 
-export = MetaView;
+export default MetaView;
+export { MetaView };

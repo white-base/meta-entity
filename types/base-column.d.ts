@@ -125,4 +125,5 @@ declare abstract class BaseColumn extends MetaElement {
     abstract clone(): this;
 }
 
-export = BaseColumn;
+export default BaseColumn;
+export { BaseColumn };

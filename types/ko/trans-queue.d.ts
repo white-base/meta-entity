@@ -1,4 +1,4 @@
-import {IArrayCollection}   from "logic-core";
+import type {IArrayCollection}   from "logic-core/ko";
 
 /**
  * `TransactionQueue` 클래스는 트랜잭션 작업을 큐에 저장하고 관리하는 기능을 제공합니다.
@@ -11,7 +11,7 @@ declare class TransactionQueue {
      * 
      * @param collection - 트랜잭션 큐에서 관리할 배열 컬렉션을 나타냅니다. `IArrayCollection` 인터페이스를 구현해야 합니다.
      */
-    constructor(collection: IArrayCollection);
+    constructor(collection: IArrayCollection<any>);
 
     /**
      * 큐에 저장된 트랜잭션 목록입니다.
@@ -25,7 +25,7 @@ declare class TransactionQueue {
      * 
      * @readonly
      */
-    collection: IArrayCollection;
+    collection: IArrayCollection<any>;
 
     /**
      * 트랜잭션 큐를 초기화합니다.
@@ -102,4 +102,5 @@ declare class TransactionQueue {
     select(): object[];
 }
 
-export = TransactionQueue;
+export default TransactionQueue;
+export { TransactionQueue };

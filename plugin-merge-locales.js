@@ -63,18 +63,16 @@ function mergeLocalesPlugin(logicCoreLocalesPath) {
         if (hasSrc && hasCore) {
           // 병합: src 우선
           merged = { ...coreData, ...srcData };
-          fs.writeFileSync(srcFilePath, JSON.stringify(merged, null, 2), 'utf-8');
           this.warn(`✅ 병합 완료: ${filename}`);
         } else if (hasCore) {
           merged = coreData;
-          fs.writeFileSync(srcFilePath, JSON.stringify(coreData, null, 2), 'utf-8');
-          this.warn(`📥 logic-core → src 복사: ${filename}`);
+          this.warn(`📥 logic-core → dist 복사: ${filename}`);
         } else if (hasSrc) {
           merged = srcData;
-          this.warn(`📁 src 전용 파일 유지: ${filename}`);
+          this.warn(`📁 src 전용 파일 → dist 복사: ${filename}`);
         }
 
-        // 병합/복사 결과를 dist/locales 에 저장
+        // dist/locales 에만 쓰기
         try {
           fs.writeFileSync(distFilePath, JSON.stringify(merged, null, 2), 'utf-8');
           this.warn(`📤 dist/locales 저장 완료: ${filename}`);

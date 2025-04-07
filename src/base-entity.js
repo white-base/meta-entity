@@ -36,8 +36,7 @@ var BaseEntity  = (function (_super) {
          * 엔티티의 아이템(속성) 컬렉션
          * @member {MetaSet} _L.Meta.Entity.BaseEntity#_metaSet
          */
-        Object.defineProperty(this, '_metaSet', 
-        {
+        Object.defineProperty(this, '_metaSet', {
             get: function() { return _metaSet; },
             set: function(nVal) { 
                 if (!(nVal instanceof MetaElement && nVal.instanceOf('MetaSet'))) {
@@ -54,8 +53,7 @@ var BaseEntity  = (function (_super) {
          * @readonly
          * @member {BaseColumnCollection} _L.Meta.Entity.BaseEntity#columns
          */
-        Object.defineProperty(this, 'columns', 
-        {
+        Object.defineProperty(this, 'columns', {
             get: function() { 
                 throw new ExtendError(/EL05312/, null, [this.constructor.name]);
             },
@@ -67,8 +65,7 @@ var BaseEntity  = (function (_super) {
          * columns 별칭
          * @member {object} _L.Meta.Entity.BaseEntity#cols 
          */
-        Object.defineProperty(this, 'cols', 
-        {
+        Object.defineProperty(this, 'cols', {
             get: function() { return this.columns; },
             set: function(nVal) { this.columns = nVal;},
             configurable: true,
@@ -205,21 +202,21 @@ var BaseEntity  = (function (_super) {
                 }
 
             } else {
-                for (var i = 0; i < p_items.length; i++) {
-                    columnName = p_items[i];
+                for (var j = 0; j < p_items.length; j++) {
+                    columnName = p_items[j];
                     if (!_isString(columnName)) throw new ExtendError(/EL05321/, null, [i, typeof columnName]);
                     if (!this.columns.exists(columnName)) throw new ExtendError(/EL05322/, null, [columnName]);
                     
-                    column = this.columns.alias(columnName)
+                    column = this.columns.alias(columnName);
                     p_entity.columns.add(column);
                 }
             }
 
             // rows 등록
-            for (var i = 0; i < orignal.rows.count; i++) {  
+            for (var k = 0; k < orignal.rows.count; k++) {  
                 if (!p_callback || (typeof p_callback === 'function' 
-                    && p_callback.call(this, orignal.rows[i], i, p_entity))) {
-                    p_entity.rows.add($createRow(orignal.rows[i]));
+                    && p_callback.call(this, orignal.rows[k], k, p_entity))) {
+                    p_entity.rows.add($createRow(orignal.rows[k]));
                 } 
             }
             return p_entity;
@@ -232,8 +229,8 @@ var BaseEntity  = (function (_super) {
         function $createRow(row) {
             var alias, newRow;
             newRow = p_entity.newRow();
-            for (var ii = 0; ii < p_entity.columns.count; ii++) {
-                alias = p_entity.columns[ii].alias;
+            for (var m = 0; m < p_entity.columns.count; m++) {
+                alias = p_entity.columns[m].alias;
                 newRow[alias] = row[alias];
             }
             return newRow;
@@ -309,16 +306,13 @@ var BaseEntity  = (function (_super) {
             }
             columns = obj['columns'];
             if (columns) {
-                    // 1. $key 인덱스 기준으로 컬럼명 추출
-                    if (columns['$key'] && Array.isArray(columns['$key'])) {
-                        for (var i = 0; i < columns['$key'].length; i++) {
-                            
-                                $addColumn(columns['$key'][i], columns);
-                            }
-                    // 2. 무작위로 컬럼명 추출
-                    } else for (var key in columns) $addColumn(key, columns);
-                    
-
+                // 1. $key 인덱스 기준으로 컬럼명 추출
+                if (columns['$key'] && Array.isArray(columns['$key'])) {
+                    for (var i = 0; i < columns['$key'].length; i++) {
+                        $addColumn(columns['$key'][i], columns);
+                    }
+                // 2. 무작위로 컬럼명 추출
+                } else for (var j in columns) $addColumn(j, columns);
             }
             // opt
             if (p_isCreateRow === true && obj['rows']) {
@@ -327,11 +321,11 @@ var BaseEntity  = (function (_super) {
                 else rows.push(obj['rows']);
 
                 if (Array.isArray(rows) && rows.length > 0 && typeof rows[0] === 'object') {
-                    for (var key in rows[0]) {    // rows[0] 기준
-                        if (Object.prototype.hasOwnProperty.call(rows[0], key) && !this.columns.existAlias(key)) {
-                            var prop = rows[0][key];
-                            if (!this.columns.exists(key)) {
-                                var column = new Column(key, this);
+                    for (var k in rows[0]) {    // rows[0] 기준
+                        if (Object.prototype.hasOwnProperty.call(rows[0], k) && !this.columns.existAlias(k)) {
+                            // var prop = rows[0][key];
+                            if (!this.columns.exists(k)) {
+                                var column = new Column(k, this);
                                 this.columns.add(column);
                             }
                         }
@@ -471,7 +465,7 @@ var BaseEntity  = (function (_super) {
     BaseEntity.prototype.merge  = function(p_target, p_option, p_matchType) {
         var _this = this;
         var opt = p_option || 0;
-        var key, alias, newRow, tarRow, oriRows, tarRows, tarColumns;
+        var alias, newRow, tarRow, tarRows, tarColumns;
         var tempRows = [], clone;
         var target;
 
@@ -505,21 +499,21 @@ var BaseEntity  = (function (_super) {
             }
             _this.rows.clear();
             // 3-2. 원본 row 추가
-            for (var i = 0; i < tempRows.length; i++) {
+            for (var j = 0; j < tempRows.length; j++) {
                 newRow = _this.newRow();
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
-                    if (tempRows[i][alias]) newRow[alias] = tempRows[i][alias];
+                for (var k = 0; k < _this.columns.count; k++) {
+                    alias = _this.columns[k].alias;
+                    if (tempRows[j][alias]) newRow[alias] = tempRows[j][alias];
                 }
                 _this.rows.add(newRow, p_matchType);
             }
             // 3-3. 타겟 row 추가
             tarRows = target.rows;
-            for (var i = 0; i < tarRows.count; i++) {
+            for (var m = 0; m < tarRows.count; m++) {
                 newRow = _this.newRow();
-                tarRow = tarRows[i];
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
+                tarRow = tarRows[m];
+                for (var n = 0; n < _this.columns.count; n++) {
+                    alias = _this.columns[n].alias;
                     if (tarRow[alias]) newRow[alias] = tarRow[alias];
                 }
                 _this.rows.add(newRow, p_matchType);
@@ -535,28 +529,28 @@ var BaseEntity  = (function (_super) {
                 if (_this.columns.existAlias(alias)) throw new ExtendError(/EL05344/, null, [i, alias]);
             }
             // 3-2. 로우 임시 저장 및 초기화 
-            for (var i = 0; i < _this.rows.count; i++) {
-                tempRows.push(_this.rows[i].clone());
+            for (var j = 0; j < _this.rows.count; j++) {
+                tempRows.push(_this.rows[j].clone());
             }
             _this.rows.clear();
             // 3-3. 컬럼 추가
-            for (var i = 0; i < tarColumns.count; i++) {
-                clone = tarColumns[i].clone(_this);
-                var key = tarColumns[i].alias;
+            for (var k = 0; k < tarColumns.count; k++) {
+                clone = tarColumns[k].clone(_this);
+                var key = tarColumns[k].alias;
                 clone.columnName = key;
                 clone.$key = key;
                 // clone.__SET$$key(key, clone);
                 _this.columns.add(clone);
             }
             // 3-4. 로우 추가 (기준:idx)
-            for (var i = 0; i < tempRows.length; i++) {
+            for (var m = 0; m < tempRows.length; m++) {
                 newRow = _this.newRow();
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
-                    if (tempRows[i][alias]) {                         // 원본 로우
-                        newRow[alias] = tempRows[i][alias];
+                for (var n = 0; n < _this.columns.count; n++) {
+                    alias = _this.columns[n].alias;
+                    if (tempRows[m][alias]) {                         // 원본 로우
+                        newRow[alias] = tempRows[m][alias];
                         continue;
-                    } else if (tarRows[i] && tarRows[i][alias]) newRow[alias] = tarRows[i][alias]; // 타겟 로우
+                    } else if (tarRows[m] && tarRows[m][alias]) newRow[alias] = tarRows[m][alias]; // 타겟 로우
                 }
                 _this.rows.add(newRow, p_matchType);
             }    
@@ -570,29 +564,29 @@ var BaseEntity  = (function (_super) {
             }
             _this.rows.clear();
             // 3-2. 컬럼 추가
-            for (var i = 0; i < tarColumns.count; i++) {
-                alias = tarColumns[i].alias;
+            for (var j = 0; j < tarColumns.count; j++) {
+                alias = tarColumns[j].alias;
                 if (!_this.columns.exists(alias)) {
-                    clone = tarColumns[i].clone(_this);
+                    clone = tarColumns[j].clone(_this);
                     clone.name = alias;
                     _this.columns.add(clone);
                 }
             }
             // 3-3. 로우 추가 : 원본
-            for (var i = 0; i < tempRows.length; i++) {
+            for (var k = 0; k < tempRows.length; k++) {
                 newRow = _this.newRow();
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
-                    if (tempRows[i][alias]) newRow[alias] = tempRows[i][alias];
+                for (var m = 0; m < _this.columns.count; m++) {
+                    alias = _this.columns[m].alias;
+                    if (tempRows[k][alias]) newRow[alias] = tempRows[k][alias];
                 }
                 _this.rows.add(newRow, p_matchType);
             }
             // 3-4. 로우 추가 : 타겟
-            for (var i = 0; i < tarRows.count; i++) {
+            for (var n = 0; n < tarRows.count; n++) {
                 newRow = _this.newRow();
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
-                    if (tarRows[i][alias]) newRow[alias] = tarRows[i][alias];
+                for (var p = 0; p < _this.columns.count; p++) {
+                    alias = _this.columns[p].alias;
+                    if (tarRows[n][alias]) newRow[alias] = tarRows[n][alias];
                 }
                 _this.rows.add(newRow, p_matchType);
             }
@@ -607,35 +601,35 @@ var BaseEntity  = (function (_super) {
                 if (_this.columns.existAlias(alias)) throw new ExtendError(/EL05346/, null, [i, alias]);
             }
             // 3-2. 로우 임시 저장 및 초기화 
-            for (var i = 0; i < _this.rows.count; i++) {
-                tempRows.push(_this.rows[i].clone());
+            for (var j = 0; j < _this.rows.count; j++) {
+                tempRows.push(_this.rows[j].clone());
             }
             _this.rows.clear();
             // 3-3. 컬럼 추가
-            for (var i = 0; i < tarColumns.count; i++) {
-                clone = tarColumns[i].clone(_this);
-                clone.columnName = tarColumns[i].alias;
+            for (var k = 0; k < tarColumns.count; k++) {
+                clone = tarColumns[k].clone(_this);
+                clone.columnName = tarColumns[k].alias;
                 _this.columns.add(clone);
             }
             // 3-4. 로우 추가 (idx)
-            for (var i = 0; i < tempRows.length; i++) {
+            for (var m = 0; m < tempRows.length; m++) {
                 newRow = _this.newRow();
-                for (var ii = 0; ii < _this.columns.count; ii++) {
-                    alias = _this.columns[ii].alias;
-                    if (tempRows[i][alias]) {                         // 원본 로우
-                        newRow[alias] = tempRows[i][alias];
+                for (var n = 0; n < _this.columns.count; n++) {
+                    alias = _this.columns[n].alias;
+                    if (tempRows[m][alias]) {                         // 원본 로우
+                        newRow[alias] = tempRows[m][alias];
                         continue;
-                    }else newRow[alias] = tarRows[i][alias]; // 타겟 로우
+                    }else newRow[alias] = tarRows[m][alias]; // 타겟 로우
                 }
                 _this.rows.add(newRow, p_matchType);
             }     
             // 3-5. 타겟 로우가 클 경우 로우 추가
             if (tempRows.length < tarRows.count) {
-                for (var i = tempRows.length; i < tarRows.count; i++) {
+                for (var p = tempRows.length; p < tarRows.count; p++) {
                     newRow = _this.newRow();
-                    for (var ii = 0; ii < _this.columns.count; ii++) {
-                        alias = _this.columns[ii].alias;
-                        if (tarRows[i][alias]) newRow[alias] = tarRows[i][alias];
+                    for (var q = 0; q < _this.columns.count; q++) {
+                        alias = _this.columns[q].alias;
+                        if (tarRows[p][alias]) newRow[alias] = tarRows[p][alias];
                     }
                     _this.rows.add(newRow, p_matchType);
                 }
@@ -730,7 +724,7 @@ var BaseEntity  = (function (_super) {
         var str;
 
         rObj = this.getObject(p_vOpt);
-        if (typeof p_stringify === 'function') str = p_stringify(rObj, {space: p_space} );
+        if (typeof p_stringify === 'function') str = p_stringify(rObj, { space: p_space } );
         else str = JSON.stringify(rObj, null, p_space);
         return str;
     };
@@ -885,12 +879,14 @@ var BaseEntity  = (function (_super) {
         // 컬럼 타입 검사
         var typeCheck = this.columns.every(function(elem) {
             if (elem instanceof MetaColumn) return true;
+            return false;
         });
 
         if (!typeCheck) throw new ExtendError(/EL05338/, null, []);
         
         if (this.columns.every(function(elem) {
             if (typeof elem.valid(elem.value) === 'undefined') return true;
+            return false;
         })) return true;
         else return false;
     };

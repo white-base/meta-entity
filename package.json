@@ -4,7 +4,37 @@
   "description": "logic framwork entity",
   "type": "module",
   "main": "index.js",
-  "types": "./types/index.d.ts",
+  "types": "./types/ko/index.d.ts",
+  "exports": {
+    ".": {
+      "types": {
+        "require": "./types/index.d.ts",
+        "default": "./types/index.d.ts"
+      },
+      "browser": {
+        "require": "./dist/logic-entity.browser.cjs",
+        "default": "./index.js"
+      },
+      "default": {
+        "require": "./dist/logic-entity.node.cjs",
+        "default": "./index.js"
+      }
+    },
+    "./ko": {
+      "types": {
+        "require": "./types/ko/index.d.ts",
+        "default": "./types/ko/index.d.ts"
+      },
+      "browser": {
+        "require": "./dist/logic-entity.browser.cjs",
+        "default": "./index.js"
+      },
+      "default": {
+        "require": "./dist/logic-entity.node.cjs",
+        "default": "./index.js"
+      }
+    }
+  },
   "files": [
     "dist/",
     "types/",
@@ -22,7 +52,9 @@
     "build": "rollup -c --bundleConfigAsCjs",
     "check:ts": "tsc --noEmit",
     "check:js": "eslint src/ --ext .js",
-    "check:all": "npm run check:ts && npm run check:js"
+    "check:all": "npm run check:ts && npm run check:js",
+    "prepare": "npm run build",
+    "update": "npm update && npm run build"
   },
   "author": "",
   "license": "MIT",

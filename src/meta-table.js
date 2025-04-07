@@ -1,16 +1,14 @@
-/**** meta-table.js | _L.Meta.Entity.MetaTable, _L.Meta.Entity.MetaTableCollection ****/
+/**** meta-table.js | MetaTable ****/
 //==============================================================
 import { ExtendError } from 'logic-core';
 import { Util } from 'logic-core';
-import { Type } from 'logic-core';
+// import { Type } from 'logic-core';
 import { MetaRegistry } from 'logic-core';
-import { MetaObject } from 'logic-core';
-import { PropertyCollection } from 'logic-core';
+// import { MetaObject } from 'logic-core';
+// import { PropertyCollection } from 'logic-core';
 import { ITransaction } from './i-transaction.js';
 import { BaseEntity } from './base-entity.js';
 import { MetaTableColumnCollection } from './collection-meta-table-column.js';
-
-import { MetaTableCollection } from './collection-meta-table.js';
 
 var MetaTable  = (function (_super) {
     /**
@@ -28,8 +26,7 @@ var MetaTable  = (function (_super) {
          * 테이블 이름
          * @member {string} _L.Meta.Entity.MetaTable#tableName
          */
-        Object.defineProperty(this, 'tableName', 
-        {
+        Object.defineProperty(this, 'tableName', {
             get: function() { return this._name; },
             set: function(nVal) { 
                 if (nVal === this.tableName) return;
@@ -44,8 +41,7 @@ var MetaTable  = (function (_super) {
          * 엔티티의 아이템(속성) 컬렉션
          * @member {MetaTableColumnCollection} _L.Meta.Entity.MetaTable#columns
          */
-        Object.defineProperty(this, 'columns', 
-        {
+        Object.defineProperty(this, 'columns', {
             get: function() { return columns; },
             set: function(nVal) { 
                 if (!(nVal instanceof MetaTableColumnCollection)) throw new ExtendError(/EL05412/, null, []);
@@ -78,8 +74,8 @@ var MetaTable  = (function (_super) {
      */
     MetaTable.prototype.getObject = function(p_vOpt, p_owned) {
         var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        var vOpt = p_vOpt || 0;
-        var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+        // var vOpt = p_vOpt || 0;
+        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
         obj['tableName'] = this.tableName;
         return obj;                        
@@ -120,8 +116,8 @@ var MetaTable  = (function (_super) {
         }
         
         // rows 복제본 추가
-        for(var i = 0; i < this.rows.count; i++) {
-            clone.rows.add(this.rows[i].clone(clone));
+        for(var k = 0; k < this.rows.count; k++) {
+            clone.rows.add(this.rows[k].clone(clone));
         }
         return clone;
     };

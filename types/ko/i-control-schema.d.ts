@@ -14,4 +14,5 @@ declare interface ISchemaControl {
     writeSchema(...args);
 }
 
-export = ISchemaControl;
+export default ISchemaControl;
+export { ISchemaControl };

@@ -15,4 +15,5 @@ declare interface ITransaction {
 
 }
 
-export = ITransaction;
+export default ITransaction;
+export { ITransaction };

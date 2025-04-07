@@ -1,13 +1,13 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-      "module": "commonjs",
+      "module": "node16",
       "target": "es6",
       "outDir": "output",
       "esModuleInterop": true,
       "sourceMap": true,
       "experimentalDecorators": true,
-      "moduleResolution": "node",
+      "moduleResolution": "node16",
       "typeRoots": ["./node_modules/@types"]
     },
     "exclude": [

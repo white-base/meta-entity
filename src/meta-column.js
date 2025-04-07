@@ -39,8 +39,7 @@ var MetaColumn  = (function (_super) {
          * @private
          * @member {EventEmitter} _L.Meta.Entity.MetaColumn#$event  
          */
-        Object.defineProperty(this, '$event', 
-        {
+        Object.defineProperty(this, '$event', {
             get: function() { return $event; },
             configurable: false,
             enumerable: false,
@@ -50,9 +49,8 @@ var MetaColumn  = (function (_super) {
          * 컬럼 value의 필수 여부
          * @member {boolean} _L.Meta.Entity.MetaColumn#required
          */
-        Object.defineProperty(this, 'required', 
-        {
-            get: function() { return required },
+        Object.defineProperty(this, 'required', {
+            get: function() { return required; },
             set: function(nVal) { 
                 if(typeof nVal !== 'boolean') throw new ExtendError(/EL05131/, null, [this.constructor.name, typeof nVal]);
                 required = nVal; 
@@ -71,8 +69,7 @@ var MetaColumn  = (function (_super) {
          *  condition: ture     // 매칭시 성공
          * };
          */
-        Object.defineProperty(this, 'constraints', 
-        {
+        Object.defineProperty(this, 'constraints', {
             get: function() { return constraints; },
             set: function(nVal) { 
                 var list = [];
@@ -82,7 +79,7 @@ var MetaColumn  = (function (_super) {
                 for(var i = 0; list.length > i; i++) {
                     if (!(typeof list[i] === 'function' || (typeof list[i].regex === 'object' && typeof list[i].msg === 'string'))) {
                         throw new ExtendError(/EL05133/, null, [this.constructor.name, i, typeof nVal.regex, typeof nVal.msg]);
-                        }
+                    }
                 }
                 constraints = list;
             },
@@ -97,8 +94,7 @@ var MetaColumn  = (function (_super) {
          * REVIEW: 정리표 보고 수정 필요!!
          * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#value
          */
-        Object.defineProperty(this, 'value', 
-        {
+        Object.defineProperty(this, 'value', {
             get: function() { 
                 var __val;
                 // 우선순위 : 1
@@ -140,8 +136,7 @@ var MetaColumn  = (function (_super) {
          * 컬럼의 value 의 getter
          * @member {Function} _L.Meta.Entity.MetaColumn#getter
          */
-        Object.defineProperty(this, 'getter', 
-        {
+        Object.defineProperty(this, 'getter', {
             get: function() { return getter; },
             set: function(val) { 
                 if(typeof val !== 'function') throw new ExtendError(/EL05134/, null, [this.constructor.name, typeof val]);
@@ -155,8 +150,7 @@ var MetaColumn  = (function (_super) {
          * 컬럼의 value 의 setter
          * @member {Function} _L.Meta.Entity.MetaColumn#setter
          */
-        Object.defineProperty(this, 'setter', 
-        {
+        Object.defineProperty(this, 'setter', {
             get: function() { return setter; },
             set: function(val) { 
                 if(typeof val !== 'function') throw new ExtendError(/EL05135/, null, [this.constructor.name, typeof val]);
@@ -174,8 +168,7 @@ var MetaColumn  = (function (_super) {
          * @param {any}         p_callback.p_oValue 기존 value 값
          * @param {MetaColumn}  p_callback.p_this this(컬럼객체)
          */
-        Object.defineProperty(this, 'onChanged', 
-        {
+        Object.defineProperty(this, 'onChanged', {
             set: function(fun) {
                 this.$event.on('onChanged', fun);
             },
@@ -211,7 +204,7 @@ var MetaColumn  = (function (_super) {
             for(var prop in p_property) {
                 // if (p_property.hasOwnProperty(prop) &&
                 if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
-                    ['_valueTypes', 'alias', 'default', 'caption', 'value', 
+                ['_valueTypes', 'alias', 'default', 'caption', 'value', 
                     'required', 'constraints', 'getter', 'setter'].indexOf(prop) > -1) {
                     this[prop] = p_property[prop];
                 }
@@ -236,8 +229,8 @@ var MetaColumn  = (function (_super) {
      */
     MetaColumn.prototype.getObject = function(p_vOpt, p_owned) {
         var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        var vOpt = p_vOpt || 0;
-        var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+        // var vOpt = p_vOpt || 0;
+        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
         if (!Type.deepEqual(this.$event.$storage, {})) {
             obj['$storage'] = this.$event.$storage;
@@ -260,8 +253,8 @@ var MetaColumn  = (function (_super) {
     MetaColumn.prototype.setObject  = function(p_oGuid, p_origin) {
         _super.prototype.setObject.call(this, p_oGuid, p_origin);
         
-        var origin = p_origin ? p_origin : p_oGuid;
-        var entity;
+        // var origin = p_origin ? p_origin : p_oGuid;
+        // var entity;
 
         if (p_oGuid['$storage']) {
             this.$event.$storage = p_oGuid['$storage'];
@@ -357,9 +350,9 @@ var MetaColumn  = (function (_super) {
         value = value.trim();
 
         // 2. 통과조건 검사
-        if (this.required === false /* && this.optional === true */ && value.length === 0) return;
-        if (this.required === false && this.constraints.length === 0 ) return;
-        if (this.required === true && this.constraints.length === 0 && value.length > 0) return;
+        if (this.required === false /* && this.optional === true */ && value.length === 0) return undefined;
+        if (this.required === false && this.constraints.length === 0 ) return undefined;
+        if (this.required === true && this.constraints.length === 0 && value.length > 0) return undefined;
         
         // 3. 실패조건 검사
         if (this.required === true && this.constraints.length === 0 && value.length === 0) {
@@ -395,7 +388,7 @@ var MetaColumn  = (function (_super) {
                 }
             }
         }            
-        return;
+        return undefined;
     };
 
     return MetaColumn;

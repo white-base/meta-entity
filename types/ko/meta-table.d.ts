@@ -1,6 +1,7 @@
-import BaseEntity                   from './base-entity';
-import ITransaction                 from './i-transaction';
-import MetaTableColumnCollection    from './collection-meta-table-column';
+import type BaseEntity                   from './base-entity.d.ts';
+import type ITransaction                 from './i-transaction.d.ts';
+import type MetaTableColumnCollection    from './collection-meta-table-column.d.ts';
+import type MetaColumn    from './meta-column.d.ts';
 
 /**
  * 테이블 엔티티 클래스
@@ -25,7 +26,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
    /**
     * 테이블의 컬럼 컬렉션 입니다.
     */
-    columns: MetaTableColumnCollection;
+    columns: MetaTableColumnCollection<MetaColumn>;
 
     /**
      * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 `$ref` 값으로 대체됩니다.
@@ -101,4 +102,5 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     getChanges(): object[];
 }
 
-export = MetaTable;
+export default MetaTable;
+export { MetaTable };

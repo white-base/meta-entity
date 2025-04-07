@@ -25,8 +25,7 @@ var BaseColumnCollection  = (function (_super) {
          * 기본 컬럼 타입
          * @member {BaseColumn} _L.Meta.Entity.BaseColumnCollection#_baseType
          */
-        Object.defineProperty(this, '_baseType', 
-        {
+        Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
             set: function(nVal) { 
                 if (!(typeof nVal === 'function')) throw new ExtendError(/EL05141/, null, [this.constructor.name, typeof nVal]);
@@ -73,7 +72,7 @@ var BaseColumnCollection  = (function (_super) {
         if (typeof p_enum !== 'boolean') p_enum = true;
         return {
             get: function() { return this.$elements[p_idx]; },
-            set: function(nVal) {
+            set: function() {
                 throw new ExtendError(/EL05148/, null, []);
                 // var oVal = this.$elements[p_idx];
                 // if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
@@ -171,6 +170,7 @@ var BaseColumnCollection  = (function (_super) {
         for (var i = 0; this.count > i; i++) {
             if (this[i].alias === p_key) return this[i];
         }
+        return undefined;
     };
     Object.defineProperty(BaseColumnCollection.prototype, 'alias', {
         enumerable: false

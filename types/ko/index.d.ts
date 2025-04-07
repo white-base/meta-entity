@@ -1,27 +1,27 @@
 /// <reference path="T.d.ts" />
-export * from 'logic-core';
+export * from 'logic-core/ko';
 
-import BaseColumn               from './base-column';
-import BaseEntity               from './base-entity';
-import BaseColumnCollection     from './base-column-collection';
-import TransactionCollection    from './collection-transaction';
-import IExportControl           from './i-control-export';
-import IGroupControl            from './i-control-group';
-import IImportControl           from './i-control-import';
-import ISchemaControl           from './i-control-schema';
-import ITransaction             from './i-transaction';
-import MetaColumn               from './meta-column';
-import MetaRow                  from './meta-row';
-import MetaRowCollection        from './collection-meta-row';
-import MetaSet                  from './meta-set';
-import MetaTable                from './meta-table';
-import MetaTableCollection      from './collection-meta-table';
-import MetaView                 from './meta-view';
-import MetaViewCollection       from './collection-meta-view';
-import MetaTableColumnCollection from './collection-meta-table-column';
-import MetaViewColumnCollection from './collection-meta-view-column';
-import ObjectColumn             from './object-column';
-import TransactionQueue         from './trans-queue';
+import type BaseColumn               from './base-column.d.ts';
+import type BaseEntity               from './base-entity.d.ts';
+import type BaseColumnCollection     from './base-column-collection.d.ts';
+import type TransactionCollection    from './collection-transaction.d.ts';
+import type IExportControl           from './i-control-export.d.ts';
+import type IGroupControl            from './i-control-group.d.ts';
+import type IImportControl           from './i-control-import.d.ts';
+import type ISchemaControl           from './i-control-schema.d.ts';
+import type ITransaction             from './i-transaction.d.ts';
+import type MetaColumn               from './meta-column.d.ts';
+import type MetaRow                  from './meta-row.d.ts';
+import type MetaRowCollection        from './collection-meta-row.d.ts';
+import type MetaSet                  from './meta-set.d.ts';
+import type MetaTable                from './meta-table.d.ts';
+import type MetaTableCollection      from './collection-meta-table.d.ts';
+import type MetaView                 from './meta-view.d.ts';
+import type MetaViewCollection       from './collection-meta-view.d.ts';
+import type MetaTableColumnCollection from './collection-meta-table-column.d.ts';
+import type MetaViewColumnCollection from './collection-meta-view-column.d.ts';
+import type ObjectColumn             from './object-column.d.ts';
+import type TransactionQueue         from './trans-queue.d.ts';
 
 export {
     BaseColumn,
@@ -46,34 +46,5 @@ export {
     MetaTableColumnCollection,
     MetaViewColumnCollection
 };
-export namespace Interface {
-    var IExportControl : IExportControl;
-    var IGroupControl : IGroupControl;
-    var IImportControl : IImportControl;
-    var ISchemaControl : ISchemaControl;
-    var ITransaction : ITransaction;
-}
-export namespace Collection {
-    var TransactionCollection : TransactionCollection;
-    var TransactionQueue : TransactionQueue;
-}
-export namespace Meta {
-}
-export namespace Meta.Entity {
-    var BaseColumn : BaseColumn;
-    var BaseEntity : BaseEntity;
-    var BaseColumnCollection : BaseColumnCollection;
-    var MetaColumn : MetaColumn;
-    var MetaRow : MetaRow;
-    var MetaSet : MetaSet;
-    var MetaTable : MetaTable;
-    var MetaView : MetaView;
-    var ObjectColumn : ObjectColumn;
-    var MetaRowCollection : MetaRowCollection;
-    var MetaTableCollection : MetaTableCollection;
-    var MetaViewCollection : MetaViewCollection;
-    var MetaTableColumnCollection : MetaTableColumnCollection;
-    var MetaViewColumnCollection : MetaViewColumnCollection;
-}
 
 

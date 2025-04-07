@@ -1,11 +1,11 @@
-import {ArrayCollection}        from 'logic-core';
-import TransactionQueue         from './trans-queue';
+import type {ArrayCollection}        from 'logic-core/ko';
+import type TransactionQueue         from './trans-queue.d.ts';
 
 /**
  * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.
  * 이 클래스는 컬렉션에 트랜잭션 큐를 적용하고, 변경 사항을 관리하는 기능을 제공합니다.
  */
-declare class TransactionCollection extends ArrayCollection {
+declare class TransactionCollection<T> extends ArrayCollection<T> {
 
     /**
      * `TransactionCollection` 객체를 생성합니다.
@@ -87,7 +87,7 @@ declare class TransactionCollection extends ArrayCollection {
      * 컬렉션의 모든 요소를 초기화합니다.
      * 컬렉션이 비워지고, 모든 요소가 삭제됩니다.
      */
-    clear(): void;
+    clear(): boolean;
 
     /**
      * 지정된 위치에 요소를 추가합니다.
@@ -115,4 +115,5 @@ declare class TransactionCollection extends ArrayCollection {
     rollback(): void;
 }
 
-export = TransactionCollection;
+export default TransactionCollection;
+export { TransactionCollection };

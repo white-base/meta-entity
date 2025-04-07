@@ -1,5 +1,5 @@
-import BaseColumn           from './base-column';
-import BaseEntity           from './base-entity';
+import type BaseColumn           from './base-column.d.ts';
+import type BaseEntity           from './base-entity.d.ts';
 
 /**
  * `ObjectColumn` 클래스는 `BaseColumn`을 상속하여 객체 속성을 다루는 컬럼을 정의합니다.
@@ -67,4 +67,5 @@ declare class ObjectColumn extends BaseColumn {
     clone(entity?: BaseEntity): this;
 }
 
-export = ObjectColumn;
+export default ObjectColumn;
+export { ObjectColumn };

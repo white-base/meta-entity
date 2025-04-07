@@ -24,8 +24,7 @@ var TransactionCollection  = (function (_super) {
          * @readonly
          * @member {TransactionQueue} _L.Collection.TransactionCollection#_transQueue
          */
-        Object.defineProperty(this, '_transQueue',
-        {
+        Object.defineProperty(this, '_transQueue', {
             get: function() { return _transQueue; },
             configurable: false,
             enumerable: false
@@ -35,8 +34,7 @@ var TransactionCollection  = (function (_super) {
          * 자동 변경 유무 (기본값: 사용 false)
          * @member {boolean} _L.Collection.TransactionCollection#autoChanges
          */
-        Object.defineProperty(this, 'autoChanges', 
-        {
+        Object.defineProperty(this, 'autoChanges', {
             get: function() { return autoChanges; },
             set: function(nVal) { 
                 if (typeof nVal !== 'boolean') {
@@ -53,8 +51,7 @@ var TransactionCollection  = (function (_super) {
          * @readonly
          * @member {TransactionCollection} _L.Collection.TransactionCollection#hasChanges
          */
-        Object.defineProperty(this, 'hasChanges',
-        {
+        Object.defineProperty(this, 'hasChanges', {
             get: function() { return _transQueue.queue.length > 0; },
             configurable: false,
             enumerable: false
@@ -105,9 +102,9 @@ var TransactionCollection  = (function (_super) {
      */
     TransactionCollection.prototype.getObject = function(p_vOpt, p_owned) {
         var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        var vOpt = p_vOpt || 0;
+        // var vOpt = p_vOpt || 0;
         // var origin = p_origin ? p_origin : obj;
-        var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
 
         if (this.autoChanges !== false) obj['autoChanges'] = this.autoChanges;
         return obj;                        

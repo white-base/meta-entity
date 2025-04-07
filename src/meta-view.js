@@ -26,8 +26,7 @@ var MetaView  = (function (_super) {
          * 메타 뷰 이름
          * @member {string} _L.Meta.Entity.MetaView#viewName
          */
-        Object.defineProperty(this, 'viewName', 
-        {
+        Object.defineProperty(this, 'viewName', {
             get: function() { return this._name; },
             set: function(nVal) { 
                 if (nVal === this.viewName) return;
@@ -42,8 +41,7 @@ var MetaView  = (function (_super) {
          * 뷰의 컬럼 컬렉션
          * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#columns
          */
-        Object.defineProperty(this, 'columns', 
-        {
+        Object.defineProperty(this, 'columns', {
             get: function() { return columns; },
             set: function(nVal) { 
                 if (!(nVal instanceof MetaViewColumnCollection)) throw new ExtendError(/EL05432/, null, [this.constructor.name]);
@@ -59,8 +57,7 @@ var MetaView  = (function (_super) {
          * null 으로 undefined 
          * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#_baseEntity
          */
-        Object.defineProperty(this, '_baseEntity', 
-        {
+        Object.defineProperty(this, '_baseEntity', {
             get: function() { return _baseEntity; },
             set: function(nVal) { 
                 if (nVal === null || typeof nVal === 'undefined') {
@@ -97,7 +94,7 @@ var MetaView  = (function (_super) {
     MetaView.prototype.getObject = function(p_vOpt, p_owned) {
         var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
         var vOpt = p_vOpt || 0;
-        var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
         // var origin = p_origin ? p_origin : obj;
 
         obj['viewName'] = this.viewName;
@@ -149,8 +146,8 @@ var MetaView  = (function (_super) {
             else clone.columns.add(this.columns[i].clone());
         }
 
-        for(var i = 0; i < this.rows.count; i++) {
-            clone.rows.add(this.rows[i].clone(clone));
+        for(var k = 0; k < this.rows.count; k++) {
+            clone.rows.add(this.rows[k].clone(clone));
         }
         return clone;
     };
@@ -165,11 +162,11 @@ var MetaView  = (function (_super) {
      */
     MetaView.prototype.copy  = function(p_filter, p_args) {
         var args = Array.prototype.slice.call(arguments);
-        var _this = this;
+        // var _this = this;
         var items = [];
         var callback = null;
         var entity = new MetaView(this.viewName, this);
-        var orignal = this.clone();
+        // var orignal = this.clone();
 
         // 매개변수 구성
         if (typeof p_filter === 'function') {

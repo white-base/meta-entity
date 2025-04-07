@@ -1,5 +1,5 @@
-import {MetaElement}            from 'logic-core';
-import BaseEntity               from './base-entity';
+import type {MetaElement}            from 'logic-core/ko';
+import type BaseEntity          from './base-entity.d.ts';
 
 /**
  * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.
@@ -105,4 +105,5 @@ declare abstract class BaseColumn extends MetaElement {
     abstract clone(): this;
 }
 
-export = BaseColumn;
+export default BaseColumn;
+export { BaseColumn };

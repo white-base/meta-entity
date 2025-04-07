@@ -1,11 +1,11 @@
-import {MetaElement}            from "logic-core";
-import {ISerialize}             from "logic-core";
-import ISchemaControl           from './i-control-schema';
-import IExportControl           from './i-control-export';
-import IImportControl           from './i-control-import';
-import ITransaction             from './i-transaction';
-import MetaTableCollection      from './collection-meta-table';
-import MetaViewCollection       from './collection-meta-view';
+import type {MetaElement}            from "logic-core";
+import type {ISerialize}             from "logic-core";
+import type ISchemaControl           from './i-control-schema.d.ts';
+import type IExportControl           from './i-control-export.d.ts';
+import type IImportControl           from './i-control-import.d.ts';
+import type ITransaction             from './i-transaction.d.ts';
+import type MetaTableCollection      from './collection-meta-table.d.ts';
+import type MetaViewCollection       from './collection-meta-view.d.ts';
 
 /**
  * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.
@@ -230,4 +230,5 @@ declare class MetaSet extends MetaElement
 
 }
 
-export = MetaSet;
+export default MetaSet;
+export { MetaSet };
