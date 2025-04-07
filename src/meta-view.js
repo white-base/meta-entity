@@ -1,13 +1,10 @@
 /**** meta-view.js | _L.Meta.Entity.MetaView, _L.Meta.Entity.MetaViewCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Util } from 'logic-core';
-// import { Type } from 'logic-core';
-// import { PropertyCollection } from 'logic-core';
-// import { MetaObject } from 'logic-core';
-import { MetaRegistry } from 'logic-core';
-import { BaseEntity } from './base-entity.js';
-import { MetaViewColumnCollection } from './collection-meta-view-column.js';
+import { ExtendError }                  from 'logic-core';
+import { Util }                         from 'logic-core';
+import { MetaRegistry }                 from 'logic-core';
+import { BaseEntity }                   from './base-entity.js';
+import { MetaViewColumnCollection }     from './collection-meta-view-column.js';
 
 var MetaView  = (function (_super) {
     /**

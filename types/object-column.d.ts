@@ -1,9 +1,9 @@
-import BaseColumn           from './base-column';
-import BaseEntity           from './base-entity';
+import type { BaseColumn }          from './base-column.d.ts';
+import type { BaseEntity }          from './base-entity.d.ts';
 
 /**
- * The 'Object Column' class inherits the 'Base Column' to define a column that addresses object properties.
- * This class provides properties loading, serializing and setting of columns, and replicating columns.
+ * The 'Object Column' class inherits the 'Base Column' to define a column that addresses object properties.  
+ * This class provides properties loading, serializing and setting of columns, and replicating columns.  
  */
 declare class ObjectColumn extends BaseColumn {
 
@@ -27,13 +27,13 @@ declare class ObjectColumn extends BaseColumn {
     _load(prop: object): void; // TODO: type conversion
 
     /**
-     * Converts the current 'Object Column' object to a serialized GUID type object.
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'Object Column' object to a serialized GUID type object.  
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Serialization option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Serialization option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -43,8 +43,8 @@ declare class ObjectColumn extends BaseColumn {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Sets the serialized GUID type object to the current 'Object Column' object.
-     * During this process, the object is initialized.
+     * Sets the serialized GUID type object to the current 'Object Column' object.  
+     * During this process, the object is initialized.  
      * 
      * @param oGuid - object of serialized GUID type.
      * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
@@ -68,4 +68,5 @@ declare class ObjectColumn extends BaseColumn {
 
 }
 
-export = ObjectColumn;
+export default ObjectColumn;
+export { ObjectColumn };

@@ -1,11 +1,11 @@
-import BaseColumn           from './base-column';
-import {EventEmitter}       from 'logic-core';
-import BaseEntity           from './base-entity';
+import type { EventEmitter }        from 'logic-core';
+import type { BaseColumn }          from './base-column.d.ts';
+import type { BaseEntity }          from './base-entity.d.ts';
+import type { ValueType }           from './T.d.ts';
 
-declare type ValueType = string | number | boolean;
 /**
- * The 'MetaColumn' class defines a data column and manages meta information for that column.
- * This class provides the ability to set and process values, constraints, events, and more for a column.
+ * The 'MetaColumn' class defines a data column and manages meta information for that column.  
+ * This class provides the ability to set and process values, constraints, events, and more for a column.  
  */
 declare class MetaColumn extends BaseColumn {
 
@@ -27,29 +27,29 @@ declare class MetaColumn extends BaseColumn {
     $event: EventEmitter;
 
     /**
-     * Limits direct access to values in a column.
-     * This property controls the setting and change of values inside.
+     * Limits direct access to values in a column.  
+     * This property controls the setting and change of values inside.  
      * 
      * @override
      */
     $value: any;
 
     /**
-     * Sets whether a column value is required.
-     * If the value must exist, it is 'true', otherwise it is 'false'.
+     * Sets whether a column value is required.  
+     * If the value must exist, it is 'true', otherwise it is 'false'.  
      */
     required: boolean;
 
     /**
-     * Sets the constraints for the column.
-     * Constraints can be set in the form of objects or functions.
+     * Sets the constraints for the column.  
+     * Constraints can be set in the form of objects or functions.  
      */
     constraints: (object | Function)[];   // TODO: 확인 필요
 
     /**
-     * Gets or sets the value of the column.
-     * - 'getter': Returns the value if defined.
-     * - 'setter': Set or change the value.
+     * Gets or sets the value of the column.  
+     * - 'getter': Returns the value if defined.  
+     * - 'setter': Set or change the value.  
      * Get priority: 1. If there is getter, 2. Internal value $value  
      * set priority: 1. if there is setter, 2. if there is no setter return value  
      */
@@ -110,13 +110,13 @@ declare class MetaColumn extends BaseColumn {
     _load(property: object): void; // TODO: object type separation required
 
     /**
-     * Converts the current 'MetaColumn' object to a serialized object.
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'MetaColumn' object to a serialized object.  
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Specifies the serialization option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -126,8 +126,8 @@ declare class MetaColumn extends BaseColumn {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Sets the serialized object to the current 'MetaColumn' object.
-     * During this process, the object is initialized.
+     * Sets the serialized object to the current 'MetaColumn' object.  
+     * During this process, the object is initialized.  
      * 
      * @param oGuid - object of serialized GUID type.
      * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
@@ -162,8 +162,8 @@ declare class MetaColumn extends BaseColumn {
     addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean): void;
 
     /**
-     * Check that the value of the property is valid.
-     * Validates based on 'required' and 'constructions'.
+     * Check that the value of the property is valid.  
+     * Validates based on 'required' and 'constructions'.  
      * 
      * @param value - This is the value to be inspected.
      * @returns Returns the object if it is invalid, and returns 'undefined' if it is valid.
@@ -175,4 +175,5 @@ declare class MetaColumn extends BaseColumn {
     
 }
 
-export = MetaColumn;
+export default MetaColumn;
+export { MetaColumn };

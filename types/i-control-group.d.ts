@@ -14,4 +14,5 @@ declare interface IGroupControl {
     copy(...args);
 }
 
-export = IGroupControl;
+export default IGroupControl;
+export { IGroupControl };

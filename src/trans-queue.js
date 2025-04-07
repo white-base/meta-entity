@@ -1,9 +1,8 @@
 /**** trans-queue.js | _L.Collection.TransactionQueue ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-// import { Util } from 'logic-core';
-import { MetaObject } from 'logic-core';
-import { ArrayCollection } from 'logic-core';
+import { ExtendError }              from 'logic-core';
+import { MetaObject }               from 'logic-core';
+import { ArrayCollection }          from 'logic-core';
 
 var TransactionQueue  = (function () {
     /**

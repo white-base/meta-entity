@@ -9,4 +9,5 @@
     read(...args);
 }
 
-export = IImportControl;
+export default IImportControl;
+export { IImportControl };

@@ -1,11 +1,11 @@
 /**** base-column-collection.js | BaseColumnCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { MetaElement } from 'logic-core';
-import { BaseColumn } from './base-column.js';
-import { PropertyCollection } from 'logic-core';
+import { ExtendError }          from 'logic-core';
+import { Type }                 from 'logic-core';
+import { Util }                 from 'logic-core';
+import { MetaElement }          from 'logic-core';
+import { PropertyCollection }   from 'logic-core';
+import { BaseColumn }           from './base-column.js';
 
 var BaseColumnCollection  = (function (_super) {
     /**

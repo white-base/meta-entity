@@ -1,6 +1,6 @@
 /**** i-control-group.js | _L.Interface.IGroupControl ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
+import { ExtendError }      from 'logic-core';
 
 var IGroupControl  = (function () {
     /**

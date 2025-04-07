@@ -1,15 +1,15 @@
-import type {MetaElement}            from "logic-core";
-import type {ISerialize}             from "logic-core";
-import type ISchemaControl           from './i-control-schema.d.ts';
-import type IExportControl           from './i-control-export.d.ts';
-import type IImportControl           from './i-control-import.d.ts';
-import type ITransaction             from './i-transaction.d.ts';
-import type MetaTableCollection      from './collection-meta-table.d.ts';
-import type MetaViewCollection       from './collection-meta-view.d.ts';
+import type { MetaElement }             from "logic-core/ko";
+import type { ISerialize }              from "logic-core/ko";
+import type { ISchemaControl }          from './i-control-schema.d.ts';
+import type { IExportControl }          from './i-control-export.d.ts';
+import type { IImportControl }          from './i-control-import.d.ts';
+import type { ITransaction }            from './i-transaction.d.ts';
+import type { MetaTableCollection }     from './collection-meta-table.d.ts';
+import type { MetaViewCollection }      from './collection-meta-view.d.ts';
 
 /**
- * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.
- * 이 클래스는 데이터의 직렬화, 스키마 변환, 데이터 로딩 및 저장 등의 기능을 제공합니다.
+ * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.  
+ * 이 클래스는 데이터의 직렬화, 스키마 변환, 데이터 로딩 및 저장 등의 기능을 제공합니다.  
  */
 declare class MetaSet extends MetaElement 
     implements ISerialize, ISchemaControl, IExportControl, IImportControl, ITransaction {
@@ -53,13 +53,13 @@ declare class MetaSet extends MetaElement
     static transformSchema(oGuid: object): object;
 
     /**
-     * 현재 `MetaSet` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 현재 `MetaSet` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.  
+     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
      * 
-     * @param vOpt - 직렬화 옵션을 지정합니다.
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
+     * @param vOpt - 직렬화 옵션을 지정합니다.  
+     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
      * 
@@ -69,8 +69,8 @@ declare class MetaSet extends MetaElement
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화된 GUID 타입의 객체를 현재 `MetaSet` 객체에 설정합니다.
-     * 이 과정에서 객체가 초기화됩니다.
+     * 직렬화된 GUID 타입의 객체를 현재 `MetaSet` 객체에 설정합니다.  
+     * 이 과정에서 객체가 초기화됩니다.  
      * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
@@ -107,8 +107,8 @@ declare class MetaSet extends MetaElement
     reset(): void;
 
     /**
-     * 데이터를 불러오거나 가져옵니다. (병합 용도가 아님)
-     * 기존의 데이터를 초기화하고 새로운 데이터를 불러옵니다.
+     * 데이터를 불러오거나 가져옵니다. (병합 용도가 아님)  
+     * 기존의 데이터를 초기화하고 새로운 데이터를 불러옵니다.  
      * 
      * @param obj - 불러올 데이터입니다. 객체 또는 문자열을 받을 수 있습니다.
      * @param parse - 선택적인 파서 함수입니다.
@@ -121,10 +121,10 @@ declare class MetaSet extends MetaElement
     /**
      * 메타셋 객체를 출력(직렬화)합니다.
      * 
-     * @param vOpt - 직렬화 옵션입니다.
-     *   - `0`: 참조 구조로 출력
-     *   - `1`: 중복 구조로 출력
-     *   - `2`: 비침조 구조로 출력
+     * @param vOpt - 직렬화 옵션입니다.  
+     *   - `0`: 참조 구조로 출력  
+     *   - `1`: 중복 구조로 출력  
+     *   - `2`: 비침조 구조로 출력  
      * @param stringify - 선택적인 직렬화 함수입니다. 기본값은 `JSON.stringify`입니다.
      * @param space - 선택적인 공백 문자열입니다. 기본값은 `undefined`입니다.
      * @returns 직렬화된 문자열입니다.
@@ -135,8 +135,8 @@ declare class MetaSet extends MetaElement
     output(vOpt?: number, stringify?: Function, space?: string): string;
 
     /**
-     * 객체를 읽어와 메타셋을 로딩합니다.
-     * JSON 스키마 규칙을 따릅니다.
+     * 객체를 읽어와 메타셋을 로딩합니다.  
+     * JSON 스키마 규칙을 따릅니다.  
      * 
      * @param obj - 메타셋 객체, 엔티티 또는 기타 객체입니다.
      * @param opt - 선택적인 옵션입니다. 기본값은 `3`입니다.
@@ -147,8 +147,8 @@ declare class MetaSet extends MetaElement
     read(obj: object, opt: number): void; // TODO: obj 타입으로 분리 필요
 
     /**
-     * 스키마를 읽어와서 메타셋에 적용합니다.
-     * 없으면 빈 컬럼을 생성해야 하는지 여부를 설정합니다.
+     * 스키마를 읽어와서 메타셋에 적용합니다.  
+     * 없으면 빈 컬럼을 생성해야 하는지 여부를 설정합니다.  
      * 
      * @param obj - 스키마 객체 또는 GUID 객체입니다.
      * @param createRow - `true`이면, 첫 번째 행을 기준으로 컬럼을 추가합니다.

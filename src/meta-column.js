@@ -1,11 +1,11 @@
 /**** meta-column.js | _L.Meta.Entity.MetaColumn ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { EventEmitter } from 'logic-core';
-import { BaseColumn } from './base-column.js';
-import { Message } from './message-wrap.js';
+import { ExtendError }          from 'logic-core';
+import { Type }                 from 'logic-core';
+import { Util }                 from 'logic-core';
+import { EventEmitter }         from 'logic-core';
+import { BaseColumn }           from './base-column.js';
+import { Message }              from './message-wrap.js';
 
 var MetaColumn  = (function (_super) {
     /**

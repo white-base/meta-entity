@@ -1,10 +1,10 @@
 /**** base-column.js | _L.Meta.Entity.BaseColumn ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { MetaElement } from 'logic-core';
-import { MetaRegistry } from 'logic-core';
+import { ExtendError }      from 'logic-core';
+import { Type }             from 'logic-core';
+import { Util }             from 'logic-core';
+import { MetaElement }      from 'logic-core';
+import { MetaRegistry }     from 'logic-core';
 
 var BaseColumn  = (function (_super) {
     /**

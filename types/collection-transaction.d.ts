@@ -1,29 +1,29 @@
-import {ArrayCollection}        from 'logic-core';
-import TransactionQueue         from './trans-queue';
+import type { ArrayCollection }         from 'logic-core';
+import type { TransactionQueue }        from './trans-queue.d.ts';
 
 /**
- * The 'Transaction Collection' class manages transaction-based collections.
- * This class provides the ability to apply transaction queues to collections and manage changes.
+ * The 'Transaction Collection' class manages transaction-based collections.  
+ * This class provides the ability to apply transaction queues to collections and manage changes.  
  */
-declare class TransactionCollection extends ArrayCollection {
+declare class TransactionCollection<T> extends ArrayCollection<T> {
 
     /**
-     * Creates a 'Transaction Collection' object.
-     * This object creates and manages transaction-based collections.
+     * Creates a 'Transaction Collection' object.  
+     * This object creates and manages transaction-based collections.  
      * 
-     * @paramowner - Specifies the owner object of this collection.
+     * @param owner - Specifies the owner object of this collection.
      */
     constructor(owner: object);
 
     /**
-     * The object that manages the transaction queue.
-     * This queue is used to process transaction operations sequentially.
+     * The object that manages the transaction queue.  
+     * This queue is used to process transaction operations sequentially.  
      */
     _transQueue: TransactionQueue;
 
     /**
-     * Indicates whether the automatic change feature is enabled.
-     * The default is set to 'false', and automatically sets whether or not the changes are applied.
+     * Indicates whether the automatic change feature is enabled.  
+     * The default is set to 'false', and automatically sets whether or not the changes are applied.  
      */
     autoChanges: boolean;
     
@@ -45,13 +45,13 @@ declare class TransactionCollection extends ArrayCollection {
     _getPropDescriptor(idx: number): object;
 
     /**
-     * Converts the current 'TransactionCollection' object to a serialized object.
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'TransactionCollection' object to a serialized object.  
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Specifies the serialization option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -61,8 +61,8 @@ declare class TransactionCollection extends ArrayCollection {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Sets the serialized object to the current 'Transaction Collection' object.
-     * During this process, the object is initialized.
+     * Sets the serialized object to the current 'Transaction Collection' object.  
+     * During this process, the object is initialized.  
      * 
      * @param oGuid - object of serialized GUID type.
      * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
@@ -84,10 +84,10 @@ declare class TransactionCollection extends ArrayCollection {
     removeAt(pos: number): boolean;
 
     /**
-     * Initializes all elements of the collection.
-     * The collection is empty, and all elements are deleted.
+     * Initializes all elements of the collection.  
+     * The collection is empty, and all elements are deleted.  
      */
-    clear(): void;
+    clear(): boolean;
 
     /**
      * Adds an element to the specified location.
@@ -95,7 +95,7 @@ declare class TransactionCollection extends ArrayCollection {
      * @param pos - The location of the index to which you want to add the element.
      * @param elem - The element to add.
      * @param desc - Property descriptor object.
-     * The value of 'boolean' to indicate whether the @returns element has been added successfully; 'true' to add and 'false' to fail.
+     * @returns The value of 'boolean' to indicate whether the  element has been added successfully; 'true' to add and 'false' to fail.
      * 
      * @example
      * const success = collection.insertAt(1, newItem, descriptor); // Add element to index 1
@@ -103,17 +103,18 @@ declare class TransactionCollection extends ArrayCollection {
     insertAt(pos: number, elem: any, desc: PropertyDescriptor): boolean;
 
     /**
-     * Commit to reflect changes to the collection.
-     * This method applies all operations in the transaction queue.
+     * Commit to reflect changes to the collection.   
+     * This method applies all operations in the transaction queue.  
      */
     commit(): void;
 
     /**
-     * Rolls back changes to the collection to the previous state.
-     * This method cancels all operations in the transaction queue.
+     * Rolls back changes to the collection to the previous state.  
+     * This method cancels all operations in the transaction queue.  
      */
     rollback(): void;
 
 }
 
-export = TransactionCollection;
+export default TransactionCollection;
+export { TransactionCollection };

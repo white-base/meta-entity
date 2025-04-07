@@ -1,12 +1,12 @@
 /**** meta-row.js | MetaRow ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { EventEmitter } from 'logic-core';
-import { MetaObject } from 'logic-core';
-import { IList } from 'logic-core';
-import { MetaRegistry } from 'logic-core';
+import { ExtendError }          from 'logic-core';
+import { Type }                 from 'logic-core';
+import { Util }                 from 'logic-core';
+import { EventEmitter }         from 'logic-core';
+import { MetaObject }           from 'logic-core';
+import { IList }                from 'logic-core';
+import { MetaRegistry }         from 'logic-core';
 
 var MetaRow  = (function (_super) {
     /**

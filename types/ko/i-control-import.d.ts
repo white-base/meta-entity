@@ -8,5 +8,6 @@ declare interface IImportControl {
      */
     read(...args);
 }
+
 export default IImportControl;
 export { IImportControl };

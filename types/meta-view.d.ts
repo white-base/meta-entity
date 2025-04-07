@@ -1,9 +1,8 @@
-import BaseEntity               from './base-entity';
-import MetaViewColumnCollection from './collection-meta-view-column';
+import type { BaseEntity }                  from './base-entity.d.ts';
+import type { MetaViewColumnCollection }    from './collection-meta-view-column.d.ts';
+import type { MetaColumn }                  from './meta-column.d.ts';
 
 /**
- * Meta View Class
- * 
  * This class models the views in the database, and manages the columns and underlying entities in the views.
  */
 declare class MetaView extends BaseEntity {
@@ -24,7 +23,7 @@ declare class MetaView extends BaseEntity {
     /**
      * Collection of columns in the view.
      */
-    columns: MetaViewColumnCollection;
+    columns: MetaViewColumnCollection<MetaColumn>;
 
 
     /**
@@ -35,10 +34,10 @@ declare class MetaView extends BaseEntity {
     /**
      * Returns objects in serialized form according to specific options; cyclic references are replaced by $ref values.
      * 
-     * @param vOpt - Import option. (Default: 0)
-     * - 0 : Reference structure (_guid: Yes, $ref: Yes)
-     * - 1: Redundant structure (_guid: Yes, $ref: Yes)
-     * - 2: Non-tidal rescue (_guid: No, $ref: No)
+     * @param vOpt - Import option. (Default: 0)  
+     * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
+     * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
+     * - 2: Non-tidal rescue (_guid: No, $ref: No)  
      * @param owned - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
@@ -67,7 +66,7 @@ declare class MetaView extends BaseEntity {
      * 
      * @param filter - The filter function that selects the column.
      * @param args - List of column names to copy.
-     * @returns {MetaView} The copied meta-view object.
+     * @returns The copied meta-view object.
      */
     copy(filter: Function, args: string[]): this;
 
@@ -76,7 +75,7 @@ declare class MetaView extends BaseEntity {
      * 
      * @param filter - The filter function that selects the column.
      * @param args - List of column names to copy.
-     * @returns {MetaView} The copied meta-view object.
+     * @returns The copied meta-view object.
      */
     copy(filter: Function, ...args): this;
 
@@ -84,10 +83,11 @@ declare class MetaView extends BaseEntity {
      * Copy the target column.
      * 
      * @param filter - The filter function that selects the column.
-     * @returns {MetaView} The copied meta-view object.
+     * @returns The copied meta-view object.
      */
     copy(filter: string[]): this;
 
 }
 
-export = MetaView;
+export default MetaView;
+export { MetaView };

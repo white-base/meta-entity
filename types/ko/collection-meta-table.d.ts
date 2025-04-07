@@ -1,15 +1,15 @@
-import type {PropertyCollection}     from 'logic-core/ko';
-import type MetaTable                from './meta-table.d.ts';
+import type { PropertyCollection }      from 'logic-core/ko';
+import type { MetaTable }               from './meta-table.d.ts';
 
 /**
- * `MetaTableCollection` 클래스는 메타 테이블을 관리하는 컬렉션을 정의합니다.
- * 이 클래스는 메타 테이블 객체를 추가하고, 컬렉션에 있는 테이블의 존재 여부를 확인하는 기능을 제공합니다.
+ * `MetaTableCollection` 클래스는 메타 테이블을 관리하는 컬렉션을 정의합니다.  
+ * 이 클래스는 메타 테이블 객체를 추가하고, 컬렉션에 있는 테이블의 존재 여부를 확인하는 기능을 제공합니다.  
  */
 declare class MetaTableCollection extends PropertyCollection<MetaTable> {
 
     /**
-     * `MetaTableCollection` 객체를 생성합니다.
-     * 이 객체는 메타 테이블을 관리하는 컬렉션을 생성합니다.
+     * `MetaTableCollection` 객체를 생성합니다.  
+     * 이 객체는 메타 테이블을 관리하는 컬렉션을 생성합니다.  
      * 
      * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
      */

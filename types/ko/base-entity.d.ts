@@ -1,22 +1,21 @@
-import type {MetaElement}        from 'logic-core';
-import type IGroupControl   from './i-control-group.d.ts';
-import type IExportControl       from './i-control-export.d.ts';
-import type IImportControl       from './i-control-import.d.ts';
-import type ISchemaControl       from './i-control-schema.d.ts';
-import type {ISerialize}         from 'logic-core';
-import type MetaSet              from './meta-set.d.ts';
-import type BaseColumnCollection from './base-column-collection.d.ts';
-import type MetaRowCollection    from './collection-meta-row.d.ts';
-import type MetaRow              from './meta-row.d.ts';
-import type MetaView             from './meta-view.d.ts';
-
-import type BaseColumn             from './base-column.d.ts';
+import type { MetaElement }             from 'logic-core/ko';
+import type { ISerialize }              from 'logic-core/ko';
+import type { IGroupControl }           from './i-control-group.d.ts';
+import type { IExportControl }          from './i-control-export.d.ts';
+import type { IImportControl }          from './i-control-import.d.ts';
+import type { ISchemaControl }          from './i-control-schema.d.ts';
+import type { MetaSet }                 from './meta-set.d.ts';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { MetaRowCollection }       from './collection-meta-row.d.ts';
+import type { MetaRow }                 from './meta-row.d.ts';
+import type { MetaView }                from './meta-view.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
  * 기본 엔티티 클래스 (최상위)
  * 
- * 이 클래스는 데이터베이스의 엔티티(예: 테이블, 뷰 등)를 모델링하며, 컬럼과 로우 데이터를 관리합니다.
- * 다양한 인터페이스를 구현하여 트랜잭션, 직렬화, 스키마 변환 등을 지원합니다.
+ * 이 클래스는 데이터베이스의 엔티티(예: 테이블, 뷰 등)를 모델링하며, 컬럼과 로우 데이터를 관리합니다.  
+ * 다양한 인터페이스를 구현하여 트랜잭션, 직렬화, 스키마 변환 등을 지원합니다.  
  */
 declare abstract class BaseEntity extends MetaElement 
     implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
@@ -87,10 +86,10 @@ declare abstract class BaseEntity extends MetaElement
     /**
      * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 $ref 값으로 대체됩니다.
      * 
-     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)
-     * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)
-     * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)
-     * - 2 : 비참조 구조 (_guid: No, $ref: No)
+     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)  
+     * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)  
+     * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)  
+     * - 2 : 비참조 구조 (_guid: No, $ref: No)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. (기본값: {})
      * @returns 직렬화된 객체입니다.
      * 
@@ -244,8 +243,8 @@ declare abstract class BaseEntity extends MetaElement
     writeData(vOpt?: number): object;
 
     /**
-     * columns 컬렉션에 포함된 MetaColumn의 유효성을 검사합니다. 
-     * - required 속성과 constraints 를 기준으로 value 값의 유효성을 검사합니다.
+     * columns 컬렉션에 포함된 MetaColumn의 유효성을 검사합니다.   
+     * - required 속성과 constraints 를 기준으로 value 값의 유효성을 검사합니다.  
      * 
      * @returns 전체컬럼의 유효성 검사 결과를 반환합니다.
      */

@@ -1,14 +1,11 @@
 /**** meta-table.js | MetaTable ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Util } from 'logic-core';
-// import { Type } from 'logic-core';
-import { MetaRegistry } from 'logic-core';
-// import { MetaObject } from 'logic-core';
-// import { PropertyCollection } from 'logic-core';
-import { ITransaction } from './i-transaction.js';
-import { BaseEntity } from './base-entity.js';
-import { MetaTableColumnCollection } from './collection-meta-table-column.js';
+import { ExtendError }                  from 'logic-core';
+import { Util }                         from 'logic-core';
+import { MetaRegistry }                 from 'logic-core';
+import { ITransaction }                 from './i-transaction.js';
+import { BaseEntity }                   from './base-entity.js';
+import { MetaTableColumnCollection }    from './collection-meta-table-column.js';
 
 var MetaTable  = (function (_super) {
     /**

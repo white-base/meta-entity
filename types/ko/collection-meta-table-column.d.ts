@@ -1,23 +1,23 @@
-import type BaseColumnCollection     from './base-column-collection.d.ts';
-import type BaseColumn               from './base-column.d.ts';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
- * `MetaTableColumnCollection` 클래스는 테이블의 컬럼을 관리하는 컬렉션을 정의합니다.
- * 이 클래스는 컬럼의 추가 및 관리 기능을 제공합니다.
+ * `MetaTableColumnCollection` 클래스는 테이블의 컬럼을 관리하는 컬렉션을 정의합니다.  
+ * 이 클래스는 컬럼의 추가 및 관리 기능을 제공합니다.  
  */
 declare class MetaTableColumnCollection<T> extends BaseColumnCollection<T> {
 
     /**
-     * `MetaTableColumnCollection` 객체를 생성합니다.
-     * 이 객체는 테이블의 컬럼을 관리하는 컬렉션을 생성합니다.
+     * `MetaTableColumnCollection` 객체를 생성합니다.  
+     * 이 객체는 테이블의 컬럼을 관리하는 컬렉션을 생성합니다.  
      * 
      * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
      */
     constructor(owner: object);
 
     /**
-     * 컬럼을 컬렉션에 추가합니다.
-     * 컬럼은 컬럼명 또는 `BaseColumn` 객체일 수 있습니다.
+     * 컬럼을 컬렉션에 추가합니다.  
+     * 컬럼은 컬럼명 또는 `BaseColumn` 객체일 수 있습니다.  
      * 
      * @param column - 추가할 컬럼입니다. 문자열(컬럼명) 또는 `BaseColumn` 타입의 객체를 받을 수 있습니다.
      * @returns 추가된 컬럼의 인덱스입니다.

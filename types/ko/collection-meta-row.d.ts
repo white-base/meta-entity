@@ -1,11 +1,11 @@
-import type TransactionCollection    from './collection-transaction.d.ts';
-import type MetaRow                  from './meta-row.d.ts';
+import type { TransactionCollection }   from './collection-transaction.d.ts';
+import type { MetaRow }                 from './meta-row.d.ts';
 
 declare class MetaRowCollection extends TransactionCollection<MetaRow> {
 
     /**
-     * `MetaRowCollection` 클래스의 생성자입니다.
-     * 이 클래스는 `MetaRow` 객체들을 관리하는 컬렉션을 제공합니다.
+     * `MetaRowCollection` 클래스의 생성자입니다.  
+     * 이 클래스는 `MetaRow` 객체들을 관리하는 컬렉션을 제공합니다.  
      * 
      * @param owner - 이 컬렉션의 소유자 객체입니다.
      */

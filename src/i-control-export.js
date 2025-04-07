@@ -1,6 +1,6 @@
 /**** i-control-export.js | _L.Interface.IExportControl ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
+import { ExtendError }      from 'logic-core';
 
 var IExportControl  = (function () {
     /**

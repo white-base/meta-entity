@@ -1,8 +1,8 @@
-import {IArrayCollection}   from "logic-core";
+import type { IArrayCollection }        from "logic-core";
 
 /**
- * The 'Transaction Queue' class provides the ability to store and manage transaction tasks in a queue.
- * Queues are used to perform transaction operations on a given collection of 'IArayCollection'.
+ * The 'Transaction Queue' class provides the ability to store and manage transaction tasks in a queue.  
+ * Queues are used to perform transaction operations on a given collection of 'IArayCollection'.  
  */
 declare class TransactionQueue {
 
@@ -11,7 +11,7 @@ declare class TransactionQueue {
      * 
      * @param collection - Indicates the collection of arrays to be managed in the transaction queue. You must implement the 'IArayCollection' interface.
      */
-    constructor(collection: IArrayCollection);
+    constructor(collection: IArrayCollection<any>);
 
     /**
      * List of transactions stored in the queue.
@@ -25,11 +25,11 @@ declare class TransactionQueue {
      * 
      * @readonly
      */
-    collection: IArrayCollection;
+    collection: IArrayCollection<any>;
 
     /**
-     * Initializes the transaction queue.
-     * Sets the state of the queue to its initial state.
+     * Initializes the transaction queue.  
+     * Sets the state of the queue to its initial state.  
      * 
      * @example
      * transactionQueue.init(); // Initialize the queue to leave it empty
@@ -37,8 +37,8 @@ declare class TransactionQueue {
     init(): void;
 
     /**
-     * Commit the transaction task stored in the current queue.
-     * All tasks stored in the commit queue are reflected in the actual collection.
+     * Commit the transaction task stored in the current queue.  
+     * All tasks stored in the commit queue are reflected in the actual collection.  
      * 
      * @example
      * TransactionQueue.commit(); // Reflect all jobs stored in the queue to the collection
@@ -46,8 +46,8 @@ declare class TransactionQueue {
     commit(): void;
 
     /**
-     * Rolls back transaction operations stored in the current queue.
-     * All jobs saved in the rollback queue are canceled, and the collection is restored to its original state.
+     * Rolls back transaction operations stored in the current queue.  
+     * All jobs saved in the rollback queue are canceled, and the collection is restored to its original state.  
      * 
      * @example
      * transactionQueue.rollback(); // Cancel all operations stored in the queue and restore them to their original state
@@ -103,4 +103,5 @@ declare class TransactionQueue {
 
 }
 
-export = TransactionQueue;
+export default TransactionQueue;
+export { TransactionQueue };

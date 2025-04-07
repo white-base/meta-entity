@@ -1,6 +1,6 @@
 /**** i-transaction.js | _L.Interface.ITransaction ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
+import { ExtendError }      from 'logic-core';
 
 var ITransaction  = (function () {
     /**

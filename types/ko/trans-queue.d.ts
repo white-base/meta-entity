@@ -1,8 +1,8 @@
-import type {IArrayCollection}   from "logic-core/ko";
+import type { IArrayCollection }        from "logic-core/ko";
 
 /**
- * `TransactionQueue` 클래스는 트랜잭션 작업을 큐에 저장하고 관리하는 기능을 제공합니다.
- * 큐는 주어진 `IArrayCollection` 컬렉션에 대해 트랜잭션 작업을 수행할 때 사용됩니다.
+ * `TransactionQueue` 클래스는 트랜잭션 작업을 큐에 저장하고 관리하는 기능을 제공합니다.  
+ * 큐는 주어진 `IArrayCollection` 컬렉션에 대해 트랜잭션 작업을 수행할 때 사용됩니다.  
  */
 declare class TransactionQueue {
 
@@ -28,8 +28,8 @@ declare class TransactionQueue {
     collection: IArrayCollection<any>;
 
     /**
-     * 트랜잭션 큐를 초기화합니다.
-     * 큐의 상태를 초기 상태로 설정합니다.
+     * 트랜잭션 큐를 초기화합니다.  
+     * 큐의 상태를 초기 상태로 설정합니다.  
      * 
      * @example
      * transactionQueue.init(); // 큐를 초기화하여 빈 상태로 설정
@@ -37,8 +37,8 @@ declare class TransactionQueue {
     init(): void;
 
     /**
-     * 현재 큐에 저장된 트랜잭션 작업을 커밋합니다.
-     * 커밋 시 큐에 저장된 모든 작업이 실제 컬렉션에 반영됩니다.
+     * 현재 큐에 저장된 트랜잭션 작업을 커밋합니다.  
+     * 커밋 시 큐에 저장된 모든 작업이 실제 컬렉션에 반영됩니다.  
      * 
      * @example
      * transactionQueue.commit(); // 큐에 저장된 모든 작업을 컬렉션에 반영
@@ -46,8 +46,8 @@ declare class TransactionQueue {
     commit(): void;
 
     /**
-     * 현재 큐에 저장된 트랜잭션 작업을 롤백합니다.
-     * 롤백 시 큐에 저장된 모든 작업이 취소되고, 컬렉션은 원래 상태로 복원됩니다.
+     * 현재 큐에 저장된 트랜잭션 작업을 롤백합니다.  
+     * 롤백 시 큐에 저장된 모든 작업이 취소되고, 컬렉션은 원래 상태로 복원됩니다.  
      * 
      * @example
      * transactionQueue.rollback(); // 큐에 저장된 모든 작업을 취소하고 원래 상태로 복원

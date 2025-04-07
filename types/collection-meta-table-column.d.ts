@@ -1,23 +1,23 @@
-import BaseColumnCollection     from './base-column-collection';
-import BaseColumn               from './base-column';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
- * The 'MetaTableCollection' class defines the collection that manages the columns in the table.
- * This class provides additional and management capabilities for columns.
+ * The 'MetaTableCollection' class defines the collection that manages the columns in the table.  
+ * This class provides additional and management capabilities for columns.  
  */
-declare class MetaTableColumnCollection extends BaseColumnCollection {
+declare class MetaTableColumnCollection<T> extends BaseColumnCollection<T> {
 
     /**
-     * Creates a 'MetaTableCollection' object.
-     * This object creates a collection that manages the columns in the table.
+     * Creates a 'MetaTableCollection' object.  
+     * This object creates a collection that manages the columns in the table.  
      * 
      * @param owner - Specifies the owner object of this collection.
      */
     constructor(owner: object);
 
     /**
-     * Adds a column to the collection.
-     * The column can be the column name or the object 'BaseColumn'.
+     * Adds a column to the collection.  
+     * The column can be the column name or the object 'BaseColumn'.  
      * 
      * @param column - This column is to be added. You can receive an object of the type string (column name) or 'Base Column'.
      * @returns Index of the added column.
@@ -42,4 +42,5 @@ declare class MetaTableColumnCollection extends BaseColumnCollection {
     
 }
 
-export = MetaTableColumnCollection;
+export default MetaTableColumnCollection;
+export { MetaTableColumnCollection };

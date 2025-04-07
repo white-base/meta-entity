@@ -1,5 +1,5 @@
-import type {PropertyCollection}     from 'logic-core';
-import type BaseColumn               from './base-column.d.ts';
+import type { PropertyCollection }  from 'logic-core';
+import type { BaseColumn }          from './base-column.d.ts';
 
 /**
  * An abstract class that represents the column default collection.
@@ -11,10 +11,10 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
     /**
      * Creates a column default collection.
      * 
-     * @param {object} owner Owner of the  collection.
-     * @param {BaseColumn} BaseType Default column type.
+     * @param owner Owner of the  collection.
+     * @param baseType Default column type.
      */
-    constructor(onwer: object, baseType: BaseColumn);
+    constructor(owner: object, baseType: BaseColumn);
 
     /**
      * Save the default column type.
@@ -34,17 +34,17 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
     /**
      * Adds a column to the collection.
      * 
-     * @param {string} name - The name of the column.
-     * @param {any} value - column value.
-     * @returns {number} Index of the added column.
+     * @param name - The name of the column.
+     * @param value - column value.
+     * @returns Index of the added column.
      */
     add(name: string, value: any): number;
 
     /**
      * Deletes the column for the specified index from the collection.
      * 
-     * @param {number} index - Index of the column to be deleted.
-     * @returns {booklan} Deletion successful.
+     * @param index - Index of the column to be deleted.
+     * @returns Deletion successful.
      */
     removeAt(index: number): boolean;
 
@@ -56,34 +56,35 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
     /**
      * Examine whether an alias name (key) exists in the collection.
      * 
-     * @param {string} key - alias name.
-     * @returns {boolean} Alias name exists.
+     * @param key - alias name.
+     * @returns Alias name exists.
      */
     existAlias(key: string): boolean;
 
     /**
      * Examine whether a column name (key) exists in the collection.
      * 
-     * @param {string} key - the name of the column.
-     * @returns {booklan} column name exists.
+     * @param key - the name of the column.
+     * @returns column name exists.
      */
     existColumnName(key: string): boolean;
 
     /**
      * Obtain column objects for aliases.
      * 
-     * @param {string} key - alias name.
-     * @returns {BaseColumn | undefined} The column object corresponding to the alias, if it does not exist, is 'undefined'.
+     * @param key - alias name.
+     * @returns The column object corresponding to the alias, if it does not exist, is 'undefined'.
      */
     alias(key: string): BaseColumn | undefined;
 
     /**
      * Abstract method to add values. Subclasses must provide a specific implementation.
      * 
-     * @param {...any[]} args - Values to add.
+     * @param args - Values to add.
      */
     abstract addValue(...args): void;
     
 }
 
-export = BaseColumnCollection;
+export default BaseColumnCollection;
+export { BaseColumnCollection };

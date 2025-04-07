@@ -1,12 +1,11 @@
-import BaseEntity                   from './base-entity';
-import ITransaction                 from './i-transaction';
-import MetaTableColumnCollection    from './collection-meta-table-column';
+import type { BaseEntity }                  from './base-entity.d.ts';
+import type { ITransaction }                from './i-transaction.d.ts';
+import type { MetaTableColumnCollection }   from './collection-meta-table-column.d.ts';
+import type { MetaColumn }                  from './meta-column.d.ts';
 
 /**
- * Table entity class
- * 
- * This class models database tables and manages the collection and table names of columns.
- * You can also support transactions to commit or roll back changes.
+ * This class models database tables and manages the collection and table names of columns.  
+ * You can also support transactions to commit or roll back changes.  
  */
 declare class MetaTable extends BaseEntity implements ITransaction {
 
@@ -25,15 +24,15 @@ declare class MetaTable extends BaseEntity implements ITransaction {
    /**
     * Collection of columns in the table.
     */
-    columns: MetaTableColumnCollection;
+    columns: MetaTableColumnCollection<MetaColumn>;
 
     /**
      * Returns objects in serialized form according to specific options. Circular references are replaced by values of '$ref'.
      * 
-     * @param vOpt - Import option. (Default: 0)
-     * - 0 : Reference structure (_guid: Yes, $ref: Yes)
-     * - 1: Redundant structure (_guid: Yes, $ref: Yes)
-     * - 2: Non-tidal rescue (_guid: No, $ref: No)
+     * @param vOpt - Import option. (Default: 0)  
+     * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
+     * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
+     * - 2: Non-tidal rescue (_guid: No, $ref: No)  
      * @param owned - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
@@ -62,7 +61,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * 
      * @param filter - The filter function that selects the column.
      * @param cols - List of column names to copy.
-     * @returns {MetaTable} The copied meta table object.
+     * @returns The copied meta table object.
      */
     copy(filter: Function, cols: string[]): this;
 
@@ -70,7 +69,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * Copy the cols column name after performing callback.
      * 
      * @param cols - List of column names to copy.
-     * @returns {MetaTable} The copied meta table object.
+     * @returns The copied meta table object.
      */
     copy(...cols): this;
 
@@ -78,28 +77,30 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * Copy the target column.
      * 
      * @param filter - The filter function that selects the column.
-     * @returns {MetaTable} The copied meta table object.
+     * @returns The copied meta table object.
      */
     copy(filter: string[]): this;
 
     /**
-     * Commit all changes to the current object.
-     * Permission to change: commit
+     * Commit all changes to the current object.  
+     * Permission to change: commit  
      */
     acceptChanges(): void;
 
     /**
-     * Rolls back all changes to the current object.
-     * Cancel Changes: rollback
+     * Rolls back all changes to the current object.  
+     * Cancel Changes: rollback  
      */
     rejectChanges(): void;
 
     /**
      * Returns a list of changes to the current object.
+     * 
      * @returns This is a changed list.
      */
     getChanges(): object[];
 
 }
 
-export = MetaTable;
+export default MetaTable;
+export { MetaTable };

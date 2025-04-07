@@ -1,18 +1,19 @@
-import BaseColumnCollection     from './base-column-collection';
-import BaseEntity               from './base-entity';
-import MetaColumn               from './meta-column';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { BaseEntity }              from './base-entity.d.ts';
+import type { MetaColumn }              from './meta-column.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
- * The 'MetaView Column Collection' class defines the collection that manages the meta-view column.
- * This class provides the ability to add meta columns, to serialize and manage reference collections.
+ * The 'MetaView Column Collection' class defines the collection that manages the meta-view column.  
+ * This class provides the ability to add meta columns, to serialize and manage reference collections.  
  */
-declare class MetaViewColumnCollection extends BaseColumnCollection {
+declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
 
     /**
-     * Creates a 'MetaView ColumnCollection' object.
-     * This object creates a collection that manages columns in the meta view.
+     * Creates a 'MetaView ColumnCollection' object.  
+     * This object creates a collection that manages columns in the meta view.  
      * 
-     * @paramowner - Specifies the owner object of this collection.
+     * @param owner - Specifies the owner object of this collection.
      */
     constructor(owner: object);
 
@@ -25,13 +26,13 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
     _refEntities: BaseEntity[];
 
     /**
-     * Converts the current 'MetaView ColumnCollection' object to a serialized object. 
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'MetaView ColumnCollection' object to a serialized object.   
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the import option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Specifies the import option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -41,11 +42,11 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Adds or sets a column to the collection. When a column is added, actions related to the reference collection are performed.
-     * - When adding a column with 'entity': a reference is added.
-     * - If you add a column without 'entity', register yourself as the owner.
-     * - If a column exists in the collection: 'columns' object is ignored and registers a reference to the returned object.
-     * - If there is no column in the collection: Set 'entity' in the collection; only the top is registered when a reference recursive call is made.
+     * Adds or sets a column to the collection. When a column is added, actions related to the reference collection are performed.  
+     * - When adding a column with 'entity': a reference is added.  
+     * - If you add a column without 'entity', register yourself as the owner.  
+     * - If a column exists in the collection: 'columns' object is ignored and registers a reference to the returned object.  
+     * - If there is no column in the collection: Set 'entity' in the collection; only the top is registered when a reference recursive call is made.  
      * 
      * @param column - The column to be added. You can receive the 'MetaColumn' object or column name (string).
      * @param refCollection - Reference collection. Object of type 'BaseColumnCollection'.
@@ -55,7 +56,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
      * const index = collection.add(new MetaColumn("price"), refCollection); // `MetaColumn` 객체로 컬럼 추가
      * const index = collection.add("quantity", refCollection); // Add column with string (column name)
      */
-    add(column: MetaColumn | string, refCollection: BaseColumnCollection): number;
+    add(column: MetaColumn | string, refCollection: BaseColumnCollection<BaseColumn>): number;
     
     /**
      * Creates a new column with a name and value and adds it to the collection.
@@ -68,7 +69,7 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
      * @example
      * const index = collection.addValue ("discount", 10, refCollection"); // Add column with name and value
      */
-    addValue(name: string, value: string | number | boolean, refCollection: BaseColumnCollection): number;
+    addValue(name: string, value: string | number | boolean, refCollection: BaseColumnCollection<BaseColumn>): number;
 
     /**
      * Adds all columns of a given entity to the collection.
@@ -82,4 +83,5 @@ declare class MetaViewColumnCollection extends BaseColumnCollection {
     
 }
 
-export = MetaViewColumnCollection;
+export default MetaViewColumnCollection;
+export { MetaViewColumnCollection };

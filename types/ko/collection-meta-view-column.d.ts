@@ -1,17 +1,17 @@
-import type BaseColumnCollection     from './base-column-collection.d.ts';
-import type BaseEntity               from './base-entity.d.ts';
-import type MetaColumn               from './meta-column.d.ts';
-import type BaseColumn               from './base-column.d.ts';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { BaseEntity }              from './base-entity.d.ts';
+import type { MetaColumn }              from './meta-column.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
- * `MetaViewColumnCollection` 클래스는 메타 뷰 컬럼을 관리하는 컬렉션을 정의합니다.
- * 이 클래스는 메타 컬럼을 추가하고, 직렬화 및 참조 컬렉션을 관리하는 기능을 제공합니다.
+ * `MetaViewColumnCollection` 클래스는 메타 뷰 컬럼을 관리하는 컬렉션을 정의합니다.  
+ * 이 클래스는 메타 컬럼을 추가하고, 직렬화 및 참조 컬렉션을 관리하는 기능을 제공합니다.  
  */
 declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
 
     /**
-     * `MetaViewColumnCollection` 객체를 생성합니다.
-     * 이 객체는 메타 뷰의 컬럼을 관리하는 컬렉션을 생성합니다.
+     * `MetaViewColumnCollection` 객체를 생성합니다.  
+     * 이 객체는 메타 뷰의 컬럼을 관리하는 컬렉션을 생성합니다.  
      * 
      * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
      */
@@ -26,13 +26,13 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
     _refEntities: BaseEntity[];
 
     /**
-     * 현재 `MetaViewColumnCollection` 객체를 직렬화된 객체로 변환합니다. 
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 현재 `MetaViewColumnCollection` 객체를 직렬화된 객체로 변환합니다.   
+     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
      * 
-     * @param vOpt - 가져오기 옵션을 지정합니다.
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
+     * @param vOpt - 가져오기 옵션을 지정합니다.  
+     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
      * 
@@ -42,11 +42,11 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 컬럼을 컬렉션에 추가하거나 설정합니다. 컬럼이 추가될 때, 참조 컬렉션과 관련된 동작이 수행됩니다.
-     * - `entity`가 있는 컬럼을 추가할 경우: 참조가 추가됩니다.
-     * - `entity`가 없는 컬럼을 추가할 경우: 자신을 소유자로 등록합니다.
-     * - 컬렉션에 컬럼이 존재할 경우: `columns` 객체는 무시되고, 리턴한 객체의 참조를 등록합니다.
-     * - 컬렉션에 컬럼이 없을 경우: 컬렉션에 `entity`를 설정합니다. 참조 재귀 호출 시 최상위만 등록됩니다.
+     * 컬럼을 컬렉션에 추가하거나 설정합니다. 컬럼이 추가될 때, 참조 컬렉션과 관련된 동작이 수행됩니다.  
+     * - `entity`가 있는 컬럼을 추가할 경우: 참조가 추가됩니다.  
+     * - `entity`가 없는 컬럼을 추가할 경우: 자신을 소유자로 등록합니다.  
+     * - 컬렉션에 컬럼이 존재할 경우: `columns` 객체는 무시되고, 리턴한 객체의 참조를 등록합니다.  
+     * - 컬렉션에 컬럼이 없을 경우: 컬렉션에 `entity`를 설정합니다. 참조 재귀 호출 시 최상위만 등록됩니다.  
      * 
      * @param column - 추가할 컬럼입니다. `MetaColumn` 객체 또는 컬럼명(문자열)을 받을 수 있습니다.
      * @param refCollection - 참조 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.

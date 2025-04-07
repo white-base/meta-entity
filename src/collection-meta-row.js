@@ -1,10 +1,10 @@
 /**** collection-meta-row.js | MetaTableCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { TransactionCollection } from './collection-transaction.js';
-import { MetaRow } from './meta-row.js';
+import { ExtendError }              from 'logic-core';
+import { Type }                     from 'logic-core';
+import { Util }                     from 'logic-core';
+import { TransactionCollection }    from './collection-transaction.js';
+import { MetaRow }                  from './meta-row.js';
 
 var MetaRowCollection  = (function (_super) {
     /**

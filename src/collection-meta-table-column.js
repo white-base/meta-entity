@@ -1,11 +1,11 @@
 /**** collection-meta-table-column.js | MetaTableColumnCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { BaseColumn } from './base-column.js';
-import { MetaColumn } from './meta-column.js';
-import { BaseColumnCollection } from './base-column-collection.js';
+import { ExtendError }              from 'logic-core';
+import { Type }                     from 'logic-core';
+import { Util }                     from 'logic-core';
+import { BaseColumn }               from './base-column.js';
+import { MetaColumn }               from './meta-column.js';
+import { BaseColumnCollection }     from './base-column-collection.js';
 
 var MetaTableColumnCollection  = (function (_super) {
     /**

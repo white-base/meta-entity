@@ -1,9 +1,9 @@
-import type {MetaElement}            from 'logic-core/ko';
-import type BaseEntity          from './base-entity.d.ts';
+import type { MetaElement }         from 'logic-core/ko';
+import type { BaseEntity }          from './base-entity.d.ts';
 
 /**
- * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.
- * 이 추상 클래스는 컬럼의 이름, 별칭, 기본값 및 기타 속성을 관리하는 기능을 제공합니다.
+ * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.  
+ * 이 추상 클래스는 컬럼의 이름, 별칭, 기본값 및 기타 속성을 관리하는 기능을 제공합니다.  
  */
 declare abstract class BaseColumn extends MetaElement {
 
@@ -46,9 +46,9 @@ declare abstract class BaseColumn extends MetaElement {
     columnName: string;
 
     /**
-     * 컬럼의 별칭을 설정하거나 가져옵니다. 별칭은 데이터 전송 및 로우값 설정 시 사용됩니다.
-     * 사용처 (기본값 = columnName )
-     * - Bind-command-ajax._execBind() : 데이터 전송시  
+     * 컬럼의 별칭을 설정하거나 가져옵니다. 별칭은 데이터 전송 및 로우값 설정 시 사용됩니다.  
+     * 사용처 (기본값 = columnName )  
+     * - Bind-command-ajax._execBind() : 데이터 전송시   
      * - BaseBind.setValue(row) : 로우값 을 엔티티에 설정시  
      * - getValue() : row 에 활용함  
      */
@@ -72,10 +72,10 @@ declare abstract class BaseColumn extends MetaElement {
     /**
      * 현재 컬럼 객체를 직렬화된 객체로 변환합니다. 이 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
      * 
-     * @param vOpt - 가져오기 옵션을 지정합니다.
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
+     * @param vOpt - 가져오기 옵션을 지정합니다.  
+     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
      * 
@@ -85,8 +85,8 @@ declare abstract class BaseColumn extends MetaElement {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화된 `guid` 타입의 객체를 사용하여 현재 컬럼 객체를 설정합니다.
-     * 이 과정에서 현재 객체는 초기화됩니다.
+     * 직렬화된 `guid` 타입의 객체를 사용하여 현재 컬럼 객체를 설정합니다.  
+     * 이 과정에서 현재 객체는 초기화됩니다.  
      * 
      * @param oGuid - 직렬화된 `guid` 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.

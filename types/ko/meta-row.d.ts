@@ -1,10 +1,10 @@
-import type {MetaObject}         from 'logic-core';
-import type BaseEntity           from './base-entity.d.ts';
-import type {EventEmitter}       from 'logic-core';
+import type { MetaObject }          from 'logic-core/ko';
+import type { EventEmitter }        from 'logic-core/ko';
+import type { BaseEntity }          from './base-entity.d.ts';
 
 /**
- * `MetaRow` 클래스는 데이터 테이블의 각 행(row)을 나타내며, 데이터와 관련된 이벤트를 관리합니다.
- * 이 클래스는 데이터의 추가, 수정, 삭제와 같은 작업을 처리하고 이벤트를 통해 변경 사항을 알립니다.
+ * `MetaRow` 클래스는 데이터 테이블의 각 행(row)을 나타내며, 데이터와 관련된 이벤트를 관리합니다.  
+ * 이 클래스는 데이터의 추가, 수정, 삭제와 같은 작업을 처리하고 이벤트를 통해 변경 사항을 알립니다.  
  */
 declare class MetaRow extends MetaObject {
 
@@ -113,13 +113,13 @@ declare class MetaRow extends MetaObject {
     _onChanged(idx: number, nVal: any, oVal: any): void;
 
     /**
-     * 현재 `MetaRow` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 현재 `MetaRow` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.  
+     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
      * 
-     * @param vOpt - 직렬화 옵션을 지정합니다.
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
+     * @param vOpt - 직렬화 옵션을 지정합니다.  
+     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
      * 
@@ -129,8 +129,8 @@ declare class MetaRow extends MetaObject {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화된 GUID 타입의 객체를 현재 `MetaRow` 객체에 설정합니다.
-     * 이 과정에서 객체가 초기화됩니다.
+     * 직렬화된 GUID 타입의 객체를 현재 `MetaRow` 객체에 설정합니다.  
+     * 이 과정에서 객체가 초기화됩니다.  
      * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.

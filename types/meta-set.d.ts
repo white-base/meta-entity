@@ -1,15 +1,15 @@
-import {MetaElement}            from "logic-core";
-import {ISerialize}             from "logic-core";
-import ISchemaControl           from './i-control-schema';
-import IExportControl           from './i-control-export';
-import IImportControl           from './i-control-import';
-import ITransaction             from './i-transaction';
-import MetaTableCollection      from './collection-meta-table';
-import MetaViewCollection       from './collection-meta-view';
+import type { MetaElement }             from "logic-core";
+import type { ISerialize }              from "logic-core";
+import type { ISchemaControl }          from './i-control-schema.d.ts';
+import type { IExportControl }          from './i-control-export.d.ts';
+import type { IImportControl }          from './i-control-import.d.ts';
+import type { ITransaction }            from './i-transaction.d.ts';
+import type { MetaTableCollection }     from './collection-meta-table.d.ts';
+import type { MetaViewCollection }      from './collection-meta-view.d.ts';
 
 /**
- * The 'MetaSet' class manages metadata sets and includes a collection of tables and views.
- * This class provides features such as serialization of data, schema conversion, data loading and storage, and more.
+ * The 'MetaSet' class manages metadata sets and includes a collection of tables and views.  
+ * This class provides features such as serialization of data, schema conversion, data loading and storage, and more.  
  */
 declare class MetaSet extends MetaElement 
     implements ISerialize, ISchemaControl, IExportControl, IImportControl, ITransaction {
@@ -53,13 +53,13 @@ declare class MetaSet extends MetaElement
     static transformSchema(oGuid: object): object;
 
     /**
-     * Converts the current 'MetaSet' object to a serialized GUID type object.
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'MetaSet' object to a serialized GUID type object.  
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Specifies the serialization option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -69,8 +69,8 @@ declare class MetaSet extends MetaElement
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Sets the serialized GUID type object to the current 'MetaSet' object.
-     * During this process, the object is initialized.
+     * Sets the serialized GUID type object to the current 'MetaSet' object.  
+     * During this process, the object is initialized.  
      * 
      * @param oGuid - object of serialized GUID type.
      * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
@@ -107,8 +107,8 @@ declare class MetaSet extends MetaElement
     reset(): void;
 
     /**
-     * Import or import data (not for merge purposes)
-     * Initialize existing data and import new data.
+     * Import or import data (not for merge purposes)  
+     * Initialize existing data and import new data.  
      * 
      * @param obj - Data to be retrieved. You can receive an object or string.
      * @param parse - Optional parser function.
@@ -121,10 +121,10 @@ declare class MetaSet extends MetaElement
     /**
      * Output (serialize) the meta set object.
      * 
-     * @param vOpt - Serialization option.
-     *   - '0': Output to reference structure
-     *   - '1': Output in duplicate structure
-     *   - '2': Output in a non-coordinated structure
+     * @param vOpt - Serialization option.  
+     *   - '0': Output to reference structure  
+     *   - '1': Output in duplicate structure  
+     *   - '2': Output in a non-coordinated structure  
      * @param stringify - Optional serialization function. Default is 'JSON.stringify'.
      * @param space - Optional blank string; default is 'undefined'.
      * @returns Serialized string.
@@ -135,8 +135,8 @@ declare class MetaSet extends MetaElement
     output(vOpt?: number, stringify?: Function, space?: string): string;
 
     /**
-     * Read the object and load the meta set.
-     * Follow JSON schema rules.
+     * Read the object and load the meta set.  
+     * Follow JSON schema rules.  
      * 
      * @param obj - Metaset objects, entities, or other objects.
      * @param opt - Optional; default is '3'.
@@ -147,8 +147,8 @@ declare class MetaSet extends MetaElement
     read (obj: object, opt: number): void; // TODO: need to be separated into obj type
 
     /**
-     * Read the schema and apply it to the meta set.
-     * If not, set whether an empty column should be created.
+     * Read the schema and apply it to the meta set.  
+     * If not, set whether an empty column should be created.  
      * 
      * @param obj - Schema object or GUID object.
      * @param createRow - If 'true', add a column based on the first row.
@@ -183,7 +183,7 @@ declare class MetaSet extends MetaElement
      * Export the schema (column) of the meta set as an object of schema type.
      * 
      * @param vOpt - Export option.
-     * @returnsExported schema object.
+     * @returns Exported schema object.
      * 
      * @example
      * const schemaObject = metaSet.writeSchema(1); // Export schema (column) as schema object
@@ -230,4 +230,5 @@ declare class MetaSet extends MetaElement
 
 }
 
-export = MetaSet;
+export default MetaSet;
+export { MetaSet };

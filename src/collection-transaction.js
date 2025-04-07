@@ -1,10 +1,10 @@
 /**** collection-transaction.js | _L.Collection.TransactionCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { ArrayCollection } from 'logic-core';
-import { TransactionQueue } from './trans-queue.js';
+import { ExtendError }          from 'logic-core';
+import { Type }                 from 'logic-core';
+import { Util }                 from 'logic-core';
+import { ArrayCollection }      from 'logic-core';
+import { TransactionQueue }     from './trans-queue.js';
 
 var TransactionCollection  = (function (_super) {
     /**

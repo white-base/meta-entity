@@ -31,3 +31,5 @@
 // declare type ValueType = string | number | boolean;
 
 // export {};
+
+export type ValueType = string | number | boolean;

@@ -1,7 +1,7 @@
 /**** message.js | _L.Common.Message ****/
 //==============================================================
-import  defaultCode  from './locales/default.json';
-import  { Message }  from 'logic-core';
+import  { Message }         from 'logic-core';
+import  defaultCode         from './locales/default.json';
 
 const localesPath = './locales';    // 상대 경로
 

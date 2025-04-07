@@ -13,5 +13,6 @@ declare interface IGroupControl {
      */
     copy(...args);
 }
+
 export default IGroupControl;
 export { IGroupControl };

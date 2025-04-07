@@ -1,10 +1,10 @@
-import {MetaObject}         from 'logic-core';
-import BaseEntity           from './base-entity';
-import {EventEmitter}       from 'logic-core';
+import type { MetaObject }          from 'logic-core';
+import type { EventEmitter }        from 'logic-core';
+import type { BaseEntity }          from './base-entity.d.ts';
 
 /**
- * The 'MetaRow' class represents each row of the data table and manages the events associated with the data.
- * This class handles tasks such as adding, modifying, or deleting data and informs you of changes through events.
+ * The 'MetaRow' class represents each row of the data table and manages the events associated with the data.  
+ * This class handles tasks such as adding, modifying, or deleting data and informs you of changes through events.  
  */
 declare class MetaRow extends MetaObject {
 
@@ -96,7 +96,7 @@ declare class MetaRow extends MetaObject {
      * Processes events before element changes.
      * 
      * @param idx - Index where the change occurred.
-     * @param Val - This is the new value to be changed.
+     * @param nVal - This is the new value to be changed.
      * @param oVal - Existing value.
      * @listens MetaRow#onChanging
      */
@@ -113,13 +113,13 @@ declare class MetaRow extends MetaObject {
     _onChanged(idx: number, nVal: any, oVal: any): void;
 
     /**
-     * Converts the current 'MetaRow' object to a serialized GUID type object.
-     * In the serialization process, the cyclic reference is replaced by the value '$ref'.
+     * Converts the current 'MetaRow' object to a serialized GUID type object.  
+     * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.
-     *   - '0': Convert to a reference structure (including '_guid' and '$ref')
-     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')
-     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')
+     * @param vOpt - Specifies the serialization option.  
+     *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
+     *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
+     *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
      * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
@@ -129,8 +129,8 @@ declare class MetaRow extends MetaObject {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * Sets the serialized GUID type object to the current 'MetaRow' object.
-     * During this process, the object is initialized.
+     * Sets the serialized GUID type object to the current 'MetaRow' object.  
+     * During this process, the object is initialized.  
      * 
      * @param oGuid - object of serialized GUID type.
      * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
@@ -153,4 +153,5 @@ declare class MetaRow extends MetaObject {
 
 }
 
-export = MetaRow;
+export default MetaRow;
+export { MetaRow };

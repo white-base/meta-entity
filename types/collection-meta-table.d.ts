@@ -1,15 +1,15 @@
-import {PropertyCollection}     from 'logic-core';
-import MetaTable                from './meta-table';
+import type { PropertyCollection }      from 'logic-core';
+import type { MetaTable }               from './meta-table.d.ts';
 
 /**
- * The 'MetaTableCollection' class defines the collection that manages the meta table.
- * This class provides the ability to add meta-table objects and check the existence of tables in the collection.
+ * The 'MetaTableCollection' class defines the collection that manages the meta table.  
+ * This class provides the ability to add meta-table objects and check the existence of tables in the collection.  
  */
-declare class MetaTableCollection extends PropertyCollection {
+declare class MetaTableCollection extends PropertyCollection<MetaTable> {
 
     /**
-     * Creates a 'MetaTableCollection' object.
-     * This object creates a collection that manages the meta table.
+     * Creates a 'MetaTableCollection' object.  
+     * This object creates a collection that manages the meta table.  
      * 
      * @param owner - Specifies the owner object of this collection.
      */
@@ -38,4 +38,6 @@ declare class MetaTableCollection extends PropertyCollection {
      */
     existTablename(key: string): boolean;
 }
-export = MetaTableCollection;
+
+export default MetaTableCollection;
+export { MetaTableCollection };

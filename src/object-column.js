@@ -1,12 +1,10 @@
 /**** object-column.js | _L.Meta.Entity.ObjectColumn ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Util } from 'logic-core';
-import { MetaRegistry } from 'logic-core';
-import { MetaObject } from 'logic-core';
-// import { MetaElement } from 'logic-core';
-// import { PropertyCollection } from 'logic-core';
-import { BaseColumn } from './base-column.js';
+import { ExtendError }              from 'logic-core';
+import { Util }                     from 'logic-core';
+import { MetaRegistry }             from 'logic-core';
+import { MetaObject }               from 'logic-core';
+import { BaseColumn }               from './base-column.js';
 
 var ObjectColumn  = (function (_super) {
     /**

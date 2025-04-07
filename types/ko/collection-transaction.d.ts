@@ -1,35 +1,35 @@
-import type {ArrayCollection}        from 'logic-core/ko';
-import type TransactionQueue         from './trans-queue.d.ts';
+import type { ArrayCollection }         from 'logic-core/ko';
+import type { TransactionQueue }        from './trans-queue.d.ts';
 
 /**
- * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.
- * 이 클래스는 컬렉션에 트랜잭션 큐를 적용하고, 변경 사항을 관리하는 기능을 제공합니다.
+ * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.  
+ * 이 클래스는 컬렉션에 트랜잭션 큐를 적용하고, 변경 사항을 관리하는 기능을 제공합니다.  
  */
 declare class TransactionCollection<T> extends ArrayCollection<T> {
 
     /**
-     * `TransactionCollection` 객체를 생성합니다.
-     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.
+     * `TransactionCollection` 객체를 생성합니다.  
+     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
      * 
      * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
      */
     constructor(owner: object);
 
     /**
-     * 트랜잭션 큐를 관리하는 객체입니다.
-     * 이 큐는 트랜잭션 작업을 순차적으로 처리하는 데 사용됩니다.
+     * 트랜잭션 큐를 관리하는 객체입니다.  
+     * 이 큐는 트랜잭션 작업을 순차적으로 처리하는 데 사용됩니다.  
      */
     _transQueue: TransactionQueue;
 
     /**
-     * 자동 변경 기능의 사용 여부를 나타냅니다.
-     * 기본값은 `false`로 설정되어 있으며, 자동으로 변경 사항을 적용할지 여부를 설정합니다.
+     * 자동 변경 기능의 사용 여부를 나타냅니다.  
+     * 기본값은 `false`로 설정되어 있으며, 자동으로 변경 사항을 적용할지 여부를 설정합니다.  
      */
     autoChanges: boolean;
     
     /**
-     * 컬렉션의 변경 여부를 나타냅니다.
-     * `true`일 경우 컬렉션에 변경 사항이 있음을 의미합니다.
+     * 컬렉션의 변경 여부를 나타냅니다.  
+     * `true`일 경우 컬렉션에 변경 사항이 있음을 의미합니다.  
      */
     hasChanges: boolean;
 
@@ -45,13 +45,13 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
     _getPropDescriptor(idx: number): object;
 
     /**
-     * 현재 `TransactionCollection` 객체를 직렬화된 객체로 변환합니다.
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 현재 `TransactionCollection` 객체를 직렬화된 객체로 변환합니다.  
+     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
      * 
-     * @param vOpt - 직렬화 옵션을 지정합니다.
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)
+     * @param vOpt - 직렬화 옵션을 지정합니다.  
+     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
+     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
      * @returns 직렬화된 객체입니다.
      * 
@@ -61,8 +61,8 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
     getObject(vOpt?: number, owned?: object | Array<object>): object;
 
     /**
-     * 직렬화된 객체를 현재 `TransactionCollection` 객체에 설정합니다.
-     * 이 과정에서 객체가 초기화됩니다.
+     * 직렬화된 객체를 현재 `TransactionCollection` 객체에 설정합니다.  
+     * 이 과정에서 객체가 초기화됩니다.  
      * 
      * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
      * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
@@ -84,8 +84,8 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
     removeAt(pos: number): boolean;
 
     /**
-     * 컬렉션의 모든 요소를 초기화합니다.
-     * 컬렉션이 비워지고, 모든 요소가 삭제됩니다.
+     * 컬렉션의 모든 요소를 초기화합니다.  
+     * 컬렉션이 비워지고, 모든 요소가 삭제됩니다.  
      */
     clear(): boolean;
 
@@ -103,14 +103,14 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
     insertAt(pos: number, elem: any, desc: PropertyDescriptor): boolean;
 
     /**
-     * 컬렉션에 대한 변경 사항을 반영하여 커밋합니다.
-     * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 적용합니다.
+     * 컬렉션에 대한 변경 사항을 반영하여 커밋합니다.  
+     * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 적용합니다.  
      */
     commit(): void;
 
     /**
-     * 컬렉션에 대한 변경 사항을 이전 상태로 롤백합니다.
-     * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 취소합니다.
+     * 컬렉션에 대한 변경 사항을 이전 상태로 롤백합니다.  
+     * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 취소합니다.  
      */
     rollback(): void;
 }

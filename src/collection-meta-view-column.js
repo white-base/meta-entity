@@ -1,13 +1,13 @@
 /**** collection-meta-view-column.js | MetaViewColumnCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Type } from 'logic-core';
-import { Util } from 'logic-core';
-import { MetaElement } from 'logic-core';
-import { BaseColumn } from './base-column.js';
-import { MetaRegistry } from 'logic-core';
-import { MetaColumn } from './meta-column.js';
-import { BaseColumnCollection } from './base-column-collection.js';
+import { ExtendError }              from 'logic-core';
+import { Type }                     from 'logic-core';
+import { Util }                     from 'logic-core';
+import { MetaElement }              from 'logic-core';
+import { BaseColumn }               from './base-column.js';
+import { MetaRegistry }             from 'logic-core';
+import { MetaColumn }               from './meta-column.js';
+import { BaseColumnCollection }     from './base-column-collection.js';
 
 var MetaViewColumnCollection  = (function (_super) {
     /**

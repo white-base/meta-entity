@@ -1,11 +1,11 @@
-import TransactionCollection    from './collection-transaction';
-import MetaRow                  from './meta-row';
+import type { TransactionCollection }   from './collection-transaction.d.ts';
+import type { MetaRow }                 from './meta-row.d.ts';
 
-declare class MetaRowCollection extends TransactionCollection {
+declare class MetaRowCollection extends TransactionCollection<MetaRow> {
 
     /**
-     * The creator of the class 'MetaRowCollection'.
-     * This class provides a collection to manage 'MetaRow' objects.
+     * The creator of the class 'MetaRowCollection'.  
+     * This class provides a collection to manage 'MetaRow' objects.  
      * 
      * @param owner - Owner object of this collection.
      */
@@ -48,4 +48,5 @@ declare class MetaRowCollection extends TransactionCollection {
     
 }
 
-export = MetaRowCollection;
+export default MetaRowCollection;
+export { MetaRowCollection };

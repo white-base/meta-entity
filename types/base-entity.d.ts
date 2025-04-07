@@ -1,20 +1,19 @@
-import {MetaElement}        from 'logic-core';
-import IGroupControl        from './i-control-group';
-import IExportControl       from './i-control-export';
-import IImportControl       from './i-control-import';
-import ISchemaControl       from './i-control-schema';
-import {ISerialize}         from 'logic-core';
-import MetaSet              from './meta-set';
-import BaseColumnCollection from './base-column-collection';
-import MetaRowCollection    from './collection-meta-row';
-import MetaRow              from './meta-row';
-import MetaView             from './meta-view';
+import type { MetaElement }             from 'logic-core';
+import type { ISerialize }              from 'logic-core';
+import type { IGroupControl }           from './i-control-group.d.ts';
+import type { IExportControl }          from './i-control-export.d.ts';
+import type { IImportControl }          from './i-control-import.d.ts';
+import type { ISchemaControl }          from './i-control-schema.d.ts';
+import type { MetaSet }                 from './meta-set.d.ts';
+import type { BaseColumnCollection }    from './base-column-collection.d.ts';
+import type { MetaRowCollection }       from './collection-meta-row.d.ts';
+import type { MetaRow }                 from './meta-row.d.ts';
+import type { MetaView }                from './meta-view.d.ts';
+import type { BaseColumn }              from './base-column.d.ts';
 
 /**
- * Primary entity class (top)
- * 
- * This class models entities in the database (e.g., tables, views, etc.), and manages column and raw data.
- * It implements various interfaces to support transactions, serialization, schema conversion, and more.
+ * This class models entities in the database (e.g., tables, views, etc.), and manages column and raw data.  
+ * It implements various interfaces to support transactions, serialization, schema conversion, and more.  
  */
 declare abstract class BaseEntity extends MetaElement 
     implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
@@ -22,7 +21,7 @@ declare abstract class BaseEntity extends MetaElement
     /**
      * Creates an entity with a given name.
      * 
-     * @paramname - The entity name.
+     * @param name - The entity name.
      */
     constructor(name: string);
 
@@ -38,7 +37,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @readonly
      */
-    columns: BaseColumnCollection;
+    columns: BaseColumnCollection<BaseColumn>;
 
     /**
      * Data (low) collection of entities.
@@ -85,10 +84,10 @@ declare abstract class BaseEntity extends MetaElement
     /**
      * Returns objects in serialized form according to specific options; cyclic references are replaced by $ref values.
      * 
-     * @param vOpt - Import option. (Default: 0)
-     * - 0 : Reference structure (_guid: Yes, $ref: Yes)
-     * - 1: Redundant structure (_guid: Yes, $ref: Yes)
-     * - 2: Non-tidal rescue (_guid: No, $ref: No)
+     * @param vOpt - Import option. (Default: 0)  
+     * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
+     * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
+     * - 2: Non-tidal rescue (_guid: No, $ref: No)  
      * @param owned - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
@@ -250,8 +249,8 @@ declare abstract class BaseEntity extends MetaElement
     writeData(vOpt?: number): object;
 
     /**
-     * Validates the MetaColumn included in the columns collection. 
-     * - Validates the value based on required properties and constructs.
+     * Validates the MetaColumn included in the columns collection.  
+     * - Validates the value based on required properties and constructs.  
      * 
      * @returns Returns the validation results of the entire column.
      */
@@ -273,4 +272,5 @@ declare abstract class BaseEntity extends MetaElement
 
 }
 
-export = BaseEntity;
+export default BaseEntity;
+export { BaseEntity };

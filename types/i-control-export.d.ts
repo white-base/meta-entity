@@ -9,4 +9,5 @@ declare interface IExportControl {
     write();
 }
 
-export = IExportControl;
+export default IExportControl;
+export { IExportControl };

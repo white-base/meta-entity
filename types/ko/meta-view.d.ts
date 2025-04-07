@@ -1,10 +1,8 @@
-import type BaseEntity               from './base-entity.d.ts';
-import type MetaViewColumnCollection from './collection-meta-view-column.d.ts';
-import type MetaColumn    from './meta-column.d.ts';
+import type { BaseEntity }                  from './base-entity.d.ts';
+import type { MetaViewColumnCollection }    from './collection-meta-view-column.d.ts';
+import type { MetaColumn }                  from './meta-column.d.ts';
 
 /**
- * 메타 뷰 클래스
- * 
  * 이 클래스는 데이터베이스의 뷰를 모델링하며, 뷰의 컬럼과 기본 엔티티를 관리합니다.
  */
 declare class MetaView extends BaseEntity {
@@ -35,10 +33,10 @@ declare class MetaView extends BaseEntity {
     /**
      * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 $ref 값으로 대체됩니다.
      * 
-     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)
-     * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)
-     * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)
-     * - 2 : 비참조 구조 (_guid: No, $ref: No)
+     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)  
+     * - 0 : 참조 구조 (_guid: Yes, $ref: Yes)  
+     * - 1 : 중복 구조 (_guid: Yes, $ref: Yes)  
+     * - 2 : 비참조 구조 (_guid: No, $ref: No)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. (기본값: {})
      * @returns 직렬화된 객체입니다.
      * 

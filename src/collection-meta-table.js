@@ -1,11 +1,11 @@
 /**** collection-meta-table.js | MetaTableCollection ****/
 //==============================================================
-import { ExtendError } from 'logic-core';
-import { Util } from 'logic-core';
-import { Type } from 'logic-core';
-import { MetaObject } from 'logic-core';
-import { PropertyCollection } from 'logic-core';
-import { MetaTable } from './meta-table.js';
+import { ExtendError }              from 'logic-core';
+import { Util }                     from 'logic-core';
+import { Type }                     from 'logic-core';
+import { MetaObject }               from 'logic-core';
+import { PropertyCollection }       from 'logic-core';
+import { MetaTable }                from './meta-table.js';
 
 var MetaTableCollection  = (function (_super) {
     /**

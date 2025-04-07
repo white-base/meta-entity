@@ -1,13 +1,11 @@
-import type BaseEntity                   from './base-entity.d.ts';
-import type ITransaction                 from './i-transaction.d.ts';
-import type MetaTableColumnCollection    from './collection-meta-table-column.d.ts';
-import type MetaColumn    from './meta-column.d.ts';
+import type { BaseEntity }                  from './base-entity.d.ts';
+import type { ITransaction }                from './i-transaction.d.ts';
+import type { MetaTableColumnCollection }   from './collection-meta-table-column.d.ts';
+import type { MetaColumn }                  from './meta-column.d.ts';
 
 /**
- * 테이블 엔티티 클래스
- * 
- * 이 클래스는 데이터베이스 테이블을 모델링하며, 컬럼의 컬렉션과 테이블 이름을 관리합니다.
- * 또한, 트랜잭션을 지원하여 변경 사항을 커밋하거나 롤백할 수 있습니다.
+ * 이 클래스는 데이터베이스 테이블을 모델링하며, 컬럼의 컬렉션과 테이블 이름을 관리합니다.  
+ * 또한, 트랜잭션을 지원하여 변경 사항을 커밋하거나 롤백할 수 있습니다.  
  */
 declare class MetaTable extends BaseEntity implements ITransaction {
 
@@ -31,10 +29,10 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     /**
      * 객체를 특정 옵션에 따라 직렬화된 형태로 반환합니다. 순환 참조는 `$ref` 값으로 대체됩니다.
      * 
-     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)
-     * - 0 : 참조 구조(_guid: Yes, $ref: Yes)
-     * - 1 : 중복 구조(_guid: Yes, $ref: Yes)
-     * - 2 : 비참조 구조(_guid: No, $ref: No)
+     * @param vOpt - 가져오기 옵션입니다. (기본값: 0)  
+     * - 0 : 참조 구조(_guid: Yes, $ref: Yes)  
+     * - 1 : 중복 구조(_guid: Yes, $ref: Yes)  
+     * - 2 : 비참조 구조(_guid: No, $ref: No)  
      * @param owned - 현재 객체를 소유하는 상위 객체들입니다. (기본값: {})
      * @returns 직렬화된 객체입니다.
      * 
