@@ -6,6 +6,7 @@ import { babel } from '@rollup/plugin-babel';
 import autoExternal from 'rollup-plugin-auto-external';
 import bundleSize from 'rollup-plugin-bundle-size';
 import aliasPlugin from '@rollup/plugin-alias';
+import { cleandir } from 'rollup-plugin-cleandir';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
 
@@ -17,6 +18,7 @@ const name = "_L";
 const namedInput = './index.js';
 const defaultInput = './index.js';
 const srcMap = true;
+const OUT_DIR = './dist';
 
 const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...config}) => {
   const {file} = config.output;
@@ -67,6 +69,33 @@ export default async () => {
   const banner = `/*! Logic Core v${lib.version} Copyright (c) ${year} ${lib.author} and contributors */`;
 
   return [
+    // Node.js commonjs bundle
+    {
+      input: defaultInput,
+      output: [
+        {
+          file: `dist/${outputFileName}.node.cjs`,
+          format: "cjs",
+          sourcemap: srcMap,
+          // preferConst: true,
+          exports: "named",
+          banner
+        },
+      ],
+      plugins: [
+        // autoExternal(),
+        resolve(),
+        commonjs(),
+        json(),
+        // copy({
+        //   targets: [
+        //     { src: 'src/locales/**/*', dest: 'dist/locales' }
+        //   ]
+        // })
+        cleandir(OUT_DIR),
+        mergeLocalesPlugin('node_modules/logic-core/dist/locales'),
+      ]
+    },
     // Browser UMD bundle for CDN
     ...buildConfig({
       input: defaultInput,
@@ -108,31 +137,6 @@ export default async () => {
         banner
       }
     }),
-    // Node.js commonjs bundle
-    {
-      input: defaultInput,
-      output: [
-        {
-          file: `dist/${outputFileName}.node.cjs`,
-          format: "cjs",
-          sourcemap: srcMap,
-          // preferConst: true,
-          exports: "named",
-          banner
-        },
-      ],
-      plugins: [
-        // autoExternal(),
-        resolve(),
-        commonjs(),
-        json(),
-        // copy({
-        //   targets: [
-        //     { src: 'src/locales/**/*', dest: 'dist/locales' }
-        //   ]
-        // })
-        mergeLocalesPlugin('node_modules/logic-core/dist/locales')
-      ]
-    },
+    
   ]
 };
