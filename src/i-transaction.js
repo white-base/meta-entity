@@ -1,4 +1,4 @@
-/**** i-transaction.js | _L.Interface.ITransaction ****/
+/**** i-transaction.js | ITransaction ****/
 //==============================================================
 import { ExtendError }      from 'logic-core';
 

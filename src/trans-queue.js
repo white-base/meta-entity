@@ -1,4 +1,4 @@
-/**** trans-queue.js | _L.Collection.TransactionQueue ****/
+/**** trans-queue.js | TransactionQueue ****/
 //==============================================================
 import { ExtendError }              from 'logic-core';
 import { MetaObject }               from 'logic-core';

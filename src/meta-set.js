@@ -1,4 +1,4 @@
-/**** meta-set.js | _L.Meta.Entity.MetaSet ****/
+/**** meta-set.js | MetaSet ****/
 //==============================================================
 import { ExtendError }              from 'logic-core';
 import { Util }                     from 'logic-core';

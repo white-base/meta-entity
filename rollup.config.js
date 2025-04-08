@@ -37,10 +37,10 @@ const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...con
     },
     plugins: [
       aliasPlugin({
-        entries: alias || []
+        entries: alias || [{ find: './message-wrap.js', replacement: path.resolve(__dirname, 'src/message-wrap-bundle.js') }]
       }),
       json(),
-      resolve({browser}),
+      resolve({browser, preferBuiltins: false}),
       commonjs(),
 
       minified && terser(),
@@ -50,7 +50,8 @@ const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...con
         presets: ['@babel/preset-env']
       })] : []),
       ...(config.plugins || []),
-    ]
+    ],
+    external: ['path', 'url'],
   });
 
   const configs = [
@@ -72,6 +73,7 @@ export default async () => {
     // Node.js commonjs bundle
     {
       input: defaultInput,
+      
       output: [
         {
           file: `dist/${outputFileName}.node.cjs`,
@@ -84,7 +86,13 @@ export default async () => {
       ],
       plugins: [
         // autoExternal(),
-        resolve(),
+        // aliasPlugin({
+        //   entries: alias || []
+        // }),
+        aliasPlugin({
+          entries: [{ find: './message-wrap.js', replacement: path.resolve(__dirname, 'src/message-wrap-bundle.js') }]
+        }),
+        resolve({preferBuiltins: false}),
         commonjs(),
         json(),
         // copy({
@@ -94,7 +102,8 @@ export default async () => {
         // })
         cleandir(OUT_DIR),
         mergeLocalesPlugin('node_modules/logic-core/dist/locales'),
-      ]
+      ],
+      external: ['path', 'url'],
     },
     // Browser UMD bundle for CDN
     ...buildConfig({
@@ -108,7 +117,8 @@ export default async () => {
         sourcemap: srcMap,
         exports: "named",
         banner
-      }
+      },
+      // alias: []
     }),
     // browser ESM bundle for CDN
     ...buildConfig({
@@ -121,7 +131,10 @@ export default async () => {
         sourcemap: srcMap,
         exports: "named",
         banner
-      }
+      },
+      // alias: [
+      //   { find: './message-wrap', replacement: './message-wrap.bundle.js' }
+      // ],
     }),
     // Browser CJS bundle
     ...buildConfig({

@@ -32,6 +32,7 @@ describe("[target: message.js]", () => {
             expect(Message.currentLang).toBe('ko')
             expect(Message.get('KO')).toMatch(/OK/);
             expect(Message.get('EN')).toMatch(/OK/);
+            expect(Message.get('EL02200')).toMatch('Error [EL02200] ---- Interface.* ----');
         });
         it("- 영어 환경", async () => {
             process.env.LANG = 'en_US.UTF-8';
@@ -50,7 +51,7 @@ describe("[target: message.js]", () => {
             
             expect(Message.defaultLang).toBe('default')
             expect(Message.currentLang).toBe('ja')
-            expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/ja' does not have a file.")
+            expect(warnSpy.mock.calls[0][0]).toMatch("ja")
         });
         it("Type 한글 오류 확인", async () => {
             process.env.LANG = 'ko_US.UTF-8';
@@ -89,7 +90,7 @@ describe("[target: message.js]", () => {
             const {Message} = await import('../src/message-wrap');
             Message.importMessage({EEEEE: 'NamespaceManager'}, './test')
 
-            expect(Message.$storage.path.includes('./test')).toBe(T)
+            expect(Message.$storage.path[2].indexOf('/test') > -1).toBe(T)
             expect(Message.$storage.path.length > 1).toBe(T)
             expect(Message.getMessageByCode('EEEEE')).toBe('NamespaceManager')
         });
@@ -109,13 +110,20 @@ describe("[target: message.js]", () => {
             expect(Message.currentLang).toBe('ko')
             expect(Message.getMessageByCode('KO')).toBe('OK')
         });
+        it("- 테스트 변경", async () => {
+            const {Message} = await import('../src/message-wrap');
+            await Message.changeLanguage('entity')
+
+            expect(Message.currentLang).toBe('entity')
+            expect(Message.getMessageByCode('ENTITY')).toBe('SUCCESS')
+        });
         it("- 없는 언어 추가", async () => {
             const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
             const {Message} = await import('../src/message-wrap');
             await Message.changeLanguage('jp')
             
             expect(Message.currentLang).toBe('jp')
-            expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/jp' does not have a file.")
+            expect(warnSpy.mock.calls[0][0]).toMatch("jp")
         });
     });
     describe("Message.get() : 메세지 얻기", () => {

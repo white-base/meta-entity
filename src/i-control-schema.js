@@ -1,4 +1,4 @@
-/**** i-control-schema.js | _L.Interface.ISchemaControl ****/
+/**** i-control-schema.js | ISchemaControl ****/
 //==============================================================
 import { ExtendError }      from 'logic-core';
 

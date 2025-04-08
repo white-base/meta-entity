@@ -1,4 +1,4 @@
-/**** collection-transaction.js | _L.Collection.TransactionCollection ****/
+/**** collection-transaction.js | TransactionCollection ****/
 //==============================================================
 import { ExtendError }          from 'logic-core';
 import { Type }                 from 'logic-core';

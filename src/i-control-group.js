@@ -1,4 +1,4 @@
-/**** i-control-group.js | _L.Interface.IGroupControl ****/
+/**** i-control-group.js | IGroupControl ****/
 //==============================================================
 import { ExtendError }      from 'logic-core';
 

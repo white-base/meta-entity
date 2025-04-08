@@ -1,4 +1,4 @@
-/**** meta-column.js | _L.Meta.Entity.MetaColumn ****/
+/**** meta-column.js | MetaColumn ****/
 //==============================================================
 import { ExtendError }          from 'logic-core';
 import { Type }                 from 'logic-core';

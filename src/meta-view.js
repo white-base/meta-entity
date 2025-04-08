@@ -1,4 +1,4 @@
-/**** meta-view.js | _L.Meta.Entity.MetaView, _L.Meta.Entity.MetaViewCollection ****/
+/**** meta-view.js | MetaView ****/
 //==============================================================
 import { ExtendError }                  from 'logic-core';
 import { Util }                         from 'logic-core';
