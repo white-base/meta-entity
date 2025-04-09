@@ -37,7 +37,10 @@ const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...con
     },
     plugins: [
       aliasPlugin({
-        entries: alias || [{ find: './message-wrap.js', replacement: path.resolve(__dirname, 'src/message-wrap-bundle.js') }]
+        entries: alias || [
+            { find: './message-wrap.js', replacement: './message-wrap-bundle.js'},
+            { find: './src/message-wrap.js', replacement: './src/message-wrap-bundle.js'},
+        ]
       }),
       json(),
       resolve({browser, preferBuiltins: false}),
@@ -51,7 +54,7 @@ const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...con
       })] : []),
       ...(config.plugins || []),
     ],
-    external: ['path', 'url'],
+    // external: ['path', 'url'],
   });
 
   const configs = [
@@ -89,10 +92,14 @@ export default async () => {
         // aliasPlugin({
         //   entries: alias || []
         // }),
+        cleandir(OUT_DIR),
         aliasPlugin({
-          entries: [{ find: './message-wrap.js', replacement: path.resolve(__dirname, 'src/message-wrap-bundle.js') }]
+          entries: [
+            { find: './message-wrap.js', replacement: './message-wrap-bundle.js'},
+            { find: './src/message-wrap.js', replacement: './src/message-wrap-bundle.js'},
+          ]
         }),
-        resolve({preferBuiltins: false}),
+        resolve(),
         commonjs(),
         json(),
         // copy({
@@ -100,10 +107,9 @@ export default async () => {
         //     { src: 'src/locales/**/*', dest: 'dist/locales' }
         //   ]
         // })
-        cleandir(OUT_DIR),
         mergeLocalesPlugin('node_modules/logic-core/dist/locales'),
       ],
-      external: ['path', 'url'],
+      // external: ['path', 'url'],
     },
     // Browser UMD bundle for CDN
     ...buildConfig({

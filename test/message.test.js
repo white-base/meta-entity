@@ -110,13 +110,27 @@ describe("[target: message.js]", () => {
             expect(Message.currentLang).toBe('ko')
             expect(Message.getMessageByCode('KO')).toBe('OK')
         });
-        it("- 테스트 변경", async () => {
-            const {Message} = await import('../src/message-wrap');
+        it("- entity 언어 변경", async () => {
+            const {Message} =  await import('../src/message-wrap');
             await Message.changeLanguage('entity')
 
             expect(Message.currentLang).toBe('entity')
             expect(Message.getMessageByCode('ENTITY')).toBe('SUCCESS')
         });
+        it("- core 언어 변경", async () => {
+            const {Message} =  await import('../src/message-wrap');
+            await Message.changeLanguage('core')
+
+            expect(Message.currentLang).toBe('core')
+            expect(Message.getMessageByCode('CORE')).toBe('SUCCESS')
+        });
+        // it("- 테스트 변경", async () => {
+        //     const {Message} = await import('../src/message-wrap');
+        //     await Message.changeLanguage('entity')
+
+        //     expect(Message.currentLang).toBe('entity')
+        //     expect(Message.getMessageByCode('ENTITY')).toBe('SUCCESS')
+        // });
         it("- 없는 언어 추가", async () => {
             const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
             const {Message} = await import('../src/message-wrap');

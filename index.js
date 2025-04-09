@@ -1,6 +1,6 @@
 /// <reference path="./types/index.d.ts" />
 
-// export { Message } from 'logic-core';  >> message-wrap.js
+// logic-core
 export { ExtendError }              from 'logic-core';
 export { Type }                     from 'logic-core';
 export { Util }                     from 'logic-core';
@@ -22,8 +22,8 @@ export { BaseCollection }           from 'logic-core';
 export { ArrayCollection }          from 'logic-core';
 export { PropertyCollection }       from 'logic-core';
 
-// local meta entit
-export { Message }                  from './src/message-wrap.js'; 
+// local module
+export { Message }                  from './src/message-wrap.js';  // message wrap
 export { IExportControl }           from './src/i-control-export.js'; 
 export { IGroupControl }            from './src/i-control-group.js'; 
 export { IImportControl }           from './src/i-control-import.js'; 

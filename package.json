@@ -4,7 +4,7 @@
   "description": "logic framwork entity",
   "type": "module",
   "main": "index.js",
-  "types": "./types/ko/index.d.ts",
+  "types": "./types/index.d.ts",
   "exports": {
     ".": {
       "types": {
