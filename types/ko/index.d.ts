@@ -1,26 +1,26 @@
 /// <reference path="T.d.ts" />
 
-export type { ExtendError }                 from 'logic-core';
-export type { Type }                        from 'logic-core';
-export type { Util }                        from 'logic-core';
-export type { EventEmitter }                from 'logic-core';
-export type { IObject }                     from 'logic-core';
-export type { IMarshal }                    from 'logic-core';
-export type { ICollection }                 from 'logic-core';
-export type { IPropertyCollection }         from 'logic-core';
-export type { IElement }                    from 'logic-core';
-export type { IList }                       from 'logic-core';
-export type { IListControl }                from 'logic-core';
-export type { ISerialize }                  from 'logic-core';
-export type { IArrayCollection }            from 'logic-core';
-export type { NamespaceManager }            from 'logic-core';
-export type { MetaRegistry }                from 'logic-core';
-export type { MetaObject }                  from 'logic-core';
-export type { MetaElement }                 from 'logic-core';
-export type { BaseCollection }              from 'logic-core';
-export type { ArrayCollection }             from 'logic-core';
-export type { PropertyCollection }          from 'logic-core';
-export type { Message }                     from 'logic-core';
+export type { ExtendError }                 from 'logic-core/ko';
+export type { Type }                        from 'logic-core/ko';
+export type { Util }                        from 'logic-core/ko';
+export type { EventEmitter }                from 'logic-core/ko';
+export type { IObject }                     from 'logic-core/ko';
+export type { IMarshal }                    from 'logic-core/ko';
+export type { ICollection }                 from 'logic-core/ko';
+export type { IPropertyCollection }         from 'logic-core/ko';
+export type { IElement }                    from 'logic-core/ko';
+export type { IList }                       from 'logic-core/ko';
+export type { IListControl }                from 'logic-core/ko';
+export type { ISerialize }                  from 'logic-core/ko';
+export type { IArrayCollection }            from 'logic-core/ko';
+export type { NamespaceManager }            from 'logic-core/ko';
+export type { MetaRegistry }                from 'logic-core/ko';
+export type { MetaObject }                  from 'logic-core/ko';
+export type { MetaElement }                 from 'logic-core/ko';
+export type { BaseCollection }              from 'logic-core/ko';
+export type { ArrayCollection }             from 'logic-core/ko';
+export type { PropertyCollection }          from 'logic-core/ko';
+export type { Message }                     from 'logic-core/ko';
 
 // local modules
 export type { BaseColumn }                  from './base-column.d.ts';
