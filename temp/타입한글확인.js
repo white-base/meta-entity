@@ -22,4 +22,6 @@ c.clear();
 d.clear();
 
 e._name;
+
+console.log('ArrayCollection', c);
 console.log('a');
