@@ -35,7 +35,7 @@ function mergeLocalesPlugin(logicCoreLocalesPath) {
   return {
     name: 'merge-locales-plugin',
     async buildEnd() {
-      const __dirname = path.dirname(new URL(import.meta.url).pathname);
+      // const __dirname = path.dirname(new URL(import.meta.url).pathname);
       const srcDir = path.resolve(__dirname, 'src/locales');
       const coreDir = path.resolve(__dirname, logicCoreLocalesPath);
       const distDir = path.resolve(__dirname, 'dist/locales');
