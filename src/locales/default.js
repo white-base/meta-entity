@@ -1,4 +1,5 @@
-{
+/* eslint-disable */
+export default {
   "EL02200": "---- Interface.* ----",
   "EL02210": "---- i-control-export.js ----",
   "EL02211": "write(opt): object is an abstract method. '$1' must be implemented",

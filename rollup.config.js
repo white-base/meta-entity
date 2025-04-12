@@ -54,7 +54,7 @@ const buildConfig = ({es5, browser = true, minifiedVersion = true, alias, ...con
       })] : []),
       ...(config.plugins || []),
     ],
-    // external: ['path', 'url'],
+    external: ['path', 'url', 'fs/promises'],
   });
 
   const configs = [
@@ -109,7 +109,7 @@ export default async () => {
         // })
         mergeLocalesPlugin('node_modules/logic-core/dist/locales'),
       ],
-      // external: ['path', 'url'],
+      external: ['path', 'url', 'fs/promises'],
     },
     // Browser UMD bundle for CDN
     ...buildConfig({
