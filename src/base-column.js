@@ -196,7 +196,7 @@ var BaseColumn  = (function (_super) {
         /**
          * value 별칭
          * this.value
-         * @member {object} _L.Meta.Entity.BaseColumn#val 
+         * @member {object} _L.Meta.Entity.BaseColumn#val
          */
         Object.defineProperty(this, 'val', {
             get: function() { return this.value; },
@@ -226,11 +226,12 @@ var BaseColumn  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
      * a.getObject(2) == b.getObject(2)   
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
@@ -254,9 +255,10 @@ var BaseColumn  = (function (_super) {
     };
 
     /**
-     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
+     * 
      * @param {object} p_oGuid guid 타입의 객체
-     * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
+     * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체
      * 기본값은 p_oGuid 객체와 동일
      */
     BaseColumn.prototype.setObject  = function(p_oGuid, p_origin) {
@@ -279,6 +281,7 @@ var BaseColumn  = (function (_super) {
 
     /** 
      * 컬럼 복제
+     * 
      * @abstract 
      */
     BaseColumn.prototype.clone = function() {

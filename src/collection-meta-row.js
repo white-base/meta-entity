@@ -9,6 +9,7 @@ import { MetaRow }                  from './meta-row.js';
 var MetaRowCollection  = (function (_super) {
     /**
      * 로우 컬렉션
+     * 
      * @constructs _L.Meta.Entity.MetaRowCollection
      * @extends _L.Collection.TransactionCollection
      * @param {object} [p_owner] 소유자 
@@ -26,6 +27,7 @@ var MetaRowCollection  = (function (_super) {
 
     /**
      * 프로퍼티 기술자 설정
+     * 
      * @protected
      * @param {number} p_idx 인덱스
      */
@@ -48,6 +50,7 @@ var MetaRowCollection  = (function (_super) {
 
     /**
      * MetaRow 추가 idx 를 기준으로 검사한다.
+     * 
      * @param {MetaRow} p_row 추가할 MetaRow
      * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)
      * @returns {number}
@@ -63,6 +66,7 @@ var MetaRowCollection  = (function (_super) {
 
     /**
      * pos 위치에 추가
+     * 
      * @param {number} p_pos 추가할 위치 인덱스
      * @param {MetaRow} p_row 추가할 MetaRow
      * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)

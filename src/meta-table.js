@@ -10,6 +10,7 @@ import { MetaTableColumnCollection }    from './collection-meta-table-column.js'
 var MetaTable  = (function (_super) {
     /**
      * 테이블 엔티티
+     * 
      * @constructs _L.Meta.Entity.MetaTable
      * @extends _L.Meta.Entity.BaseEntity
      * @param {string} p_name 테이블명
@@ -21,6 +22,7 @@ var MetaTable  = (function (_super) {
 
         /**
          * 테이블 이름
+         * 
          * @member {string} _L.Meta.Entity.MetaTable#tableName
          */
         Object.defineProperty(this, 'tableName', {
@@ -36,6 +38,7 @@ var MetaTable  = (function (_super) {
 
         /**
          * 엔티티의 아이템(속성) 컬렉션
+         * 
          * @member {MetaTableColumnCollection} _L.Meta.Entity.MetaTable#columns
          */
         Object.defineProperty(this, 'columns', {
@@ -59,13 +62,14 @@ var MetaTable  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -80,6 +84,7 @@ var MetaTable  = (function (_super) {
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -102,6 +107,7 @@ var MetaTable  = (function (_super) {
 
     /**
      * 객체 복제
+     * 
      * @returns {MetaTable}
      */
     MetaTable.prototype.clone  = function() {
@@ -122,6 +128,7 @@ var MetaTable  = (function (_super) {
 
     /**
      * 엔티티를 복사한다. (조회 후 복제)
+     * 
      * @param {overload}            type1
      * @param {function}            type1.p_filter 로우 필터 함수
      * @param {arguments<string>}   type1.p_args 컬럼명
@@ -164,6 +171,7 @@ var MetaTable  = (function (_super) {
 
     /**
      * 변경목록 얻기
+     * 
      * @returns {array<object>}
      */
     MetaTable.prototype.getChanges  = function() {

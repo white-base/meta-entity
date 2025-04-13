@@ -12,6 +12,7 @@ import { BaseColumnCollection }     from './base-column-collection.js';
 var MetaViewColumnCollection  = (function (_super) {
     /**
      * 메타 뷰 컬럼 컬렉션
+     * 
      * @constructs _L.Meta.Entity.MetaViewColumnCollection
      * @extends _L.Meta.Entity.BaseColumnCollection
      * @param {object} p_owner 소유자
@@ -21,6 +22,7 @@ var MetaViewColumnCollection  = (function (_super) {
 
         /** 
          * 참조하는 엔티티 목록
+         * 
          * @readonly
          * @member {array<BaseEntity>} _L.Meta.Entity.MetaViewColumnCollection#_refEntities
          */
@@ -49,13 +51,14 @@ var MetaViewColumnCollection  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -86,10 +89,11 @@ var MetaViewColumnCollection  = (function (_super) {
      * - collection에 컬럼이 존재할 경우 : columns 객체는 무시되고, 리턴한 객체의 참조를 등록한다.  
      * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)  
      *      + collection 존재할 경우 entity 항상 존재한다.  
-     * - entity가 있는 컬럼을 추가할 경우 : 참조가 추가되는 것이다.
-     * - entity가 없는 컬럼을 추가할 경우 : 자신을 소유자로 등록한다.
-     * - collection에 컬럼이 존재할 경우 : columns 객체는 무시되고, 리턴한 객체의 참조를 등록한다.
-     * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)
+     * - entity가 있는 컬럼을 추가할 경우 : 참조가 추가되는 것이다.  
+     * - entity가 없는 컬럼을 추가할 경우 : 자신을 소유자로 등록한다.  
+     * - collection에 컬럼이 존재할 경우 : columns 객체는 무시되고, 리턴한 객체의 참조를 등록한다.  
+     * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)  
+     * 
      * @param {string | MetaColumn} p_column 컬럼
      * @param {BaseColumnCollection} [p_refCollection] 참조컬렉션
      */
@@ -137,6 +141,7 @@ var MetaViewColumnCollection  = (function (_super) {
 
     /**
      *  이름과 값으로 컬럼 생성하여 컬렉션에 추가
+     * 
      * @param {string} p_name 컬럼명
      * @param {string | number | boolean} p_value 값
      * @param {BaseColumnCollection} [p_refCollection]
@@ -161,6 +166,7 @@ var MetaViewColumnCollection  = (function (_super) {
 
     /**
      * 엔티티의 모든 컬럼을 추가
+     * 
      * @param {BaseEntity} p_entity 
      */
     MetaViewColumnCollection.prototype.addEntity  = function(p_entity) {

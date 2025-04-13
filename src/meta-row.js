@@ -11,6 +11,7 @@ import { MetaRegistry }         from 'logic-core';
 var MetaRow  = (function (_super) {
     /**
      * 메타 로우
+     * 
      * @constructs _L.Meta.Entity.MetaRow
      * @extends _L.Meta.MetaObject
      * @param {BaseEntity} p_entity 소유하는 엔티티
@@ -29,6 +30,7 @@ var MetaRow  = (function (_super) {
 
         /**
          * 내부 변수 접근
+         * 
          * @member {Array<string>} _L.Meta.Entity.MetaRow#$elements
          * @readonly
          * @private
@@ -43,6 +45,7 @@ var MetaRow  = (function (_super) {
 
         /** 
          * 이벤트 객체
+         * 
          * @private 
          * @member {EventEmitter} _L.Meta.Entity.MetaRow#$event  
          */
@@ -70,6 +73,7 @@ var MetaRow  = (function (_super) {
 
         /** 
          * 요소 키
+         * 
          * @readonly
          * @member {Array<string>} _L.Meta.Entity.MetaRow#$keys  
          */
@@ -86,6 +90,7 @@ var MetaRow  = (function (_super) {
 
         /**
          * 로우의 소유 엔티티
+         * 
          * @readonly
          * @member {BaseEntity} _L.Meta.Entity.MetaRow#_entity
          */
@@ -97,6 +102,7 @@ var MetaRow  = (function (_super) {
 
         /**
          * 컬렉션 목록 
+         * 
          * @readonly
          * @member {Array<any>}  _L.Meta.Entity.MetaRow#_list  
          */
@@ -112,6 +118,7 @@ var MetaRow  = (function (_super) {
         
         /**
          * 컬랙션 갯수 
+         * 
          * @readonly
          * @member {Number} _L.Meta.Entity.MetaRow#count 
          */
@@ -123,6 +130,7 @@ var MetaRow  = (function (_super) {
 
         /**
          * 변경전 이벤트 
+         * 
          * @event _L.Meta.Entity.MetaRow#onChanged 
          * @param {function}    p_callback
          * @param {number}      p_callback.p_idx  index
@@ -138,6 +146,7 @@ var MetaRow  = (function (_super) {
         
         /**
          * 변경후 이벤트 
+         * 
          * @event _L.Meta.Entity.MetaRow#onChanged 
          * @param {function}    p_callback
          * @param {number}      p_callback.p_idx  index
@@ -203,6 +212,7 @@ var MetaRow  = (function (_super) {
     
     /**
      * TODO:
+     * 
      * @param {*} p_idx 
      * @param {*} p_enum 
      * @returns 
@@ -241,6 +251,7 @@ var MetaRow  = (function (_super) {
 
     /**
      * 속성명 변경
+     * 
      * @param {string} [p_entity] 대상의 엔티티 기준으로 생성
      * @returns {MetaRow}
      */
@@ -302,6 +313,7 @@ var MetaRow  = (function (_super) {
     
     /**
      * 로우 요소 변경전 이벤트
+     * 
      * @param {*} p_idx 인덱스
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
@@ -316,6 +328,7 @@ var MetaRow  = (function (_super) {
 
     /**
      * 로우 요소 변경후 이벤트
+     * 
      * @param {*} p_idx 인덱스
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
@@ -373,6 +386,7 @@ var MetaRow  = (function (_super) {
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -407,6 +421,7 @@ var MetaRow  = (function (_super) {
 
     /**
      * 객체 복제
+     * 
      * @param {BaseEntity} [p_entity] 대상의 엔티티 기준으로 생성
      * @returns {MetaRow}
      */
@@ -424,10 +439,6 @@ var MetaRow  = (function (_super) {
     Object.defineProperty(MetaRow.prototype, 'clone', {
         enumerable: false
     });
-
-    
-
-
     
     return MetaRow;
 

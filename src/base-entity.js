@@ -16,6 +16,7 @@ import { MetaColumn }           from './meta-column.js';
 var BaseEntity  = (function (_super) {
     /**
      * 기본 엔티티 (최상위)
+     * 
      * @abstract
      * @constructs _L.Meta.Entity.BaseEntity
      * @extends _L.Meta.MetaElement
@@ -34,6 +35,7 @@ var BaseEntity  = (function (_super) {
 
         /**
          * 엔티티의 아이템(속성) 컬렉션
+         * 
          * @member {MetaSet} _L.Meta.Entity.BaseEntity#_metaSet
          */
         Object.defineProperty(this, '_metaSet', {
@@ -50,6 +52,7 @@ var BaseEntity  = (function (_super) {
 
         /**
          * 엔티티의 아이템(속성) 컬렉션
+         * 
          * @readonly
          * @member {BaseColumnCollection} _L.Meta.Entity.BaseEntity#columns
          */
@@ -63,7 +66,8 @@ var BaseEntity  = (function (_super) {
         
         /**
          * columns 별칭
-         * @member {object} _L.Meta.Entity.BaseEntity#cols 
+         * 
+         * @member {object} _L.Meta.Entity.BaseEntity#cols
          */
         Object.defineProperty(this, 'cols', {
             get: function() { return this.columns; },
@@ -74,6 +78,7 @@ var BaseEntity  = (function (_super) {
 
         /**
          * 엔티티의 데이터(로우) 컬렉션
+         * 
          * @readonly
          * @member {MetaRowCollection} _L.Meta.Entity.BaseEntity#rows
          */
@@ -111,6 +116,7 @@ var BaseEntity  = (function (_super) {
     
     /**
      * 엔티티 스카마 객체로 변환
+     * 
      * @param {object} p_oGuid getObject()로 얻은 객체
      * @static
      * @returns {object}
@@ -183,6 +189,7 @@ var BaseEntity  = (function (_super) {
     
     /**
      * 엔티티 대상에 로우 만들기
+     * 
      * @protected
      * @param {BaseEntity} p_entity 빌드 대상 엔티티
      * @param {function} p_callback 로우 대상 조회 콜백
@@ -239,6 +246,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * BaseEntity 읽기(로드)
+     * 
      * @protected
      * @param {BaseEntity} p_object 대상 엔티티
      * @param {number} p_option 옵션
@@ -284,6 +292,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 스키마 읽기
+     * 
      * @param {object} p_obj 대상 객체
      * @param {boolean} [p_createRow=false] 기본값 = false, 컬럼이 없을경우 로우이름의 컬럼 생성 여부
      * @param {object} [p_origin] 원본 객체
@@ -369,13 +378,14 @@ var BaseEntity  = (function (_super) {
     
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -412,7 +422,8 @@ var BaseEntity  = (function (_super) {
     };
 
     /**
-     * 새로운 MetaRow 를 추가한다.
+     * 새로운 MetaRow 를 추가한다.  
+     * 
      * @returns {MetaRow} columns 구조의 row를 생성
      */
     BaseEntity.prototype.newRow  = function() {
@@ -421,6 +432,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 컬럼의 value 값을 MetaRow 타입 객체로 얻기
+     * 
      * @returns {MetaRow}
      */
     BaseEntity.prototype.getValue  = function() {
@@ -435,6 +447,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * MetaRow 의 값을 컬럼의 value에 설정한다.
+     * 
      * @param {MetaRow} p_row 로우
      */
     BaseEntity.prototype.setValue  = function(p_row) {
@@ -454,6 +467,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 엔티티(테이블/뷰)와 병합
+     * 
      * @param {BaseEntity} p_target 병할할 대상
      * @param {object} p_option 옵션
      * @param {object} p_option.0 로우(idx) 기준 병합, 초과 컬럼은 무시됨 <**>   
@@ -639,6 +653,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 엔티티의 지정한 컬럼과 조건의 row 를 조회
+     * 
      * @param {function | array<string>| arguments<string>} p_filter 필터
      * @param {array<string> | arguments<string>} [p_args] filter 설정시 컬럼명
      * @returns {MetaRow[]}
@@ -686,9 +701,10 @@ var BaseEntity  = (function (_super) {
     };
     
     /**
-     * 객체(직렬화) 로드
-     * 불러오기/가져오기 (!! 병합용도가 아님)
-     * 기존을 초기화 하고 불러오는 역활
+     * 객체(직렬화) 로드  
+     * 불러오기/가져오기 (!! 병합용도가 아님)  
+     * 기존을 초기화 하고 불러오는 역활  
+     * 
      * @param {object | string} p_obj 불러오기 대상
      * @param {function} [p_parse] 파서
      */
@@ -714,6 +730,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 객체 출력(직렬화)
+     * 
      * @param {number} [p_vOpt] 옵션 (0, 1, 2)
      * @param {function} [p_stringify] 파서출력 사용자 함수
      * @param {string} [p_space] 공백
@@ -733,7 +750,8 @@ var BaseEntity  = (function (_super) {
      * object 로 읽기   
      * JSON 스키마 규칙   
      * { table: { columns: {}, rows: {} }}   
-     * { columns: {...}, rows: {} }
+     * { columns: {...}, rows: {} }  
+     * 
      * @param {object} p_obj mObject 또는 rObject 또는 entity
      * @param {number} [p_option] 기본값  = 3
      * @param {number} p_option.1 컬럼(구조)만 가져온다. 
@@ -770,6 +788,7 @@ var BaseEntity  = (function (_super) {
     /**
      * 없으면 빈 컬럼을 생성해야 하는지?  
      * 이경우에 대해서 명료하게 처리햐야함 !!  
+     * 
      * @param {object} p_obj object<Schema> | object<Guid>
      * @param {boolean} [p_createRow] true 이면, row[0] 기준으로 컬럼을 추가함
      */
@@ -795,7 +814,8 @@ var BaseEntity  = (function (_super) {
     };        
 
     /**
-     * 존재하는 로우만 읽기
+     * 존재하는 로우만 읽기  
+     * 
      * @param {object} p_obj 읽을 객체
      */
     BaseEntity.prototype.readData  = function(p_obj) {
@@ -829,6 +849,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 엔티티를 컬럼과 로우를 스키마 타입의 객체로 쓰기(내보내기)
+     * 
      * @param {number} p_vOpt 기본 = 0
      * @returns {object} 스키마 타입
      */
@@ -856,6 +877,7 @@ var BaseEntity  = (function (_super) {
 
     /**
      * 엔티티 데이터(로우)를 스키마 타입의 객체로 쓰기
+     * 
      * @param {number} p_vOpt 기본 = 0
      * @returns {object} 스키마 타입
      */
@@ -893,6 +915,7 @@ var BaseEntity  = (function (_super) {
 
     /** 
      * 엔티티 복제
+     * 
      * @abstract 
      * @returns {BaseEntity} 복제한 객체
      */
@@ -902,6 +925,7 @@ var BaseEntity  = (function (_super) {
 
     /** 
      * 엔티티 복사
+     * 
      * @abstract 
      * @returns {BaseEntity} 복사한 뷰 객체
      */

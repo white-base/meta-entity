@@ -16,7 +16,7 @@ import type { BaseColumn }              from './base-column.d.ts';
  * It implements various interfaces to support transactions, serialization, schema conversion, and more.  
  */
 declare abstract class BaseEntity extends MetaElement 
-    implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
+    implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {
 
     /**
      * Creates an entity with a given name.

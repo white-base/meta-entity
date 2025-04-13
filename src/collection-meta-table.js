@@ -10,6 +10,7 @@ import { MetaTable }                from './meta-table.js';
 var MetaTableCollection  = (function (_super) {
     /**
      * 메타 테이블 컬렉션
+     * 
      * @constructs _L.Meta.Entity.MetaTableCollection
      * @extends _L.Collection.PropertyCollection
      * @param {object} p_owner 소유자 
@@ -46,6 +47,7 @@ var MetaTableCollection  = (function (_super) {
 
     /**
      * 테이블 컬렉션에 엔티티 추가
+     * 
      * @param {string | MetaTable} p_table 추가할 메타테이블
      * @returns {MetaTable} 등록한 아이템
      */
@@ -73,6 +75,7 @@ var MetaTableCollection  = (function (_super) {
 
     /**
      * 테이블명 존재 유무
+     * 
      * @param {string} p_key 테이블명
      * @returns {boolean}
      */

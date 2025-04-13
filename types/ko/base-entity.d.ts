@@ -18,7 +18,7 @@ import type { BaseColumn }              from './base-column.d.ts';
  * 다양한 인터페이스를 구현하여 트랜잭션, 직렬화, 스키마 변환 등을 지원합니다.  
  */
 declare abstract class BaseEntity extends MetaElement 
-    implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {  
+    implements IGroupControl, IExportControl, IImportControl, ISchemaControl, ISerialize {
 
     /**
      * 주어진 이름으로 엔티티를 생성합니다.

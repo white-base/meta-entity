@@ -52,7 +52,7 @@ declare class MetaView extends BaseEntity {
      * @param oGuid - Object of the guid type to serialize.
      * @param origin - The source object setting the current object. (Default: oGuid)
      */
-    setObject(oGuid: object, origin?: object): void;    
+    setObject(oGuid: object, origin?: object): void;
 
     /**
      * Creates and returns a deep copy of the current meta view.

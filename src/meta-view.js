@@ -9,6 +9,7 @@ import { MetaViewColumnCollection }     from './collection-meta-view-column.js';
 var MetaView  = (function (_super) {
     /**
      * 메타 뷰
+     * 
      * @constructs _L.Meta.Entity.MetaView
      * @extends _L.Meta.Entity.BaseEntity
      * @param {string} p_name 뷰이름
@@ -21,6 +22,7 @@ var MetaView  = (function (_super) {
         var columns = new MetaViewColumnCollection(this);
         /**
          * 메타 뷰 이름
+         * 
          * @member {string} _L.Meta.Entity.MetaView#viewName
          */
         Object.defineProperty(this, 'viewName', {
@@ -36,6 +38,7 @@ var MetaView  = (function (_super) {
 
         /**
          * 뷰의 컬럼 컬렉션
+         * 
          * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#columns
          */
         Object.defineProperty(this, 'columns', {
@@ -50,8 +53,9 @@ var MetaView  = (function (_super) {
         });
         
         /**
-         * 기본 엔티티
-         * null 으로 undefined 
+         * 기본 엔티티  
+         * null 으로 undefined  
+         * 
          * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#_baseEntity
          */
         Object.defineProperty(this, '_baseEntity', {
@@ -78,13 +82,14 @@ var MetaView  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -103,6 +108,7 @@ var MetaView  = (function (_super) {
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -131,8 +137,9 @@ var MetaView  = (function (_super) {
         this.viewName = p_oGuid['viewName'];
     };
     /**
-     * 객체 복제
-     * override
+     * 객체 복제  
+     * override  
+     * 
      * @returns {MetaView}
      */
     MetaView.prototype.clone  = function() {
@@ -150,7 +157,8 @@ var MetaView  = (function (_super) {
     };
     
     /**
-     * 엔티티를 복사한다. (조회 후 복제)
+     * 엔티티를 복사한다. (조회 후 복제)  
+     * 
      * @param {overload}            type1
      * @param {function}            type1.p_filter 로우 필터 함수
      * @param {arguments<string>}   type1.p_args 컬럼명
@@ -178,7 +186,6 @@ var MetaView  = (function (_super) {
 
         return this._buildEntity(entity, callback, items);
     };
-
     
     return MetaView;
 

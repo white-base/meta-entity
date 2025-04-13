@@ -7,6 +7,7 @@ import { ArrayCollection }          from 'logic-core';
 var TransactionQueue  = (function () {
     /**
      * 트랜젝션 큐
+     * 
      * @constructs _L.Collection.TransactionQueue
      * @param {ArrayCollection} p_collection 배열컬렉션
      */
@@ -17,6 +18,7 @@ var TransactionQueue  = (function () {
 
         /**
          * 큐 목록
+         * 
          * @readonly
          * @member {array<object>} _L.Collection.TransactionQueue#queue
          */
@@ -28,6 +30,7 @@ var TransactionQueue  = (function () {
         
         /**
          * 대상 컬랙션
+         * 
          * @member {Number} _L.Collection.TransactionQueue#count 
          */
         Object.defineProperty(this, 'collection', {
@@ -92,6 +95,7 @@ var TransactionQueue  = (function () {
 
     /**
      * 추가
+     * 
      * @param {number} p_pos 위치
      * @param {object} p_target 대상
      * @param {string} p_etc 기타
@@ -108,6 +112,7 @@ var TransactionQueue  = (function () {
     
     /**
      * 삭제
+     * 
      * @param {number} p_pos 위치
      * @param {object} p_clone 복제한 객체
      * @param {string} p_etc 기타
@@ -124,6 +129,7 @@ var TransactionQueue  = (function () {
 
     /**
      * 수정
+     * 
      * @param {number} p_pos 위치
      * @param {object} p_target 대상
      * @param {object} p_clone 복제한 객체
@@ -141,6 +147,7 @@ var TransactionQueue  = (function () {
     
     /**
      * 변경 내역 조회
+     * 
      * @returns {array<object>}
      */
     TransactionQueue.prototype.select  = function() {

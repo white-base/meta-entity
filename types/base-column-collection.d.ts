@@ -4,6 +4,7 @@ import type { BaseColumn }          from './base-column.d.ts';
 /**
  * An abstract class that represents the column default collection.
  * This class provides the ability to manage and manipulate various columns.
+ * 
  * @extends PropertyCollection
  */
 declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {

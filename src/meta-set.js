@@ -16,6 +16,7 @@ import { MetaViewCollection }       from './collection-meta-view.js';
 var MetaSet  = (function (_super) {
     /**
      * 메타셋
+     * 
      * @constructs _L.Meta.Entity.MetaSet
      * @extends _L.Meta.MetaElement
      * @implements {_L.Interface.ISchemaControl}
@@ -33,6 +34,7 @@ var MetaSet  = (function (_super) {
 
         /**
          * 테이블 이름
+         * 
          * @member {string} _L.Meta.Entity.MetaSet#setName
          */
         Object.defineProperty(this, 'setName', {
@@ -47,6 +49,7 @@ var MetaSet  = (function (_super) {
 
         /**
          * 메타 테이블 컬렉션
+         * 
          * @readonly
          * @member {MetaTableCollection} _L.Meta.Entity.MetaSet#tables
          */
@@ -58,6 +61,7 @@ var MetaSet  = (function (_super) {
         
         /**
          * 메타 뷰 컬렉션
+         * 
          * @readonly
          * @member {MetaViewCollection} _L.Meta.Entity.MetaSet#views
          */
@@ -69,6 +73,7 @@ var MetaSet  = (function (_super) {
 
         /**
          * 트랜젝션 사용 유무 (기본값: 사용 false)
+         * 
          * @member {boolean}  _L.Meta.Entity.MetaSet#autoChanges
          */
         Object.defineProperty(this, 'autoChanges', {
@@ -105,6 +110,7 @@ var MetaSet  = (function (_super) {
     
     /**
      * 메타셋 스카마 객체로 변환
+     * 
      * @param {object} p_oGuid getObject()로 얻은 객체
      * @returns {object}
      */
@@ -147,13 +153,14 @@ var MetaSet  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -170,6 +177,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -186,6 +194,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 메타셋 복제
+     * 
      * @returns {MetaSet}
      */
     MetaSet.prototype.clone  = function() {
@@ -218,8 +227,9 @@ var MetaSet  = (function (_super) {
     };
 
     /**
-     * 불러오기/가져오기 (!! 병합용도가 아님)
-     * 기존을 초기화 하고 불러오는 역활
+     * 불러오기/가져오기 (!! 병합용도가 아님)  
+     * 기존을 초기화 하고 불러오는 역활  
+     * 
      * @param {object | string} p_obj 불러오기 대상
      * @param {function} [p_parse] 파서
      */
@@ -243,6 +253,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 메타셋 객체 출력(직렬화)
+     * 
      * @param {number} [p_vOpt] 옵션 (0, 1, 2)
      * @param {function} [p_stringify] 파서출력 함수
      * @param {string} [p_space] 공백
@@ -261,7 +272,8 @@ var MetaSet  = (function (_super) {
      * object 로 로딩하기   
      * JSON 스키마 규칙   
      * { table: { columns: {}, rows: {} }}   
-     * { columns: {...}, rows: {} }
+     * { columns: {...}, rows: {} }  
+     * 
      * @param {object} p_obj mObject 또는 rObject 또는 entity
      * @param {Number} [p_option=3] 기본값  = 3
      * @param {Number} p_option.1 컬럼(구조)만 가져온다. 
@@ -300,6 +312,7 @@ var MetaSet  = (function (_super) {
     /**
      * 없으면 빈 컬럼을 생성해야 하는지?  
      * 이경우에 대해서 명료하게 처리햐야함 !!  
+     * 
      * @param {object} p_obj object<Schema> | object<Guid>
      * @param {boolean} p_createRow true 이면, row[0] 기준으로 컬럼을 추가함
      */
@@ -350,6 +363,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * row 들을 불러 온다
+     * 
      * @param {object} p_obj 읽을 데이터
      */
     MetaSet.prototype.readData  = function(p_obj) {
@@ -382,6 +396,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 메타셋을 스키마 타입의 객체로 쓰기(내보내기)
+     * 
      * @param {number} p_vOpt 옵션
      * @returns {object} 스키마 타입
      */
@@ -395,6 +410,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 메타셋 스키마(컬럼)을 스키마 타입의 객체로 쓰기
+     * 
      * @param {number} p_vOpt 옵션
      * @returns {object} 스키마 타입
      */
@@ -414,6 +430,7 @@ var MetaSet  = (function (_super) {
 
     /**
      * 메타셋 데이터(로우)를 스키마 타입의 객체로 쓰기
+     * 
      * @param {number} p_vOpt 옵션
      * @returns {object} 스키마 타입
      */

@@ -2,29 +2,29 @@
 //==============================================================
 import { ExtendError }      from 'logic-core';
 
-var IImportControl  = (function () {
-    /**
-     * 가져오기 제어 인터페이스 입니다.
-     * @constructs _L.Interface.IImportControl
-     * @interface
-     */
-    function IImportControl() {
-    }
+/**
+ * 가져오기 제어 인터페이스 입니다.
+ * 
+ * @interface
+ * @constructs _L.Interface.IImportControl
+ */
+class IImportControl {
 
-    IImportControl._NS = 'Interface';    // namespace
-    IImportControl._KIND = 'interface';
+    static _NS = 'Interface';    // namespace
+    static _KIND = 'interface';
+    
+    constructor() {
+    }
 
     /**
      * 대상을 가져옵니다. (읽기)
+     * 
      * @abstract
      */
-    IImportControl.prototype.read  = function() {
+    read() {
         throw new ExtendError(/EL02221/, null, ['IImportControl']);
-    };
-
-    return IImportControl;
-    
-}());
+    }
+}
 
 export default IImportControl;
 export { IImportControl };

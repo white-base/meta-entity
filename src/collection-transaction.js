@@ -9,6 +9,7 @@ import { TransactionQueue }     from './trans-queue.js';
 var TransactionCollection  = (function (_super) {
     /**
      * 트랜젝션 컬렉션 클래스
+     * 
      * @constructs _L.Collection.TransactionCollection
      * @extends _L.Collection.ArrayCollection
      * @param {object} p_owner 소유객체
@@ -21,6 +22,7 @@ var TransactionCollection  = (function (_super) {
 
         /**
          * 트렌젝션 큐
+         * 
          * @readonly
          * @member {TransactionQueue} _L.Collection.TransactionCollection#_transQueue
          */
@@ -32,6 +34,7 @@ var TransactionCollection  = (function (_super) {
 
         /**
          * 자동 변경 유무 (기본값: 사용 false)
+         * 
          * @member {boolean} _L.Collection.TransactionCollection#autoChanges
          */
         Object.defineProperty(this, 'autoChanges', {
@@ -48,6 +51,7 @@ var TransactionCollection  = (function (_super) {
 
         /**
          * 변경 유무
+         * 
          * @readonly
          * @member {TransactionCollection} _L.Collection.TransactionCollection#hasChanges
          */
@@ -69,6 +73,7 @@ var TransactionCollection  = (function (_super) {
 
     /**
      * 트랜젝션 컬렉션 프로퍼티 기술자 
+     * 
      * @protected
      * @param {number} p_idx 인덱스
      */
@@ -90,13 +95,14 @@ var TransactionCollection  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -114,7 +120,8 @@ var TransactionCollection  = (function (_super) {
     });
 
     /**
-     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -130,6 +137,7 @@ var TransactionCollection  = (function (_super) {
 
     /**
      * 지정 위치에 요소 삭제
+     * 
      * @param {number} p_pos 인덱스 위치
      * @returns {boolean}
      */
@@ -154,6 +162,7 @@ var TransactionCollection  = (function (_super) {
 
     /**
      * 지정 위치에 요소 추가
+     * 
      * @param {number} p_pos 인덱스 위치
      * @param {any} p_elem 요소
      * @param {object} [p_desc] 프로퍼티 기술자 객체

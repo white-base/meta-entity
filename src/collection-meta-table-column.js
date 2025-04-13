@@ -9,8 +9,9 @@ import { BaseColumnCollection }     from './base-column-collection.js';
 
 var MetaTableColumnCollection  = (function (_super) {
     /**
-     * 테이블 컬럼 컬렉션  
-     * 참조 컬럼은 독립적으로 가진다 (참조 금지)
+     * 테이블 컬럼 컬렉션    
+     * 참조 컬럼은 독립적으로 가진다 (참조 금지)  
+     * 
      * @constructs _L.Meta.Entity.MetaTableColumnCollection
      * @extends _L.Meta.Entity.BaseColumnCollection
      * @param {object} p_owner 소유자
@@ -28,6 +29,7 @@ var MetaTableColumnCollection  = (function (_super) {
 
     /**
      * 테이블 컬렉션에 컬럼 추가
+     * 
      * @param {string | BaseColumn} p_column 컬럼명, 매타컬럼
      * @returns {number} 등록한 index
      */
@@ -60,6 +62,7 @@ var MetaTableColumnCollection  = (function (_super) {
 
     /**
      * 이름과 값으로 컬렉션에 추가 (내부에서 생성)
+     * 
      * @param {string} p_name 컬럼명
      * @param {string | number | boolean} p_value 값
      * @returns {BaseColumn} 추가한 컬럼 객체

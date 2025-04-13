@@ -10,6 +10,7 @@ import { Message }              from './message-wrap.js';
 var MetaColumn  = (function (_super) {
     /**
      * 메타 컬럼
+     * 
      * @constructs _L.Meta.Entity.MetaColumn
      * @extends _L.Meta.Entity.BaseColumn
      * @param {string} p_name 컬럼명
@@ -61,7 +62,9 @@ var MetaColumn  = (function (_super) {
         
         /**
          * 컬럼 제약 조건 
+         * 
          * @member {array<object | function>} _L.Meta.Entity.MetaColumn#constraints
+         * 
          * @example
          * var c = {
          *  regex: /aa/,
@@ -92,6 +95,7 @@ var MetaColumn  = (function (_super) {
          * get 우선순위 : 1. getter 있는 경우, 2. 내부값 $value  
          * set 우선순위 : 1. setter 있는 경우, 2. setter 리턴값이 없는 경우  
          * REVIEW: 정리표 보고 수정 필요!!
+         * 
          * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#value
          */
         Object.defineProperty(this, 'value', {
@@ -134,6 +138,7 @@ var MetaColumn  = (function (_super) {
 
         /**
          * 컬럼의 value 의 getter
+         * 
          * @member {Function} _L.Meta.Entity.MetaColumn#getter
          */
         Object.defineProperty(this, 'getter', {
@@ -148,6 +153,7 @@ var MetaColumn  = (function (_super) {
 
         /**
          * 컬럼의 value 의 setter
+         * 
          * @member {Function} _L.Meta.Entity.MetaColumn#setter
          */
         Object.defineProperty(this, 'setter', {
@@ -162,6 +168,7 @@ var MetaColumn  = (function (_super) {
 
         /**
          * 변경 이벤트 
+         * 
          * @event _L.Meta.Entity.MetaColumn#onChanged 
          * @param {function}    p_callback
          * @param {any}         p_callback.p_nValue 신규 value 값
@@ -186,6 +193,7 @@ var MetaColumn  = (function (_super) {
 
     /**
      * onChanged 이벤트를 발생합니다.
+     * 
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
      * @listens _L.Meta.Entity.MetaColumn#_onChanged
@@ -197,6 +205,7 @@ var MetaColumn  = (function (_super) {
 
     /**
      * 프로퍼티 객체로 속성 로드
+     * 
      * @param {object} p_property 
      */
     MetaColumn.prototype._load = function(p_property) {
@@ -217,13 +226,14 @@ var MetaColumn  = (function (_super) {
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
-     * - 순환참조는 $ref 값으로 대체된다.
-     * @param {number} p_vOpt 가져오기 옵션
+     * - 순환참조는 $ref 값으로 대체된다.  
+     * 
+     * @param {number} p_vOpt 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
-     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)   
+     * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
-     * a.getObject(2) == b.getObject(2)   
+     * a.getObject(2) == b.getObject(2)  
      * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
@@ -245,7 +255,8 @@ var MetaColumn  = (function (_super) {
     };
 
     /**
-     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
+     * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
+     * 
      * @param {object} p_oGuid guid 타입의 객체
      * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
      * 기본값은 p_oGuid 객체와 동일
@@ -269,6 +280,7 @@ var MetaColumn  = (function (_super) {
 
     /**
      * 컬럼 복제
+     * 
      * @param {BaseEntity} [p_entity] 지정한 엔티티로 복제
      * @returns {MetaColumn}
      */
@@ -298,8 +310,8 @@ var MetaColumn  = (function (_super) {
 
     /**
      * 제약조건을 추가  
+     * REVIEW: 정규식으로 반대 조건을 모두 나열 할수 있으므로, 항상 실패조건을 하는게 맞을지? 검토  
      * 
-     * REVIEW: 정규식으로 반대 조건을 모두 나열 할수 있으므로, 항상 실패조건을 하는게 맞을지? 검토
      * @param {Regexp} p_regex 정규표현식
      * @param {string} p_msg  regexp 입력시
      * @param {string} [p_code] regexp 입력시
@@ -327,8 +339,9 @@ var MetaColumn  = (function (_super) {
     };
     
     /**
-     * 속성의 value에 유효성을 검사한다. (isNotnull, optional, constraints 기준)
-     * TODO: number, boolean 형이 입력될경우, 기본 제약 조건 valueTypes 검사여부 검토?, 예외가 아니고 메세지로 표현?
+     * 속성의 value에 유효성을 검사한다. (isNotnull, optional, constraints 기준)  
+     * TODO: number, boolean 형이 입력될경우, 기본 제약 조건 valueTypes 검사여부 검토?, 예외가 아니고 메세지로 표현?  
+     * 
      * @param {string | number | boolean} p_value 검사할 값
      * @param {object} result 메세지는 참조(객체)형 으로 전달
      * @param {number} p_option 1. required 참조 | 2: null검사 진행   |  3: null검사 무시

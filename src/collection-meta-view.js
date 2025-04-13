@@ -11,6 +11,7 @@ import { MetaView }                 from './meta-view.js';
 var MetaViewCollection  = (function (_super) {
     /**
      * 뷰 엔티티 컬렉션
+     * 
      * @constructs _L.Meta.Entity.MetaViewCollection
      * @extends _L.Meta.Entity.PropertyCollection
      * @param {object} p_owner 소유자 
@@ -22,6 +23,7 @@ var MetaViewCollection  = (function (_super) {
 
         /**
          * 기본 생성 타입
+         * 
          * @member {MetaView} _L.Meta.Entity.MetaViewCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
@@ -48,9 +50,11 @@ var MetaViewCollection  = (function (_super) {
 
     /**
      * 뷰 컬렉션에 뷰 엔티티를 추가한다.
+     * 
      * @param {string | MetaView} p_view 추가할 뷰
      * @param {BaseColumnCollection} [p_baseEntity] 기본 컬럼 컬렉션
      * @returns {MetaView} 등록한 아이템
+     * 
      * @example
      *  - string                    : 생성후   string      이름으로 등록 
      *  - string, colltion          : 생성후   string      이름으로  등록 (collection보냄)
@@ -87,6 +91,7 @@ var MetaViewCollection  = (function (_super) {
 
     /**
      * 메타뷰가 존재하는지 확인합니다.
+     * 
      * @param {string} p_key 뷰이름
      * @returns 
      */
