@@ -1,10 +1,6 @@
-/**
- * ES6 + CJS + JEST
- */
 //==============================================================
 // gobal defined
-// 'use strict';
-import { jest } from '@jest/globals';
+import { jest }     from '@jest/globals';
 
 import {MetaObject}              from 'logic-core';
 import {MetaElement}             from 'logic-core';

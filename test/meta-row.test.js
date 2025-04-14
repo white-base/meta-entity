@@ -1,6 +1,3 @@
-/**
- * ES6 + CJS + JEST
- */
 //==============================================================
 // gobal defined
 import { jest } from '@jest/globals';
