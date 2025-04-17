@@ -36,6 +36,7 @@ describe("cjs", () => {
     });
     describe("dist/logic-entity.js umd", () => {
         it("- script 실행", () => {
+            const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
             const umdCode = fs.readFileSync(path.resolve(__dirname, '../dist/logic-entity.js'), 'utf8');
             const script = new Function('global', umdCode + '; return global._L;');
             globalThis._L = script(global);
@@ -45,6 +46,7 @@ describe("cjs", () => {
             
             expect(typeof PropertyCollection === 'function').toBe(true);
             expect(typeof MetaView === 'function').toBe(true);
+            // expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/ko.json' does not have a file.")
         });
         it("- require", async () => {
             await import('../dist/logic-entity.js');

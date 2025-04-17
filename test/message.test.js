@@ -10,7 +10,8 @@ describe("[target: message.js]", () => {
     beforeEach(async () => {
         jest.resetModules();
         jest.restoreAllMocks();
-        globalThis.isESM = true
+        // globalThis.isESM = true
+        process.env.LANG = 'en_US.UTF-8';
     });
     describe("Message.$storage : 메세지 저장소", () => {
         it("- $storage : 기본 언어 얻기", async () => {
@@ -24,7 +25,7 @@ describe("[target: message.js]", () => {
     });
     describe("Message.autoDetect() : 언어자동 설정", () => {
         it("- 한글", async () => {
-        process.env.LANG = 'ko_KR.UTF-8';
+            process.env.LANG = 'ko_KR.UTF-8';
             const {Message} = await import('../src/message-wrap');
             await Message.autoDetect()
             
@@ -44,7 +45,6 @@ describe("[target: message.js]", () => {
         });
         it("- 일어 환경", async () => {
             const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
-
             process.env.LANG = 'ja_JP.UTF-8';
             const {Message} = await import('../src/message-wrap');
             await Message.autoDetect()
@@ -55,12 +55,9 @@ describe("[target: message.js]", () => {
         });
         it("Type 한글 오류 확인", async () => {
             process.env.LANG = 'ko_US.UTF-8';
-            
             const {Message, Type} = await import('logic-core/ko');
-            // const {Message, Type} = await import('../dist/logic-core.js');
-            
-            expect(Message.currentLang).toBe('default');
-
+            // const {Message, Type} = await import('../dist/logic-core.js');            
+            expect(Message.currentLang).toBe('ko');
             await Message.autoDetect()
             
             expect(Message.currentLang).toBe('ko');

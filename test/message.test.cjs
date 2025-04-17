@@ -16,7 +16,7 @@ describe("CJS ENV TEST", () => {
             const {Message} = require('logic-entity');
             
             expect(Message.defaultLang).toBe('default')
-            expect(Message.currentLang).toBe('default')
+            expect(Message.currentLang).toBe('ko')
             expect(Message.get('KO')).toMatch(/There is no message for code. 'KO'/);
             expect(Message.get('EN')).toMatch(/OK/);
         });             
@@ -43,11 +43,13 @@ describe("CJS ENV TEST", () => {
             expect(Message.getMessageByCode('KO')).toBe('OK')
         });
         it("- entity 언어 변경", async () => {
+            const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
             const {Message} = require('logic-entity');
             await Message.changeLanguage('entity')
 
             expect(Message.currentLang).toBe('entity')
             expect(Message.getMessageByCode('ENTITY')).toBe('SUCCESS')
+            expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/entity.json' does not have a file.")
         });
         it("- core 언어 변경", async () => {
             const {Message} = require('logic-entity');
@@ -62,7 +64,7 @@ describe("CJS ENV TEST", () => {
             await Message.changeLanguage('jp')
             
             expect(Message.currentLang).toBe('jp')
-            expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/jp' does not have a file.")
+            expect(warnSpy.mock.calls[0][0]).toBe("Path './locales/jp.json' does not have a file.")
         });
     });
 });
