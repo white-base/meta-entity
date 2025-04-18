@@ -11,8 +11,8 @@ var MetaTableCollection  = (function (_super) {
     /**
      * 메타 테이블 컬렉션
      * 
-     * @constructs _L.Meta.Entity.MetaTableCollection
-     * @extends _L.Collection.PropertyCollection
+     * @constructs MetaTableCollection
+     * @extends PropertyCollection
      * @param {object} p_owner 소유자 
      */
     function MetaTableCollection(p_owner) {   // COVER:
@@ -21,7 +21,7 @@ var MetaTableCollection  = (function (_super) {
         var _baseType = MetaTable;
         /**
          * 기본 생성 타입
-         * @member {BaseColumnCollection} _L.Meta.Entity.MetaTableCollection#_baseType
+         * @member {BaseColumnCollection} MetaTableCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },

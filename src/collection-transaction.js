@@ -10,8 +10,8 @@ var TransactionCollection  = (function (_super) {
     /**
      * 트랜젝션 컬렉션 클래스
      * 
-     * @constructs _L.Collection.TransactionCollection
-     * @extends _L.Collection.ArrayCollection
+     * @constructs TransactionCollection
+     * @extends ArrayCollection
      * @param {object} p_owner 소유객체
      */
     function TransactionCollection(p_owner) {
@@ -24,7 +24,7 @@ var TransactionCollection  = (function (_super) {
          * 트렌젝션 큐
          * 
          * @readonly
-         * @member {TransactionQueue} _L.Collection.TransactionCollection#_transQueue
+         * @member {TransactionQueue} TransactionCollection#_transQueue
          */
         Object.defineProperty(this, '_transQueue', {
             get: function() { return _transQueue; },
@@ -35,7 +35,7 @@ var TransactionCollection  = (function (_super) {
         /**
          * 자동 변경 유무 (기본값: 사용 false)
          * 
-         * @member {boolean} _L.Collection.TransactionCollection#autoChanges
+         * @member {boolean} TransactionCollection#autoChanges
          */
         Object.defineProperty(this, 'autoChanges', {
             get: function() { return autoChanges; },
@@ -53,7 +53,7 @@ var TransactionCollection  = (function (_super) {
          * 변경 유무
          * 
          * @readonly
-         * @member {TransactionCollection} _L.Collection.TransactionCollection#hasChanges
+         * @member {TransactionCollection} TransactionCollection#hasChanges
          */
         Object.defineProperty(this, 'hasChanges', {
             get: function() { return _transQueue.queue.length > 0; },

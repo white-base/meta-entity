@@ -157,12 +157,29 @@ describe("[target: message.js]", () => {
         it("- 코드 매칭", async () => {
             const {Message} = await import('../src/message-wrap');
             Message.importMessage({TEST: 'aa=${aa}, bb=${bb}, [0]=$1, [1]=$2'})
-            
             const msg1 = Message.get('TEST', {aa: 'AA', bb: 'BB'});
             const msg2 = Message.get('TEST', ['10', 20]);
             
             expect(msg1).toBe(" [TEST] aa=AA, bb=BB, [0]=$1, [1]=$2")
             expect(msg2).toBe(" [TEST] aa=${aa}, bb=${bb}, [0]=10, [1]=20")
+        });
+        it("- 한글 : index", async () => {
+            process.env.LANG = 'ko_US.UTF-8';
+            const {Message} = await import('../index.js');
+
+            expect(Message.currentLang).toBe('ko');
+            expect(Message.get('KO')).toMatch("OK");
+            expect(Message.get('EN')).toMatch("OK");
+            expect(Message.$storage._history.ko.length).toBe(2);
+        });
+        it("- 한글 : index2 ", async () => {
+            process.env.LANG = 'ko_US.UTF-8';
+            const {Message} = await import('logic-entity');
+
+            expect(Message.currentLang).toBe('ko');
+            expect(Message.get('KO')).toMatch("OK");
+            expect(Message.get('EN')).toMatch("OK");
+            expect(Message.$storage._history.ko.length).toBe(2);
         });
     });
     describe("Message.init() : 언어 ", () => {

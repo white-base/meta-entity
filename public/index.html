@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   <title>Axios ESM Test</title>
 </head>
-<body>
+<body bgcolor="black">
   <h1>Test</h1>
   <input type="text" id="input" placeholder="Type something..." />
   <button id="submit">Submit</button>
   <div id="output"></div>
-
   <script type="module" >
-    import {ArrayCollection} from '../dist/logic-core.esm.js';
+    import {ArrayCollection, Message} from './dist/logic-entity.esm.js';
 
     console.log('ArrayCollection', ArrayCollection);
+    console.log('Message.get("KO")', Message.get('KO'));
+    console.log('ArrayCollection', ArrayCollection);
+    console.log('Message.$storage', Message.$storage);
+    console.log('Message.currentLang', Message.currentLang);
   </script>
 </body>
 </html>

@@ -10,8 +10,8 @@ var MetaRowCollection  = (function (_super) {
     /**
      * 로우 컬렉션
      * 
-     * @constructs _L.Meta.Entity.MetaRowCollection
-     * @extends _L.Collection.TransactionCollection
+     * @constructs MetaRowCollection
+     * @extends TransactionCollection
      * @param {object} [p_owner] 소유자 
      */
     function MetaRowCollection(p_owner) {

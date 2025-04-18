@@ -6,7 +6,7 @@ import { ExtendError }      from 'logic-core';
  * 가져오기 제어 인터페이스 입니다.
  * 
  * @interface
- * @constructs _L.Interface.IImportControl
+ * @constructs IImportControl
  */
 class IImportControl {
 

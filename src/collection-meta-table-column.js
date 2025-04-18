@@ -12,8 +12,8 @@ var MetaTableColumnCollection  = (function (_super) {
      * 테이블 컬럼 컬렉션    
      * 참조 컬럼은 독립적으로 가진다 (참조 금지)  
      * 
-     * @constructs _L.Meta.Entity.MetaTableColumnCollection
-     * @extends _L.Meta.Entity.BaseColumnCollection
+     * @constructs MetaTableColumnCollection
+     * @extends BaseColumnCollection
      * @param {object} p_owner 소유자
      */
     function MetaTableColumnCollection(p_owner) {

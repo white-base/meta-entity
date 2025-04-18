@@ -6,7 +6,7 @@ import { ExtendError }      from 'logic-core';
  * 스키마 제어 인터페이스 입니다.
  * 
  * @interface
- * @constructs _L.Interface.ISchemaControl
+ * @constructs ISchemaControl
  */
 class ISchemaControl {
 

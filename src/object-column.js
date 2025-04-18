@@ -10,8 +10,8 @@ var ObjectColumn  = (function (_super) {
     /**
      * 객체 컬럼
      * 
-     * @constructs _L.Meta.Entity.ObjectColumn
-     * @extends _L.Meta.Entity.BaseColumn
+     * @constructs ObjectColumn
+     * @extends BaseColumn
      * @param {string} p_name 객체컬럼명
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
      * @param {object} [p_property] 

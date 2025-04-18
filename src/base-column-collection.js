@@ -11,8 +11,8 @@ var BaseColumnCollection  = (function (_super) {
     /**
      * 컬럼 컬렉션 (최상위)
      * @abstract
-     * @constructs _L.Meta.Entity.BaseColumnCollection
-     * @extends _L.Collection.PropertyCollection
+     * @constructs BaseColumnCollection
+     * @extends PropertyCollection
      * @param {object} p_owner 소유자 
      * @param {BaseColumn} [p_baseType] 기본 컬럼 타입
      */
@@ -37,8 +37,11 @@ var BaseColumnCollection  = (function (_super) {
             configurable: false,
         });
 
-        // this._baseType = p_baseType || MetaColumn;
-        this._baseType = p_baseType;
+        /**
+         * @member {BaseColumn} BaseColumnCollection#baseType
+         */
+       this._baseType = p_baseType;
+       // this._baseType = p_baseType || MetaColumn;
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', '_ownerIsEntity', 'initValue', 'existAlias'];

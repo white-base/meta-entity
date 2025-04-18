@@ -12,8 +12,8 @@ var MetaRow  = (function (_super) {
     /**
      * 메타 로우
      * 
-     * @constructs _L.Meta.Entity.MetaRow
-     * @extends _L.Meta.MetaObject
+     * @constructs MetaRow
+     * @extends MetaObject
      * @param {BaseEntity} p_entity 소유하는 엔티티
      */
     function MetaRow(p_entity) {
@@ -31,7 +31,7 @@ var MetaRow  = (function (_super) {
         /**
          * 내부 변수 접근
          * 
-         * @member {Array<string>} _L.Meta.Entity.MetaRow#$elements
+         * @member {Array<string>} MetaRow#$elements
          * @readonly
          * @private
          */
@@ -47,7 +47,7 @@ var MetaRow  = (function (_super) {
          * 이벤트 객체
          * 
          * @private 
-         * @member {EventEmitter} _L.Meta.Entity.MetaRow#$event  
+         * @member {EventEmitter} MetaRow#$event  
          */
         Object.defineProperty(this, '$event', {
             get: function() { return $event; },
@@ -55,27 +55,11 @@ var MetaRow  = (function (_super) {
             enumerable: false,
         });
 
-        // /** 
-        //  * 로우 요소값 
-        //  * @readonly
-        //  * @member {Array<any>} _L.Meta.Entity.MetaRow#$elements  
-        //  */
-        // Object.defineProperty(this, '$elements', 
-        // {
-        //     get: function() {
-        //         var arr = [];
-        //         for (var i = 0; i < $elements.length; i++) arr.push($elements[i]);
-        //         return arr;
-        //     },
-        //     configurable: false,
-        //     enumerable: false,
-        // });
-
         /** 
          * 요소 키
          * 
          * @readonly
-         * @member {Array<string>} _L.Meta.Entity.MetaRow#$keys  
+         * @member {Array<string>} MetaRow#$keys  
          */
         Object.defineProperty(this, '$keys', {
             get: function() {
@@ -92,7 +76,7 @@ var MetaRow  = (function (_super) {
          * 로우의 소유 엔티티
          * 
          * @readonly
-         * @member {BaseEntity} _L.Meta.Entity.MetaRow#_entity
+         * @member {BaseEntity} MetaRow#_entity
          */
         Object.defineProperty(this, '_entity', {
             get: function() { return _entity; },
@@ -104,7 +88,7 @@ var MetaRow  = (function (_super) {
          * 컬렉션 목록 
          * 
          * @readonly
-         * @member {Array<any>}  _L.Meta.Entity.MetaRow#_list  
+         * @member {Array<any>}  MetaRow#_list  
          */
         Object.defineProperty(this, '_list', {
             get: function() {
@@ -120,7 +104,7 @@ var MetaRow  = (function (_super) {
          * 컬랙션 갯수 
          * 
          * @readonly
-         * @member {Number} _L.Meta.Entity.MetaRow#count 
+         * @member {Number} MetaRow#count 
          */
         Object.defineProperty(this, 'count', {
             get: function() { return $elements.length; },
@@ -131,7 +115,7 @@ var MetaRow  = (function (_super) {
         /**
          * 변경전 이벤트 
          * 
-         * @event _L.Meta.Entity.MetaRow#onChanged 
+         * @event MetaRow#onChanged 
          * @param {function}    p_callback
          * @param {number}      p_callback.p_idx  index
          * @param {any}         p_callback.p_nValue 신규 값
@@ -147,7 +131,7 @@ var MetaRow  = (function (_super) {
         /**
          * 변경후 이벤트 
          * 
-         * @event _L.Meta.Entity.MetaRow#onChanged 
+         * @event MetaRow#onChanged 
          * @param {function}    p_callback
          * @param {number}      p_callback.p_idx  index
          * @param {any}         p_callback.p_nValue 신규 값
@@ -317,7 +301,7 @@ var MetaRow  = (function (_super) {
      * @param {*} p_idx 인덱스
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
-     * @listens _L.Meta.Entity.MetaColumn#_onChanged
+     * @listens MetaColumn#_onChanged
      */
     MetaRow.prototype._onChanging = function(p_idx, p_nValue, p_oValue) {
         this.$event.emit('onChanging', p_idx, p_nValue, p_oValue, this);
@@ -332,7 +316,7 @@ var MetaRow  = (function (_super) {
      * @param {*} p_idx 인덱스
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
-     * @listens _L.Meta.Entity.MetaColumn#_onChanged
+     * @listens MetaColumn#_onChanged
      */
     MetaRow.prototype._onChanged = function(p_idx, p_nValue, p_oValue) {
         this.$event.emit('onChanged', p_idx, p_nValue, p_oValue, this);

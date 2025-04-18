@@ -1,9 +1,8 @@
-/**** message-wrap-bundle.js | Message ****/
+/**** message-wrap-bundle.js | Message cjs ****/
 //==============================================================
 import { Message }          from 'logic-core';
 import defaultCode          from './locales/default.js';
-// import defaultCode          from './locales/default.json' with { type: 'json' };
-// cjs 
+
 const isNode = typeof globalThis.isDOM === 'boolean' ? !globalThis.isDOM :  typeof process !== 'undefined' && process.versions !== null && process.versions.node !== null;
 let localesPath = './locales';
 
@@ -16,11 +15,15 @@ function absolutePath(localPath) {
     }
 }
 
-if (isNode) {  // REVIEW: cjs module & node
+if (isNode) {
     localesPath = absolutePath(localesPath);
 }
 
 Message.importMessage(defaultCode, localesPath);
+
+(async () => {
+    await Message.autoDetect();
+})();
 
 export default Message;
 export { Message };

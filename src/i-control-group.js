@@ -6,7 +6,7 @@ import { ExtendError }      from 'logic-core';
  * 그룹 제어 인터페이스 입니다.
  * 
  * @interface
- * @constructs _L.Interface.IGroupControl
+ * @constructs IGroupControl
  */
 class IGroupControl {
 

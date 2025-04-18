@@ -10,8 +10,8 @@ var BaseColumn  = (function (_super) {
     /**
      * 컬럼 (최상위)
      * @abstract
-     * @constructs _L.Meta.Entity.BaseColumn
-     * @extends _L.Meta.MetaElement
+     * @constructs BaseColumn
+     * @extends MetaElement
      * @param {string} p_name 아이템명
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
      */
@@ -27,7 +27,7 @@ var BaseColumn  = (function (_super) {
         var caption         = '';
         /**
          * 컬럼 컬렉션의 키
-         * @member {string} _L.Meta.Entity.BaseColumn#$key
+         * @member {string} BaseColumn#$key
          * @readonly
          * @private
          */
@@ -42,7 +42,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 별칭 내부값
-         * @member {string | number | boolean} _L.Meta.Entity.BaseColumn#$value
+         * @member {string | number | boolean} BaseColumn#$value
          * @readonly
          * @private
          */
@@ -55,7 +55,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 별칭 내부값
-         * @member {string} _L.Meta.Entity.BaseColumn#$alias
+         * @member {string} BaseColumn#$alias
          * @readonly
          * @private
          */
@@ -70,7 +70,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 소유 엔티티
-         * @member {BaseEntity} _L.Meta.Entity.BaseColumn#_entity
+         * @member {BaseEntity} BaseColumn#_entity
          * @protected
          */
         Object.defineProperty(this, '_entity', {
@@ -87,7 +87,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * value 타입 설정
-         * @member {any} _L.Meta.Entity.BaseColumn#_valueTypes
+         * @member {any} BaseColumn#_valueTypes
          * @protected
          */
         Object.defineProperty(this, '_valueTypes', {
@@ -104,7 +104,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼명, _name 과 동일
-         * @member {string} _L.Meta.Entity.BaseColumn#columnName
+         * @member {string} BaseColumn#columnName
          */
         Object.defineProperty(this, 'columnName', {
             get: function() { return this._name; },
@@ -125,7 +125,7 @@ var BaseColumn  = (function (_super) {
          * - Bind-command-ajax._execBind() : 데이터 전송시  
          * - BaseBind.setValue(row) : 로우값 을 엔티티에 설정시  
          * - getValue() : row 에 활용함  
-         * @member {string} _L.Meta.Entity.BaseColumn#alias
+         * @member {string} BaseColumn#alias
          */
         Object.defineProperty(this, 'alias', {
             get: function() { return typeof $alias === 'string' ? $alias : this.columnName; },
@@ -151,7 +151,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 value 의 기본값 (내부속성)
-         * @member {string | number | boolean} _L.Meta.Entity.BaseColumn#default
+         * @member {string | number | boolean} BaseColumn#default
          */
         Object.defineProperty(this, 'default', {
             get: function() { return _default; },
@@ -165,7 +165,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 설명
-         * @member {string} _L.Meta.Entity.BaseColumn#caption
+         * @member {string} BaseColumn#caption
          */
         Object.defineProperty(this, 'caption', {
             get: function() { return caption; },
@@ -179,7 +179,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 값
-         * @member {any} _L.Meta.Entity.BaseColumn#value
+         * @member {any} BaseColumn#value
          */
         Object.defineProperty(this, 'value', {
             get: function() { 
@@ -196,7 +196,7 @@ var BaseColumn  = (function (_super) {
         /**
          * value 별칭
          * this.value
-         * @member {object} _L.Meta.Entity.BaseColumn#val
+         * @member {object} BaseColumn#val
          */
         Object.defineProperty(this, 'val', {
             get: function() { return this.value; },

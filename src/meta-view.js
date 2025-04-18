@@ -10,8 +10,8 @@ var MetaView  = (function (_super) {
     /**
      * 메타 뷰
      * 
-     * @constructs _L.Meta.Entity.MetaView
-     * @extends _L.Meta.Entity.BaseEntity
+     * @constructs MetaView
+     * @extends BaseEntity
      * @param {string} p_name 뷰이름
      * @param {BaseEntity} [p_baseEntity] 기본 엔티티, 컬럼 추가시 기본엔티티에 추가 된다.
      */
@@ -23,7 +23,7 @@ var MetaView  = (function (_super) {
         /**
          * 메타 뷰 이름
          * 
-         * @member {string} _L.Meta.Entity.MetaView#viewName
+         * @member {string} MetaView#viewName
          */
         Object.defineProperty(this, 'viewName', {
             get: function() { return this._name; },
@@ -39,7 +39,7 @@ var MetaView  = (function (_super) {
         /**
          * 뷰의 컬럼 컬렉션
          * 
-         * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#columns
+         * @member {MetaViewColumnCollection} MetaView#columns
          */
         Object.defineProperty(this, 'columns', {
             get: function() { return columns; },
@@ -56,7 +56,7 @@ var MetaView  = (function (_super) {
          * 기본 엔티티  
          * null 으로 undefined  
          * 
-         * @member {MetaViewColumnCollection} _L.Meta.Entity.MetaView#_baseEntity
+         * @member {MetaViewColumnCollection} MetaView#_baseEntity
          */
         Object.defineProperty(this, '_baseEntity', {
             get: function() { return _baseEntity; },

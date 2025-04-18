@@ -7,7 +7,7 @@ import { ExtendError }      from 'logic-core';
  * 내보내기 제어 인터페이스 입니다.
  * 
  * @interface
- * @constructs _L.Interface.IExportControl
+ * @constructs IExportControl
  */
 class IExportControl {
 

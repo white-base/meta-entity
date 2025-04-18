@@ -8,7 +8,7 @@ var TransactionQueue  = (function () {
     /**
      * 트랜젝션 큐
      * 
-     * @constructs _L.Collection.TransactionQueue
+     * @constructs TransactionQueue
      * @param {ArrayCollection} p_collection 배열컬렉션
      */
     function TransactionQueue(p_collection) {
@@ -20,7 +20,7 @@ var TransactionQueue  = (function () {
          * 큐 목록
          * 
          * @readonly
-         * @member {array<object>} _L.Collection.TransactionQueue#queue
+         * @member {array<object>} TransactionQueue#queue
          */
         Object.defineProperty(this, 'queue', {
             get: function() { return queue; },
@@ -31,7 +31,7 @@ var TransactionQueue  = (function () {
         /**
          * 대상 컬랙션
          * 
-         * @member {Number} _L.Collection.TransactionQueue#count 
+         * @member {Number} TransactionQueue#count 
          */
         Object.defineProperty(this, 'collection', {
             get: function() { return collection; },

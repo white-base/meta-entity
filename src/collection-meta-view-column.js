@@ -13,8 +13,8 @@ var MetaViewColumnCollection  = (function (_super) {
     /**
      * 메타 뷰 컬럼 컬렉션
      * 
-     * @constructs _L.Meta.Entity.MetaViewColumnCollection
-     * @extends _L.Meta.Entity.BaseColumnCollection
+     * @constructs MetaViewColumnCollection
+     * @extends BaseColumnCollection
      * @param {object} p_owner 소유자
      */
     function MetaViewColumnCollection(p_owner) {
@@ -24,7 +24,7 @@ var MetaViewColumnCollection  = (function (_super) {
          * 참조하는 엔티티 목록
          * 
          * @readonly
-         * @member {array<BaseEntity>} _L.Meta.Entity.MetaViewColumnCollection#_refEntities
+         * @member {array<BaseEntity>} MetaViewColumnCollection#_refEntities
          */
         Object.defineProperty(this, '_refEntities', {
             get: function() { 

@@ -11,8 +11,8 @@ var MetaColumn  = (function (_super) {
     /**
      * 메타 컬럼
      * 
-     * @constructs _L.Meta.Entity.MetaColumn
-     * @extends _L.Meta.Entity.BaseColumn
+     * @constructs MetaColumn
+     * @extends BaseColumn
      * @param {string} p_name 컬럼명
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
      * @param {object} [p_property] 
@@ -38,7 +38,7 @@ var MetaColumn  = (function (_super) {
         /** 
          * 이벤트 객체
          * @private
-         * @member {EventEmitter} _L.Meta.Entity.MetaColumn#$event  
+         * @member {EventEmitter} MetaColumn#$event  
          */
         Object.defineProperty(this, '$event', {
             get: function() { return $event; },
@@ -48,7 +48,7 @@ var MetaColumn  = (function (_super) {
 
         /**
          * 컬럼 value의 필수 여부
-         * @member {boolean} _L.Meta.Entity.MetaColumn#required
+         * @member {boolean} MetaColumn#required
          */
         Object.defineProperty(this, 'required', {
             get: function() { return required; },
@@ -63,7 +63,7 @@ var MetaColumn  = (function (_super) {
         /**
          * 컬럼 제약 조건 
          * 
-         * @member {array<object | function>} _L.Meta.Entity.MetaColumn#constraints
+         * @member {array<object | function>} MetaColumn#constraints
          * 
          * @example
          * var c = {
@@ -96,7 +96,7 @@ var MetaColumn  = (function (_super) {
          * set 우선순위 : 1. setter 있는 경우, 2. setter 리턴값이 없는 경우  
          * REVIEW: 정리표 보고 수정 필요!!
          * 
-         * @member {string | number | boolean} _L.Meta.Entity.MetaColumn#value
+         * @member {string | number | boolean} MetaColumn#value
          */
         Object.defineProperty(this, 'value', {
             get: function() { 
@@ -139,7 +139,7 @@ var MetaColumn  = (function (_super) {
         /**
          * 컬럼의 value 의 getter
          * 
-         * @member {Function} _L.Meta.Entity.MetaColumn#getter
+         * @member {Function} MetaColumn#getter
          */
         Object.defineProperty(this, 'getter', {
             get: function() { return getter; },
@@ -154,7 +154,7 @@ var MetaColumn  = (function (_super) {
         /**
          * 컬럼의 value 의 setter
          * 
-         * @member {Function} _L.Meta.Entity.MetaColumn#setter
+         * @member {Function} MetaColumn#setter
          */
         Object.defineProperty(this, 'setter', {
             get: function() { return setter; },
@@ -169,7 +169,7 @@ var MetaColumn  = (function (_super) {
         /**
          * 변경 이벤트 
          * 
-         * @event _L.Meta.Entity.MetaColumn#onChanged 
+         * @event MetaColumn#onChanged 
          * @param {function}    p_callback
          * @param {any}         p_callback.p_nValue 신규 value 값
          * @param {any}         p_callback.p_oValue 기존 value 값
@@ -196,7 +196,7 @@ var MetaColumn  = (function (_super) {
      * 
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
-     * @listens _L.Meta.Entity.MetaColumn#_onChanged
+     * @listens MetaColumn#_onChanged
      */
     MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
         p_oValue = p_oValue || this.$value;

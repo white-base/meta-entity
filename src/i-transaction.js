@@ -6,7 +6,7 @@ import { ExtendError }      from 'logic-core';
  * 트렌젝션 인터페이스 입니다.
  * 
  * @interface
- * @constructs _L.Interface.ITransaction
+ * @constructs ITransaction
  */
 class ITransaction {
     

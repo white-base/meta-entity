@@ -17,13 +17,13 @@ var MetaSet  = (function (_super) {
     /**
      * 메타셋
      * 
-     * @constructs _L.Meta.Entity.MetaSet
-     * @extends _L.Meta.MetaElement
-     * @implements {_L.Interface.ISchemaControl}
-     * @implements {_L.Interface.IImportControl}
-     * @implements {_L.Interface.IExportControl}
-     * @implements {_L.Interface.ITransaction}
-     * @implements {_L.Interface.ISerialize}
+     * @constructs MetaSet
+     * @extends MetaElement
+     * @implements {ISchemaControl}
+     * @implements {IImportControl}
+     * @implements {IExportControl}
+     * @implements {ITransaction}
+     * @implements {ISerialize}
      * @param {string} p_name 메타셋 이름
      */
     function MetaSet(p_name) {
@@ -35,7 +35,7 @@ var MetaSet  = (function (_super) {
         /**
          * 테이블 이름
          * 
-         * @member {string} _L.Meta.Entity.MetaSet#setName
+         * @member {string} MetaSet#setName
          */
         Object.defineProperty(this, 'setName', {
             get: function() { return this._name; },
@@ -51,7 +51,7 @@ var MetaSet  = (function (_super) {
          * 메타 테이블 컬렉션
          * 
          * @readonly
-         * @member {MetaTableCollection} _L.Meta.Entity.MetaSet#tables
+         * @member {MetaTableCollection} MetaSet#tables
          */
         Object.defineProperty(this, 'tables', {
             get: function() { return tables; },
@@ -63,7 +63,7 @@ var MetaSet  = (function (_super) {
          * 메타 뷰 컬렉션
          * 
          * @readonly
-         * @member {MetaViewCollection} _L.Meta.Entity.MetaSet#views
+         * @member {MetaViewCollection} MetaSet#views
          */
         Object.defineProperty(this, 'views', {
             get: function() { return views; },
@@ -74,7 +74,7 @@ var MetaSet  = (function (_super) {
         /**
          * 트랜젝션 사용 유무 (기본값: 사용 false)
          * 
-         * @member {boolean}  _L.Meta.Entity.MetaSet#autoChanges
+         * @member {boolean}  MetaSet#autoChanges
          */
         Object.defineProperty(this, 'autoChanges', {
             set: function(nVal) { 

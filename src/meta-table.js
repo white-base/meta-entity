@@ -11,8 +11,8 @@ var MetaTable  = (function (_super) {
     /**
      * 테이블 엔티티
      * 
-     * @constructs _L.Meta.Entity.MetaTable
-     * @extends _L.Meta.Entity.BaseEntity
+     * @constructs MetaTable
+     * @extends BaseEntity
      * @param {string} p_name 테이블명
      */
     function MetaTable(p_name) {
@@ -23,7 +23,7 @@ var MetaTable  = (function (_super) {
         /**
          * 테이블 이름
          * 
-         * @member {string} _L.Meta.Entity.MetaTable#tableName
+         * @member {string} MetaTable#tableName
          */
         Object.defineProperty(this, 'tableName', {
             get: function() { return this._name; },
@@ -39,7 +39,7 @@ var MetaTable  = (function (_super) {
         /**
          * 엔티티의 아이템(속성) 컬렉션
          * 
-         * @member {MetaTableColumnCollection} _L.Meta.Entity.MetaTable#columns
+         * @member {MetaTableColumnCollection} MetaTable#columns
          */
         Object.defineProperty(this, 'columns', {
             get: function() { return columns; },

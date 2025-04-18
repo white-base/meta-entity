@@ -18,13 +18,13 @@ var BaseEntity  = (function (_super) {
      * 기본 엔티티 (최상위)
      * 
      * @abstract
-     * @constructs _L.Meta.Entity.BaseEntity
-     * @extends _L.Meta.MetaElement
-     * @implements {_L.Interface.IGroupControl}
-     * @implements {_L.Interface.ISchemaControl}
-     * @implements {_L.Interface.IImportControl}
-     * @implements {_L.Interface.IExportControl}
-     * @implements {_L.Interface.ISerialize}
+     * @constructs BaseEntity
+     * @extends MetaElement
+     * @implements {IGroupControl}
+     * @implements {ISchemaControl}
+     * @implements {IImportControl}
+     * @implements {IExportControl}
+     * @implements {ISerialize}
      * @param {string} p_name 
      */
     function BaseEntity(p_name) {
@@ -36,7 +36,7 @@ var BaseEntity  = (function (_super) {
         /**
          * 엔티티의 아이템(속성) 컬렉션
          * 
-         * @member {MetaSet} _L.Meta.Entity.BaseEntity#_metaSet
+         * @member {MetaSet} BaseEntity#_metaSet
          */
         Object.defineProperty(this, '_metaSet', {
             get: function() { return _metaSet; },
@@ -54,7 +54,7 @@ var BaseEntity  = (function (_super) {
          * 엔티티의 아이템(속성) 컬렉션
          * 
          * @readonly
-         * @member {BaseColumnCollection} _L.Meta.Entity.BaseEntity#columns
+         * @member {BaseColumnCollection} BaseEntity#columns
          */
         Object.defineProperty(this, 'columns', {
             get: function() { 
@@ -67,7 +67,7 @@ var BaseEntity  = (function (_super) {
         /**
          * columns 별칭
          * 
-         * @member {object} _L.Meta.Entity.BaseEntity#cols
+         * @member {object} BaseEntity#cols
          */
         Object.defineProperty(this, 'cols', {
             get: function() { return this.columns; },
@@ -80,7 +80,7 @@ var BaseEntity  = (function (_super) {
          * 엔티티의 데이터(로우) 컬렉션
          * 
          * @readonly
-         * @member {MetaRowCollection} _L.Meta.Entity.BaseEntity#rows
+         * @member {MetaRowCollection} BaseEntity#rows
          */
         Object.defineProperty(this, 'rows', {
             get: function() { return rows; },

@@ -12,8 +12,8 @@ var MetaViewCollection  = (function (_super) {
     /**
      * 뷰 엔티티 컬렉션
      * 
-     * @constructs _L.Meta.Entity.MetaViewCollection
-     * @extends _L.Meta.Entity.PropertyCollection
+     * @constructs MetaViewCollection
+     * @extends PropertyCollection
      * @param {object} p_owner 소유자 
      */
     function MetaViewCollection(p_owner) {    // COVER:
@@ -24,7 +24,7 @@ var MetaViewCollection  = (function (_super) {
         /**
          * 기본 생성 타입
          * 
-         * @member {MetaView} _L.Meta.Entity.MetaViewCollection#_baseType
+         * @member {MetaView} MetaViewCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
