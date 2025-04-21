@@ -2,16 +2,16 @@ import type { MetaElement }         from 'logic-core/ko';
 import type { BaseEntity }          from './base-entity.d.ts';
 
 /**
- * `BaseColumn` 클래스는 데이터베이스 또는 유사한 데이터 구조의 기본 컬럼을 정의합니다.  
- * 이 추상 클래스는 컬럼의 이름, 별칭, 기본값 및 기타 속성을 관리하는 기능을 제공합니다.  
+ * 컬럼의 최상위 추상 클래스입니다.   
+ * 컬럼명, 별칭, 기본값, 현재값 등의 속성을 포함하며, 유효성 검사 및 객체 직렬화 기능을 제공합니다.  
  */
 declare abstract class BaseColumn extends MetaElement {
-
+    
     /**
      * `BaseColumn` 객체를 생성합니다.
      * 
-     * @param name - 컬럼의 이름을 지정합니다.
-     * @param entity - 이 컬럼이 속한 엔티티를 지정합니다. `BaseEntity` 타입의 객체여야 합니다.
+     * @param name - 컬럼의 이름
+     * @param entity - 컬럼을 소유한 엔티티
      */
     constructor(name: string, entity: BaseEntity);
 
@@ -21,46 +21,43 @@ declare abstract class BaseColumn extends MetaElement {
     $key: string;
 
     /**
-     * 컬럼 value 의 내부값입니다.
+     * 컬럼 value 의 내부값입니다.  
+     * `value`와 연동되며 setter 또는 getter 동작에 따라 저장되는 값입니다.  
      */
     $value: string;
 
     /**
-     * 컬럼의 별칭을 나타냅니다. 별칭은 컬럼의 다른 이름으로 사용됩니다.
+     * 컬럼의 별칭을 나타냅니다.  
      */
     $alias: string;
 
     /**
-     * 이 컬럼이 속한 엔티티를 나타냅니다. `BaseEntity` 타입의 객체입니다.
+     * 컬럼을 소유한 엔티티입니다.
      */
     _entity: BaseEntity;
 
     /**
-     * 컬럼의 값 타입을 정의합니다. 이 속성은 컬럼 값의 타입을 설정하는 데 사용됩니다.
+     * 허용된 값 타입 배열입니다.
      */
-    _valueTypes: any;
+    _valueTypes: any[];
 
     /**
-     * 컬럼의 이름을 나타냅니다. `_name`과 동일합니다.
+     * 컬럼의 이름입니다.
      */
     columnName: string;
 
     /**
-     * 컬럼의 별칭을 설정하거나 가져옵니다. 별칭은 데이터 전송 및 로우값 설정 시 사용됩니다.  
-     * 사용처 (기본값 = columnName )  
-     * - Bind-command-ajax._execBind() : 데이터 전송시   
-     * - BaseBind.setValue(row) : 로우값 을 엔티티에 설정시  
-     * - getValue() : row 에 활용함  
+     * 컬럼의 별칭입니다.
      */
     alias: string;
 
     /**
-     *  컬럼의 기본값을 설정합니다.
+     *  컬럼 값의 기본값입니다. 컬럼이 초기화될 때 사용됩니다.
      */
     default: string | number | boolean;
 
     /**
-     * 컬럼에 대한 설명을 제공합니다.
+     * 컬럼 설명입니다.
      */
     caption: string;
 
@@ -70,35 +67,33 @@ declare abstract class BaseColumn extends MetaElement {
     value: any;     // TODO: default 와 일치해야할듯
 
     /**
-     * 현재 컬럼 객체를 직렬화된 객체로 변환합니다. 이 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.
+     * 객체를 GUID 타입의 객체 리터럴로 변환합니다.
      * 
-     * @param vOpt - 가져오기 옵션을 지정합니다.  
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
-     * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
-     * @returns 직렬화된 객체입니다.
+     * @param mode - 가져오기 모드  
+     * mode=0 : 참조 구조(_guid:Yes, $ref:Yes)  
+     * mode=1 : 중복 구조(_guid:Yes, $ref:Yes)  
+     * mode=2 : 비침조 구조(_guid:No,  $ref:No)   
+     * @param context - 현재 객체를 포함(소유)하는 상위 객체
+     * @returns GUID 타입의 객체 리터럴
      * 
      * @example
      * const serialized = column.getObject(0);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
-     * 직렬화된 `guid` 타입의 객체를 사용하여 현재 컬럼 객체를 설정합니다.  
-     * 이 과정에서 현재 객체는 초기화됩니다.  
+     * GUID 타입의 객체 리터럴을 인스턴스 객체로 변환하여 설정합니다.
      * 
-     * @param oGuid - 직렬화된 `guid` 타입의 객체입니다.
-     * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
+     * @param guidObj - 설정할 GUID 타입의 객체 리터럴
+     * @param guidRootObj - 변환 과정에서 참조되는 초기 GUID 리터럴 객체  
      * 
      * @example
      * column.setObject(serializedObject);
      */
-    setObject(oGuid: object, origin?: object);
+    setObject(guidObj: object, guidRootObj?: object);
 
-    
     /**
-     * 현재 컬럼 객체의 복제본을 생성합니다. 이 메서드는 추상 메서드로, 서브클래스에서 구현되어야 합니다.
+     * 현재 컬럼 객체의 복제본을 생성합니다. 반드시 하위 클래스에서 구현해야 합니다.  
      * 
      * @returns 현재 객체의 복제본입니다.
      */

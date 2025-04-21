@@ -10,6 +10,7 @@ import { BaseColumn }           from './base-column.js';
 var BaseColumnCollection  = (function (_super) {
     /**
      * 컬럼 컬렉션 (최상위)
+     * 
      * @abstract
      * @constructs BaseColumnCollection
      * @extends PropertyCollection

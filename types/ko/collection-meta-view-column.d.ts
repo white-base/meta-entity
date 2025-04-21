@@ -13,7 +13,7 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
      * `MetaViewColumnCollection` 객체를 생성합니다.  
      * 이 객체는 메타 뷰의 컬럼을 관리하는 컬렉션을 생성합니다.  
      * 
-     * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
+     * @param owner - 이 컬렉션의 소유자 객체
      */
     constructor(owner: object);
 
@@ -26,20 +26,19 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
     _refEntities: BaseEntity[];
 
     /**
-     * 현재 `MetaViewColumnCollection` 객체를 직렬화된 객체로 변환합니다.   
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
+     * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
      * 
-     * @param vOpt - 가져오기 옵션을 지정합니다.  
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
-     * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
-     * @returns 직렬화된 객체입니다.
+     * @param mode - 가져오기 모드  
+     * mode=0 : 참조 구조(_guid:Yes, $ref:Yes)  
+     * mode=1 : 중복 구조(_guid:Yes, $ref:Yes)  
+     * mode=2 : 비침조 구조(_guid:No,  $ref:No)   
+     * @param context - 현재 객체를 포함(소유)하는 상위 객체
+     * @returns GUID 타입의 객체 리터럴
      * 
      * @example
      * const serialized = collection.getObject(2); // 비침조 구조로 직렬화된 객체를 가져옴
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | Array<object>): object;
 
     /**
      * 컬럼을 컬렉션에 추가하거나 설정합니다. 컬럼이 추가될 때, 참조 컬렉션과 관련된 동작이 수행됩니다.  
@@ -48,8 +47,8 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
      * - 컬렉션에 컬럼이 존재할 경우: `columns` 객체는 무시되고, 리턴한 객체의 참조를 등록합니다.  
      * - 컬렉션에 컬럼이 없을 경우: 컬렉션에 `entity`를 설정합니다. 참조 재귀 호출 시 최상위만 등록됩니다.  
      * 
-     * @param column - 추가할 컬럼입니다. `MetaColumn` 객체 또는 컬럼명(문자열)을 받을 수 있습니다.
-     * @param refCollection - 참조 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.
+     * @param column - 추가할 컬럼 객체 또는 컬럼명
+     * @param refCollection - 참조 컬렉션
      * @returns 추가된 컬럼의 인덱스입니다. 인덱스는 컬렉션 내에서 컬럼의 위치를 나타냅니다.
      * 
      * @example
@@ -61,9 +60,9 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
     /**
      * 이름과 값으로 새 컬럼을 생성하고 컬렉션에 추가합니다.
      * 
-     * @param name - 새로 추가할 컬럼의 이름입니다.
-     * @param value - 컬럼의 기본값입니다. 문자열, 숫자 또는 불리언 값을 받을 수 있습니다.
-     * @param refCollection - 참조 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.
+     * @param name - 새로 추가할 컬럼명
+     * @param value - 컬럼의 기본값 (문자열, 숫자 또는 불리언)
+     * @param refCollection - 참조 컬렉션
      * @returns 새로 추가된 컬럼의 인덱스입니다.
      * 
      * @example
@@ -74,7 +73,7 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
     /**
      * 주어진 엔티티의 모든 컬럼을 컬렉션에 추가합니다.
      * 
-     * @param entity - 컬렉션에 추가할 엔티티입니다. `BaseEntity` 타입의 객체입니다.
+     * @param entity - 컬렉션에 추가할 엔티티
      * 
      * @example
      * collection.addEntity(entity); // 주어진 엔티티의 모든 컬럼을 추가

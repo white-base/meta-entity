@@ -15,7 +15,7 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
      * @param owner Owner of the  collection.
      * @param baseType Default column type.
      */
-    constructor(owner: object, baseType: BaseColumn);
+    constructor(owner: object, baseType: BaseColumn);    
 
     /**
      * Save the default column type.

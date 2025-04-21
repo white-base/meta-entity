@@ -11,7 +11,7 @@ declare class MetaViewCollection extends PropertyCollection<MetaView> {
      * `MetaViewCollection` 객체를 생성합니다.  
      * 이 객체는 뷰 엔티티를 관리하는 컬렉션을 생성합니다.  
      * 
-     * @param owner - 이 컬렉션의 소유자 객체를 지정합니다.
+     * @param owner - 이 컬렉션의 소유자 객체
      */
     constructor(owner: object);
 
@@ -28,8 +28,8 @@ declare class MetaViewCollection extends PropertyCollection<MetaView> {
      *  - entityView                :         entityView  이름으로 등록  
      *  - entityView, collection    :         entityView  이름으로 등록 (collection보냄) => 오류발생   
      * 
-     * @param view - 추가할 뷰입니다. 뷰 이름(문자열) 또는 `MetaView` 타입의 객체를 받을 수 있습니다.
-     * @param baseEntity - 기본 컬럼 컬렉션입니다. `BaseColumnCollection` 타입의 객체입니다.
+     * @param view - 추가할 뷰 또는 객체 뷰 이름
+     * @param baseEntity - 기본 컬럼 컬렉션
      * @returns 추가된 뷰의 인덱스입니다. 인덱스는 컬렉션 내에서 뷰의 위치를 나타냅니다.
      * 
      * @example
@@ -41,7 +41,7 @@ declare class MetaViewCollection extends PropertyCollection<MetaView> {
     /**
      * 지정된 뷰 이름이 컬렉션에 존재하는지 여부를 확인합니다.
      * 
-     * @param key - 확인할 뷰 이름입니다.
+     * @param key - 확인할 뷰 이름
      * @returns 뷰 이름이 컬렉션에 존재하면 `true`, 그렇지 않으면 `false`를 반환합니다.
      * 
      * @example

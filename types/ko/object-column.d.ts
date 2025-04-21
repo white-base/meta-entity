@@ -10,16 +10,16 @@ declare class ObjectColumn extends BaseColumn {
     /**
      * `ObjectColumn` 객체를 생성합니다.
      * 
-     * @param name - 객체 컬럼의 이름입니다.
-     * @param entity - 이 컬럼을 소유하는 `BaseEntity` 객체입니다.
-     * @param prop - 객체 컬럼의 속성입니다.
+     * @param name - 객체 컬럼의 이름
+     * @param entity - 이 컬럼을 소유하는 엔티티
+     * @param prop - 객체 컬럼의 속성
      */
     constructor(name: string, entity: BaseEntity, prop: object);
     
     /**
      * 객체의 속성을 로딩합니다.
      * 
-     * @param prop - 로드할 속성 객체입니다.
+     * @param prop - 로드할 속성 객체
      * 
      * @example
      * objectColumn._load({ key: 'value' }); // 속성을 로드하여 컬럼에 적용
@@ -27,37 +27,29 @@ declare class ObjectColumn extends BaseColumn {
     _load(prop: object): void;    // TODO: 타입변환
 
     /**
-     * 현재 `ObjectColumn` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.  
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
+     * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
      * 
-     * @param vOpt - 직렬화 옵션입니다.  
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
-     * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
-     * @returns 직렬화된 객체입니다.
-     * 
-     * @example
-     * const serialized = objectColumn.getObject(1); // 참조 구조로 직렬화된 객체 가져오기
+     * @param mode - 가져오기 모드  
+     * mode=0 : 참조 구조(_guid:Yes, $ref:Yes)  
+     * mode=1 : 중복 구조(_guid:Yes, $ref:Yes)  
+     * mode=2 : 비침조 구조(_guid:No,  $ref:No)   
+     * @param context - 현재 객체를 포함(소유)하는 상위 객체
+     * @returns GUID 타입의 객체 리터럴
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
-     * 직렬화된 GUID 타입의 객체를 현재 `ObjectColumn` 객체에 설정합니다.  
-     * 이 과정에서 객체가 초기화됩니다.  
+     * GUID 타입의 객체 리터럴을 인스턴스 객체로 변환하여 설정합니다.
      * 
-     * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
-     * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
-     * 
-     * @example
-     * objectColumn.setObject(serializedObject); // 직렬화된 객체를 현재 컬럼에 설정
+     * @param guidObj - 설정할 GUID 타입의 객체 리터럴
+     * @param guidRootObj - 변환 과정에서 참조되는 초기 GUID 리터럴 객체  
      */
-    setObject(oGuid: object, origin?: object): void;    
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * `ObjectColumn` 객체를 복제하여 새로운 객체를 생성합니다.
      * 
-     * @param entity - 복제할 엔티티입니다. 지정하지 않으면 현재 엔티티로 복제됩니다.
+     * @param entity - 복제할 엔티티 (지정하지 않으면 현재 엔티티)
      * @returns 복제된 `ObjectColumn` 객체입니다.
      * 
      * @example

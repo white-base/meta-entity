@@ -25,8 +25,9 @@ var BaseColumn  = (function (_super) {
         var _valueTypes     = this._type._VALUE_TYPE || [];
         var _default        = '';
         var caption         = '';
+
         /**
-         * 컬럼 컬렉션의 키
+         * 이 컬럼의 고유 키를 나타냅니다.
          * @member {string} BaseColumn#$key
          * @readonly
          * @private

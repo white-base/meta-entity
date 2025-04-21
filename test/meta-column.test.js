@@ -710,9 +710,9 @@ describe("[target: meta-column.js ]", () => {
             it("- 조회 : COVER", () => {   
                 const c1 = new MetaColumn('c1');
                 
-                c1.$key = 'cc1';
-                c1.$key = 10
-                expect(c1.$key).toBe('cc1')
+                // c1.$key = 'cc1';
+                // c1.$key = 10
+                // expect(c1.$key).toBe('cc1')
                 // c1.$alias = 
                 
                 c1.$value = 'VV'

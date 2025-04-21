@@ -17,7 +17,7 @@ declare class MetaSet extends MetaElement
     /**
      * `MetaSet` 객체를 생성합니다.
      * 
-     * @param name - 메타셋의 이름입니다.
+     * @param name - 메타셋의 이름
      */
     constructor(name: string);
 
@@ -44,7 +44,7 @@ declare class MetaSet extends MetaElement
     /**
      * 메타셋을 스키마 객체로 변환합니다.
      * 
-     * @param oGuid - `getObject()`로 얻은 직렬화된 객체입니다.
+     * @param oGuid - `getObject()`로 얻은 직렬화된 객체
      * @returns 변환된 스키마 객체입니다.
      * 
      * @example
@@ -53,32 +53,24 @@ declare class MetaSet extends MetaElement
     static transformSchema(oGuid: object): object;
 
     /**
-     * 현재 `MetaSet` 객체를 직렬화된 GUID 타입의 객체로 변환합니다.  
-     * 직렬화 과정에서 순환 참조는 `$ref` 값으로 대체됩니다.  
+     * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
      * 
-     * @param vOpt - 직렬화 옵션을 지정합니다.  
-     *   - `0`: 참조 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `1`: 중복 구조로 변환 (`_guid`와 `$ref` 포함)  
-     *   - `2`: 비침조 구조로 변환 (`_guid`와 `$ref` 제외)  
-     * @param owned - 현재 객체를 소유하는 상위 객체들입니다. 객체 또는 객체 배열을 받을 수 있습니다.
-     * @returns 직렬화된 객체입니다.
-     * 
-     * @example
-     * const serialized = metaSet.getObject(2); // 비침조 구조로 직렬화된 객체 가져오기
+     * @param mode - 가져오기 모드  
+     * mode=0 : 참조 구조(_guid:Yes, $ref:Yes)  
+     * mode=1 : 중복 구조(_guid:Yes, $ref:Yes)  
+     * mode=2 : 비침조 구조(_guid:No,  $ref:No)   
+     * @param context - 현재 객체를 포함(소유)하는 상위 객체
+     * @returns GUID 타입의 객체 리터럴
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
-     * 직렬화된 GUID 타입의 객체를 현재 `MetaSet` 객체에 설정합니다.  
-     * 이 과정에서 객체가 초기화됩니다.  
+     * GUID 타입의 객체 리터럴을 인스턴스 객체로 변환하여 설정합니다.
      * 
-     * @param oGuid - 직렬화된 GUID 타입의 객체입니다.
-     * @param origin - 현재 객체를 설정하는 원본 객체입니다. 기본값은 `oGuid`입니다.
-     * 
-     * @example
-     * metaSet.setObject(serializedObject); // 직렬화된 객체를 현재 메타셋에 설정
+     * @param guidObj - 설정할 GUID 타입의 객체 리터럴
+     * @param guidRootObj - 변환 과정에서 참조되는 초기 GUID 리터럴 객체  
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * 현재 `MetaSet` 객체를 복제하여 새로운 객체를 생성합니다.
@@ -110,8 +102,8 @@ declare class MetaSet extends MetaElement
      * 데이터를 불러오거나 가져옵니다. (병합 용도가 아님)  
      * 기존의 데이터를 초기화하고 새로운 데이터를 불러옵니다.  
      * 
-     * @param obj - 불러올 데이터입니다. 객체 또는 문자열을 받을 수 있습니다.
-     * @param parse - 선택적인 파서 함수입니다.
+     * @param obj - 불러올 객체 또는 문자열
+     * @param parse - 파서 함수
      * 
      * @example
      * metaSet.load(dataObject, JSON.parse); // 데이터 객체를 불러오기
@@ -125,8 +117,8 @@ declare class MetaSet extends MetaElement
      *   - `0`: 참조 구조로 출력  
      *   - `1`: 중복 구조로 출력  
      *   - `2`: 비침조 구조로 출력  
-     * @param stringify - 선택적인 직렬화 함수입니다. 기본값은 `JSON.stringify`입니다.
-     * @param space - 선택적인 공백 문자열입니다. 기본값은 `undefined`입니다.
+     * @param stringify - 직렬화 함수 (기본값은 `JSON.stringify`)
+     * @param space - 공백 문자열
      * @returns 직렬화된 문자열입니다.
      * 
      * @example
@@ -138,8 +130,8 @@ declare class MetaSet extends MetaElement
      * 객체를 읽어와 메타셋을 로딩합니다.  
      * JSON 스키마 규칙을 따릅니다.  
      * 
-     * @param obj - 메타셋 객체, 엔티티 또는 기타 객체입니다.
-     * @param opt - 선택적인 옵션입니다. 기본값은 `3`입니다.
+     * @param obj - 메타셋 객체, 엔티티 또는 기타 객체
+     * @param opt - 읽기 옵션 (기본값은 `3`)
      * 
      * @example
      * metaSet.read(dataObject, 3); // 데이터 객체를 읽어와 메타셋 로딩
@@ -150,8 +142,8 @@ declare class MetaSet extends MetaElement
      * 스키마를 읽어와서 메타셋에 적용합니다.  
      * 없으면 빈 컬럼을 생성해야 하는지 여부를 설정합니다.  
      * 
-     * @param obj - 스키마 객체 또는 GUID 객체입니다.
-     * @param createRow - `true`이면, 첫 번째 행을 기준으로 컬럼을 추가합니다.
+     * @param obj - 스키마 객체 또는 GUID 객체
+     * @param createRow - `true`이면, 첫 번째 행을 기준으로 컬럼을 추가
      * 
      * @example
      * metaSet.readSchema(schemaObject, true); // 스키마를 읽어 메타셋에 적용
@@ -161,7 +153,7 @@ declare class MetaSet extends MetaElement
     /**
      * 데이터를 읽어와서 메타셋의 로우를 설정합니다.
      * 
-     * @param obj - 읽을 데이터입니다.
+     * @param obj - 읽을 데이터
      * 
      * @example
      * metaSet.readData(dataObject); // 데이터 객체를 읽어 메타셋의 행을 설정
@@ -171,7 +163,7 @@ declare class MetaSet extends MetaElement
     /**
      * 메타셋을 스키마 타입의 객체로 내보냅니다.
      * 
-     * @param vOpt - 내보내기 옵션입니다.
+     * @param vOpt - 내보내기 옵션
      * @returns 내보낸 스키마 객체입니다.
      * 
      * @example
@@ -182,7 +174,7 @@ declare class MetaSet extends MetaElement
     /**
      * 메타셋의 스키마(컬럼)를 스키마 타입의 객체로 내보냅니다.
      * 
-     * @param vOpt - 내보내기 옵션입니다.
+     * @param vOpt - 내보내기 옵션
      * @returns 내보낸 스키마 객체입니다.
      * 
      * @example
@@ -193,7 +185,7 @@ declare class MetaSet extends MetaElement
     /**
      * 메타셋의 데이터(로우)를 스키마 타입의 객체로 내보냅니다.
      * 
-     * @param vOpt - 내보내기 옵션입니다.
+     * @param vOpt - 내보내기 옵션
      * @returns 내보낸 데이터 객체입니다.
      * 
      * @example

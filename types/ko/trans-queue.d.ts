@@ -57,9 +57,9 @@ declare class TransactionQueue {
     /**
      * 큐에 새로운 트랜잭션 작업을 추가합니다.
      * 
-     * @param pos - 작업을 추가할 큐 내의 위치 인덱스입니다.
-     * @param target - 큐에 추가할 대상 객체입니다.
-     * @param etc - 기타 관련 데이터입니다. 필요에 따라 추가적인 정보를 포함할 수 있습니다.
+     * @param pos - 작업을 추가할 큐 내의 위치 인덱스
+     * @param target - 큐에 추가할 대상 객체
+     * @param etc - 기타 관련 데이터
      * 
      * @example
      * transactionQueue.insert(0, targetObject, additionalData); // 인덱스 0 위치에 작업 추가
@@ -69,9 +69,9 @@ declare class TransactionQueue {
     /**
      * 큐에서 트랜잭션 작업을 삭제합니다.
      * 
-     * @param pos - 삭제할 큐 내의 위치 인덱스입니다.
-     * @param clone - 삭제할 작업의 복제본입니다.
-     * @param etc - 기타 관련 데이터입니다. 필요에 따라 추가적인 정보를 포함할 수 있습니다.
+     * @param pos - 삭제할 큐 내의 위치 인덱스
+     * @param clone - 삭제할 작업의 복제본
+     * @param etc - 기타 관련 데이터
      * 
      * @example
      * transactionQueue.delete(1, clonedObject, additionalData); // 인덱스 1 위치의 작업 삭제
@@ -81,10 +81,10 @@ declare class TransactionQueue {
     /**
      * 큐에 있는 트랜잭션 작업을 수정합니다.
      * 
-     * @param pos - 수정할 큐 내의 위치 인덱스입니다.
-     * @param target - 수정할 대상 객체입니다.
-     * @param clone - 수정 전 작업의 복제본입니다.
-     * @param etc - 기타 관련 데이터입니다. 필요에 따라 추가적인 정보를 포함할 수 있습니다.
+     * @param pos - 수정할 큐 내의 위치 인덱스
+     * @param target - 수정할 대상 객체
+     * @param clone - 수정 전 작업의 복제본
+     * @param etc - 기타 관련 데이터
      * 
      * @example
      * transactionQueue.update(2, updatedObject, clonedObject, additionalData); // 인덱스 2 위치의 작업 수정
