@@ -36,6 +36,6 @@
     "typedoc": "^0.26.5"
   },
   "dependencies": {
-    "logic-core": "github:white-base/core"
+    "logic-core": "github:white-base/core#es5"
   }
 }
