@@ -94,6 +94,6 @@
     "wait-on": "^8.0.3"
   },
   "dependencies": {
-    "logic-core": "github:white-base/core#dev"
+    "logic-core": "^1.1.0"
   }
 }

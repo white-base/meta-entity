@@ -30,7 +30,6 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
      * @returns 엔티티에 소속된 경우 true입니다.
      */
     _ownerIsEntity(): boolean;
-
     
     /**
      * 컬렉션 인덱스에 대한 프로퍼티 기술자를 반환합니다.
