@@ -31,6 +31,15 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
      */
     _ownerIsEntity(): boolean;
 
+    
+    /**
+     * 특정 인덱스의 속성 디스크립터를 설정하는 내부 메서드입니다.
+     * 
+     * @param idx 인덱스 번호
+     * @param enumerable 열거 가능 여부
+     */
+    _getPropDescriptor(idx: number, enumerable: boolean): PropertyDescriptor;
+    
     /**
      * 컬럼을 컬렉션에 추가합니다.
      * 

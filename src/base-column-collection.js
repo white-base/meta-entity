@@ -23,7 +23,8 @@ var BaseColumnCollection  = (function (_super) {
 
         /**
          * 기본 컬럼 타입
-         * @member {BaseColumn} _L.Meta.Entity.BaseColumnCollection#_baseType
+         * 
+         * @member {BaseColumn} BaseColumnCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
@@ -37,11 +38,7 @@ var BaseColumnCollection  = (function (_super) {
             configurable: false,
         });
 
-        /**
-         * @member {BaseColumn} BaseColumnCollection#baseType
-         */
-       this._baseType = p_baseType;
-       // this._baseType = p_baseType || MetaColumn;
+        this._baseType = p_baseType;
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', '_ownerIsEntity', 'initValue', 'existAlias'];
@@ -56,6 +53,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * this._onwer 이 엔티티 여부를 확인합니다.
+     * 
      * @returns {boolean}
      */
     BaseColumnCollection.prototype._ownerIsEntity = function() {
@@ -68,6 +66,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 컬렉션에 요소를 추가할 때 설정되는 기본 기술자입니다.
+     * 
      * @protected
      * @param {number} p_idx 인덱스 번호
      */
@@ -93,6 +92,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 컬럼을 컬렉션에 추가
+     * 
      * @param {string} p_name 컬럼명
      * @param {any} p_value 컬럼객체
      * @returns {number} 추가한 index 
@@ -111,6 +111,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 컬럼을 컬렉션에서 삭제
+     * 
      * @param {number} p_idx 
      * @returns {boolean}
      */
@@ -136,6 +137,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 컬렉션에 별칭 이름(키)가 존재하는지 검사
+     * 
      * @param {string} p_key 이름
      * @returns {boolean}
      */
@@ -151,6 +153,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 컬렉션에 컬럼 이름(키)이 존재하는지 검사
+     * 
      * @param {string} p_key 이름
      * @returns {boolean}
      */
@@ -166,6 +169,7 @@ var BaseColumnCollection  = (function (_super) {
 
     /**
      * 별칭에 대한 컬럼 객체 얻기
+     * 
      * @param {string} p_key 키
      * @returns {BaseColumn | undefined}
      */
