@@ -17,10 +17,10 @@ declare class MetaRowCollection extends TransactionCollection<MetaRow> {
      * @param idx - 프로퍼티 기술자를 가져올 인덱스
      * @returns 지정된 인덱스의 프로퍼티 기술자입니다.
      */
-    _getPropDescriptor(idx: number): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number): PropertyDescriptor;
 
     
-    /** @deprecated */
+    /** @deprecated 더 이상 사용되지 않습니다. */
     add(elem: any, desc?: PropertyDescriptor): number;
 
     /**
@@ -33,7 +33,7 @@ declare class MetaRowCollection extends TransactionCollection<MetaRow> {
     add(row: MetaRow, isCheck?: boolean): number;
 
     
-    /** @deprecated */
+    /** @deprecated 더 이상 사용되지 않습니다. */
     insertAt(pos: number, elem: any, desc?: PropertyDescriptor): boolean;
     
     /**

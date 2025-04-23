@@ -19,7 +19,7 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
      * 트랜잭션 큐를 관리하는 객체입니다.  
      * 이 큐는 트랜잭션 작업을 순차적으로 처리하는 데 사용됩니다.  
      */
-    _transQueue: TransactionQueue;
+    protected readonly _transQueue: TransactionQueue;
 
     /**
      * 자동 변경 기능의 사용 여부를 나타냅니다.  
@@ -31,7 +31,7 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
      * 컬렉션의 변경 여부를 나타냅니다.  
      * `true`일 경우 컬렉션에 변경 사항이 있음을 의미합니다.  
      */
-    hasChanges: boolean;
+    readonly hasChanges: boolean;
 
     /**
      * 지정된 인덱스에 대한 프로퍼티 기술자를 반환합니다.
@@ -42,7 +42,7 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
      * @example
      * const descriptor = collection._getPropDescriptor(0); // 인덱스 0의 프로퍼티 기술자 가져오기
      */
-    _getPropDescriptor(idx: number): object;
+    protected _getPropDescriptor(idx: number): PropertyDescriptor;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -68,7 +68,7 @@ declare class TransactionCollection<T> extends ArrayCollection<T> {
      * @example
      * collection.setObject(serializedObject); // 직렬화된 객체를 현재 컬렉션에 설정
      */
-    setObject(guidObj: object, guidRootObj?: object);
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * 지정된 위치에서 요소를 삭제합니다.

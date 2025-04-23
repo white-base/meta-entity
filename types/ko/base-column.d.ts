@@ -24,7 +24,7 @@ declare abstract class BaseColumn extends MetaElement {
      * 컬럼 value 의 내부값입니다.  
      * `value`와 연동되며 setter 또는 getter 동작에 따라 저장되는 값입니다.  
      */
-    $value: string;
+    $value: any;
 
     /**
      * 컬럼의 별칭을 나타냅니다.  
@@ -34,12 +34,12 @@ declare abstract class BaseColumn extends MetaElement {
     /**
      * 컬럼을 소유한 엔티티입니다.
      */
-    _entity: BaseEntity;
+    protected _entity: BaseEntity;
 
     /**
-     * 허용된 값 타입 배열입니다.
+     * 허용된 'value'의 타입 배열입니다.
      */
-    _valueTypes: any[];
+    protected _valueTypes: any[];
 
     /**
      * 컬럼의 이름입니다.
@@ -67,6 +67,11 @@ declare abstract class BaseColumn extends MetaElement {
     value: any;     // TODO: default 와 일치해야할듯
 
     /**
+     * 컬럼의 현재 값을 가져오거나 설정합니다.
+     */
+    val: any;
+
+    /**
      * 객체를 GUID 타입의 객체 리터럴로 변환합니다.
      * 
      * @param mode - 가져오기 모드  
@@ -90,7 +95,7 @@ declare abstract class BaseColumn extends MetaElement {
      * @example
      * column.setObject(serializedObject);
      */
-    setObject(guidObj: object, guidRootObj?: object);
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * 현재 컬럼 객체의 복제본을 생성합니다. 반드시 하위 클래스에서 구현해야 합니다.  

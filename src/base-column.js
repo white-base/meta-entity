@@ -9,6 +9,7 @@ import { MetaRegistry }     from 'logic-core';
 var BaseColumn  = (function (_super) {
     /**
      * 컬럼 (최상위)
+     * 
      * @abstract
      * @constructs BaseColumn
      * @extends MetaElement
@@ -28,6 +29,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 이 컬럼의 고유 키를 나타냅니다.
+         * 
          * @member {string} BaseColumn#$key
          * @readonly
          * @private
@@ -43,6 +45,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 별칭 내부값
+         * 
          * @member {string | number | boolean} BaseColumn#$value
          * @readonly
          * @private
@@ -56,6 +59,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 별칭 내부값
+         * 
          * @member {string} BaseColumn#$alias
          * @readonly
          * @private
@@ -71,6 +75,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 소유 엔티티
+         * 
          * @member {BaseEntity} BaseColumn#_entity
          * @protected
          */
@@ -87,8 +92,9 @@ var BaseColumn  = (function (_super) {
         });
 
         /**
-         * value 타입 설정
-         * @member {any} BaseColumn#_valueTypes
+         *  허용된 value의 타입 목록 (형식 검증 시 사용)
+         * 
+         * @member {any[]} BaseColumn#_valueTypes
          * @protected
          */
         Object.defineProperty(this, '_valueTypes', {
@@ -105,6 +111,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼명, _name 과 동일
+         * 
          * @member {string} BaseColumn#columnName
          */
         Object.defineProperty(this, 'columnName', {
@@ -126,6 +133,7 @@ var BaseColumn  = (function (_super) {
          * - Bind-command-ajax._execBind() : 데이터 전송시  
          * - BaseBind.setValue(row) : 로우값 을 엔티티에 설정시  
          * - getValue() : row 에 활용함  
+         * 
          * @member {string} BaseColumn#alias
          */
         Object.defineProperty(this, 'alias', {
@@ -152,6 +160,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 value 의 기본값 (내부속성)
+         * 
          * @member {string | number | boolean} BaseColumn#default
          */
         Object.defineProperty(this, 'default', {
@@ -166,6 +175,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 설명
+         * 
          * @member {string} BaseColumn#caption
          */
         Object.defineProperty(this, 'caption', {
@@ -180,6 +190,7 @@ var BaseColumn  = (function (_super) {
 
         /**
          * 컬럼 값
+         * 
          * @member {any} BaseColumn#value
          */
         Object.defineProperty(this, 'value', {
@@ -195,9 +206,9 @@ var BaseColumn  = (function (_super) {
         });
 
         /**
-         * value 별칭
-         * this.value
-         * @member {object} BaseColumn#val
+         * 컬럼 값
+         * 
+         * @member {any} BaseColumn#val
          */
         Object.defineProperty(this, 'val', {
             get: function() { return this.value; },
@@ -229,19 +240,19 @@ var BaseColumn  = (function (_super) {
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
      * - 순환참조는 $ref 값으로 대체된다.  
      * 
-     * @param {number} p_vOpt 가져오기 옵션  
+     * @param {number} p_mode 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
      * a.getObject(2) == b.getObject(2)   
-     * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
+     * @param {object | array<object>} [p_context] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
-    BaseColumn.prototype.getObject = function(p_vOpt, p_owned) {
-        var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        var vOpt = p_vOpt || 0;
-        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+    BaseColumn.prototype.getObject = function(p_mode, p_context) {
+        var obj = _super.prototype.getObject.call(this, p_mode, p_context);
+        var vOpt = p_mode || 0;
+        // var owned = p_context ? [].concat(p_context, obj) : [].concat(obj);
 
         if (vOpt < 2 && vOpt > -1 && this._entity) {
             obj['_entity'] = MetaRegistry.createReferObject(this._entity);
@@ -258,26 +269,26 @@ var BaseColumn  = (function (_super) {
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
      * 
-     * @param {object} p_oGuid guid 타입의 객체
-     * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체
-     * 기본값은 p_oGuid 객체와 동일
+     * @param {object} p_guidObj guid 타입의 객체
+     * @param {object} [p_guidRootObj] 현재 객체를 설정하는 원본 guid 객체
+     * 기본값은 p_guidObj 객체와 동일
      */
-    BaseColumn.prototype.setObject  = function(p_oGuid, p_origin) {
-        _super.prototype.setObject.call(this, p_oGuid, p_origin);
+    BaseColumn.prototype.setObject  = function(p_guidObj, p_guidRootObj) {
+        _super.prototype.setObject.call(this, p_guidObj, p_guidRootObj);
         
-        var origin = p_origin ? p_origin : p_oGuid;
+        var origin = p_guidRootObj ? p_guidRootObj : p_guidObj;
         var entity;
 
-        if (p_oGuid['_entity']) {
-            entity = MetaRegistry.findSetObject(p_oGuid['_entity']['$ref'], origin);
-            if (!entity) throw new ExtendError(/EL05118/, null, [p_oGuid['name'], p_oGuid['_entity']['$ref']]);
+        if (p_guidObj['_entity']) {
+            entity = MetaRegistry.findSetObject(p_guidObj['_entity']['$ref'], origin);
+            if (!entity) throw new ExtendError(/EL05118/, null, [p_guidObj['name'], p_guidObj['_entity']['$ref']]);
             this._entity = entity;
         } 
-        this.columnName = p_oGuid['columnName'];
-        if (p_oGuid['default']) this.default = p_oGuid['default'];
-        if (p_oGuid['caption']) this.caption = p_oGuid['caption'];
-        if (p_oGuid['$alias']) this.$alias = p_oGuid['$alias'];
-        if (p_oGuid['$value']) this.$value = p_oGuid['$value'];
+        this.columnName = p_guidObj['columnName'];
+        if (p_guidObj['default']) this.default = p_guidObj['default'];
+        if (p_guidObj['caption']) this.caption = p_guidObj['caption'];
+        if (p_guidObj['$alias']) this.$alias = p_guidObj['$alias'];
+        if (p_guidObj['$value']) this.$value = p_guidObj['$value'];
     };
 
     /** 

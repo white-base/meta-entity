@@ -1,5 +1,6 @@
 import type { PropertyCollection }      from 'logic-core/ko';
 import type { MetaTable }               from './meta-table.d.ts';
+import { Func } from 'mocha';
 
 /**
  * `MetaTableCollection` 클래스는 메타 테이블을 관리하는 컬렉션을 정의합니다.  
@@ -16,7 +17,12 @@ declare class MetaTableCollection extends PropertyCollection<MetaTable> {
     constructor(owner: object);
 
     /**
-     * 메타 테이블을 컬렉션에 추가합니다. 추가할 테이블은 테이블명(문자열) 또는 `MetaTable` 객체일 수 있습니다.
+     * 컬렉션 추가에 사용되는 메타 테이블의 기본 생성자입니다.
+     */
+    protected _baseType: typeof MetaTable;
+
+    /**
+     * 테이블명을 문자열로 지정하거나 MetaTable 인스턴스를 전달하여 컬렉션에 추가합니다.
      * 
      * @param table - 추가할 메타 테이블 또는 테이블명
      * @returns 추가된 테이블의 인덱스

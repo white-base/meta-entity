@@ -12,9 +12,6 @@ class ITransaction {
     
     static _NS = 'Interface';    // namespace
     static _KIND = 'interface';
-    
-    constructor() {
-    }
 
     /**
      * 변경을 수락합니다. (commit)

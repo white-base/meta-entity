@@ -136,7 +136,7 @@ declare class MetaSet extends MetaElement
      * @example
      * metaSet.read(dataObject, 3); // 데이터 객체를 읽어와 메타셋 로딩
      */
-    read(obj: object, opt: number): void; // TODO: obj 타입으로 분리 필요
+    read(obj: object, opt?: number): void; // TODO: obj 타입으로 분리 필요
 
     /**
      * 스키마를 읽어와서 메타셋에 적용합니다.  

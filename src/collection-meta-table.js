@@ -20,14 +20,13 @@ var MetaTableCollection  = (function (_super) {
 
         var _baseType = MetaTable;
         /**
-         * 기본 생성 타입
+         * 컬렉션 추가에 사용되는 메타 테이블의 기본 생성자입니다.
          * @member {BaseColumnCollection} MetaTableCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
             set: function(nVal) { 
                 if (!(typeof nVal === 'function')) throw new ExtendError(/EL05421/, null, [this.constructor.name, typeof nVal]);
-                // if (!(new nVal('temp') instanceof MetaTable)) throw new ExtendError('ES032', ['_baseType', 'MetaTable']);
                 if (!(Type.isProtoChain(nVal, MetaTable))) throw new ExtendError(/EL05422/, null, [this.constructor.name]);
                 _baseType = nVal;
             },
@@ -35,7 +34,7 @@ var MetaTableCollection  = (function (_super) {
             enumerable: true
         });
 
-        this._elemTypes = MetaTable;   // 컬렉션 타입 설정
+        this._elemTypes.push(MetaTable);   // 컬렉션 타입 설정
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', 'existTableName'];

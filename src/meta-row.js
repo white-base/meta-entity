@@ -31,7 +31,7 @@ var MetaRow  = (function (_super) {
         /**
          * 내부 변수 접근
          * 
-         * @member {Array<string>} MetaRow#$elements
+         * @member {Array<string | number | boolean>} MetaRow#$elements
          * @readonly
          * @private
          */
@@ -41,7 +41,6 @@ var MetaRow  = (function (_super) {
             configurable: false,
             enumerable: false,
         });
-
 
         /** 
          * 이벤트 객체
@@ -116,7 +115,7 @@ var MetaRow  = (function (_super) {
          * 변경전 이벤트 
          * 
          * @event MetaRow#onChanged 
-         * @param {function}    p_callback
+         * @param {Function}    p_callback
          * @param {number}      p_callback.p_idx  index
          * @param {any}         p_callback.p_nValue 신규 값
          * @param {any}         p_callback.p_oValue 기존 값
@@ -132,7 +131,7 @@ var MetaRow  = (function (_super) {
          * 변경후 이벤트 
          * 
          * @event MetaRow#onChanged 
-         * @param {function}    p_callback
+         * @param {Function}    p_callback
          * @param {number}      p_callback.p_idx  index
          * @param {any}         p_callback.p_nValue 신규 값
          * @param {any}         p_callback.p_oValue 기존 값
@@ -143,23 +142,6 @@ var MetaRow  = (function (_super) {
             configurable: false,
             enumerable: false,
         });
-
-        // inner variable access
-        // this.__GET$elements = function(call) {
-        //     if (call instanceof MetaRow) return $elements;
-        // }
-        // this.__GET$_keys = function(call) {
-        //     if (call instanceof MetaRow) return _keys;
-        // };
-        // this.__SET$elements = function(val, call) {
-        //     if (call instanceof MetaRow) $elements = val;
-        // }
-        // this.__SET$_keys = function(val, call) {
-        //     if (call instanceof MetaRow) _keys = val;
-        // };
-        // this.__SET$_entity = function(val, call) {
-        //     if (call instanceof MetaRow) _entity = val;
-        // };
         
         // BaseEntity 등록 & order(순서) 값 계산
         if (!(p_entity instanceof MetaObject && p_entity.instanceOf('BaseEntity'))) {
@@ -178,8 +160,6 @@ var MetaRow  = (function (_super) {
             Object.defineProperty(this, alias, this._getPropDescriptor(idx));
         }
 
-        
-
         Util.implements(MetaRow, this);         // strip:
     }
     Util.inherits(MetaRow, _super);
@@ -195,11 +175,11 @@ var MetaRow  = (function (_super) {
     }
     
     /**
-     * TODO:
+     * 지정된 인덱스에 대한 프로퍼티 기술자를 반환합니다. TODO:
      * 
      * @param {*} p_idx 
-     * @param {*} p_enum 
-     * @returns 
+     * @param {*} [p_enum] 
+     * @returns {object} 프로퍼티 기술자
      */
     MetaRow.prototype._getPropDescriptor = function(p_idx, p_enum) {
         if (typeof p_enum !== 'boolean') p_enum = true;
@@ -236,8 +216,8 @@ var MetaRow  = (function (_super) {
     /**
      * 속성명 변경
      * 
-     * @param {string} [p_entity] 대상의 엔티티 기준으로 생성
-     * @returns {MetaRow}
+     * @param {string} p_oldKey 기존 키
+     * @param {string} p_newKey 신규 키
      */
     MetaRow.prototype._changeKey  = function(p_oldKey, p_newKey) {
         var idx;
@@ -264,36 +244,6 @@ var MetaRow  = (function (_super) {
     Object.defineProperty(MetaRow.prototype, '_changeKey', {
         enumerable: false
     });
-
-
-    // function $getPropDescriptor(p_idx, p_enum) {
-    //     if (typeof p_enum !== 'boolean') p_enum = true;
-    //     return {
-    //         get: function() { return this.$elements[p_idx]; },
-    //         set: function(nVal) {
-    //             var oldValue = this.$elements[p_idx];
-    //             var column;
-    //             // 엔티티 항상 존재함
-    //             column = this._entity.columns[p_idx];
-    //             if (column && column._valueTypes.length > 0) Type.matchType([column._valueTypes], nVal);
-    //             // 트렌젹션 처리 => 함수로 추출 검토
-    //             if (this._entity && !this._entity.rows.autoChanges) {
-    //                 var etc = 'idx:'+ p_idx +', new:' + nVal + ', old:'+ oldValue;
-    //                 var pos = this._entity.rows.indexOf(this);
-    //                 if (pos > -1) {     // 컬력션에 포힘때 : 변경시점에 큐에 추가
-    //                     this._entity.rows._transQueue.update(pos, this, this.clone(), etc);
-    //                 }
-    //             }
-    //             // 이벤트 및 처리
-    //             this._onChanging(p_idx, nVal, oldValue);
-    //             this.$elements[p_idx] = nVal;
-    //             this._onChanged(p_idx, nVal, oldValue);
-
-    //         },
-    //         configurable: false,
-    //         enumerable: p_enum
-    //     };
-    // }
     
     /**
      * 로우 요소 변경전 이벤트

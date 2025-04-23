@@ -32,8 +32,8 @@ declare class MetaTableColumnCollection<T> extends BaseColumnCollection<T> {
      * 이름과 값을 사용하여 컬렉션에 새 컬럼을 추가합니다. 컬럼은 내부에서 생성됩니다.
      * 
      * @param name - 추가할 컬럼명
-     * @param value - 컬럼의 기본값 (문자열, 숫자 또는 불리언)
-     * @returns 새로 생성된 `BaseColumn` 객체입니다.
+     * @param value - 컬럼의 초기 값 (문자열, 숫자 또는 불리언)
+     * @returns 추가된 `BaseColumn` 객체입니다.
      * 
      * @example
      * const column = collection.addValue("user_age", 30); // 이름과 값으로 컬럼 추가

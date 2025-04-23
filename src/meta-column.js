@@ -15,16 +15,16 @@ var MetaColumn  = (function (_super) {
      * @extends BaseColumn
      * @param {string} p_name 컬럼명
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
-     * @param {object} [p_property] 
-     * @param {object} p_property.default 기본값
-     * @param {boolean} p_property.required 필수 유무
-     * @param {array<object.function>} p_property.constraints 제약조건
-     * @param {string | number | boolean} p_property.value value 값
-     * @param {function} p_property.getter 겟터
-     * @param {function} p_property.setter 셋터
-     * @param {string} p_property.alias 별칭
-     * @param {function} p_property.onChanged value 변경 후 이벤트
-     */
+     * @param {object} [p_property] 초기 속성 설정 객체
+     * @param {string | number | boolean} [p_property.value] 초기값
+     * @param {string} [p_property.alias] 별칭
+     * @param {string | number | boolean} [p_property.default] 기본값
+     * @param {boolean} [p_property.required] 필수 여부
+     * @param {array<object | function>} [p_property.constraints] 제약조건
+     * @param {function} [p_property.getter] getter 함수
+     * @param {function} [p_property.setter] setter 함수
+     * @param {function} [p_property.onChanged] 변경 이벤트 바인딩
+      */
     function MetaColumn(p_name, p_entity, p_property) {
         _super.call(this, p_name, p_entity);
 
@@ -37,6 +37,7 @@ var MetaColumn  = (function (_super) {
 
         /** 
          * 이벤트 객체
+         * 
          * @private
          * @member {EventEmitter} MetaColumn#$event  
          */
@@ -44,7 +45,7 @@ var MetaColumn  = (function (_super) {
             get: function() { return $event; },
             configurable: false,
             enumerable: false,
-        });        
+        });
 
         /**
          * 컬럼 value의 필수 여부
@@ -196,6 +197,7 @@ var MetaColumn  = (function (_super) {
      * 
      * @param {*} p_nValue 변경 값
      * @param {*} p_oValue 기존 값
+     * @protected
      * @listens MetaColumn#_onChanged
      */
     MetaColumn.prototype._onChanged = function(p_nValue, p_oValue) {
@@ -206,6 +208,7 @@ var MetaColumn  = (function (_super) {
     /**
      * 프로퍼티 객체로 속성 로드
      * 
+     * @protected
      * @param {object} p_property 
      */
     MetaColumn.prototype._load = function(p_property) {
@@ -228,19 +231,19 @@ var MetaColumn  = (function (_super) {
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
      * - 순환참조는 $ref 값으로 대체된다.  
      * 
-     * @param {number} p_vOpt 가져오기 옵션  
+     * @param {number} p_mode 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
      * a.getObject(2) == b.getObject(2)  
-     * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
+     * @param {object | array<object>} [p_context] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
-    MetaColumn.prototype.getObject = function(p_vOpt, p_owned) {
-        var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        // var vOpt = p_vOpt || 0;
-        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+    MetaColumn.prototype.getObject = function(p_mode, p_context) {
+        var obj = _super.prototype.getObject.call(this, p_mode, p_context);
+        // var vOpt = p_mode || 0;
+        // var owned = p_context ? [].concat(p_context, obj) : [].concat(obj);
 
         if (!Type.deepEqual(this.$event.$storage, {})) {
             obj['$storage'] = this.$event.$storage;
@@ -257,25 +260,25 @@ var MetaColumn  = (function (_super) {
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
      * 
-     * @param {object} p_oGuid guid 타입의 객체
-     * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
-     * 기본값은 p_oGuid 객체와 동일
+     * @param {object} p_guidObj guid 타입의 객체
+     * @param {object} [p_guidRootObj] 현재 객체를 설정하는 원본 guid 객체  
+     * 기본값은 p_guidObj 객체와 동일
      */
-    MetaColumn.prototype.setObject  = function(p_oGuid, p_origin) {
-        _super.prototype.setObject.call(this, p_oGuid, p_origin);
+    MetaColumn.prototype.setObject  = function(p_guidObj, p_guidRootObj) {
+        _super.prototype.setObject.call(this, p_guidObj, p_guidRootObj);
         
-        // var origin = p_origin ? p_origin : p_oGuid;
+        // var origin = p_guidRootObj ? p_guidRootObj : p_guidObj;
         // var entity;
 
-        if (p_oGuid['$storage']) {
-            this.$event.$storage = p_oGuid['$storage'];
+        if (p_guidObj['$storage']) {
+            this.$event.$storage = p_guidObj['$storage'];
         }
-        if (p_oGuid['required']) this.required = p_oGuid['required'];
-        // if (p_oGuid['optional']) this.optional = p_oGuid['optional'];
-        if (p_oGuid['constraints']) this.constraints = p_oGuid['constraints'];
-        if (p_oGuid['getter']) this.getter = p_oGuid['getter'];
-        if (p_oGuid['setter']) this.setter = p_oGuid['setter'];
-        // if (p_oGuid['value']) this.value = p_oGuid['value'];
+        if (p_guidObj['required']) this.required = p_guidObj['required'];
+        // if (p_guidObj['optional']) this.optional = p_guidObj['optional'];
+        if (p_guidObj['constraints']) this.constraints = p_guidObj['constraints'];
+        if (p_guidObj['getter']) this.getter = p_guidObj['getter'];
+        if (p_guidObj['setter']) this.setter = p_guidObj['setter'];
+        // if (p_guidObj['value']) this.value = p_guidObj['value'];
     };
 
     /**
@@ -312,8 +315,8 @@ var MetaColumn  = (function (_super) {
      * 제약조건을 추가  
      * REVIEW: 정규식으로 반대 조건을 모두 나열 할수 있으므로, 항상 실패조건을 하는게 맞을지? 검토  
      * 
-     * @param {Regexp} p_regex 정규표현식
-     * @param {string} p_msg  regexp 입력시
+     * @param {Regexp | Function} p_regex 정규표현식
+     * @param {string} [p_msg]  regexp 입력시
      * @param {string} [p_code] regexp 입력시
      * @param {boolean} [p_condition] <기본값 false> 성공/실패 조건
      * @param {boolean} p_condition.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
@@ -343,8 +346,6 @@ var MetaColumn  = (function (_super) {
      * TODO: number, boolean 형이 입력될경우, 기본 제약 조건 valueTypes 검사여부 검토?, 예외가 아니고 메세지로 표현?  
      * 
      * @param {string | number | boolean} p_value 검사할 값
-     * @param {object} result 메세지는 참조(객체)형 으로 전달
-     * @param {number} p_option 1. required 참조 | 2: null검사 진행   |  3: null검사 무시
      * @returns {object | undefined} 리턴값이 없으면 검사 성공
      */
     MetaColumn.prototype.valid = function(p_value) {

@@ -1,4 +1,5 @@
 import type { PropertyCollection }  from 'logic-core/ko';
+import type { BaseColumn }          from './base-column.d.ts';
 
 /**
  * 컬럼 컬렉션의 최상위 추상 클래스입니다.  
@@ -21,24 +22,24 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
      * 
      * @protected
      */
-    _baseType: T;
+    protected _baseType: typeof BaseColumn;
 
     /**
-     * 컬렉션의 소유자가 엔티티(BaseEntity)인지 여부를 반환합니다.  
+     * '_owner'가 'BaseEntity'의 인스턴스인지 여부를 확인합니다.
      * 
      * @protected
      * @returns 엔티티에 소속된 경우 true입니다.
      */
-    _ownerIsEntity(): boolean;
+    protected _ownerIsEntity(): boolean;
     
     /**
      * 컬렉션 인덱스에 대한 프로퍼티 기술자를 반환합니다.
      * 
-     * @param idx 인덱스
+     * @param idx 인덱스 번호
      * @param enumerable 열거 가능 여부 (기본: true)
      * @returns 컬럼 접근을 위한 프로퍼티 기술자입니다.
      */
-    _getPropDescriptor(idx: number, enumerable: boolean): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
     
     /**
      * 컬렉션에 컬럼을 추가합니다.
@@ -92,9 +93,10 @@ declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
      * 값을 기반으로 컬럼을 생성하여 추가합니다.  
      * 반드시 하위 클래스에서 구현해야 합니다.  
      * 
-     * @param args - 인자
+     * @param args - 컬럼 추가에 필요한 가변 인자
+     * @returns 하위 클래스에 따라 반환형이 달라질 수 있습니다.
      */
-    abstract addValue(...args): void;
+    abstract addValue(...args: unknown[]): unknown;
 }
 
 export default BaseColumnCollection;

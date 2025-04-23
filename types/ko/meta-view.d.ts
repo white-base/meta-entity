@@ -13,7 +13,12 @@ declare class MetaView extends BaseEntity {
      * @param name - 뷰 이름입
      * @param baseEntity - 기본 엔티티
      */
-    constructor(name: string, baseEntity: BaseEntity);
+    constructor(name: string, baseEntity?: BaseEntity);
+
+    /**
+     * 컬럼 생성 시 기본적으로 참조되는 엔티티입니다.
+     */
+    protected _baseEntity: BaseEntity;
 
     /**
      * 메타 뷰 이름 입니다.
@@ -24,11 +29,6 @@ declare class MetaView extends BaseEntity {
      * 뷰의 컬럼 컬렉션 입니다.
      */
     columns: MetaViewColumnCollection<MetaColumn>;
-
-    /**
-     * 기본 엔티티 입니다.
-     */
-    _baseEntity: BaseEntity;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -82,7 +82,6 @@ declare class MetaView extends BaseEntity {
      * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
     copy(filter: string[]): this;
-
 }
 
 export default MetaView;

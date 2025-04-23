@@ -53,18 +53,18 @@ var MetaViewColumnCollection  = (function (_super) {
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
      * - 순환참조는 $ref 값으로 대체된다.  
      * 
-     * @param {number} p_vOpt 가져오기 옵션  
+     * @param {number} p_mode 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
      * a.getObject(2) == b.getObject(2)  
-     * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
+     * @param {object | array<object>} [p_context] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
-    MetaViewColumnCollection.prototype.getObject = function(p_vOpt, p_owned) {
-        var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        var vOpt = p_vOpt || 0;
+    MetaViewColumnCollection.prototype.getObject = function(p_mode, p_context) {
+        var obj = _super.prototype.getObject.call(this, p_mode, p_context);
+        var vOpt = p_mode || 0;
         
         if (vOpt === 0) {   // 참조로 바꿈
             for (var i = 0; i < obj['_elem'].length; i++) {
@@ -96,6 +96,7 @@ var MetaViewColumnCollection  = (function (_super) {
      * 
      * @param {string | MetaColumn} p_column 컬럼
      * @param {BaseColumnCollection} [p_refCollection] 참조컬렉션
+     * @return {number} 등록한 index
      */
     MetaViewColumnCollection.prototype.add  = function(p_column, p_refCollection) {
         var collection;
@@ -167,7 +168,7 @@ var MetaViewColumnCollection  = (function (_super) {
     /**
      * 엔티티의 모든 컬럼을 추가
      * 
-     * @param {BaseEntity} p_entity 
+     * @param {BaseEntity} p_entity 추가할 컬럼이 포함된 엔티티
      */
     MetaViewColumnCollection.prototype.addEntity  = function(p_entity) {
         if (typeof p_entity !== 'undefined' && !(p_entity instanceof MetaElement && p_entity.instanceOf('BaseEntity'))) {

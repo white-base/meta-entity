@@ -13,9 +13,6 @@ class IExportControl {
 
     static _NS = 'Interface';    // namespace
     static _KIND = 'interface';
-    
-    constructor() {
-    }
 
     /**
      * 대상을 내보냅니다. (쓰기)

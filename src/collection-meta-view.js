@@ -30,7 +30,6 @@ var MetaViewCollection  = (function (_super) {
             get: function() { return _baseType; },
             set: function(nVal) { 
                 if (!(typeof nVal === 'function')) throw new ExtendError(/EL05441/, null, [typeof nVal]);
-                // if (!(new nVal('temp') instanceof MetaView)) throw new ExtendError('ES032', ['_baseType', 'MetaView']);
                 if (!(Type.isProtoChain(nVal, MetaView))) throw new ExtendError(/EL05442/, null, [this.constructor.name]);
                 _baseType = nVal;
             },
@@ -38,7 +37,7 @@ var MetaViewCollection  = (function (_super) {
             enumerable: true
         });
 
-        this._elemTypes = MetaView;   // 컬렉션타입 설정
+        this._elemTypes.push(MetaView);   // 컬렉션타입 설정
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', 'existViewName'];
@@ -49,11 +48,11 @@ var MetaViewCollection  = (function (_super) {
     MetaViewCollection._PARAMS = ['_owner'];  // creator parameter
 
     /**
-     * 뷰 컬렉션에 뷰 엔티티를 추가한다.
+     * 컬렉션에 MetaView 객체를 추가합니다.
      * 
      * @param {string | MetaView} p_view 추가할 뷰
      * @param {BaseColumnCollection} [p_baseEntity] 기본 컬럼 컬렉션
-     * @returns {MetaView} 등록한 아이템
+     * @returns {number} 추가된 뷰의 인덱스입니다.
      * 
      * @example
      *  - string                    : 생성후   string      이름으로 등록 
@@ -93,7 +92,7 @@ var MetaViewCollection  = (function (_super) {
      * 메타뷰가 존재하는지 확인합니다.
      * 
      * @param {string} p_key 뷰이름
-     * @returns 
+     * @returns {boolean} 존재여부
      */
     MetaViewCollection.prototype.existViewName  = function(p_key) {
         for (var i = 0; this.count > i; i++) {

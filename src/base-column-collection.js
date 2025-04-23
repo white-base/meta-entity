@@ -25,7 +25,7 @@ var BaseColumnCollection  = (function (_super) {
         /**
          * 기본 컬럼 타입
          * 
-         * @member {BaseColumn} BaseColumnCollection#_baseType
+         * @member {typeof BaseColumn} BaseColumnCollection#_baseType
          */
         Object.defineProperty(this, '_baseType', {
             get: function() { return _baseType; },
@@ -53,7 +53,7 @@ var BaseColumnCollection  = (function (_super) {
 
 
     /**
-     * this._onwer 이 엔티티 여부를 확인합니다.
+     * _owner 이 엔티티 여부를 확인합니다.
      * 
      * @returns {boolean}
      */
@@ -70,6 +70,8 @@ var BaseColumnCollection  = (function (_super) {
      * 
      * @protected
      * @param {number} p_idx 인덱스 번호
+     * @param {number} [p_enum=true] 열거 가능 여부
+     * @returns {PropertyDescriptor} 컬럼 접근을 위한 프로퍼티 기술자입니다.
      */
     BaseColumnCollection.prototype._getPropDescriptor = function(p_idx, p_enum) {
         if (typeof p_enum !== 'boolean') p_enum = true;
@@ -77,11 +79,6 @@ var BaseColumnCollection  = (function (_super) {
             get: function() { return this.$elements[p_idx]; },
             set: function() {
                 throw new ExtendError(/EL05148/, null, []);
-                // var oVal = this.$elements[p_idx];
-                // if (this._elemTypes.length > 0) Type.matchType([this._elemTypes], nVal);
-                // this._onChanging(p_idx, nVal, oVal);  // before event
-                // this.$elements[p_idx] = nVal;
-                // this._onChanged(p_idx, nVal, oVal);   // after event
             },
             configurable: true,
             enumerable: p_enum,
@@ -114,7 +111,7 @@ var BaseColumnCollection  = (function (_super) {
      * 컬럼을 컬렉션에서 삭제
      * 
      * @param {number} p_idx 
-     * @returns {boolean}
+     * @returns {boolean} 컬렉션에 로우가 존재할 경우 예외가 발생합니다.
      */
     BaseColumnCollection.prototype.removeAt = function(p_idx) {
         if (this._owner.rows.count > 0) throw new ExtendError(/EL05146/, null, [this._owner.rows.count]);
@@ -184,7 +181,12 @@ var BaseColumnCollection  = (function (_super) {
         enumerable: false
     });
 
-    /** @abstract */
+    /**
+     * 값을 기반으로 컬럼을 생성하여 추가합니다.  
+     * 반드시 하위 클래스에서 구현해야 합니다.  
+     * 
+     * @abstract
+     */
     BaseColumnCollection.prototype.addValue = function() {
         throw new ExtendError(/EL05147/, null, []);
     };

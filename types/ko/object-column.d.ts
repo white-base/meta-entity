@@ -14,7 +14,7 @@ declare class ObjectColumn extends BaseColumn {
      * @param entity - 이 컬럼을 소유하는 엔티티
      * @param prop - 객체 컬럼의 속성
      */
-    constructor(name: string, entity: BaseEntity, prop: object);
+    constructor(name: string, entity?: BaseEntity, prop?: object);  // TODO: prop.. 타입 분리
     
     /**
      * 객체의 속성을 로딩합니다.
@@ -24,7 +24,7 @@ declare class ObjectColumn extends BaseColumn {
      * @example
      * objectColumn._load({ key: 'value' }); // 속성을 로드하여 컬럼에 적용
      */
-    _load(prop: object): void;    // TODO: 타입변환
+    protected _load(prop: object): void;    // TODO: 타입변환
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.

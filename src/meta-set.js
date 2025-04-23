@@ -50,7 +50,6 @@ var MetaSet  = (function (_super) {
         /**
          * 메타 테이블 컬렉션
          * 
-         * @readonly
          * @member {MetaTableCollection} MetaSet#tables
          */
         Object.defineProperty(this, 'tables', {
@@ -62,7 +61,6 @@ var MetaSet  = (function (_super) {
         /**
          * 메타 뷰 컬렉션
          * 
-         * @readonly
          * @member {MetaViewCollection} MetaSet#views
          */
         Object.defineProperty(this, 'views', {
@@ -231,7 +229,7 @@ var MetaSet  = (function (_super) {
      * 기존을 초기화 하고 불러오는 역활  
      * 
      * @param {object | string} p_obj 불러오기 대상
-     * @param {function} [p_parse] 파서
+     * @param {Function} [p_parse] 파서
      */
     MetaSet.prototype.load = function(p_obj, p_parse) {
         var obj = p_obj;
@@ -255,7 +253,7 @@ var MetaSet  = (function (_super) {
      * 메타셋 객체 출력(직렬화)
      * 
      * @param {number} [p_vOpt] 옵션 (0, 1, 2)
-     * @param {function} [p_stringify] 파서출력 함수
+     * @param {Function} [p_stringify] 파서출력 함수
      * @param {string} [p_space] 공백
      * @returns {string}
      */
@@ -411,7 +409,7 @@ var MetaSet  = (function (_super) {
     /**
      * 메타셋 스키마(컬럼)을 스키마 타입의 객체로 쓰기
      * 
-     * @param {number} p_vOpt 옵션
+     * @param {number} [p_vOpt=0] 옵션
      * @returns {object} 스키마 타입
      */
     MetaSet.prototype.writeSchema  = function(p_vOpt) {
@@ -431,7 +429,7 @@ var MetaSet  = (function (_super) {
     /**
      * 메타셋 데이터(로우)를 스키마 타입의 객체로 쓰기
      * 
-     * @param {number} p_vOpt 옵션
+     * @param {number} [p_vOpt=0] 옵션
      * @returns {object} 스키마 타입
      */
     MetaSet.prototype.writeData  = function(p_vOpt) {

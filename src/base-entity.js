@@ -193,7 +193,7 @@ var BaseEntity  = (function (_super) {
      * @protected
      * @param {BaseEntity} p_entity 빌드 대상 엔티티
      * @param {function} p_callback 로우 대상 조회 콜백
-     * @param {array<string>} p_items 선택할 로우명 , [] 또는 undefined 시 전체 선택    TODO: 필수 선택 여부 확인 필요
+     * @param {string[]} p_items 선택할 로우명 , [] 또는 undefined 시 전체 선택    TODO: 필수 선택 여부 확인 필요
      * @returns {BaseEntity}
      */
     BaseEntity.prototype._buildEntity = function(p_entity, p_callback, p_items) {

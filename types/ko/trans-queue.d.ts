@@ -15,17 +15,13 @@ declare class TransactionQueue {
 
     /**
      * 큐에 저장된 트랜잭션 목록입니다.
-     * 
-     * @readonly
      */
-    queue: object[];
+    readonly queue: object[];
 
     /**
      * 트랜잭션 큐가 작업할 대상 컬렉션입니다.
-     * 
-     * @readonly
      */
-    collection: IArrayCollection<any>;
+    readonly collection: IArrayCollection<any>;
 
     /**
      * 트랜잭션 큐를 초기화합니다.  

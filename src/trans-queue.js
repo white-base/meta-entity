@@ -148,7 +148,7 @@ var TransactionQueue  = (function () {
     /**
      * 변경 내역 조회
      * 
-     * @returns {array<object>}
+     * @returns {object[]} 변경 내역
      */
     TransactionQueue.prototype.select  = function() {
         return this.queue;

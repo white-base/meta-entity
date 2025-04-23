@@ -13,9 +13,6 @@ class IGroupControl {
     static _NS = 'Interface';    // namespace
     static _KIND = 'interface';
     
-    constructor() {
-    }
-
     /**
      * 병합합니다.
      * 
@@ -28,7 +25,6 @@ class IGroupControl {
     /**
      * 복사합니다.
      * 
-     * @returns {any}
      * @abstract
      */
     copy() {

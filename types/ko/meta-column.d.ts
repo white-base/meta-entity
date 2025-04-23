@@ -24,7 +24,7 @@ declare class MetaColumn extends BaseColumn {
     /**
      * 이벤트 객체로, 컬럼 값의 변경과 같은 이벤트를 처리합니다.
      */
-    $event: EventEmitter;
+    private $event: EventEmitter;
 
     /**
      * 컬럼의 값에 직접 접근을 제한합니다.  
@@ -32,7 +32,7 @@ declare class MetaColumn extends BaseColumn {
      * 
      * @override
      */
-    $value: any;
+    $value: ValueType;
 
     /**
      * 컬럼 값의 필수 여부를 설정합니다.  
@@ -97,7 +97,7 @@ declare class MetaColumn extends BaseColumn {
      * @param oVal - 기존 값
      * @listens MetaColumn#onChanged
      */
-    _onChanged(nVal: ValueType, oVal: ValueType): void;
+    protected _onChanged(nVal: ValueType, oVal: ValueType): void;
 
     /**
      * 컬럼의 속성을 로드합니다.
@@ -107,7 +107,7 @@ declare class MetaColumn extends BaseColumn {
      * @example
      * column._load({ required: true, constraints: [...] });
      */
-    _load(property: object): void;    // TODO: object 타입 분리 필요
+    protected _load(property: object): void;    // TODO: object 타입 분리 필요
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -133,7 +133,7 @@ declare class MetaColumn extends BaseColumn {
      * @example
      * column.setObject(serializedObject); // 직렬화된 객체를 현재 컬럼에 설정
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * 현재 컬럼을 복제하여 새로운 `MetaColumn` 객체를 생성합니다.
@@ -145,6 +145,13 @@ declare class MetaColumn extends BaseColumn {
      * const clone = column.clone(entity);
      */
     clone(entity?: BaseEntity): this;
+
+    /**
+     * 제약 조건을 추가합니다.
+     * 
+     * @param callback - 제약 조건을 검사하는 콜백 함수
+     */
+    addConstraint(callback: Function): void;
 
     /**
      * 제약 조건을 추가합니다.

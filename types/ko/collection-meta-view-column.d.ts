@@ -23,7 +23,7 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
      * @example
      * const entities = collection._refEntities; // 엔티티 목록을 가져옴
      */
-    _refEntities: BaseEntity[];
+    protected _refEntities: BaseEntity[];
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -55,7 +55,7 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
      * const index = collection.add(new MetaColumn("price"), refCollection); // `MetaColumn` 객체로 컬럼 추가
      * const index = collection.add("quantity", refCollection); // 문자열(컬럼명)으로 컬럼 추가
      */
-    add(column: MetaColumn | string, refCollection: BaseColumnCollection<BaseColumn>): number;
+    add(column: MetaColumn | string, refCollection?: BaseColumnCollection<BaseColumn>): number;
 
     /**
      * 이름과 값으로 새 컬럼을 생성하고 컬렉션에 추가합니다.
@@ -68,12 +68,12 @@ declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
      * @example
      * const index = collection.addValue("discount", 10, refCollection); // 이름과 값으로 컬럼 추가
      */
-    addValue(name: string, value: string | number | boolean, refCollection: BaseColumnCollection<BaseColumn>): number;
+    addValue(name: string, value: string | number | boolean, refCollection?: BaseColumnCollection<BaseColumn>): MetaColumn;
 
     /**
      * 주어진 엔티티의 모든 컬럼을 컬렉션에 추가합니다.
      * 
-     * @param entity - 컬렉션에 추가할 엔티티
+     * @param entity - 추가할 컬럼이 포함된 엔티티
      * 
      * @example
      * collection.addEntity(entity); // 주어진 엔티티의 모든 컬럼을 추가

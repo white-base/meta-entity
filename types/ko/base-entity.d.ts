@@ -10,6 +10,7 @@ import type { MetaRowCollection }       from './collection-meta-row.d.ts';
 import type { MetaRow }                 from './meta-row.d.ts';
 import type { MetaView }                from './meta-view.d.ts';
 import type { BaseColumn }              from './base-column.d.ts';
+import type { EnititySchema }           from './T.d.ts';
 
 /**
  * 엔티티의 최상위 추상 클래스입니다.  
@@ -27,10 +28,8 @@ declare abstract class BaseEntity extends MetaElement
 
     /**
      * 이 엔티티가 포함된 메타셋입니다.
-     * 
-     * @protected
      */
-    _metaSet: MetaSet;
+    protected _metaSet: MetaSet;
 
     /**
      * 이 엔티티가 소유한 컬럼 컬렉션입니다.  
@@ -54,7 +53,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param oGuid - getObject()로 얻은 객체
      * @returns 변환된 스키마 객체입니다.
      */
-    static transformSchema(oGuid: object): object;  // TODO: 세부 타입으로 정의 필요
+    static transformSchema(oGuid: object): EnititySchema;
 
     /**
      * 주어진 엔티티에 로우를 생성하고 설정합니다.
@@ -64,7 +63,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param items - 선택할 로우명, [] 또는 undefined 는 전체 로우
      * @returns 생성된 엔티티입니다.
      */
-    _buildEntity(entity: BaseEntity, callback: Function, items: string[]): BaseEntity;
+    protected _buildEntity(entity: BaseEntity, callback: Function, items: string[]): BaseEntity;
 
     /**
      * 주어진 옵션에 따라 엔티티를 읽어옵니다.
@@ -72,7 +71,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param entity - 대상 엔티티
      * @param option - 읽기 옵션
      */
-    _readEntity(entity: BaseEntity, option: number);
+    protected _readEntity(entity: BaseEntity, option: number): void;
 
     /**
      * 주어진 객체에서 스키마 정보를 읽어옵니다.
@@ -81,7 +80,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param createRow - 컬럼이 없을 경우 로우 이름의 컬럼 생성 여부 (기본값: false)
      * @param origin - 원본 객체
      */
-    _readSchema(obj: object, createRow?: boolean, origin?: object);
+    protected _readSchema(obj: object, createRow?: boolean, origin?: object): void;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 변환합니다.

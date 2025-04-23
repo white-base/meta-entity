@@ -64,19 +64,19 @@ var MetaTable  = (function (_super) {
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
      * - 순환참조는 $ref 값으로 대체된다.  
      * 
-     * @param {number} p_vOpt 가져오기 옵션  
+     * @param {number} p_mode 가져오기 옵션  
      * - opt = 0 : 참조 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 1 : 소유 구조의 객체 (_guid: Yes, $ref: Yes)  
      * - opt = 2 : 소유 구조의 객체 (_guid: No,  $ref: No)  
      * 객체 비교 : equal(a, b)  
      * a.getObject(2) == b.getObject(2)  
-     * @param {object | array<object>} [p_owned] 현재 객체를 소유하는 상위 객체들
+     * @param {object | array<object>} [p_context] 현재 객체를 소유하는 상위 객체들
      * @returns {object}  
      */
-    MetaTable.prototype.getObject = function(p_vOpt, p_owned) {
-        var obj = _super.prototype.getObject.call(this, p_vOpt, p_owned);
-        // var vOpt = p_vOpt || 0;
-        // var owned = p_owned ? [].concat(p_owned, obj) : [].concat(obj);
+    MetaTable.prototype.getObject = function(p_mode, p_context) {
+        var obj = _super.prototype.getObject.call(this, p_mode, p_context);
+        // var vOpt = p_mode || 0;
+        // var owned = p_context ? [].concat(p_context, obj) : [].concat(obj);
 
         obj['tableName'] = this.tableName;
         return obj;                        
@@ -85,24 +85,24 @@ var MetaTable  = (function (_super) {
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.   
      * 
-     * @param {object} p_oGuid guid 타입의 객체
-     * @param {object} [p_origin] 현재 객체를 설정하는 원본 guid 객체  
-     * 기본값은 p_oGuid 객체와 동일
+     * @param {object} p_guidObj guid 타입의 객체
+     * @param {object} [p_guidRootObj] 현재 객체를 설정하는 원본 guid 객체  
+     * 기본값은 p_guidObj 객체와 동일
      */
-    MetaTable.prototype.setObject  = function(p_oGuid, p_origin) {
-        _super.prototype.setObject.call(this, p_oGuid, p_origin);
+    MetaTable.prototype.setObject  = function(p_guidObj, p_guidRootObj) {
+        _super.prototype.setObject.call(this, p_guidObj, p_guidRootObj);
         
-        var origin = p_origin ? p_origin : p_oGuid;
+        var origin = p_guidRootObj ? p_guidRootObj : p_guidObj;
         var metaSet;
 
-        if(p_oGuid['_metaSet']) {
-            metaSet = MetaRegistry.findSetObject(p_oGuid['_metaSet']['$ref'], origin);
-            if (!metaSet) throw new ExtendError(/EL05414/, null, [p_oGuid['_metaSet']['$ref']]);
+        if(p_guidObj['_metaSet']) {
+            metaSet = MetaRegistry.findSetObject(p_guidObj['_metaSet']['$ref'], origin);
+            if (!metaSet) throw new ExtendError(/EL05414/, null, [p_guidObj['_metaSet']['$ref']]);
             this._metaSet = metaSet;
         }
-        this.columns.setObject(p_oGuid['columns'], origin);
-        this.rows.setObject(p_oGuid['rows'], origin);
-        this.tableName = p_oGuid['tableName'];
+        this.columns.setObject(p_guidObj['columns'], origin);
+        this.rows.setObject(p_guidObj['rows'], origin);
+        this.tableName = p_guidObj['tableName'];
     };
 
     /**
@@ -172,7 +172,7 @@ var MetaTable  = (function (_super) {
     /**
      * 변경목록 얻기
      * 
-     * @returns {array<object>}
+     * @returns {object[]}
      */
     MetaTable.prototype.getChanges  = function() {
         return this.rows._transQueue.select();

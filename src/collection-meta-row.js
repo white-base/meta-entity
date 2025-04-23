@@ -52,7 +52,7 @@ var MetaRowCollection  = (function (_super) {
      * MetaRow 추가 idx 를 기준으로 검사한다.
      * 
      * @param {MetaRow} p_row 추가할 MetaRow
-     * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)
+     * @param {boolean} [p_isCheck=false] 유효성 검사 여부
      * @returns {number}
      */
     MetaRowCollection.prototype.add  = function(p_row, p_isCheck) {
@@ -69,7 +69,7 @@ var MetaRowCollection  = (function (_super) {
      * 
      * @param {number} p_pos 추가할 위치 인덱스
      * @param {MetaRow} p_row 추가할 MetaRow
-     * @param {boolean} [p_isCheck] 유효성 검사 여부 (기본값 = false)
+     * @param {boolean} [p_isCheck=false] 유효성 검사 여부
      * @returns {boolean}
      */
     MetaRowCollection.prototype.insertAt  = function(p_pos, p_row, p_isCheck) {

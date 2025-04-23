@@ -12,9 +12,6 @@ class ISchemaControl {
 
     static _NS = 'Interface';    // namespace
     static _KIND = 'interface';
-    
-    constructor() {
-    }
 
     /**
      * 스키마를 가져옵니다.

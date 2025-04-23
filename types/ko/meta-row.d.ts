@@ -20,49 +20,33 @@ declare class MetaRow extends MetaObject {
 
     /**
      * 내부 변수로, 행의 요소들을 저장합니다.
-     * 
-     * @private
      */
     $elements: any[];
 
     /**
      * 이벤트 객체로, 행의 데이터 변경과 같은 이벤트를 처리합니다.
-     * 
-     * @private
      */
     $event: EventEmitter;
 
     /**
-     * 이 `MetaRow`가 소속된 엔티티를 반환합니다.
-     * 
-     * @readonly
-     * @returns 이 행을 소유하는 `BaseEntity` 객체입니다.
+     * 행의 요소 키입니다.
      */
-    _entity: BaseEntity;
+    readonly $keys: string[];
 
     /**
-     * 행의 요소 키를 반환합니다.
-     * 
-     * @readonly
-     * @returns 요소의 키 배열입니다.
+     * 이 `MetaRow`가 소속된 엔티티입니다.
      */
-    $keys: string[];
+    protected readonly _entity: BaseEntity;
 
     /**
      * 행의 요소들을 목록을 반환합니다.
-     * 
-     * @readonly
-     * @returns 요소들의 배열입니다.
      */
-    _list: any[];
+    protected readonly _list: any[];
 
     /**
      * 행의 요소 개수를 반환합니다.
-     * 
-     * @readonly
-     * @returns 요소의 총 개수입니다.
      */
-    count: number;
+    readonly count: number;
 
     /**
      * 요소 변경 전 이벤트입니다.
@@ -93,6 +77,22 @@ declare class MetaRow extends MetaObject {
     onChanged: (idx: number, nVal: any, oVal: any, _this: this) => void;
 
     /**
+     * 지정된 인덱스에 대한 프로퍼티 기술자를 반환합니다.
+     * 
+     * @param idx - 프로퍼티 기술자를 가져올 인덱스
+     * @param enumerable - 열거 가능 여부 (기본값: true)
+     * @returns 지정된 인덱스에 대한 프로퍼티 기술자 객체입니다.
+     */
+    protected _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
+
+    /**
+     * 내부 '$key' 를 변경합니다.
+     * @param oldKey 기존 키
+     * @param newKey 신규 키
+     */
+    protected _changeKey(oldKey: string, newKey: string): void;
+
+    /**
      * 요소 변경 전 이벤트를 처리합니다.
      * 
      * @param idx - 변경이 발생한 인덱스
@@ -100,7 +100,7 @@ declare class MetaRow extends MetaObject {
      * @param oVal - 기존의 값
      * @listens MetaRow#onChanging
      */
-    _onChanging(idx: number, nVal: any, oVal: any): void;
+    protected _onChanging(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 요소 변경 후 이벤트를 처리합니다.
@@ -110,7 +110,7 @@ declare class MetaRow extends MetaObject {
      * @param oVal - 이전의 값
      * @listens MetaRow#onChanged
      */
-    _onChanged(idx: number, nVal: any, oVal: any): void;
+    protected _onChanged(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
