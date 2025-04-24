@@ -34,7 +34,7 @@ var MetaTableCollection  = (function (_super) {
             enumerable: true
         });
 
-        this._elemTypes.push(MetaTable);   // 컬렉션 타입 설정
+        this._elemTypes = MetaTable;   // 컬렉션 타입 설정
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', 'existTableName'];

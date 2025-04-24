@@ -37,7 +37,7 @@ var MetaViewCollection  = (function (_super) {
             enumerable: true
         });
 
-        this._elemTypes.push(MetaView);   // 컬렉션타입 설정
+        this._elemType = MetaView;   // 컬렉션타입 설정
 
         // 예약어 등록 
         this.$KEYWORD = ['_baseType', 'existViewName'];
