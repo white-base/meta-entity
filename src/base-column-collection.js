@@ -77,8 +77,9 @@ var BaseColumnCollection  = (function (_super) {
         if (typeof p_enum !== 'boolean') p_enum = true;
         return {
             get: function() { return this.$elements[p_idx]; },
-            set: function() {
-                throw new ExtendError(/EL05148/, null, []);
+            set: function(nVal) {
+                // throw new ExtendError(/EL05148/, null, []);
+                this.$elements[p_idx].value = nVal;
             },
             configurable: true,
             enumerable: p_enum,

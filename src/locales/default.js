@@ -48,7 +48,7 @@ export default {
   "EL05145": "add(name, vlaue); cannot be added because alias '$2' exists in '$1'",
   "EL05146": "removeAt(idx); cannot remove columnColleciton because _onwer rows exist. _onwer.rows.count = '$1'",
   "EL05147": "addValue(name, value) is an abstract method. Must be implemented",
-  "EL05148": "Column collection cannot use setter property. Add(), remove() method must be used",
+  "EL05148": "Column collection cannot use setter property. Add(), remove() method must be used TODO: removed",
   "EL05150": "---- MetaTableColumnCollection ----",
   "EL05151": "add(any); any 는 'string' | [BaseColumn] 타입입니다. typeof any = '$1'",
   "EL05152": "addValue(name, value); name 은 'string' 타입입니다. typeof name = '$1'",

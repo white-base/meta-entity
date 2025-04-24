@@ -1,6 +1,6 @@
 //==============================================================
 // gobal defined
-import { jest }     from '@jest/globals';
+import { expect, jest }     from '@jest/globals';
 
 import {MetaObject}              from 'logic-core';
 import {MetaElement}             from 'logic-core';
@@ -231,8 +231,10 @@ describe("[target: column-collection.js]", () => {
             it("- add(?) : 예외 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('aa');
+                table1.columns['aa'] = 10
 
-                expect(() => table1.columns['aa'] = 10).toThrow(/EL05148/);
+                expect(table1.columns['aa'].value).toBe(10);
+                // expect(() => table1.columns['aa'] = 10).toThrow(/EL05148/);
                 expect(() => table1.columns.add(1)).toThrow(/EL05151/);
                 expect(() => table1.columns.add({})).toThrow(/EL05151/);
                 expect(() => table1.columns.add(/err/)).toThrow(/EL05151/);
