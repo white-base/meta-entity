@@ -5,7 +5,7 @@ import type { TransactionQueue }        from './trans-queue.d.ts';
  * The 'Transaction Collection' class manages transaction-based collections.  
  * This class provides the ability to apply transaction queues to collections and manage changes.  
  */
-type TransactionCollection<T> = ArrayCollection<T> & {
+declare class TransactionCollection<T> extends ArrayCollection<T> {
 
     /**
      * Creates a 'Transaction Collection' object.  
@@ -114,19 +114,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      */
     rollback(): void;
 
-};
-
-export interface MetaViewCollectionConstructor {
-    /**
-     * `TransactionCollection` 객체를 생성합니다.  
-     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T>(owner: object): TransactionCollection<T>;
 }
-
-declare const TransactionCollection: MetaViewCollectionConstructor
 
 export default TransactionCollection;
 export { TransactionCollection };

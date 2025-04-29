@@ -1,14 +1,18 @@
 import type { BaseColumnCollection }    from './base-column-collection.d.ts';
 import type { BaseColumn }              from './base-column.d.ts';
-import type { MetaColumn }              from './meta-column.d.ts';
 
 /**
  * The 'MetaTableCollection' class defines the collection that manages the columns in the table.  
  * This class provides additional and management capabilities for columns.  
  */
-type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
+declare class MetaTableColumnCollection<T> extends BaseColumnCollection<T> {
 
-
+    /**
+     * Creates a 'MetaTableCollection' object.  
+     * This object creates a collection that manages the columns in the table.  
+     * 
+     * @param owner - Specifies the owner object of this collection.
+     */
     constructor(owner: object);
 
     /**
@@ -36,19 +40,7 @@ type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
      */
     addValue(name: string, value: string | number | boolean): BaseColumn;
     
-};
-
-export interface MetaTableColumnCollectionConstructor {
-    /**
-     * Creates a 'MetaTableCollection' object.  
-     * This object creates a collection that manages the columns in the table.  
-     * 
-     * @param owner - Specifies the owner object of this collection.
-     */
-    new <T = MetaColumn>(owner: object): MetaTableColumnCollection<T>;
 }
-  
-declare const MetaTableColumnCollection: MetaTableColumnCollectionConstructor;
 
 export default MetaTableColumnCollection;
 export { MetaTableColumnCollection };

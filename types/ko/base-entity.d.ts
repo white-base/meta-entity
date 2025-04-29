@@ -45,7 +45,7 @@ declare abstract class BaseEntity extends MetaElement
     /**
      *  이 엔티티가 소유한 로우 컬렉션입니다.  
      */
-    readonly rows: MetaRowCollection;
+    readonly rows: MetaRowCollection<MetaRow>;
 
     /**
      * 직렬화 객체를 스키마 객체로 변환합니다.

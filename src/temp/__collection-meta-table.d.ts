@@ -5,12 +5,15 @@ import type { MetaTable }               from './meta-table.d.ts';
  * The 'MetaTableCollection' class defines the collection that manages the meta table.  
  * This class provides the ability to add meta-table objects and check the existence of tables in the collection.  
  */
-type MetaTableCollection<T> = PropertyCollection<T> & {
+declare class MetaTableCollection extends PropertyCollection<MetaTable> {
 
     /**
-     * Default creator of the meta table used to add collections.
+     * Creates a 'MetaTableCollection' object.  
+     * This object creates a collection that manages the meta table.  
+     * 
+     * @param owner - Specifies the owner object of this collection.
      */
-    _baseType: typeof MetaTable;
+    constructor(owner: object);
 
     /**
      * Adds a meta table to the collection. The table you want to add can be a table name (string) or 'MetaTable' object.
@@ -34,19 +37,7 @@ type MetaTableCollection<T> = PropertyCollection<T> & {
      * constexists = collection.existTablename("user"); // Check the existence of the table name "user"
      */
     existTablename(key: string): boolean;
-};
-
-export interface MetaTableCollectionConstructor {
-    /**
-     * Creates a 'MetaTableCollection' object.  
-     * This object creates a collection that manages the meta table.  
-     * 
-     * @param owner - Specifies the owner object of this collection.
-     */
-    new <T = MetaTable>(owner: object): MetaTableCollection<T>;
 }
-
-declare const MetaTableCollection: MetaTableCollectionConstructor;
 
 export default MetaTableCollection;
 export { MetaTableCollection };

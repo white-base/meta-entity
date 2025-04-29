@@ -1,7 +1,15 @@
 import type { TransactionCollection }   from './collection-transaction.d.ts';
 import type { MetaRow }                 from './meta-row.d.ts';
 
-type MetaRowCollection<T> = TransactionCollection<T> & {
+declare class MetaRowCollection extends TransactionCollection<MetaRow> {
+
+    /**
+     * The creator of the class 'MetaRowCollection'.  
+     * This class provides a collection to manage 'MetaRow' objects.  
+     * 
+     * @param owner - Owner object of this collection.
+     */
+    constructor(owner: object);
     
     /**
      * Gets the property descriptor for the specified index.
@@ -38,19 +46,7 @@ type MetaRowCollection<T> = TransactionCollection<T> & {
      */
     insertAt(pos: number, row: MetaRow, isCheck?: boolean): boolean;
     
-};
-
-export interface MetaRowCollectionConstructor {
-    /**
-     * The creator of the class 'MetaRowCollection'.  
-     * This class provides a collection to manage 'MetaRow' objects.  
-     * 
-     * @param owner - Owner object of this collection.
-     */
-    new <T>(owner: object): MetaRowCollection<T>;
 }
-  
-declare const MetaRowCollection: MetaRowCollectionConstructor;
 
 export default MetaRowCollection;
 export { MetaRowCollection };

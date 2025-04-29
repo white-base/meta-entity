@@ -5,13 +5,21 @@ import type { TransactionQueue }        from './trans-queue.d.ts';
  * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.  
  * 이 클래스는 컬렉션에 트랜잭션 큐를 적용하고, 변경 사항을 관리하는 기능을 제공합니다.  
  */
-type TransactionCollection<T> = ArrayCollection<T> & {
+declare class TransactionCollection<T> extends ArrayCollection<T> {
+
+    /**
+     * `TransactionCollection` 객체를 생성합니다.  
+     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
+     * 
+     * @param owner - 이 컬렉션의 소유자 객체
+     */
+    constructor(owner: object);
 
     /**
      * 트랜잭션 큐를 관리하는 객체입니다.  
      * 이 큐는 트랜잭션 작업을 순차적으로 처리하는 데 사용됩니다.  
      */
-    readonly _transQueue: TransactionQueue;
+    protected readonly _transQueue: TransactionQueue;
 
     /**
      * 자동 변경 기능의 사용 여부를 나타냅니다.  
@@ -34,7 +42,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * @example
      * const descriptor = collection._getPropDescriptor(0); // 인덱스 0의 프로퍼티 기술자 가져오기
      */
-    _getPropDescriptor(idx: number): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number): PropertyDescriptor;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -103,19 +111,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 취소합니다.  
      */
     rollback(): void;
-};
-
-export interface MetaViewCollectionConstructor {
-    /**
-     * `TransactionCollection` 객체를 생성합니다.  
-     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T>(owner: object): TransactionCollection<T>;
 }
-  
-declare const TransactionCollection: MetaViewCollectionConstructor
 
 export default TransactionCollection;
 export { TransactionCollection };

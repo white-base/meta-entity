@@ -1,15 +1,23 @@
 import type { TransactionCollection }   from './collection-transaction.d.ts';
 import type { MetaRow }                 from './meta-row.d.ts';
 
-type MetaRowCollection<T> = TransactionCollection<T> & {
+declare class MetaRowCollection extends TransactionCollection<MetaRow> {
 
+    /**
+     * `MetaRowCollection` 클래스의 생성자입니다.  
+     * 이 클래스는 `MetaRow` 객체들을 관리하는 컬렉션을 제공합니다.  
+     * 
+     * @param owner - 이 컬렉션의 소유자 객체
+     */
+    constructor(owner: object);
+    
     /**
      * 지정된 인덱스의 프로퍼티 기술자를 가져옵니다.
      * 
      * @param idx - 프로퍼티 기술자를 가져올 인덱스
      * @returns 지정된 인덱스의 프로퍼티 기술자입니다.
      */
-    _getPropDescriptor(idx: number): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number): PropertyDescriptor;
 
     
     /** @deprecated 더 이상 사용되지 않습니다. */
@@ -37,19 +45,7 @@ type MetaRowCollection<T> = TransactionCollection<T> & {
      * @returns 삽입 성공 여부를 나타냅니다.
      */
     insertAt(pos: number, row: MetaRow, isCheck?: boolean): boolean;
-};
-
-export interface MetaRowCollectionConstructor {
-    /**
-     * `MetaRowCollection` 클래스의 생성자입니다.  
-     * 이 클래스는 `MetaRow` 객체들을 관리하는 컬렉션을 제공합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T>(owner: object): MetaRowCollection<T>;
 }
-  
-declare const MetaRowCollection: MetaRowCollectionConstructor;
 
 export default MetaRowCollection;
 export { MetaRowCollection };

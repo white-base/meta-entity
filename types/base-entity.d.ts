@@ -44,7 +44,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @readonly
      */
-    rows: MetaRowCollection;
+    rows: MetaRowCollection<MetaRow>;
 
     /**
      * Converts a given serialization object to a schema object.

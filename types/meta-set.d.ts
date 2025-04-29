@@ -6,6 +6,8 @@ import type { IImportControl }          from './i-control-import.d.ts';
 import type { ITransaction }            from './i-transaction.d.ts';
 import type { MetaTableCollection }     from './collection-meta-table.d.ts';
 import type { MetaViewCollection }      from './collection-meta-view.d.ts';
+import type { MetaTable }               from './meta-table.d.ts';
+import type { MetaView }                from './meta-view.d.ts';
 
 /**
  * The 'MetaSet' class manages metadata sets and includes a collection of tables and views.  
@@ -29,12 +31,12 @@ declare class MetaSet extends MetaElement
     /**
      * A collection of meta tables.
      */
-    tables: MetaTableCollection;
+    tables: MetaTableCollection<MetaTable>;
 
     /**
      * This is a collection of meta-views.
      */
-    views: MetaViewCollection;
+    views: MetaViewCollection<MetaView>;
 
     /**
      * Enable automatic transaction change. Default is 'false'.

@@ -7,14 +7,22 @@ import type { BaseColumn }          from './base-column.d.ts';
  * 
  * @extends PropertyCollection
  */
-type BaseColumnCollection<T> = PropertyCollection<T> & {
+declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
     
+    /**
+     * 컬럼 기본 컬렉션을 생성합니다.
+     * 
+     * @param owner 컬렉션의 소유자
+     * @param baseType 기본 컬럼 타입
+     */
+    constructor(owner: object, baseType: T);
+
     /**
      * 기본 컬럼 생성자 타입입니다.
      * 
      * @protected
      */
-    _baseType: typeof BaseColumn;
+    protected _baseType: typeof BaseColumn;
 
     /**
      * '_owner'가 'BaseEntity'의 인스턴스인지 여부를 확인합니다.
@@ -22,7 +30,7 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @protected
      * @returns 엔티티에 소속된 경우 true입니다.
      */
-    _ownerIsEntity(): boolean;
+    protected _ownerIsEntity(): boolean;
     
     /**
      * 컬렉션 인덱스에 대한 프로퍼티 기술자를 반환합니다.
@@ -31,7 +39,7 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @param enumerable 열거 가능 여부 (기본: true)
      * @returns 컬럼 접근을 위한 프로퍼티 기술자입니다.
      */
-    _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
     
     /**
      * 컬렉션에 컬럼을 추가합니다.
@@ -88,20 +96,8 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @param args - 컬럼 추가에 필요한 가변 인자
      * @returns 하위 클래스에 따라 반환형이 달라질 수 있습니다.
      */
-    addValue(...args: unknown[]): unknown;
-};
-
-export interface BaseColumnCollectionConstructor {
-    /**
-     * 컬럼 기본 컬렉션을 생성합니다.
-     * 
-     * @param owner 컬렉션의 소유자
-     * @param baseType 기본 컬럼 타입
-     */
-    new <T>(owner: object, baseType: T): BaseColumnCollection<T>;
+    abstract addValue(...args: unknown[]): unknown;
 }
-  
-declare const BaseColumnCollection: BaseColumnCollectionConstructor;
 
 export default BaseColumnCollection;
 export { BaseColumnCollection };

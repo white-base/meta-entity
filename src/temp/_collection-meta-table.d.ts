@@ -1,16 +1,25 @@
 import type { PropertyCollection }      from 'logic-core/ko';
 import type { MetaTable }               from './meta-table.d.ts';
+import { Func } from 'mocha';
 
 /**
  * `MetaTableCollection` 클래스는 메타 테이블을 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 메타 테이블 객체를 추가하고, 컬렉션에 있는 테이블의 존재 여부를 확인하는 기능을 제공합니다.  
  */
-type MetaTableCollection<T> = PropertyCollection<T> & {
+declare class MetaTableCollection extends PropertyCollection<MetaTable> {
+
+    /**
+     * `MetaTableCollection` 객체를 생성합니다.  
+     * 이 객체는 메타 테이블을 관리하는 컬렉션을 생성합니다.  
+     * 
+     * @param owner - 이 컬렉션의 소유자 객체
+     */
+    constructor(owner: object);
 
     /**
      * 컬렉션 추가에 사용되는 메타 테이블의 기본 생성자입니다.
      */
-    _baseType: typeof MetaTable;
+    protected _baseType: typeof MetaTable;
 
     /**
      * 테이블명을 문자열로 지정하거나 MetaTable 인스턴스를 전달하여 컬렉션에 추가합니다.
@@ -34,19 +43,7 @@ type MetaTableCollection<T> = PropertyCollection<T> & {
      * const exists = collection.existTablename("users"); // 테이블명 "users"의 존재 여부 확인
      */
     existTablename(key: string): boolean;
-};
-
-export interface MetaTableCollectionConstructor {
-    /**
-     * `MetaTableCollection` 객체를 생성합니다.  
-     * 이 객체는 메타 테이블을 관리하는 컬렉션을 생성합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T = MetaTable>(owner: object): MetaTableCollection<T>;
 }
-  
-declare const MetaTableCollection: MetaTableCollectionConstructor;
 
 export default MetaTableCollection;
 export { MetaTableCollection };

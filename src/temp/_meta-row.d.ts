@@ -2,13 +2,21 @@ import type { MetaObject }          from 'logic-core/ko';
 import type { EventEmitter }        from 'logic-core/ko';
 import type { BaseEntity }          from './base-entity.d.ts';
 
-type MetaObjectType = InstanceType<typeof MetaObject>;
-
 /**
  * `MetaRow` 클래스는 데이터 테이블의 각 행(row)을 나타내며, 데이터와 관련된 이벤트를 관리합니다.  
  * 이 클래스는 데이터의 추가, 수정, 삭제와 같은 작업을 처리하고 이벤트를 통해 변경 사항을 알립니다.  
  */
-type MetaRow = MetaObjectType & {
+declare class MetaRow extends MetaObject {
+
+    /**
+     * `MetaRow` 객체를 생성합니다.
+     * 
+     * @param entity - 소속된 `BaseEntity` 객체
+     * 
+     * @example
+     * const row = new MetaRow(entity);
+     */
+    constructor(entity: BaseEntity);
 
     /**
      * 내부 변수로, 행의 요소들을 저장합니다.
@@ -28,12 +36,12 @@ type MetaRow = MetaObjectType & {
     /**
      * 이 `MetaRow`가 소속된 엔티티입니다.
      */
-    readonly _entity: BaseEntity;
+    protected readonly _entity: BaseEntity;
 
     /**
      * 행의 요소들을 목록을 반환합니다.
      */
-    readonly _list: any[];
+    protected readonly _list: any[];
 
     /**
      * 행의 요소 개수를 반환합니다.
@@ -52,7 +60,7 @@ type MetaRow = MetaObjectType & {
      * @example
      * row.onChanging = (idx, nVal, oVal, _this) => { console.log('Value is about to change'); };
      */
-    onChanging: (idx: number, nVal: any, oVal: any, _this: MetaRow) => void;
+    onChanging: (idx: number, nVal: any, oVal: any, _this: this) => void;
 
     /**
      * 요소 변경 후 이벤트입니다.
@@ -66,7 +74,7 @@ type MetaRow = MetaObjectType & {
      * @example
      * row.onChanged = (idx, nVal, oVal, _this) => { console.log('Value has changed'); };
      */
-    onChanged: (idx: number, nVal: any, oVal: any, _this: MetaRow) => void;
+    onChanged: (idx: number, nVal: any, oVal: any, _this: this) => void;
 
     /**
      * 지정된 인덱스에 대한 프로퍼티 기술자를 반환합니다.
@@ -75,14 +83,14 @@ type MetaRow = MetaObjectType & {
      * @param enumerable - 열거 가능 여부 (기본값: true)
      * @returns 지정된 인덱스에 대한 프로퍼티 기술자 객체입니다.
      */
-    _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
+    protected _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
 
     /**
      * 내부 '$key' 를 변경합니다.
      * @param oldKey 기존 키
      * @param newKey 신규 키
      */
-    _changeKey(oldKey: string, newKey: string): void;
+    protected _changeKey(oldKey: string, newKey: string): void;
 
     /**
      * 요소 변경 전 이벤트를 처리합니다.
@@ -92,7 +100,7 @@ type MetaRow = MetaObjectType & {
      * @param oVal - 기존의 값
      * @listens MetaRow#onChanging
      */
-    _onChanging(idx: number, nVal: any, oVal: any): void;
+    protected _onChanging(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 요소 변경 후 이벤트를 처리합니다.
@@ -102,7 +110,7 @@ type MetaRow = MetaObjectType & {
      * @param oVal - 이전의 값
      * @listens MetaRow#onChanged
      */
-    _onChanged(idx: number, nVal: any, oVal: any): void;
+    protected _onChanged(idx: number, nVal: any, oVal: any): void;
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -139,25 +147,8 @@ type MetaRow = MetaObjectType & {
      * @example
      * const clone = row.clone(entity);
      */
-    clone(entity?: BaseEntity): MetaRow;
-
-} & {
-    [key: string | number]: string | number | boolean | object | Function;
-};
-
-export interface MetaRowConstructor {
-    /**
-     * `MetaRow` 객체를 생성합니다.
-     * 
-     * @param entity - 소속된 `BaseEntity` 객체
-     * 
-     * @example
-     * const row = new MetaRow(entity);
-     */
-    new (entity: BaseEntity): MetaRow;
+    clone(entity?: BaseEntity): this;
 }
-
-declare const MetaRow: MetaRowConstructor;
 
 export default MetaRow;
 export { MetaRow };

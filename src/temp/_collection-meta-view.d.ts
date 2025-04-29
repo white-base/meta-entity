@@ -5,12 +5,20 @@ import type { MetaView }                    from './meta-view.d.ts';
  * `MetaViewCollection` 클래스는 뷰 엔티티를 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 메타 뷰를 추가하고, 컬렉션에 있는 뷰의 존재 여부를 확인하는 기능을 제공합니다.  
  */
-type MetaViewCollection<T> = PropertyCollection<T> & {
+declare class MetaViewCollection extends PropertyCollection<MetaView> {
+
+    /**
+     * `MetaViewCollection` 객체를 생성합니다.  
+     * 이 객체는 뷰 엔티티를 관리하는 컬렉션을 생성합니다.  
+     * 
+     * @param owner - 이 컬렉션의 소유자 객체
+     */
+    constructor(owner: object);
 
     /**
      * 기본 생성 타입으로 사용되는 생성자 함수입니다.  
      */
-    _baseType: typeof MetaView;
+    protected _baseType: typeof MetaView;
 
     /**
      * 컬렉션에 MetaView 객체를 추가합니다.  
@@ -39,19 +47,7 @@ type MetaViewCollection<T> = PropertyCollection<T> & {
      * const exists = collection.existViewName("viewName"); // 뷰 이름 "viewName"의 존재 여부 확인
      */
     existViewName(key: string): boolean;
-};
-
-export interface MetaViewCollectionConstructor {
-    /**
-     * `MetaViewCollection` 객체를 생성합니다.  
-     * 이 객체는 뷰 엔티티를 관리하는 컬렉션을 생성합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T = MetaView>(owner: object): MetaViewCollection<T>;
 }
-  
-declare const MetaViewCollection: MetaViewCollectionConstructor;
 
 export default MetaViewCollection;
 export { MetaViewCollection };

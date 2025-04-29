@@ -7,7 +7,15 @@ import type { BaseColumn }          from './base-column.d.ts';
  * 
  * @extends PropertyCollection
  */
-type BaseColumnCollection<T> = PropertyCollection<T> & {
+declare abstract class BaseColumnCollection<T> extends PropertyCollection<T> {
+
+    /**
+     * Creates a column default collection.
+     * 
+     * @param owner Owner of the  collection.
+     * @param baseType Default column type.
+     */
+    constructor(owner: object, baseType: BaseColumn);    
 
     /**
      * Save the default column type.
@@ -75,21 +83,9 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * 
      * @param args - Values to add.
      */
-    addValue(...args): void;
+    abstract addValue(...args): void;
     
-};
-
-export interface BaseColumnCollectionConstructor {
-    /**
-     * Creates a column default collection.
-     * 
-     * @param owner Owner of the  collection.
-     * @param baseType Default column type.
-     */
-    new <T>(owner: object, baseType: T): BaseColumnCollection<T>;
 }
-  
-declare const BaseColumnCollection: BaseColumnCollectionConstructor;
 
 export default BaseColumnCollection;
 export { BaseColumnCollection };

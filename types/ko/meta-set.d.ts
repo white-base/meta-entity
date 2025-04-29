@@ -6,6 +6,8 @@ import type { IImportControl }          from './i-control-import.d.ts';
 import type { ITransaction }            from './i-transaction.d.ts';
 import type { MetaTableCollection }     from './collection-meta-table.d.ts';
 import type { MetaViewCollection }      from './collection-meta-view.d.ts';
+import type { MetaTable }               from './meta-table.d.ts';
+import type { MetaView }                from './meta-view.d.ts';
 
 /**
  * `MetaSet` 클래스는 메타 데이터 집합을 관리하며, 테이블과 뷰의 컬렉션을 포함합니다.  
@@ -29,12 +31,12 @@ declare class MetaSet extends MetaElement
     /**
      * 메타 테이블의 컬렉션입니다.
      */
-    tables: MetaTableCollection;
+    tables: MetaTableCollection<MetaTable>;
 
     /**
      * 메타 뷰의 컬렉션입니다.
      */
-    views: MetaViewCollection;
+    views: MetaViewCollection<MetaView>;
 
     /**
      * 트랜잭션 자동 변경 사용 여부입니다. 기본값은 `false`입니다.

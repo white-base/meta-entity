@@ -7,7 +7,15 @@ import type { BaseColumn }              from './base-column.d.ts';
  * `MetaViewColumnCollection` 클래스는 메타 뷰 컬럼을 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 메타 컬럼을 추가하고, 직렬화 및 참조 컬렉션을 관리하는 기능을 제공합니다.  
  */
-type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
+declare class MetaViewColumnCollection<T> extends BaseColumnCollection<T> {
+
+    /**
+     * `MetaViewColumnCollection` 객체를 생성합니다.  
+     * 이 객체는 메타 뷰의 컬럼을 관리하는 컬렉션을 생성합니다.  
+     * 
+     * @param owner - 이 컬렉션의 소유자 객체
+     */
+    constructor(owner: object);
 
     /**
      * 이 컬렉션이 참조하는 엔티티 목록입니다. 각 엔티티는 `BaseEntity` 타입입니다.
@@ -15,7 +23,7 @@ type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
      * @example
      * const entities = collection._refEntities; // 엔티티 목록을 가져옴
      */
-    _refEntities: BaseEntity[];
+    protected _refEntities: BaseEntity[];
 
     /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
@@ -71,19 +79,7 @@ type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
      * collection.addEntity(entity); // 주어진 엔티티의 모든 컬럼을 추가
      */
     addEntity(entity: BaseEntity): void;
-};
-
-export interface MetaViewColumnCollectionConstructor {
-    /**
-     * `MetaViewColumnCollection` 객체를 생성합니다.  
-     * 이 객체는 메타 뷰의 컬럼을 관리하는 컬렉션을 생성합니다.  
-     * 
-     * @param owner - 이 컬렉션의 소유자 객체
-     */
-    new <T = MetaColumn>(owner: object): MetaViewColumnCollection<T>;
 }
-  
-declare const MetaViewColumnCollection: MetaViewColumnCollectionConstructor;
 
 export default MetaViewColumnCollection;
 export { MetaViewColumnCollection };
