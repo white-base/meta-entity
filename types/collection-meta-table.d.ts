@@ -5,7 +5,7 @@ import type { MetaTable }               from './meta-table.d.ts';
  * The 'MetaTableCollection' class defines the collection that manages the meta table.  
  * This class provides the ability to add meta-table objects and check the existence of tables in the collection.  
  */
-type MetaTableCollection<T> = PropertyCollection<T> & {
+type MetaTableCollection<T = MetaTable> = PropertyCollection<T> & {
 
     /**
      * Default creator of the meta table used to add collections.

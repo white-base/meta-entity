@@ -5,7 +5,7 @@ import type { MetaView }                    from './meta-view.d.ts';
  * `MetaViewCollection` 클래스는 뷰 엔티티를 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 메타 뷰를 추가하고, 컬렉션에 있는 뷰의 존재 여부를 확인하는 기능을 제공합니다.  
  */
-type MetaViewCollection<T> = PropertyCollection<T> & {
+type MetaViewCollection<T = MetaView> = PropertyCollection<T> & {
 
     /**
      * 기본 생성 타입으로 사용되는 생성자 함수입니다.  
