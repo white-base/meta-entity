@@ -37,7 +37,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @readonly
      */
-    columns: BaseColumnCollection<BaseColumn>;
+    columns: unknown;
 
     /**
      * Data (low) collection of entities.
@@ -151,16 +151,8 @@ declare abstract class BaseEntity extends MetaElement
      * @param cols - The name of the column to be set for the filter.
      * @returns This is the searched entity.
      */
-    select(filter: string[], ...cols): MetaView;
+    select(filter: Function, ...cols: string[]): MetaView;
 
-    /**
-     * Query rows that meet the given filter conditions.
-     * 
-     * @param filter - Filter conditions.
-     * @param cols - The name of the column to be set for the filter.
-     * @returns This is the searched entity.
-     */
-    select(filter: string[], ...cols): MetaView;
 
     /**
      * Enquires rows that match the specified column.
@@ -168,7 +160,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param cols - column specification.
      * @returns This is the searched entity.
      */
-    select(...cols): MetaView;
+    select(...cols: string[]): MetaView;
 
     /**
      * Gets the given object to the current entity. Initializes existing data and loads new data.
@@ -268,7 +260,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @returns The copied entity object.
      */
-    abstract copy(...args): this;
+    abstract copy(...args: any[]): this;
 
 }
 

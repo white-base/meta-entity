@@ -47,7 +47,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * @param oGuid - Object of the guid type to serialize.
      * @param origin - The source object setting the current object. (Default: oGuid)
      */
-    setObject(oGuid: object, origin?: object);
+    setObject(oGuid: object, origin?: object): void;
 
     /**
      * Creates and returns a deep copy of the current object.
@@ -71,7 +71,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * @param cols - List of column names to copy.
      * @returns The copied meta table object.
      */
-    copy(...cols): this;
+    copy(...cols: string[]): this;
 
     /**
      * Copy the target column.

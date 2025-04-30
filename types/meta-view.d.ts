@@ -13,7 +13,7 @@ declare class MetaView extends BaseEntity {
      * @param name - The name of the view.
      * @param baseEntity - Default entity, added to default entity when adding columns.
      */
-    constructor(name: string, baseEntity: BaseEntity);
+    constructor(name: string, baseEntity?: BaseEntity);
 
     /**
      * The name of the meta view.

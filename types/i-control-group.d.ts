@@ -6,12 +6,12 @@ declare interface IGroupControl {
     /**
      * Merge.
      */
-    merge(...args);
+    merge(...args: any[]): unknown;
 
     /**
      * Copy.
      */
-    copy(...args);
+    copy(...args: any[]): unknown;
 }
 
 export default IGroupControl;

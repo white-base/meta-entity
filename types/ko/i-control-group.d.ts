@@ -6,12 +6,12 @@ declare interface IGroupControl {
     /**
      * 병합합니다.
      */
-    merge(...args);
+    merge(...args: any[]): unknown;
 
     /**
      * 복사합니다.
      */
-    copy(...args);
+    copy(...args: any[]): unknown;
 }
 
 export default IGroupControl;

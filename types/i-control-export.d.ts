@@ -6,7 +6,7 @@ declare interface IExportControl {
     /**
      * Export target (write)
      */
-    write();
+    write(): unknown;
 }
 
 export default IExportControl;

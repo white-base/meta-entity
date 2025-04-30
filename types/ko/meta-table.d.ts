@@ -68,7 +68,7 @@ declare class MetaTable extends BaseEntity implements ITransaction {
      * @param cols - 복사할 컬럼명 목록
      * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
      */
-    copy(...cols): this;
+    copy(...cols: string[]): this;
 
     /**
      * 대상 컬럼을 복사한다.

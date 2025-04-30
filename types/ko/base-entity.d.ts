@@ -35,7 +35,7 @@ declare abstract class BaseEntity extends MetaElement
      * 이 엔티티가 소유한 컬럼 컬렉션입니다.  
      * 하위 클래스에서 재정의해야 합니다.  
      */
-    columns: BaseColumnCollection<BaseColumn>;
+    columns: unknown;
 
     /**
      * `columns` 속성의 별칭입니다.
@@ -153,7 +153,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param cols - 필터에 설정할 컬럼명
      * @returns 조회된 엔티티입니다.
      */
-    select(filter: string[], ...cols): MetaView;
+    select(filter: Function, ...cols: string[]): MetaView;
 
     /**
      * 지정한 컬럼에 맞는 로우를 조회합니다.
@@ -161,7 +161,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param cols - 컬럼명
      * @returns 조회된 엔티티입니다.
      */
-    select(...cols): MetaView;
+    select(...cols: string[]): MetaView;
 
     /**
      * 주어진 객체를 현재 엔티티로 불러옵니다. 기존 데이터를 초기화하고 새로운 데이터를 로드합니다.
@@ -261,7 +261,7 @@ declare abstract class BaseEntity extends MetaElement
      * 
      * @returns 복사된 엔티티 객체입니다.
      */
-    abstract copy(...args): this;
+    abstract copy(...args: any[]): this;
 }
 
 export default BaseEntity;
