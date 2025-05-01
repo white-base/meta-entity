@@ -29,6 +29,15 @@ describe("index", () => {
             const c = new MetaView('v1')
             // const b = new ArrayCollection();
             a.add('a', 'aa');
+            
+            b.cols.add('aa');
+            b.cols['aa'].caption;
+            b.cols[0].$value;
+            b.columns.aa.alias;
+
+            c.columns.add('aa');
+            c.columns['aa']._name;
+
             // a
             // a.
             // a.
