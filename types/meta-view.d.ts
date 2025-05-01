@@ -16,6 +16,11 @@ declare class MetaView extends BaseEntity {
     constructor(name: string, baseEntity?: BaseEntity);
 
     /**
+     * Default entity.
+     */
+    protected _baseEntity: BaseEntity;
+
+    /**
      * The name of the meta view.
      */
     viewName: string;
@@ -25,34 +30,28 @@ declare class MetaView extends BaseEntity {
      */
     columns: MetaViewColumnCollection<MetaColumn>;
 
-
-    /**
-     * Default entity.
-     */
-    _baseEntity: BaseEntity;
-
     /**
      * Returns objects in serialized form according to specific options; cyclic references are replaced by $ref values.
      * 
-     * @param vOpt - Import option. (Default: 0)  
+     * @param mode - Import option. (Default: 0)  
      * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
      * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
      * - 2: Non-tidal rescue (_guid: No, $ref: No)  
-     * @param owned - Top objects that currently own the object. (Default: {})
+     * @param context - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
      * @example
      * const serializedObject = metaView.getObject(2);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Sets the given serialized object to the current object. When set, the existing object is initialized.
      * 
-     * @param oGuid - Object of the guid type to serialize.
-     * @param origin - The source object setting the current object. (Default: oGuid)
+     * @param guidObj - Object of the guid type to serialize.
+     * @param guidRootObj - The source object setting the current object. (Default: oGuid)
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Creates and returns a deep copy of the current meta view.
@@ -64,29 +63,27 @@ declare class MetaView extends BaseEntity {
     /**
      * Copy the args column name after running the callback.
      * 
-     * @param filter - The filter function that selects the column.
-     * @param args - List of column names to copy.
-     * @returns The copied meta-view object.
+     * @param filter - filter function to select a column
+     * @param cols - List of column names to copy
+     * @returns {MetaView} The copied meta-view object.
      */
-    copy(filter: Function, args: string[]): this;
+    copy(filter: Function, cols: string[]): this;
 
     /**
-     * Copy the args column name after the callback.
+     * Copy the column name.
      * 
-     * @param filter - The filter function that selects the column.
-     * @param args - List of column names to copy.
-     * @returns The copied meta-view object.
+     * @param cols - List of column names to copy
+     * @returns {MetaView} The copied meta-view object.
      */
-    copy(filter: Function, ...args): this;
+    copy(...cols: string[]): this;
 
     /**
-     * Copy the target column.
+     * Copy the target column after the callback is executed.
      * 
-     * @param filter - The filter function that selects the column.
-     * @returns The copied meta-view object.
+     * @param filter - filter function to select a column
+     * @returns {MetaView} The copied meta-view object.
      */
-    copy(filter: string[]): this;
-
+    copy(filter: Function): this;
 }
 
 export default MetaView;

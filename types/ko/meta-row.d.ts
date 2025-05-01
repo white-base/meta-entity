@@ -1,8 +1,7 @@
 import type { MetaObject }          from 'logic-core/ko';
 import type { EventEmitter }        from 'logic-core/ko';
 import type { BaseEntity }          from './base-entity.d.ts';
-
-type MetaObjectType = InstanceType<typeof MetaObject>;
+import type { MetaObjectType }      from "./T.d.ts";
 
 /**
  * `MetaRow` 클래스는 데이터 테이블의 각 행(row)을 나타내며, 데이터와 관련된 이벤트를 관리합니다.  
@@ -128,7 +127,7 @@ type MetaRow = MetaObjectType & {
      * @example
      * row.setObject(serializedObject); // 직렬화된 객체를 현재 행에 설정
      */
-    setObject(guidObj: object, origguidRootObjin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * 현재 `MetaRow` 객체를 복제하여 새로운 객체를 생성합니다.

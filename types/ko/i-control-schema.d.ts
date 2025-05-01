@@ -6,12 +6,12 @@ declare interface ISchemaControl {
     /**
      * 스키마를 가져옵니다.
      */
-    readSchema(...args);
+    readSchema(...args: any[]): void;
 
     /**
      * 스키마를 내보냅니다. 
      */
-    writeSchema(...args);
+    writeSchema(...args: any[]): void;
 }
 
 export default ISchemaControl;

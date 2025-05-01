@@ -18,14 +18,14 @@ declare class TransactionQueue {
      * 
      * @readonly
      */
-    queue: object[];
+    readonly queue: object[];
 
     /**
      * The collection of targets that the transaction queue will work on.
      * 
      * @readonly
      */
-    collection: IArrayCollection<any>;
+    readonly collection: IArrayCollection<any>;
 
     /**
      * Initializes the transaction queue.  
@@ -86,7 +86,7 @@ declare class TransactionQueue {
      * @param clone - This is a replica of the pre-modification operation.
      * @param etc - Other relevant data, may contain additional information as needed.
      * 
-     * @example
+     * @example 
      * transactionQueue.update(2, updatedObject, clonedObject, additionalData); // 인덱스 2 위치의 작업 수정
      */
     update(pos: number, target: object, clone: object, etc: any): void;

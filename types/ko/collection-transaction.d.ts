@@ -49,7 +49,6 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * @example
      * const serialized = collection.getObject(2); // 비침조 구조로 직렬화된 객체 가져오기
      */
-    getObject(mode?: number, context?: object | Array<object>): object;
 
     /**
      * GUID 타입의 객체 리터럴을 인스턴스 객체로 변환하여 설정합니다.
@@ -105,7 +104,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
     rollback(): void;
 };
 
-export interface MetaViewCollectionConstructor {
+export interface TransactionCollectionConstructor {
     /**
      * `TransactionCollection` 객체를 생성합니다.  
      * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
@@ -115,7 +114,7 @@ export interface MetaViewCollectionConstructor {
     new <T>(owner: object): TransactionCollection<T>;
 }
   
-declare const TransactionCollection: MetaViewCollectionConstructor
+declare const TransactionCollection: TransactionCollectionConstructor
 
 export default TransactionCollection;
 export { TransactionCollection };

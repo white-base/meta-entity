@@ -8,18 +8,10 @@ import type { TransactionQueue }        from './trans-queue.d.ts';
 type TransactionCollection<T> = ArrayCollection<T> & {
 
     /**
-     * Creates a 'Transaction Collection' object.  
-     * This object creates and manages transaction-based collections.  
-     * 
-     * @param owner - Specifies the owner object of this collection.
-     */
-    constructor(owner: object);
-
-    /**
      * The object that manages the transaction queue.  
      * This queue is used to process transaction operations sequentially.  
      */
-    _transQueue: TransactionQueue;
+    readonly _transQueue: TransactionQueue;
 
     /**
      * Indicates whether the automatic change feature is enabled.  
@@ -31,7 +23,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * Indicates whether the collection has been changed.
      * 'True' means that there are changes to the collection.
      */
-    hasChanges: boolean;
+    readonly hasChanges: boolean;
 
     /**
      * Returns the property descriptor for the specified index.
@@ -42,35 +34,35 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * @example
      * const descriptor = collection._getPropDescriptor(0); // Get Property descriptor for index 0
      */
-    _getPropDescriptor(idx: number): object;
+    _getPropDescriptor(idx: number): PropertyDescriptor;
 
     /**
      * Converts the current 'TransactionCollection' object to a serialized object.  
      * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.  
+     * @param mode - Specifies the serialization option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = collection.getObject(2); // import serialized objects in a non-coordinated structure
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | Array<object>): object;
 
     /**
      * Sets the serialized object to the current 'Transaction Collection' object.  
      * During this process, the object is initialized.  
      * 
-     * @param oGuid - object of serialized GUID type.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
+     * @param guidObj - object of serialized GUID type.
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.
      * 
      * @example
      * collection.setObject(serializedObject); // Set serialized objects to the current collection
      */
-    setObject(oGuid: object, origin?: object);
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Deletes an element from the specified location.
@@ -116,17 +108,17 @@ type TransactionCollection<T> = ArrayCollection<T> & {
 
 };
 
-export interface MetaViewCollectionConstructor {
+export interface TransactionCollectionConstructor {
     /**
-     * `TransactionCollection` 객체를 생성합니다.  
-     * 이 객체는 트랜잭션 기반의 컬렉션을 생성하고 관리합니다.  
+     * Creates a 'Transaction Collection' object.  
+     * This object creates and manages transaction-based collections.  
      * 
-     * @param owner - 이 컬렉션의 소유자 객체
+     * @param owner - Specifies the owner object of this collection.
      */
     new <T>(owner: object): TransactionCollection<T>;
 }
 
-declare const TransactionCollection: MetaViewCollectionConstructor
+declare const TransactionCollection: TransactionCollectionConstructor
 
 export default TransactionCollection;
 export { TransactionCollection };

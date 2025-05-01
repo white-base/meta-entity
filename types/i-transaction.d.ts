@@ -6,12 +6,12 @@ declare interface ITransaction {
     /**
      * Accept the change. (commit)
      */
-    acceptChanges()
+    acceptChanges(): void
 
     /**
      * Reject the change (rollback)
      */
-    rejectChanges()
+    rejectChanges(): void
 
 }
 

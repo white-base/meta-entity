@@ -14,7 +14,7 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * 
      * @protected
      */
-    _baseType: BaseColumn;
+    _baseType: typeof BaseColumn;
 
     /**
      * Verify that this._owner is an entity.
@@ -23,6 +23,15 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @returns {boolean} Bullion value indicating whether the entity exists.
      */
     _ownerIsEntity(): boolean;
+
+    /**
+     * Returns the property descriptor for the collection index.
+     * 
+     * @paramidx Index Number
+     * @paramenumerable enumeration availability (default: true)
+     * @returns Property technician for column access.
+     */
+    _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
 
     /**
      * Adds a column to the collection.
@@ -75,8 +84,7 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * 
      * @param args - Values to add.
      */
-    addValue(...args): void;
-    
+    addValue(...args: unknown[]): unknown;
 };
 
 export interface BaseColumnCollectionConstructor {

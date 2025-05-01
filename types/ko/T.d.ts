@@ -31,6 +31,12 @@
 // declare type ValueType = string | number | boolean;
 
 // export {};
+import type { MetaObject }      from "logic-core/ko";
+
+/**
+* Type of MetaObject class.
+*/
+export type MetaObjectType = InstanceType<typeof MetaObject>;
 
 /** 메타 컬럼 타입 */
 type MetaColumn = {
@@ -75,3 +81,4 @@ export type EnititySchema = {
 };
 
 export type ValueType = string | number | boolean;
+

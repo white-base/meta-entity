@@ -6,7 +6,7 @@ declare interface IExportControl {
     /**
      * 대상을 내보냅니다. (쓰기)
      */
-    write(): unknown;
+    write(): void;
 }
 
 export default IExportControl;

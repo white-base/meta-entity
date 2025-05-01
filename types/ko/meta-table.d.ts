@@ -27,6 +27,11 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     columns: MetaTableColumnCollection<MetaColumn>;
 
    /**
+    * 테이블의 컬럼 컬렉션 입니다.
+    */
+   cols: MetaTableColumnCollection<MetaColumn>;    
+
+   /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
      * 
      * @param mode - 가져오기 모드  
@@ -54,29 +59,29 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     clone(): this;
 
     /**
-     * 콜백 실행 후 cols 컬럼명을 복사합니다.
+     * 콜백 실행 후 args 컬럼명을 복사합니다.
      * 
      * @param filter - 컬럼을 선택하는 필터 함수
      * @param cols - 복사할 컬럼명 목록
-     * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
+     * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
     copy(filter: Function, cols: string[]): this;
 
     /**
-     * 콜백 실행 후 cols 컬럼명을 복사한다.
+     * 컬럼명을 복사한다.
      * 
      * @param cols - 복사할 컬럼명 목록
-     * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
+     * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
     copy(...cols: string[]): this;
 
     /**
-     * 대상 컬럼을 복사한다.
+     * 콜백 실행 후 대상 컬럼을 복사한다.
      * 
      * @param filter - 컬럼을 선택하는 필터 함수
-     * @returns {MetaTable} 복사된 메타 테이블 객체입니다.
+     * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
-    copy(filter: string[]): this;
+    copy(filter: Function): this;
 
     /**
      * 현재 객체에 대한 모든 변경 사항을 커밋합니다.  

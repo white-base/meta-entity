@@ -44,3 +44,12 @@ export { MetaTableColumnCollection }   from './collection-meta-table-column.js';
 export { MetaViewColumnCollection }    from './collection-meta-view-column.js';
 export { ObjectColumn }                from './object-column.js';
 export { TransactionQueue }            from './trans-queue.js';
+
+export { MetaRowConstructor }                     from './meta-row.js';
+export { BaseColumnCollectionConstructor }        from './base-column-collection.js';
+export { MetaRowCollectionConstructor }           from './collection-meta-row.js';
+export { MetaTableColumnCollectionConstructor }   from './collection-meta-table-column.js';
+export { MetaTableCollectionConstructor }         from './collection-meta-table.js';
+export { MetaViewColumnCollectionConstructor }    from './collection-meta-view-column.js';
+export { MetaViewCollectionConstructor }          from './collection-meta-view.js';
+export { TransactionCollectionConstructor }       from './collection-transaction.js';

@@ -6,7 +6,7 @@ declare interface IGroupControl {
     /**
      * 병합합니다.
      */
-    merge(...args: any[]): unknown;
+    merge(...args: any[]): void;
 
     /**
      * 복사합니다.

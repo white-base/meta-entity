@@ -113,29 +113,29 @@ declare class MetaColumn extends BaseColumn {
      * Converts the current 'MetaColumn' object to a serialized object.  
      * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.  
+     * @param mode - Specifies the serialization option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = column.getObject(2); // import serialized objects in a non-coordinated structure
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Sets the serialized object to the current 'MetaColumn' object.  
      * During this process, the object is initialized.  
      * 
-     * @param oGuid - object of serialized GUID type.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
+     * @param guidObj - object of serialized GUID type.
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.
      * 
      * @example
      * column.setObject(serializedObject); // set serialized object to current column
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Replicate the current column to create a new 'MetaColumn' object.
@@ -148,6 +148,13 @@ declare class MetaColumn extends BaseColumn {
      */
     clone(entity?: BaseEntity): this;
 
+    /**
+     * Add constraints.
+     * 
+     * @param callback - callback function that examines constraints
+     */
+    addConstraint(callback: Function): void;
+    
     /**
      * Add constraints.
      * 

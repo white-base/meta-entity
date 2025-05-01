@@ -6,7 +6,7 @@ declare interface IImportControl {
     /**
      * 대상을 가져옵니다. (읽기)
      */
-    read(...args);
+    read(...args: any[]): void;
 }
 
 export default IImportControl;

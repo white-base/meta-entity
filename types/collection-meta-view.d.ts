@@ -11,7 +11,7 @@ type MetaViewCollection<T = MetaView> = PropertyCollection<T> & {
      * 'MetaView' object used as the default generation type.  
      * This property defines the default type of view entity.  
      */
-    _baseType: MetaView;
+    _baseType: typeof MetaView;
 
     /**
      * Adds a view entity to the collection. The view to be added may be a view name (string) or 'MetaView' object.  

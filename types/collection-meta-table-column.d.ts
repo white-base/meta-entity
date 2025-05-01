@@ -8,9 +8,6 @@ import type { MetaColumn }              from './meta-column.d.ts';
  */
 type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
 
-
-    constructor(owner: object);
-
     /**
      * Adds a column to the collection.  
      * The column can be the column name or the object 'BaseColumn'.  

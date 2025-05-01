@@ -6,12 +6,12 @@ declare interface ISchemaControl {
     /**
      * Gets the schema.
      */
-    readSchema(...args);
+    readSchema(...args: any[]): void;
 
     /**
      * Export the schema. 
      */
-    writeSchema(...args);
+    writeSchema(...args: any[]): void;
 }
 
 export default ISchemaControl;

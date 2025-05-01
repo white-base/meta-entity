@@ -31,6 +31,11 @@ declare class MetaView extends BaseEntity {
     columns: MetaViewColumnCollection<MetaColumn>;
 
     /**
+    * 테이블의 컬럼 컬렉션 입니다.
+    */
+    cols: MetaViewColumnCollection<MetaColumn>;   
+
+    /**
      * 객체를 GUID 타입의 객체 리터럴로 반환합니다.
      * 
      * @param mode - 가져오기 모드  
@@ -61,27 +66,26 @@ declare class MetaView extends BaseEntity {
      * 콜백 실행 후 args 컬럼명을 복사합니다.
      * 
      * @param filter - 컬럼을 선택하는 필터 함수
-     * @param args - 복사할 컬럼명 목록
+     * @param cols - 복사할 컬럼명 목록
      * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
-    copy(filter: Function, args: string[]): this;
+    copy(filter: Function, cols: string[]): this;
 
     /**
-     * 콜백 실행 후 args 컬럼명을 복사한다.
+     * 컬럼명을 복사한다.
      * 
-     * @param filter - 컬럼을 선택하는 필터 함수
-     * @param args - 복사할 컬럼명 목록
+     * @param cols - 복사할 컬럼명 목록
      * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
-    copy(filter: Function, ...args): this;
+    copy(...cols: string[]): this;
 
     /**
-     * 대상 컬럼을 복사한다.
+     * 콜백 실행 후 대상 컬럼을 복사한다.
      * 
      * @param filter - 컬럼을 선택하는 필터 함수
      * @returns {MetaView} 복사된 메타 뷰 객체입니다.
      */
-    copy(filter: string[]): this;
+    copy(filter: Function): this;
 }
 
 export default MetaView;

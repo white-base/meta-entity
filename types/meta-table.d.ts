@@ -29,25 +29,25 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     /**
      * Returns objects in serialized form according to specific options. Circular references are replaced by values of '$ref'.
      * 
-     * @param vOpt - Import option. (Default: 0)  
+     * @param mode - Import option. (Default: 0)  
      * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
      * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
      * - 2: Non-tidal rescue (_guid: No, $ref: No)  
-     * @param owned - Top objects that currently own the object. (Default: {})
+     * @param context - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
      * @example
      * const serializedObject = table.getObject(2);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+   getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Reflects a given serialized object to the current object. This action initializes the object.
      * 
-     * @param oGuid - Object of the guid type to serialize.
-     * @param origin - The source object setting the current object. (Default: oGuid)
+     * @param guidObj - Object of the guid type to serialize.
+     * @param guidRootObj - The source object setting the current object. (Default: oGuid)
      */
-    setObject(oGuid: object, origin?: object): void;
+   setObject(guidObj: object, guidRootObj?: object): void; 
 
     /**
      * Creates and returns a deep copy of the current object.
@@ -57,29 +57,29 @@ declare class MetaTable extends BaseEntity implements ITransaction {
     clone(): this;
 
     /**
-     * Copy the cols column name after the callback.
+     * Copy the args column name after running the callback.
      * 
-     * @param filter - The filter function that selects the column.
-     * @param cols - List of column names to copy.
-     * @returns The copied meta table object.
+     * @param filter - filter function to select a column
+     * @param cols - List of column names to copy
+     * @returns {MetaView} The copied meta-view object.
      */
     copy(filter: Function, cols: string[]): this;
 
     /**
-     * Copy the cols column name after performing callback.
+     * Copy the column name.
      * 
-     * @param cols - List of column names to copy.
-     * @returns The copied meta table object.
+     * @param cols - List of column names to copy
+     * @returns {MetaView} The copied meta-view object.
      */
     copy(...cols: string[]): this;
 
     /**
-     * Copy the target column.
+     * Copy the target column after the callback is executed.
      * 
-     * @param filter - The filter function that selects the column.
-     * @returns The copied meta table object.
+     * @param filter - filter function to select a column
+     * @returns {MetaView} The copied meta-view object.
      */
-    copy(filter: string[]): this;
+    copy(filter: Function): this;
 
     /**
      * Commit all changes to the current object.  

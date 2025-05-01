@@ -6,7 +6,7 @@
     /**
      * Gets the target (read)
      */
-    read(...args);
+    read(...args: any[]): void;
 }
 
 export default IImportControl;

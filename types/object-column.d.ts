@@ -14,7 +14,7 @@ declare class ObjectColumn extends BaseColumn {
      * @param entity - 'BaseEntity' object that owns this column.
      * @param prop - Properties of the object column.
      */
-    constructor(name: string, entity: BaseEntity, prop: object);
+    constructor(name: string, entity?: BaseEntity, prop?: object);
     
     /**
      * Loads the properties of the object.
@@ -30,29 +30,29 @@ declare class ObjectColumn extends BaseColumn {
      * Converts the current 'Object Column' object to a serialized GUID type object.  
      * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Serialization option.  
+     * @param mode - Serialization option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = objectColumn.getObject(1); // Import serialized objects into reference structures
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Sets the serialized GUID type object to the current 'Object Column' object.  
      * During this process, the object is initialized.  
      * 
-     * @param oGuid - object of serialized GUID type.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
+     * @param guidObj - object of serialized GUID type.
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.
      * 
      * @example
      * objectColumn.setObject(serializedObject); // Set serialized objects to the current column
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Replicate the 'Object Column' object to create a new object.

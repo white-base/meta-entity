@@ -6,7 +6,7 @@ declare interface IGroupControl {
     /**
      * Merge.
      */
-    merge(...args: any[]): unknown;
+    merge(...args: any[]): void;
 
     /**
      * Copy.

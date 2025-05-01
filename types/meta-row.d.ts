@@ -1,22 +1,13 @@
 import type { MetaObject }          from 'logic-core';
 import type { EventEmitter }        from 'logic-core';
 import type { BaseEntity }          from './base-entity.d.ts';
+import type { MetaObjectType }      from "./T.d.ts";
 
 /**
  * The 'MetaRow' class represents each row of the data table and manages the events associated with the data.  
  * This class handles tasks such as adding, modifying, or deleting data and informs you of changes through events.  
  */
-declare class MetaRow extends MetaObject {
-
-    /**
-     * Creates a 'MetaRow' object.
-     * 
-     * @param entity - This is the 'BaseEntity' object to which 'MetaRow' belongs.
-     * 
-     * @example
-     * const row = new MetaRow(entity);
-     */
-    constructor(entity: BaseEntity);
+type MetaRow = MetaObjectType & {
 
     /**
      * As an internal variable, store the elements of the row.
@@ -33,36 +24,24 @@ declare class MetaRow extends MetaObject {
     $event: EventEmitter;
 
     /**
-     * Returns the entity to which this 'MetaRow' belongs.
-     * 
-     * @readonly
-     * @returns The object 'BaseEntity' that owns this row.
+     * The element key in the row.
      */
-    _entity: BaseEntity;
+    readonly $keys: string[];
 
     /**
-     * Returns the element key in the row.
-     * 
-     * @readonly
-     * @returns The key arrangement of the  element.
+     * Returns the entity to which this 'MetaRow' belongs.
      */
-    $keys: string[];
+    readonly _entity: BaseEntity;
 
     /**
      * Returns a list of elements in a row.
-     * 
-     * @readonly
-     * @Returns An array of elements.
      */
-    _list: any[];
+    readonly _list: any[];
 
     /**
      * Returns the number of elements in the row.
-     * 
-     * @readonly
-     * @returns The total number of elements.
      */
-    count: number;
+    readonly count: number;
 
     /**
      * Event before element change.
@@ -76,7 +55,7 @@ declare class MetaRow extends MetaObject {
      * @example
      * row.onChanging = (idx, nVal, oVal, _this) => { console.log('Value is about to change'); };
      */
-    onChanging: (idx: number, nVal: any, oVal: any, _this: this) => void;
+    onChanging: (idx: number, nVal: any, oVal: any, _this: MetaRow) => void;
 
     /**
      * Event after element change.
@@ -90,7 +69,23 @@ declare class MetaRow extends MetaObject {
      * @example
      * row.onChanged = (idx, nVal, oVal, _this) => { console.log('Value has changed'); };
      */
-    onChanged: (idx: number, nVal: any, oVal: any, _this: this) => void;
+    onChanged: (idx: number, nVal: any, oVal: any, _this: MetaRow) => void;
+
+    /**
+     * Returns the property descriptor for the specified index.
+     * 
+     * @param idx - Index to get property technician
+     * @param enumerable - whether it can be enumerated (default: true)
+     * @returns Property descriptor object for the specified index.
+     */
+    _getPropDescriptor(idx: number, enumerable?: boolean): PropertyDescriptor;
+
+    /**
+     * Change the internal '$key'.
+     * @paramoldKey Existing Key
+     * @param newKey NewKey
+     */
+    _changeKey(oldKey: string, newKey: string): void;
 
     /**
      * Processes events before element changes.
@@ -116,29 +111,29 @@ declare class MetaRow extends MetaObject {
      * Converts the current 'MetaRow' object to a serialized GUID type object.  
      * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.  
+     * @param mode - Specifies the serialization option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = row.getObject(2); // import serialized objects in a non-coordinated structure
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Sets the serialized GUID type object to the current 'MetaRow' object.  
      * During this process, the object is initialized.  
      * 
-     * @param oGuid - object of serialized GUID type.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
+     * @param guidObj - object of serialized GUID type.
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.
      * 
      * @example
      * row.setObject(serializedObject); // set serialized objects in current row
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Create a new object by replicating the current 'MetaRow' object.
@@ -149,9 +144,25 @@ declare class MetaRow extends MetaObject {
      * @example
      * const clone = row.clone(entity);
      */
-    clone(entity?: BaseEntity): this;
+    clone(entity?: BaseEntity): MetaRow;
 
+} & {
+    [key: string | number]: string | number | boolean | object | Function;
+};
+
+export interface MetaRowConstructor {
+    /**
+     * Creates a 'MetaRow' object.
+     * 
+     * @param entity - This is the 'BaseEntity' object to which 'MetaRow' belongs.
+     * 
+     * @example
+     * const row = new MetaRow(entity);
+     */
+    new (entity: BaseEntity): MetaRow;
 }
+
+declare const MetaRow: MetaRowConstructor;
 
 export default MetaRow;
 export { MetaRow };

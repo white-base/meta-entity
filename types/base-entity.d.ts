@@ -27,24 +27,25 @@ declare abstract class BaseEntity extends MetaElement
 
     /**
      * Metaset to which the entity belongs.
-     * 
-     * @protected
      */
-    _metaSet: MetaSet;
+    protected _metaSet: MetaSet;
 
     /**
      * The collection of items (properties) for the entity.
      * 
      * @readonly
      */
-    columns: unknown;
+    columns: any;
+
+    /**
+     * Alias of property 'columns'.
+     */
+    cols: any;
 
     /**
      * Data (low) collection of entities.
-     * 
-     * @readonly
      */
-    rows: MetaRowCollection<MetaRow>;
+    readonly rows: MetaRowCollection<MetaRow>;
 
     /**
      * Converts a given serialization object to a schema object.
@@ -62,7 +63,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param items - Row name to select, [], or full selection when undefined.
      * @returns The created entity.
      */
-    _buildEntity(entity: BaseEntity, callback: Function, items: string[]): BaseEntity;
+    protected _buildEntity(entity: BaseEntity, callback: Function, items: string[]): BaseEntity;
 
     /**
      * Read the entity according to the given option.
@@ -70,7 +71,7 @@ declare abstract class BaseEntity extends MetaElement
      * @param entity - Destination entity.
      * @param option - Read option.
      */
-    _readEntity(entity: BaseEntity, option: number);
+    protected _readEntity(entity: BaseEntity, option: number): void;
 
     /**
      * Reads schema information from a given object.
@@ -79,22 +80,22 @@ declare abstract class BaseEntity extends MetaElement
      * @param createRow - Whether to create a column with a row name if there is no column (default: false)
      * @param origin - Original object.
      */
-    _readSchema(obj: object, createRow?: boolean, origin?: object);
+    protected _readSchema(obj: object, createRow?: boolean, origin?: object): void;
 
     /**
      * Returns objects in serialized form according to specific options; cyclic references are replaced by $ref values.
      * 
-     * @param vOpt - Import option. (Default: 0)  
+     * @param mode - Import option. (Default: 0)  
      * - 0 : Reference structure (_guid: Yes, $ref: Yes)  
      * - 1: Redundant structure (_guid: Yes, $ref: Yes)  
      * - 2: Non-tidal rescue (_guid: No, $ref: No)  
-     * @param owned - Top objects that currently own the object. (Default: {})
+     * @param context - Top objects that currently own the object. (Default: {})
      * @returns Serialized object.
      * 
      * @example
      * const serializedObject = entity.getObject(2);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | Array<object>): object;
 
     /**
      * Initializes all data in the entity.
@@ -152,7 +153,6 @@ declare abstract class BaseEntity extends MetaElement
      * @returns This is the searched entity.
      */
     select(filter: Function, ...cols: string[]): MetaView;
-
 
     /**
      * Enquires rows that match the specified column.

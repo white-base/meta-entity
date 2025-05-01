@@ -35,12 +35,12 @@ declare abstract class BaseEntity extends MetaElement
      * 이 엔티티가 소유한 컬럼 컬렉션입니다.  
      * 하위 클래스에서 재정의해야 합니다.  
      */
-    columns: unknown;
+    columns: any;
 
     /**
      * `columns` 속성의 별칭입니다.
      */
-    cols: BaseColumnCollection<BaseColumn>;
+    cols: any;
 
     /**
      *  이 엔티티가 소유한 로우 컬렉션입니다.  
@@ -95,7 +95,7 @@ declare abstract class BaseEntity extends MetaElement
      * @example
      * const serializedObject = entity.getObject(2);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | Array<object>): object;
 
 
     /**

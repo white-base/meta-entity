@@ -33,12 +33,12 @@ declare abstract class BaseColumn extends MetaElement {
     /**
      * Indicates the entity to which this column belongs. Object of type 'BaseEntity'.
      */
-    _entity: BaseEntity;
+    protected _entity: BaseEntity;
 
     /**
      * Defines the value type for the column. This property is used to set the value type for the column.
      */
-    _valueTypes: any;
+    protected _valueTypes: any;
 
     /**
      * Indicates the name of the column. Same as '_name'.
@@ -70,51 +70,36 @@ declare abstract class BaseColumn extends MetaElement {
     value: any; // TODO: Must match default
 
     /**
+     * Gets or sets the current value of the column.
+     */
+    val: any;    
+    
+    /**
      * Converts the current column object to a serialized object, which replaces the cyclic reference with the value '$ref'.
      * 
-     * @param vOpt - Specifies the import option.  
+     * @param mode - Specifies the import option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = column.getObject(0);
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
     
     /**
      * Set the current column object using the serialized 'guid' type of object.  
      * In this process, the current object is initialized.  
      * 
-     * @param oGuid - This is a serialized 'guid' type of object.  
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.  
+     * @param guidObj - This is a serialized 'guid' type of object.  
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.  
      * 
      * @example
      * column.setObject(serializedObject);
      */
-    setObject(oGuid: object, origin?: object);
-
-    
-    /**
-     * Creates a replica of the current column object. This method is an abstract method that must be implemented in a subclass.
-     * 
-     * @returns This is a replica of the current object.
-     */
-    abstract clone(): this;
-
-    /**
-     * Set the current column object using the serialized 'guid' type of object.  
-     * In this process, the current object is initialized.  
-     * 
-     * @param oGuid - This is a serialized 'guid' type of object.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
-     * 
-     * @example
-     * column.setObject(serializedObject);
-     */
-    setObject(oGuid: object, origin?: object);
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     
     /**

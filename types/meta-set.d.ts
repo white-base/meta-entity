@@ -58,29 +58,29 @@ declare class MetaSet extends MetaElement
      * Converts the current 'MetaSet' object to a serialized GUID type object.  
      * In the serialization process, the cyclic reference is replaced by the value '$ref'.  
      * 
-     * @param vOpt - Specifies the serialization option.  
+     * @param mode - Specifies the serialization option.  
      *   - '0': Convert to a reference structure (including '_guid' and '$ref')  
      *   - '1': Converting to a redundant structure (including '_guid' and '$ref')  
      *   - '2': Conversion to non-coordinated structure (excluding '_guid' and '$ref')  
-     * @param owned - The parent objects that currently own the object. You can receive an object or array of objects.
+     * @param context - The parent objects that currently own the object. You can receive an object or array of objects.
      * @returns Serialized object.
      * 
      * @example
      * const serialized = metaSet.getObject(2); // Import serialized objects in a non-coordinated structure
      */
-    getObject(vOpt?: number, owned?: object | Array<object>): object;
+    getObject(mode?: number, context?: object | object[]): object;
 
     /**
      * Sets the serialized GUID type object to the current 'MetaSet' object.  
      * During this process, the object is initialized.  
      * 
-     * @param oGuid - object of serialized GUID type.
-     * @param origin - This is the original object that sets the current object. Default is 'oGuid'.
+     * @param guidObj - object of serialized GUID type.
+     * @param guidRootObj - This is the original object that sets the current object. Default is 'oGuid'.
      * 
      * @example
      * metaSet.setObject(serializedObject); // Set serialized objects to the current meta set
      */
-    setObject(oGuid: object, origin?: object): void;
+    setObject(guidObj: object, guidRootObj?: object): void;
 
     /**
      * Create a new object by replicating the current 'MetaSet' object.
