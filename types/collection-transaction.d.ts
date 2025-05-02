@@ -5,7 +5,7 @@ import type { TransactionQueue }        from './trans-queue.d.ts';
  * The 'Transaction Collection' class manages transaction-based collections.  
  * This class provides the ability to apply transaction queues to collections and manage changes.  
  */
-type TransactionCollection<T> = ArrayCollection<T> & {
+type TransactionCollection<T> = {
 
     /**
      * The object that manages the transaction queue.  
@@ -106,7 +106,7 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      */
     rollback(): void;
 
-};
+} & ArrayCollection<T>;
 
 export interface TransactionCollectionConstructor {
     /**

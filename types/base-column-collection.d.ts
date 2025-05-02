@@ -7,7 +7,7 @@ import type { BaseColumn }          from './base-column.d.ts';
  * 
  * @extends PropertyCollection
  */
-type BaseColumnCollection<T> = PropertyCollection<T> & {
+type BaseColumnCollection<T> = {
 
     /**
      * Save the default column type.
@@ -85,7 +85,8 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @param args - Values to add.
      */
     addValue(...args: unknown[]): unknown;
-};
+
+} & PropertyCollection<T>;
 
 export interface BaseColumnCollectionConstructor {
     /**

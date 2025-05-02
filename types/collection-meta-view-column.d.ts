@@ -7,7 +7,7 @@ import type { BaseColumn }              from './base-column.d.ts';
  * The 'MetaView Column Collection' class defines the collection that manages the meta-view column.  
  * This class provides the ability to add meta columns, to serialize and manage reference collections.  
  */
-type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
+type MetaViewColumnCollection<T> = {
 
     /**
      * List of entities referenced by this collection. Each entity is of type 'BaseEntity'.
@@ -73,7 +73,7 @@ type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
      */
     addEntity(entity: BaseEntity): void;
     
-};
+} & BaseColumnCollection<T>;
 
 export interface MetaViewColumnCollectionConstructor {
     /**

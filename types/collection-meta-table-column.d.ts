@@ -6,7 +6,7 @@ import type { MetaColumn }              from './meta-column.d.ts';
  * The 'MetaTableCollection' class defines the collection that manages the columns in the table.  
  * This class provides additional and management capabilities for columns.  
  */
-type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
+type MetaTableColumnCollection<T> = {
 
     /**
      * Adds a column to the collection.  
@@ -33,7 +33,7 @@ type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
      */
     addValue(name: string, value: string | number | boolean): BaseColumn;
     
-};
+} & BaseColumnCollection<T>;
 
 export interface MetaTableColumnCollectionConstructor {
     /**

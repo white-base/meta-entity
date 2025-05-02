@@ -7,7 +7,7 @@ import type { BaseColumn }              from './base-column.d.ts';
  * `MetaViewColumnCollection` 클래스는 메타 뷰 컬럼을 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 메타 컬럼을 추가하고, 직렬화 및 참조 컬렉션을 관리하는 기능을 제공합니다.  
  */
-type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
+type MetaViewColumnCollection<T> = {
 
     /**
      * 이 컬렉션이 참조하는 엔티티 목록입니다. 각 엔티티는 `BaseEntity` 타입입니다.
@@ -71,7 +71,8 @@ type MetaViewColumnCollection<T> = BaseColumnCollection<T> & {
      * collection.addEntity(entity); // 주어진 엔티티의 모든 컬럼을 추가
      */
     addEntity(entity: BaseEntity): void;
-};
+
+} & BaseColumnCollection<T>;
 
 export interface MetaViewColumnCollectionConstructor {
     /**

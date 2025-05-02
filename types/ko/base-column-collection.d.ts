@@ -7,7 +7,7 @@ import type { BaseColumn }          from './base-column.d.ts';
  * 
  * @extends PropertyCollection
  */
-type BaseColumnCollection<T> = PropertyCollection<T> & {
+type BaseColumnCollection<T> = {
     
     /**
      * 기본 컬럼 생성자 타입입니다.
@@ -89,7 +89,8 @@ type BaseColumnCollection<T> = PropertyCollection<T> & {
      * @returns 하위 클래스에 따라 반환형이 달라질 수 있습니다.
      */
     addValue(...args: unknown[]): unknown;
-};
+
+} & PropertyCollection<T>;
 
 export interface BaseColumnCollectionConstructor {
     /**

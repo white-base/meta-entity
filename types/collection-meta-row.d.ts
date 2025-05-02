@@ -1,7 +1,7 @@
 import type { TransactionCollection }   from './collection-transaction.d.ts';
 import type { MetaRow }                 from './meta-row.d.ts';
 
-type MetaRowCollection<T> = TransactionCollection<T> & {
+type MetaRowCollection<T> = {
     
     /**
      * Gets the property descriptor for the specified index.
@@ -38,7 +38,7 @@ type MetaRowCollection<T> = TransactionCollection<T> & {
      */
     insertAt(pos: number, row: MetaRow, isCheck?: boolean): boolean;
     
-};
+} & TransactionCollection<T>;
 
 export interface MetaRowCollectionConstructor {
     /**

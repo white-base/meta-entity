@@ -5,7 +5,7 @@ import type { MetaView }                    from './meta-view.d.ts';
  * The 'MetaView Collection' class defines the collection that manages the view entity.  
  * This class provides the ability to add meta-views and check the presence of views in the collection.  
  */
-type MetaViewCollection<T = MetaView> = PropertyCollection<T> & {
+type MetaViewCollection<T = MetaView> = {
 
     /**
      * 'MetaView' object used as the default generation type.  
@@ -41,7 +41,7 @@ type MetaViewCollection<T = MetaView> = PropertyCollection<T> & {
      */
     existViewName(key: string): boolean;
 
-};
+} & PropertyCollection<T>;
 
 export interface MetaViewCollectionConstructor {
     /**

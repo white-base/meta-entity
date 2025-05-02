@@ -1,7 +1,7 @@
 import type { TransactionCollection }   from './collection-transaction.d.ts';
 import type { MetaRow }                 from './meta-row.d.ts';
 
-type MetaRowCollection<T> = TransactionCollection<T> & {
+type MetaRowCollection<T> = {
 
     /**
      * 지정된 인덱스의 프로퍼티 기술자를 가져옵니다.
@@ -37,7 +37,8 @@ type MetaRowCollection<T> = TransactionCollection<T> & {
      * @returns 삽입 성공 여부를 나타냅니다.
      */
     insertAt(pos: number, row: MetaRow, isCheck?: boolean): boolean;
-};
+
+} & TransactionCollection<T>;
 
 export interface MetaRowCollectionConstructor {
     /**

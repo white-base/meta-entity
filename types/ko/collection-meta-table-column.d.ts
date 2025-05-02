@@ -6,7 +6,7 @@ import type { MetaColumn }              from './meta-column.d.ts';
  * `MetaTableColumnCollection` 클래스는 테이블의 컬럼을 관리하는 컬렉션을 정의합니다.  
  * 이 클래스는 컬럼의 추가 및 관리 기능을 제공합니다.  
  */
-type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
+type MetaTableColumnCollection<T> = {
 
     /**
      * 컬럼을 컬렉션에 추가합니다.  
@@ -32,7 +32,8 @@ type MetaTableColumnCollection<T> = BaseColumnCollection<T> & {
      * const column = collection.addValue("user_age", 30); // 이름과 값으로 컬럼 추가
      */
     addValue(name: string, value: string | number | boolean): BaseColumn; 
-}
+
+} & BaseColumnCollection<T>;
 
 export interface MetaTableColumnCollectionConstructor {
     /**

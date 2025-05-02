@@ -1,26 +1,26 @@
 /// <reference path="T.d.ts" />
 
-export { ExtendError }                 from 'logic-core/ko';
-export { Type }                        from 'logic-core/ko';
-export { Util }                        from 'logic-core/ko';
-export { EventEmitter }                from 'logic-core/ko';
-export { IObject }                     from 'logic-core/ko';
-export { IMarshal }                    from 'logic-core/ko';
-export { ICollection }                 from 'logic-core/ko';
-export { IPropertyCollection }         from 'logic-core/ko';
-export { IElement }                    from 'logic-core/ko';
-export { IList }                       from 'logic-core/ko';
-export { IListControl }                from 'logic-core/ko';
-export { ISerialize }                  from 'logic-core/ko';
-export { IArrayCollection }            from 'logic-core/ko';
-export { NamespaceManager }            from 'logic-core/ko';
-export { MetaRegistry }                from 'logic-core/ko';
-export { MetaObject }                  from 'logic-core/ko';
-export { MetaElement }                 from 'logic-core/ko';
-export { BaseCollection }              from 'logic-core/ko';
-export { ArrayCollection }             from 'logic-core/ko';
-export { PropertyCollection }          from 'logic-core/ko';
-export { Message }                     from 'logic-core/ko';
+export { ExtendError }                 from 'logic-core';
+export { Type }                        from 'logic-core';
+export { Util }                        from 'logic-core';
+export { EventEmitter }                from 'logic-core';
+export { IObject }                     from 'logic-core';
+export { IMarshal }                    from 'logic-core';
+export { ICollection }                 from 'logic-core';
+export { IPropertyCollection }         from 'logic-core';
+export { IElement }                    from 'logic-core';
+export { IList }                       from 'logic-core';
+export { IListControl }                from 'logic-core';
+export { ISerialize }                  from 'logic-core';
+export { IArrayCollection }            from 'logic-core';
+export { NamespaceManager }            from 'logic-core';
+export { MetaRegistry }                from 'logic-core';
+export { MetaObject }                  from 'logic-core';
+export { MetaElement }                 from 'logic-core';
+export { BaseCollection }              from 'logic-core';
+export { ArrayCollection }             from 'logic-core';
+export { PropertyCollection }          from 'logic-core';
+export { Message }                     from 'logic-core';
 
 // local modules
 export { BaseColumn }                  from './base-column.js';

@@ -5,7 +5,7 @@ import type { TransactionQueue }        from './trans-queue.d.ts';
  * `TransactionCollection` 클래스는 트랜잭션 기반의 컬렉션을 관리합니다.  
  * 이 클래스는 컬렉션에 트랜잭션 큐를 적용하고, 변경 사항을 관리하는 기능을 제공합니다.  
  */
-type TransactionCollection<T> = ArrayCollection<T> & {
+type TransactionCollection<T> = {
 
     /**
      * 트랜잭션 큐를 관리하는 객체입니다.  
@@ -102,7 +102,8 @@ type TransactionCollection<T> = ArrayCollection<T> & {
      * 이 메서드는 트랜잭션 큐에 있는 모든 작업을 취소합니다.  
      */
     rollback(): void;
-};
+
+} & ArrayCollection<T>;
 
 export interface TransactionCollectionConstructor {
     /**
