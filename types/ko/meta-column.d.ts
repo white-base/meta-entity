@@ -159,12 +159,12 @@ declare class MetaColumn extends BaseColumn {
      * @param regex - 적용할 정규 표현식
      * @param msg - 정규 표현식 실패 시 표시할 메시지
      * @param code - 정규 표현식 실패 시 코드 (옵션)
-     * @param condition - 제약 조건의 성공/실패 여부를 결정하는 조건 (기본값은 `true`)
+     * @param match - 제약 조건의 성공/실패 여부를 결정하는 조건 (기본값은 `true`)
      * 
      * @example
      * column.addConstraint(/^\d+$/, 'Value must be a number');
      */
-    addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean): void;
+    addConstraint(regex: RegExp, msg: string, code?: string, match?: boolean): void;
 
     /**
      * 속성의 값이 유효한지 검사합니다.  

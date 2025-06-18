@@ -70,7 +70,7 @@ var MetaColumn  = (function (_super) {
          * var c = {
          *  regex: /aa/,
          *  msg: '매칭메세지',  // return이 true면 성공시 메세지, false 실패시 메세지
-         *  condition: ture     // 매칭시 성공
+         *  match: ture     // 매칭시 성공
          * };
          */
         Object.defineProperty(this, 'constraints', {
@@ -318,12 +318,12 @@ var MetaColumn  = (function (_super) {
      * @param {Regexp | Function} p_regex 정규표현식
      * @param {string} [p_msg]  regexp 입력시
      * @param {string} [p_code] regexp 입력시
-     * @param {boolean} [p_condition] <기본값 false> 성공/실패 조건
-     * @param {boolean} p_condition.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
-     * @param {boolean} p_condition.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
+     * @param {boolean} [p_match] <기본값 false> 성공/실패 조건
+     * @param {boolean} p_match.false 실패조건이며<기본값>, 정규식이 매칭이 안되야 한다.
+     * @param {boolean} p_match.true 성공조건이며 정규식이 매칭이되어야 성공(통화)  
      */
-    MetaColumn.prototype.addConstraint = function(p_regex, p_msg, p_code, p_condition) {
-        p_condition = typeof p_condition === 'boolean' ? p_condition : true;
+    MetaColumn.prototype.addConstraint = function(p_regex, p_msg, p_code, p_match) {
+        p_match = typeof p_match === 'boolean' ? p_match : true;
 
         var constraint = {};
         if (typeof p_regex === 'function') {
@@ -336,7 +336,7 @@ var MetaColumn  = (function (_super) {
         constraint.regex = p_regex;
         constraint.msg = p_msg;
         constraint.code = p_code;
-        constraint.condition = p_condition;
+        constraint.match = p_match;
         
         this.constraints.push(constraint);
     };
@@ -394,8 +394,8 @@ var MetaColumn  = (function (_super) {
 
             } else {
                 match = value.match(this.constraints[i].regex);
-                if ((this.constraints[i].condition === false && match !== null) ||    // 실패 조건
-                    (this.constraints[i].condition === true && match === null)) {     // 성공 조건
+                if ((this.constraints[i].match === false && match !== null) ||    // 실패 조건
+                    (this.constraints[i].match === true && match === null)) {     // 성공 조건
                     result.msg   = Message.get('EL0513A', [this.name, this.constraints[i].msg]);
                     result.code  = this.constraints[i].code;
                     return result;

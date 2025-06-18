@@ -161,12 +161,12 @@ declare class MetaColumn extends BaseColumn {
      * @param regex - Regular expression to apply.
      * @param msg - Message to display when regular expression fails.
      * @param code - Code for failure of regular expression. (Optional)
-     * @param condition - The condition that determines whether a constraint is successful/failed. Default is 'false'.
+     * @param match - The condition that determines whether a constraint is successful/failed. Default is 'false'.
      * 
      * @example
      * column.addConstraint(/^\d+$/, 'Value must be a number');
      */
-    addConstraint(regex: RegExp, msg: string, code?: string, condition?: boolean): void;
+    addConstraint(regex: RegExp, msg: string, code?: string, match?: boolean): void;
 
     /**
      * Check that the value of the property is valid.  

@@ -45,8 +45,8 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },         // true : 충족조건
-                        { regex: /[0-9]{5}/, msg: 'message', code: 'C2', return: false }   // false : 통과조건
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },         // true : 충족조건
+                        { regex: /[0-9]{5}/, msg: 'message', code: 'C2', match: false }   // false : 통과조건
                     ],   
                     // order: 1000,
                     // increase: 10,
@@ -263,7 +263,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -271,7 +271,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -279,7 +279,7 @@ describe("[target: meta-column.js ]", () => {
                     default: 'D1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -287,7 +287,7 @@ describe("[target: meta-column.js ]", () => {
                     default: 'D1',
                     caption: 'C1',
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -296,7 +296,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'MESSAGE', code: 'C1', return: true },  // 다른 위치
+                        { regex: /\D/, msg: 'MESSAGE', code: 'C1', match: true },  // 다른 위치
                     ],   
                     value: 'V1'
                 };
@@ -305,7 +305,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                 };
 
@@ -368,7 +368,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -400,7 +400,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -431,7 +431,7 @@ describe("[target: meta-column.js ]", () => {
                     caption: 'C1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
@@ -463,7 +463,7 @@ describe("[target: meta-column.js ]", () => {
                     alias: 'cc1',
                     required: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1',
                     getter: fun1,
@@ -516,8 +516,8 @@ describe("[target: meta-column.js ]", () => {
                     required: true,
                     // optional: true,
                     constraints: [
-                        { regex: /\D/, msg: 'message', code: 'C1', return: true },         // true : 충족조건
-                        { regex: /[0-9]{5}/, msg: 'message', code: 'C2', return: false }   // false : 통과조건
+                        { regex: /\D/, msg: 'message', code: 'C1', match: true },         // true : 충족조건
+                        { regex: /[0-9]{5}/, msg: 'message', code: 'C2', match: false }   // false : 통과조건
                     ],   
                     // order: 1000,
                     // increase: 10,
@@ -579,6 +579,23 @@ describe("[target: meta-column.js ]", () => {
                 item1.addConstraint(/10/, '10 시작...', 'C100', true);            // 매칭
                 item1.addConstraint(/[0-9]{5}/, '5자리 이하만...', 'C200', false);  // 미매칭
                 item1.addConstraint(/\D/, '숫자가 아님...', 'C300', false);
+                // true
+                expect(item1.valid('10')).toBe(undefined);
+                expect(item1.valid('1000')).toBe(undefined);
+                // false
+                expect(item1.valid('')).toBeDefined();        // 실패 : 10로 시작을 안해서
+                expect(item1.valid('10000')).toBeDefined();   // 실패 : 5자리 이상
+                expect(item1.valid('100a')).toBeDefined();    // 실패 : 문자가 들어가서
+            });
+            it("- valid(value): match  <제약조건 검사> ", () => {     // REVIEW: r_result => 존재시 object 이어야함, 검사 추가
+                var item1 = new MetaColumn('c1');
+                item1.required = true;
+                item1.constraints = [
+                    { regex: /10/, msg: '10 시작...', code: 'C100', match: true },            // 매칭
+                    { regex: /[0-9]{5}/, msg: '5자리 이하만...', code: 'C200', match: false },  // 미매칭
+                    { regex: /\D/, msg: '숫자가 아님...', code: 'C300', match: false }
+                ];  // 초기화
+
                 // true
                 expect(item1.valid('10')).toBe(undefined);
                 expect(item1.valid('1000')).toBe(undefined);
