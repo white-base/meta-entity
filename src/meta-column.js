@@ -388,7 +388,7 @@ var MetaColumn  = (function (_super) {
                     result.msg   = funReturn.msg;
                     result.code  = funReturn.code;
                 } else {
-                    result.msg = Message.get('EL05139', [this.name]);
+                    result.msg = Message.get('EL05139', [this.columnName]);
                 }
                 return result;
 
@@ -396,7 +396,7 @@ var MetaColumn  = (function (_super) {
                 match = value.match(this.constraints[i].regex);
                 if ((this.constraints[i].match === false && match !== null) ||    // 실패 조건
                     (this.constraints[i].match === true && match === null)) {     // 성공 조건
-                    result.msg   = Message.get('EL0513A', [this.name, this.constraints[i].msg]);
+                    result.msg   = Message.get('EL0513A', [this.columnName, this.constraints[i].msg]);
                     result.code  = this.constraints[i].code;
                     return result;
                 }
