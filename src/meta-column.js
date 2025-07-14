@@ -370,7 +370,7 @@ var MetaColumn  = (function (_super) {
         
         // 3. 실패조건 검사
         if (this.required === true && this.constraints.length === 0 && value.length === 0) {
-            result.msg   = Message.get('EL05138', [this.name]);
+            result.msg   = Message.get('EL05138', [this.columnName]);
             result.code  = 0;
             return result;
         }
