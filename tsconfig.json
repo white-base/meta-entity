@@ -13,7 +13,8 @@
       "sourceMap": true,
       "experimentalDecorators": true,
       "moduleResolution": "node16",
-      "typeRoots": ["./node_modules/@types"],
+      "typeRoots": ["./node_modules/@types", "./types"],
+      "types": ["jest"],
       "rootDir": "./",
       "baseUrl": "./"
     },

@@ -350,8 +350,6 @@ var MetaColumn  = (function (_super) {
      */
     MetaColumn.prototype.valid = function(p_value) {
         var result = {};
-        var matchResult;
-        var match;
         var value = null;
         
         result.value = p_value;
@@ -383,6 +381,7 @@ var MetaColumn  = (function (_super) {
 
                 // 함수는 false 또는 object 타입의 경우 실패로 처리
                 var funReturn = this.constraints[i].call(this, value, this);     // 함수형 제약조건
+                
                 if (funReturn === true || typeof funReturn === 'undefined') continue;
                 
                 if (typeof funReturn === 'object' && typeof funReturn.msg === 'string') {
@@ -394,8 +393,9 @@ var MetaColumn  = (function (_super) {
                 return result;
 
             } else {
-                matchResult = value.match(this.constraints[i].regex);
-                match = typeof this.constraints[i].match === 'boolean' ? this.constraints[i].match : true;
+                var matchResult = value.match(this.constraints[i].regex);
+                var match = typeof this.constraints[i].match === 'boolean' ? this.constraints[i].match : true;
+
                 if ((match === false && matchResult !== null) ||    // 실패 조건
                     (match === true && matchResult === null)) {     // 성공 조건
                     result.msg   = Message.get('EL0513A', [this.columnName, this.constraints[i].msg]);
