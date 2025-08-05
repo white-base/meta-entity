@@ -350,6 +350,7 @@ var MetaColumn  = (function (_super) {
      */
     MetaColumn.prototype.valid = function(p_value) {
         var result = {};
+        var matchResult;
         var match;
         var value = null;
         
@@ -393,9 +394,10 @@ var MetaColumn  = (function (_super) {
                 return result;
 
             } else {
-                match = value.match(this.constraints[i].regex);
-                if ((this.constraints[i].match === false && match !== null) ||    // 실패 조건
-                    (this.constraints[i].match === true && match === null)) {     // 성공 조건
+                matchResult = value.match(this.constraints[i].regex);
+                match = typeof this.constraints[i].match === 'boolean' ? this.constraints[i].match : true;
+                if ((match === false && matchResult !== null) ||    // 실패 조건
+                    (match === true && matchResult === null)) {     // 성공 조건
                     result.msg   = Message.get('EL0513A', [this.columnName, this.constraints[i].msg]);
                     result.code  = this.constraints[i].code;
                     return result;
