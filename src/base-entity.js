@@ -84,7 +84,7 @@ var BaseEntity  = (function (_super) {
          */
         Object.defineProperty(this, 'rows', {
             get: function() { return rows; },
-            configurable: false,
+            configurable: true,
             enumerable: true
         });
 
