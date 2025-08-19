@@ -16,8 +16,8 @@ var MetaTableColumnCollection  = (function (_super) {
      * @extends BaseColumnCollection
      * @param {object} p_owner 소유자
      */
-    function MetaTableColumnCollection(p_owner) {
-        _super.call(this, p_owner, MetaColumn);
+    function MetaTableColumnCollection(p_owner, p_baseType) {
+        _super.call(this, p_owner, p_baseType || MetaColumn);
 
         // 예약어 등록 
         this.$KEYWORD = ['addValue'];

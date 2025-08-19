@@ -17,8 +17,8 @@ var MetaViewColumnCollection  = (function (_super) {
      * @extends BaseColumnCollection
      * @param {object} p_owner 소유자
      */
-    function MetaViewColumnCollection(p_owner) {
-        _super.call(this, p_owner, MetaColumn);
+    function MetaViewColumnCollection(p_owner, p_baseType) {
+        _super.call(this, p_owner, p_baseType || MetaColumn);
 
         /** 
          * 참조하는 엔티티 목록
