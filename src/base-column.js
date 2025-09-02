@@ -88,7 +88,7 @@ var BaseColumn  = (function (_super) {
                 _entity = nVal;
             },
             configurable: false,
-            enumerable: true
+            enumerable: false
         });
 
         /**
@@ -106,7 +106,7 @@ var BaseColumn  = (function (_super) {
                 _valueTypes = arr;  
             },
             configurable: false,
-            enumerable: true
+            enumerable: false
         });
 
         /**
@@ -265,6 +265,9 @@ var BaseColumn  = (function (_super) {
         if (this.$value !== null) obj['$value'] = this.$value;
         return obj;                        
     };
+    Object.defineProperty(BaseColumn.prototype, 'getObject', {
+        enumerable: false
+    });
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
@@ -290,6 +293,9 @@ var BaseColumn  = (function (_super) {
         if (p_guidObj['$alias']) this.$alias = p_guidObj['$alias'];
         if (p_guidObj['$value']) this.$value = p_guidObj['$value'];
     };
+    Object.defineProperty(BaseColumn.prototype, 'setObject', {
+        enumerable: false
+    });
 
     /** 
      * 컬럼 복제
@@ -299,6 +305,9 @@ var BaseColumn  = (function (_super) {
     BaseColumn.prototype.clone = function() {
         throw new ExtendError(/EL05119/, null, []);
     };
+    Object.defineProperty(BaseColumn.prototype, 'clone', {
+        enumerable: false
+    });
 
     return BaseColumn;
 

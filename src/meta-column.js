@@ -204,7 +204,10 @@ var MetaColumn  = (function (_super) {
         p_oValue = p_oValue || this.$value;
         this.$event.emit('onChanged', p_nValue, p_oValue, this);
     };
-
+    Object.defineProperty(MetaColumn.prototype, '_onChanged', {
+        enumerable: false
+    });
+    
     /**
      * 프로퍼티 객체로 속성 로드
      * 
@@ -226,6 +229,9 @@ var MetaColumn  = (function (_super) {
             this['value'] = p_property; 
         }
     };
+    Object.defineProperty(MetaColumn.prototype, '_load', {
+        enumerable: false
+    });
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
@@ -256,6 +262,9 @@ var MetaColumn  = (function (_super) {
         // if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
         return obj;                        
     };
+    Object.defineProperty(MetaColumn.prototype, 'getObject', {
+        enumerable: false
+    });
 
     /**
      * 현재 객체를 초기화 후, 지정한 guid 타입의 객체를 사용하여 설정합니다.  
@@ -280,6 +289,9 @@ var MetaColumn  = (function (_super) {
         if (p_guidObj['setter']) this.setter = p_guidObj['setter'];
         // if (p_guidObj['value']) this.value = p_guidObj['value'];
     };
+    Object.defineProperty(MetaColumn.prototype, 'setObject', {
+        enumerable: false
+    });
 
     /**
      * 컬럼 복제
@@ -310,6 +322,9 @@ var MetaColumn  = (function (_super) {
         
         return clone;
     };
+    Object.defineProperty(MetaColumn.prototype, 'clone', {
+        enumerable: false
+    });
 
     /**
      * 제약조건을 추가  
@@ -340,6 +355,9 @@ var MetaColumn  = (function (_super) {
         
         this.constraints.push(constraint);
     };
+    Object.defineProperty(MetaColumn.prototype, 'addConstraint', {
+        enumerable: false
+    });
     
     /**
      * 속성의 value에 유효성을 검사한다. (isNotnull, optional, constraints 기준)  
@@ -406,6 +424,9 @@ var MetaColumn  = (function (_super) {
         }            
         return undefined;
     };
+    Object.defineProperty(MetaColumn.prototype, 'valid', {
+        enumerable: false
+    });
 
     return MetaColumn;
 

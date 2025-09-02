@@ -71,7 +71,9 @@ var MetaTableCollection  = (function (_super) {
 
         return _super.prototype.add.call(this, key, table);
     };
-
+    Object.defineProperty(MetaTableCollection.prototype, 'add', {
+        enumerable: false
+    });
 
     /**
      * 테이블명 존재 유무
