@@ -100,6 +100,9 @@ var MetaViewCollection  = (function (_super) {
         }
         return false;
     };
+    Object.defineProperty(MetaViewCollection.prototype, 'existViewName', {
+        enumerable: false
+    });
 
     return MetaViewCollection;
 

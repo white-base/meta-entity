@@ -31,7 +31,7 @@ var MetaTableCollection  = (function (_super) {
                 _baseType = nVal;
             },
             configurable: false,
-            enumerable: true
+            enumerable: false
         });
 
         this._elemTypes = MetaTable;   // 컬렉션 타입 설정
@@ -72,6 +72,7 @@ var MetaTableCollection  = (function (_super) {
         return _super.prototype.add.call(this, key, table);
     };
 
+
     /**
      * 테이블명 존재 유무
      * 
@@ -84,6 +85,9 @@ var MetaTableCollection  = (function (_super) {
         }
         return false;
     };
+    Object.defineProperty(MetaTableCollection.prototype, 'existTableName', {
+        enumerable: false
+    });
     
     return MetaTableCollection;
 
