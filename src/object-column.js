@@ -50,6 +50,9 @@ var ObjectColumn  = (function (_super) {
             }
         } else throw new ExtendError(/EL05121/, null, ['p_prop', 'object']);
     };
+    Object.defineProperty(ObjectColumn.prototype, '_load', {
+        enumerable: false
+    });
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  
@@ -83,8 +86,11 @@ var ObjectColumn  = (function (_super) {
                 obj['$value'] = MetaRegistry.createReferObject($value);
             } else obj['$value'] = $value.getObject(vOpt, owned);
         }
-        return obj;                        
+        return obj;
     };
+    Object.defineProperty(ObjectColumn.prototype, 'getObject', {
+        enumerable: false
+    });
 
     /**
      * 현재 객체를 guid 객체로 설정한다.  
@@ -128,6 +134,9 @@ var ObjectColumn  = (function (_super) {
             }
         }
     };
+    Object.defineProperty(ObjectColumn.prototype, 'setObject', {
+        enumerable: false
+    });
 
     /**
      * 객체 복제  
@@ -149,6 +158,9 @@ var ObjectColumn  = (function (_super) {
 
         return clone;
     };
+    Object.defineProperty(ObjectColumn.prototype, 'clone', {
+        enumerable: false
+    });
 
     return ObjectColumn;
 
