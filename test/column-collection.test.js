@@ -201,18 +201,18 @@ describe("[target: column-collection.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add(new MetaColumn('c1'));
                 table1.columns.add('c2');
-                table1.columns['c2'].caption = 'C1';
+                table1.columns['c2'].label = 'C1';
                 var table2 = new MetaTable('T2');
                 table2.columns.add(table1.columns['c2']);
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c2'].label = 'C2';
     
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c2'].label).toBe('C2');
                 expect(table1.columns['c2']._entity.tableName).toBe('T1');
                 // table2
                 expect(table2.columns.count).toBe(1);
-                expect(table2.columns['c2'].caption).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C1');
                 expect(table2.columns['c2']._entity.tableName).toBe('T2');
             });
             it("- add(name) : 로우 존재시 컬럼 추가/제거 예외 ", () => {
@@ -273,33 +273,33 @@ describe("[target: column-collection.js]", () => {
                 view1.columns.add('c1');                   // 아이템 추가
                 view1.columns.add('c2');
                 view1.columns.addValue('c3', 'V3');
-                view1.columns['c1'].caption = 'C1';
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c1'].label = 'C1';
+                view1.columns['c2'].label = 'C2';
                 view2.columns.add(view1.columns['c1']);         // 중복 삽입 : 기존값 리턴
                 view2.columns.add('c2');                     // 중복 삽입 : 기존값 리턴
                 view2.columns.add('c3');                      
                 view2.columns.add('c4', view3.columns);      // 참조형에 참조컬렉션 지정
-                view2.columns['c3'].caption = 'C3';       // 참조에 속성 덮어씀
-                view2.columns['c4'].caption = 'C4';
+                view2.columns['c3'].label = 'C3';       // 참조에 속성 덮어씀
+                view2.columns['c4'].label = 'C4';
     
                 // view1
                 expect(view1.viewName).toBe('T1');
                 expect(view1.columns.count).toBe(3);
-                expect(view1.columns['c1'].caption).toBe('C1');
-                expect(view1.columns['c2'].caption).toBe('C2');
-                expect(view1.columns['c3'].caption).toBe('C3');
+                expect(view1.columns['c1'].label).toBe('C1');
+                expect(view1.columns['c2'].label).toBe('C2');
+                expect(view1.columns['c3'].label).toBe('C3');
                 expect(view1.columns['c3'].value).toBe('V3');
                 // view2
                 expect(view2.viewName).toBe('T2');
                 expect(view2.columns.count).toBe(4);
-                expect(view2.columns['c1'].caption).toBe('C1');
-                expect(view2.columns['c2'].caption).toBe('C2');
-                expect(view2.columns['c3'].caption).toBe('C3');
+                expect(view2.columns['c1'].label).toBe('C1');
+                expect(view2.columns['c2'].label).toBe('C2');
+                expect(view2.columns['c3'].label).toBe('C3');
                 expect(view1.columns['c3'].value).toBe('V3');
                 // view3
                 expect(view3.viewName).toBe('T3');
                 expect(view3.columns.count).toBe(1);
-                expect(view3.columns['c4'].caption).toBe('C4');
+                expect(view3.columns['c4'].label).toBe('C4');
                 // view1 기준 비교
                 expect(view1.columns['c1']).toEqual(view2.columns['c1']);
                 expect(view1.columns['c2']).toEqual(view2.columns['c2']);
@@ -342,27 +342,27 @@ describe("[target: column-collection.js]", () => {
                 var view1 = new MetaView('T1');        // 독립형 생성
                 view1.columns.add('c1');                   // 아이템 추가
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C1';
+                view1.columns['c2'].label = 'C1';
                 var view2 = new MetaView('T2');       // 독립형 생성
                 view2.columns.add(view1.columns['c1']);      // 참조 아이템 추가
                 view2.columns.add('c2');                  
                 view2.columns.add('c3', view1.columns);      // 컬렉션 지정 추가
                 view2.columns['c1'].value = 'V1';
-                view2.columns['c2'].caption = 'C2';
-                view2.columns['c3'].caption = 'C3';
+                view2.columns['c2'].label = 'C2';
+                view2.columns['c3'].label = 'C3';
     
                 // view1
                 expect(view1.viewName).toBe('T1');
                 expect(view1.columns.count).toBe(3);
                 expect(view1.columns['c1'].value).toBe('V1');
-                expect(view1.columns['c2'].caption).toBe('C1');
-                expect(view1.columns['c3'].caption).toBe('C3');
+                expect(view1.columns['c2'].label).toBe('C1');
+                expect(view1.columns['c3'].label).toBe('C3');
                 // view2
                 expect(view2.viewName).toBe('T2');
                 expect(view2.columns.count).toBe(3);
                 expect(view2.columns['c1'].value).toBe('V1');
-                expect(view2.columns['c2'].caption).toBe('C2');
-                expect(view2.columns['c3'].caption).toBe('C3');
+                expect(view2.columns['c2'].label).toBe('C2');
+                expect(view2.columns['c3'].label).toBe('C3');
             });
             it("- add(name, baseCollection) : 추가 ", () => {
                 var t1 = new MetaTable('T1');
@@ -447,8 +447,8 @@ describe("[target: column-collection.js]", () => {
                 expect(()=> view1.columns['c1'].columnName = {}).toThrow(/EL05112/)
                 expect(()=> view1.columns['c1'].alias = 10).toThrow(/EL05115/)
                 expect(()=> view1.columns['c1'].alias = {}).toThrow(/EL05115/)
-                expect(()=> view1.columns['c1'].caption = 10).toThrow(/EL05117/)
-                expect(()=> view1.columns['c1'].caption = {}).toThrow(/EL05117/)
+                expect(()=> view1.columns['c1'].label = 10).toThrow(/EL05117/)
+                expect(()=> view1.columns['c1'].label = {}).toThrow(/EL05117/)
                 expect(()=> view1.columns['c1'].required = 10).toThrow(/EL05131/)
                 expect(()=> view1.columns['c1'].required = {}).toThrow(/EL05131/)
                 // expect(()=> view1.columns['c1'].optional = 10).toThrow(/EL05132/)

@@ -49,7 +49,7 @@ describe("[target: object-column.js]", () => {
                     default: {},
                     value: obj1,
                     alias: 'oo1',
-                    caption:'OBJ1'
+                    label:'OBJ1'
                 }
                 const o1 = new ObjectColumn('o1', t1, prop);
 
@@ -58,7 +58,7 @@ describe("[target: object-column.js]", () => {
                 expect(o1.columnName).toBe('o1');
                 expect(o1.alias).toBe(prop.alias);
                 expect(o1.default).toBe(prop.default);
-                expect(o1.caption).toBe(prop.caption);
+                expect(o1.label).toBe(prop.label);
                 expect(o1.value).toBe(prop.value);
             });
             it("- 객체 생성 예외 : property ", () => {
@@ -68,12 +68,12 @@ describe("[target: object-column.js]", () => {
             it("- 커버리지 ", () => {
                 const prop = {
                     alias: 'oo1',
-                    sub: {caption: 'OBJ2'}
+                    sub: {label: 'OBJ2'}
                 }
                 const o1 = new ObjectColumn('o1', null, prop);
 
                 expect(o1.alias).toBe(prop.alias);
-                expect(o1.caption).toBe('');
+                expect(o1.label).toBe('');
             });
 
         });
@@ -86,7 +86,7 @@ describe("[target: object-column.js]", () => {
                     default: {},
                     value: e1,
                     alias: 'oo1',
-                    caption:'C1'
+                    label:'C1'
                 }
                 const o1 = new ObjectColumn('o1', t1, prop1);
                 const g1 = o1.getObject();
@@ -96,7 +96,7 @@ describe("[target: object-column.js]", () => {
                 expect(g1._guid).toBe(o1._guid);
                 expect(g1._type).toBe('Meta.Entity.ObjectColumn');
                 expect(g1.columnName).toBe('o1');
-                expect(g1.caption).toBe(prop1.caption);
+                expect(g1.label).toBe(prop1.label);
                 expect(g1.default).toEqual(prop1.default);
                 expect(g1.$value).toEqual(e1.getObject());
                 expect(g1._entity).toEqual({$ref: t1._guid});
@@ -109,7 +109,7 @@ describe("[target: object-column.js]", () => {
                     default: e1,
                     value: e1,
                     alias: 'oo1',
-                    caption:'C1'
+                    label:'C1'
                 }
                 const o1 = new ObjectColumn('o1', t1, prop1);
                 const g1 = o1.getObject();
@@ -119,7 +119,7 @@ describe("[target: object-column.js]", () => {
                 expect(g1._guid).toBe(o1._guid);
                 expect(g1._type).toBe('Meta.Entity.ObjectColumn');
                 expect(g1.columnName).toBe('o1');
-                expect(g1.caption).toBe(prop1.caption);
+                expect(g1.label).toBe(prop1.label);
                 expect(g1.default).toEqual(e1.getObject());
                 expect(g1.$value).toEqual({$ref: e1._guid});
                 expect(g1._entity).toEqual({$ref: t1._guid});
@@ -144,7 +144,7 @@ describe("[target: object-column.js]", () => {
                     default: {},
                     value: obj1,
                     alias: 'oo1',
-                    caption:'C1'
+                    label:'C1'
                 }
                 const o1 = new ObjectColumn('o1', null, prop1);
                 const g1 = o1.getObject();
@@ -155,7 +155,7 @@ describe("[target: object-column.js]", () => {
                 expect(o2.columnName).toBe('o1');
                 expect(o2.alias).toBe(prop1.alias);
                 expect(o2.default).toBe(prop1.default);
-                expect(o2.caption).toBe(prop1.caption);
+                expect(o2.label).toBe(prop1.label);
                 expect(o2.value).toBe(prop1.value);
             });
             it("- default, value 가 같은 객체 일 경우 ", () => {
@@ -207,7 +207,7 @@ describe("[target: object-column.js]", () => {
                     default: {},
                     value: obj1,
                     alias: 'oo1',
-                    caption:'C1'
+                    label:'C1'
                 }
                 const o1 = new ObjectColumn('o1', t1, prop1);
                 const g1 = o1.getObject();
@@ -255,7 +255,7 @@ describe("[target: object-column.js]", () => {
             //         default: {},
             //         value: t1,
             //         alias: 'oo1',
-            //         caption:'C1'
+            //         label:'C1'
             //     }
             //     const o1 = new ObjectColumn('o1', t1, prop1);
             //     const g1 = o1.getObject();
@@ -266,7 +266,7 @@ describe("[target: object-column.js]", () => {
             //     expect(o2.columnName).toBe('o1');
             //     expect(o2.alias).toBe(prop1.alias);
             //     expect(o2.default).toBe(prop1.default);
-            //     expect(o2.caption).toBe(prop1.caption);
+            //     expect(o2.label).toBe(prop1.label);
             //     expect(o2.value.equal(t1)).toBe(true);
 
             // });
@@ -276,7 +276,7 @@ describe("[target: object-column.js]", () => {
                 var table = new MetaTable('T1');
                 var prop = {
                     default: {aa: 0},
-                    caption: 'C1',
+                    label: 'C1',
                     alias: 'ii1',
                 }
                 var item1 = new ObjectColumn('c1', table, prop);            
@@ -285,11 +285,11 @@ describe("[target: object-column.js]", () => {
                 // item1
                 expect(item1._entity.tableName).toBe('T1');
                 expect(item1.default).toBe(prop.default);
-                expect(item1.caption).toBe(prop.caption);
+                expect(item1.label).toBe(prop.label);
                 // item2
                 expect(item2._entity.tableName).toBe('T1');
                 expect(item2.default).toBe(prop.default);
-                expect(item2.caption).toBe(prop.caption);
+                expect(item2.label).toBe(prop.label);
                 // 비교
                 expect(item1 === item2).toBe(false);
                 expect(item1.equal(item2)).toBe(true);

@@ -399,8 +399,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -413,8 +413,8 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(4);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows[0]['c1']).toBe('R1');
                 expect(table2.rows[0]['c2']).toBe('R2');
                 expect(table2.rows[1]['c1']).toBe('R10');
@@ -429,8 +429,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -439,8 +439,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c3: { caption: 'C3'},
+                        c1: { label: 'C1'},
+                        c3: { label: 'C3'},
                     },
                     rows: [
                         { c1: 'R1', c3: 'R3' },
@@ -453,8 +453,8 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(2);
                 expect(table1.rows.count).toBe(4);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[1]['c1']).toBe('R10');
@@ -472,8 +472,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -482,8 +482,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -496,10 +496,10 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
-                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
+                expect(table1.columns['c4'].label).toBe('C4');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('R3');
@@ -514,8 +514,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -524,8 +524,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -539,10 +539,10 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
-                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
+                expect(table1.columns['c4'].label).toBe('C4');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('R3');
@@ -557,8 +557,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -567,8 +567,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c2: { caption: 'CC2'},
-                        c4: { caption: 'C4'},
+                        c2: { label: 'CC2'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c2: 'R2', c4: 'R4' },
@@ -584,10 +584,10 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['ii2'].caption).toBe('CC2');
-                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['ii2'].label).toBe('CC2');
+                expect(table1.columns['c4'].label).toBe('C4');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['ii2']).toBe('R2');
@@ -603,8 +603,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -613,8 +613,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -628,10 +628,10 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(2);
-                expect(table1.columns.alias('ii1').caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
-                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.columns.alias('ii1').label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
+                expect(table1.columns['c4'].label).toBe('C4');
                 expect(table1.rows[0]['ii1']).toBe('R1');   // 별칭 접근
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('R3');
@@ -646,8 +646,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -656,8 +656,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c1: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c1: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c1: 'R3', c4: 'R4' },
@@ -674,8 +674,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -684,8 +684,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -703,8 +703,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -713,8 +713,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        ii1: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        ii1: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { ii1: 'R3', c4: 'R4' },
@@ -732,8 +732,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -742,8 +742,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -762,8 +762,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -772,8 +772,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c2: { caption: 'C2'},
-                        c3: { caption: 'C3'},
+                        c2: { label: 'C2'},
+                        c3: { label: 'C3'},
                     },
                     rows: [
                         { c2: 'R200', c3: 'R300' },
@@ -786,9 +786,9 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(3);
                 expect(table1.rows.count).toBe(4);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('');
@@ -807,8 +807,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -817,8 +817,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c2: { caption: 'C2'},
-                        c3: { caption: 'C3'},
+                        c2: { label: 'C2'},
+                        c3: { label: 'C3'},
                     },
                     rows: [
                         { c2: 'R200', c3: 'R300' }
@@ -830,9 +830,9 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(3);
                 expect(table1.rows.count).toBe(3);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('');
@@ -851,8 +851,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -861,8 +861,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -876,10 +876,10 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table1.columns.count).toBe(4);
                 expect(table1.rows.count).toBe(3);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c3'].caption).toBe('C3');
-                expect(table1.columns['c4'].caption).toBe('C4');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c3'].label).toBe('C3');
+                expect(table1.columns['c4'].label).toBe('C4');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe('R3');
@@ -898,8 +898,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -908,8 +908,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -925,8 +925,8 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -935,8 +935,8 @@ describe("[target: meta-table.js]", () => {
                 };
                 var json2 = { 
                     columns: {
-                        c3: { caption: 'C3'},
-                        c4: { caption: 'C4'},
+                        c3: { label: 'C3'},
+                        c4: { label: 'C4'},
                     },
                     rows: [
                         { c3: 'R3', c4: 'R4' },
@@ -963,14 +963,14 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1', alias: 'ii1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1', alias: 'ii1'},
+                        c2: { label: 'C2'},
                     },
                 };
                 var json2 = { 
                     columns: {
-                        ii1: { caption: 'CC2'},
-                        c4: { caption: 'C4'},
+                        ii1: { label: 'CC2'},
+                        c4: { label: 'C4'},
                     },
                 };
                 table1.read(json1, 3);
@@ -992,8 +992,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         c1: { caption: 'C1'},
-                //         c2: { caption: 'C2'},
+                //         c1: { label: 'C1'},
+                //         c2: { label: 'C2'},
                 //     },
                 //     rows: [
                 //         { c1: 1, c2: 2 },
@@ -1003,8 +1003,8 @@ describe("[target: meta-table.js]", () => {
                 // table1.load(json1, 3);
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -1028,8 +1028,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         c1: { caption: 'C1'},
-                //         c2: { caption: 'C2'},
+                //         c1: { label: 'C1'},
+                //         c2: { label: 'C2'},
                 //     },
                 //     rows: [
                 //         { c1: 1, c2: 2 },
@@ -1040,8 +1040,8 @@ describe("[target: meta-table.js]", () => {
                 // setter 방식
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -1064,8 +1064,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 // var json1 = { 
                 //     columns: {
-                //         c1: { caption: 'C1'},
-                //         c2: { caption: 'C2'},
+                //         c1: { label: 'C1'},
+                //         c2: { label: 'C2'},
                 //     },
                 //     rows: [
                 //         { c1: 1, c2: 2 },
@@ -1075,8 +1075,8 @@ describe("[target: meta-table.js]", () => {
                 // table1.load(json1, 3);
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -1132,8 +1132,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('TT1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 'R1';
                 row['c2'] = 'R2';
@@ -1156,14 +1156,14 @@ describe("[target: meta-table.js]", () => {
                 // table1
                 expect(table1.tableName).toBe('TT1');
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
                 expect(table1.rows.count).toBe(3);
                 // table2
                 expect(table2.tableName).toBe('TT1');
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows.count).toBe(3);
                 expect(table2.rows[0]['c1']).toBe('R1');
                 expect(table2.rows[0]['c2']).toBe('R2');
@@ -1176,8 +1176,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('TT1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 'R1';
                 row['c2'] = 'R2';
@@ -1200,14 +1200,14 @@ describe("[target: meta-table.js]", () => {
                 // table1
                 expect(table1.tableName).toBe('TT1');
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
                 expect(table1.rows.count).toBe(1);
                 // table2
                 expect(table2.tableName).toBe('TT1');
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows.count).toBe(1);
                 expect(table2.rows[0]['c1']).toBe('R1');
                 expect(table2.rows[0]['c2']).toBe('R2');
@@ -1247,7 +1247,7 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity._readEntity(): <엔티티 읽기>", () => {
             it("- 예외 및 커버리지  ", () => {
                 // const prop1 = {
-                //     default: 1, caption: 'C1', required: true, optional: true,
+                //     default: 1, label: 'C1', required: true, optional: true,
                 //     constraints: [{regex: /reg/, msg: 'msg' }],
                 //     setter: function() { /** s */ },
                 //     getter: function() { /** g */ }
@@ -1274,7 +1274,7 @@ describe("[target: meta-table.js]", () => {
         describe("BaseEntity.read(obj | rObj, opt) <JSON 읽기>", () => {
             it("- read(oGuid) : 객체 읽기  ", () => {
                 const prop1 = {
-                    default: 1, caption: 'C1', required: true,
+                    default: 1, label: 'C1', required: true,
                     constraints: [{regex: /reg/, msg: 'msg' }],
                     setter: function() { /** s */ },
                     getter: function() { /** g */ }
@@ -1296,7 +1296,7 @@ describe("[target: meta-table.js]", () => {
             });
             it("- read(entity) : 객체 읽기  ", () => {
                 const prop1 = {
-                    default: 1, caption: 'C1', required: true,
+                    default: 1, label: 'C1', required: true,
                     constraints: [{regex: /reg/, msg: 'msg' }],
                     setter: function() { /** s */ },
                     getter: function() { /** g */ }
@@ -1336,8 +1336,8 @@ describe("[target: meta-table.js]", () => {
                 var table5 = new MetaTable('T5');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -1348,7 +1348,7 @@ describe("[target: meta-table.js]", () => {
                 var json2 = { 
                     entity: {
                         columns: {
-                            c1: { caption: 'C1'},
+                            c1: { label: 'C1'},
                         },
                     }
                 };
@@ -1366,16 +1366,16 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.rows.count).toBe(0);
                 // table2
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows.count).toBe(0);
                 // table3
                 expect(table3.columns.count).toBe(0);
                 expect(table3.rows.count).toBe(0);
                 // table4
                 expect(table4.columns.count).toBe(2);
-                expect(table4.columns['c1'].caption).toBe('C1');
-                expect(table4.columns['c2'].caption).toBe('C2');
+                expect(table4.columns['c1'].label).toBe('C1');
+                expect(table4.columns['c2'].label).toBe('C2');
                 expect(table4.rows.count).toBe(3);
                 expect(table4.rows[0]['c1']).toBe('R1');
                 expect(table4.rows[0]['c2']).toBe('R2');
@@ -1385,7 +1385,7 @@ describe("[target: meta-table.js]", () => {
                 expect(table4.rows[2]['c2']).toBe('R200');
                 // table5
                 expect(table5.columns.count).toBe(1);
-                expect(table5.columns['c1'].caption).toBe('C1');
+                expect(table5.columns['c1'].label).toBe('C1');
                 expect(table5.rows.count).toBe(3);
                 expect(table5.rows[0]['c1']).toBe('R1');
                 expect(table5.rows[0]['c2']).toBe(undefined);
@@ -1403,8 +1403,8 @@ describe("[target: meta-table.js]", () => {
                 var table5 = new MetaTable('T5');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -1415,7 +1415,7 @@ describe("[target: meta-table.js]", () => {
                 var json2 = { 
                     table: {
                         columns: {
-                            c1: { caption: 'C1'},
+                            c1: { label: 'C1'},
                         },
                     }
                 };
@@ -1433,16 +1433,16 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.rows.count).toBe(0);
                 // table2
                 expect(table2.columns.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows.count).toBe(0);
                 // table3
                 expect(table3.columns.count).toBe(0);
                 expect(table3.rows.count).toBe(0);
                 // table4
                 expect(table4.columns.count).toBe(2);
-                expect(table4.columns['c1'].caption).toBe('C1');
-                expect(table4.columns['c2'].caption).toBe('C2');
+                expect(table4.columns['c1'].label).toBe('C1');
+                expect(table4.columns['c2'].label).toBe('C2');
                 expect(table4.rows.count).toBe(3);
                 expect(table4.rows[0]['c1']).toBe('R1');
                 expect(table4.rows[0]['c2']).toBe('R2');
@@ -1452,7 +1452,7 @@ describe("[target: meta-table.js]", () => {
                 expect(table4.rows[2]['c2']).toBe('R200');
                 // table5
                 expect(table5.columns.count).toBe(1);
-                expect(table5.columns['c1'].caption).toBe('C1');
+                expect(table5.columns['c1'].label).toBe('C1');
                 expect(table5.rows.count).toBe(3);
                 expect(table5.rows[0]['c1']).toBe('R1');
                 expect(table5.rows[0]['c2']).toBe(undefined);
@@ -1471,11 +1471,11 @@ describe("[target: meta-table.js]", () => {
                         c1: { 
                             _entity: {$ref: '__T1'},
                             _guid: '__C1',
-                            caption: 'C1', alias: 'ii1'
+                            label: 'C1', alias: 'ii1'
                         },
                         c2: { 
                             _guid: '__C2',
-                            caption: 'C2'
+                            label: 'C2'
                         },
                     },
                     rows: [
@@ -1508,11 +1508,11 @@ describe("[target: meta-table.js]", () => {
                         c1: { 
                             _entity: {$ref: 'ERR'},
                             _guid: '__C1',
-                            caption: 'C1', alias: 'ii1'
+                            label: 'C1', alias: 'ii1'
                         },
                         c2: { 
                             _guid: '__C2',
-                            caption: 'C2'
+                            label: 'C2'
                         },
                     },
                     rows: [
@@ -1532,18 +1532,18 @@ describe("[target: meta-table.js]", () => {
                 var json1 = { 
                     name: 'T1',
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     }
                 };
                 table1.readSchema(json1);
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns[0].caption).toBe('C1');
-                expect(table1.columns[1].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns[0].label).toBe('C1');
+                expect(table1.columns[1].label).toBe('C2');
             });
             
             it("- readSchema(json) : 읽기 순서 변경 ", () => {
@@ -1552,24 +1552,24 @@ describe("[target: meta-table.js]", () => {
                     name: 'T1',
                     columns: {
                         $key: ['c2', 'c1'],
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     }
                 };
                 table1.readSchema(json1);
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c2'].caption).toBe('C2');
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns[0].caption).toBe('C2');
-                expect(table1.columns[1].caption).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns[0].label).toBe('C2');
+                expect(table1.columns[1].label).toBe('C1');
             });
             it("- readSchema(JSON) : 중복 예외 ", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { columns: {
-                    c1: { caption: 'C1'},
-                    c2: { caption: 'C2'},
+                    c1: { label: 'C1'},
+                    c2: { label: 'C2'},
                     }
                 };
                 table1.columns.addValue('c1', '');
@@ -1581,14 +1581,14 @@ describe("[target: meta-table.js]", () => {
                 var table2 = new MetaTable('T2');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
+                        c1: { label: 'C1'},
                     },
                     rows: [
                         { c1: 'R1'},
                     ]
                 };
                 var json2 = { columns: {
-                    c2: { caption: 'C2'},
+                    c2: { label: 'C2'},
                     }
                 };
                 table1.read(json1, 3);  // 스키마 + 데이터 가져오기
@@ -1601,8 +1601,8 @@ describe("[target: meta-table.js]", () => {
                 var table3 = new MetaTable('T3');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     }
                 };
                 var json2 = { 
@@ -1611,7 +1611,7 @@ describe("[target: meta-table.js]", () => {
                     ]
                 };
                 var json3 = { columns: {
-                        c1: { caption: 'C1'},
+                        c1: { label: 'C1'},
                     },
                     rows: { c1: 'R1', c2: 'R2' },
                     
@@ -1622,13 +1622,13 @@ describe("[target: meta-table.js]", () => {
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
                 // table2
                 expect(table2.columns.count).toBe(2);
                 // table3
                 expect(table3.columns.count).toBe(2);
-                expect(table3.columns['c1'].caption).toBe('C1');
+                expect(table3.columns['c1'].label).toBe('C1');
             });
             it("- readSchema(obj) : entiry가 아닌 meta 객체 넣기 <예외>", () => {
                 var e1  = new MetaElement('E1')
@@ -1646,8 +1646,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -1660,8 +1660,8 @@ describe("[target: meta-table.js]", () => {
         
                 // table1
                 expect(table1.columns.count).toBe(2);
-                expect(table1.columns['c1'].caption).toBe('C1');
-                expect(table1.columns['c2'].caption).toBe('C2');
+                expect(table1.columns['c1'].label).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C2');
                 expect(table1.rows.count).toBe(3);
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
@@ -1699,8 +1699,8 @@ describe("[target: meta-table.js]", () => {
                 var json1 = { 
                     columns: {
                         c1: { 
-                            caption: 'C1', alias: 'cc1'},
-                        c2: { caption: 'C2'},
+                            label: 'C1', alias: 'cc1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { cc1: 'R1', c2: 'R2' },
@@ -1715,11 +1715,11 @@ describe("[target: meta-table.js]", () => {
                         $key: ['c1', 'c2'],
                         c1: { 
                             _guid: table1.columns.c1._guid,
-                            caption: 'C1', alias: 'cc1'
+                            label: 'C1', alias: 'cc1'
                         },
                         c2: { 
                             _guid: table1.columns.c2._guid,
-                            caption: 'C2'
+                            label: 'C2'
                         },
                     },
                     rows: [
@@ -1739,8 +1739,8 @@ describe("[target: meta-table.js]", () => {
                 var json1 = { 
                     columns: {
                         c1: { 
-                            caption: 'C1', alias: 'cc1'},
-                        c2: { caption: 'C2'},
+                            label: 'C1', alias: 'cc1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -1755,11 +1755,11 @@ describe("[target: meta-table.js]", () => {
                         $key: ['c1', 'c2'],
                         c1: { 
                             _guid: table1.columns.c1._guid,
-                            caption: 'C1', alias: 'cc1'
+                            label: 'C1', alias: 'cc1'
                         },
                         c2: { 
                             _guid: table1.columns.c2._guid,
-                            caption: 'C2'
+                            label: 'C2'
                         },
                     },
                 }
@@ -1773,8 +1773,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2' },
@@ -1940,7 +1940,7 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c2'].caption = 'C1';
+                table1.columns['c2'].label = 'C1';
                 var row = table1.newRow();
                 row['c1'] = 'R1';
                 row['c2'] = 'R2';
@@ -1951,14 +1951,14 @@ describe("[target: meta-table.js]", () => {
                 expect(table1.tableName).toBe('T1');
                 expect(table1.columns.count).toBe(2);
                 expect(table1.rows.count).toBe(1);
-                expect(table1.columns['c2'].caption).toBe('C1');
+                expect(table1.columns['c2'].label).toBe('C1');
                 expect(table1.rows[0]['c1']).toBe('R1');
                 expect(table1.rows[0]['c2']).toBe('R2');
                 // table2
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['c2'].caption).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C1');
                 expect(table2.rows[0]['c1']).toBe('R1');
                 expect(table2.rows[0]['c2']).toBe('R2');
                 // 비교
@@ -1974,8 +1974,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -1989,8 +1989,8 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows[0]['c1']).toBe(1);
                 expect(table2.rows[0]['c2']).toBe(2);
                 expect(table2.rows[1]['c1']).toBe(10);
@@ -2005,8 +2005,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -2020,8 +2020,8 @@ describe("[target: meta-table.js]", () => {
     
                 expect(table2.columns.count).toBe(2);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['c1'].caption).toBe('C1');
-                expect(table2.columns['c2'].caption).toBe('C2');
+                expect(table2.columns['c1'].label).toBe('C1');
+                expect(table2.columns['c2'].label).toBe('C2');
                 expect(table2.rows[0]['c1']).toBe(1);
                 expect(table2.rows[0]['c2']).toBe(2);
             });
@@ -2029,8 +2029,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -2046,14 +2046,14 @@ describe("[target: meta-table.js]", () => {
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(1);
                 expect(table2.rows.count).toBe(2);
-                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c1'].label).toBe('C1');
                 expect(table2.rows[0]['c1']).toBe(1);
                 expect(table2.rows[1]['c1']).toBe(10);
                 // table3
                 expect(table3.tableName).toBe('T1');
                 expect(table3.columns.count).toBe(1);
                 expect(table3.rows.count).toBe(2);
-                expect(table3.columns['c2'].caption).toBe('C2');
+                expect(table3.columns['c2'].label).toBe('C2');
                 expect(table3.rows[0]['c2']).toBe(2);
                 expect(table3.rows[1]['c2']).toBe(20);
             });
@@ -2062,8 +2062,8 @@ describe("[target: meta-table.js]", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add('c1');
                 table1.columns.add('c2');
-                table1.columns['c1'].caption = 'C1';
-                table1.columns['c2'].caption = 'C2';
+                table1.columns['c1'].label = 'C1';
+                table1.columns['c2'].label = 'C2';
                 var row = table1.newRow();
                 row['c1'] = 1;
                 row['c2'] = 2;
@@ -2079,13 +2079,13 @@ describe("[target: meta-table.js]", () => {
                 expect(table2.tableName).toBe('T1');
                 expect(table2.columns.count).toBe(1);
                 expect(table2.rows.count).toBe(1);
-                expect(table2.columns['c1'].caption).toBe('C1');
+                expect(table2.columns['c1'].label).toBe('C1');
                 expect(table2.rows[0]['c1']).toBe(1);
                 // table3
                 expect(table3.tableName).toBe('T1');
                 expect(table3.columns.count).toBe(1);
                 expect(table3.rows.count).toBe(1);
-                expect(table3.columns['c1'].caption).toBe('C1');
+                expect(table3.columns['c1'].label).toBe('C1');
                 expect(table3.rows[0]['c1']).toBe(1);
             });
             it("- 예외 및 커버리지", () => {
@@ -2106,7 +2106,7 @@ describe("[target: meta-table.js]", () => {
             //     var table1 = new MetaTable('T1');
             //     var filter = {
             //         __except: ['c1'],                   // 제외
-            //         c2: { caption: 'C3' }  // 속성 오버라이딩(필터)
+            //         c2: { label: 'C3' }  // 속성 오버라이딩(필터)
             //     };
             //     table1.columns.add('c1');
             //     table1.columns.add('c2');
@@ -2123,7 +2123,7 @@ describe("[target: meta-table.js]", () => {
             //     row['c2'] = 'R200';
             //     table1.rows.add(row);
             //     var table2 = table1.copy(filter, 1);
-            //     table1.columns['c2'].caption = 'C30';  // 복사후 덮어쓰기 REVIEW:
+            //     table1.columns['c2'].label = 'C30';  // 복사후 덮어쓰기 REVIEW:
         
             //     // table1
             //     expect(table1.columns.count).toBe(2);
@@ -2132,7 +2132,7 @@ describe("[target: meta-table.js]", () => {
             //     expect(table1.rows[0][1]).toBe('R2');
             //     expect(table1.rows[0]['c1']).toBe('R1');
             //     expect(table1.rows[0]['c2']).toBe('R2');
-            //     expect(table1.columns['c2'].caption).toBe('C30');
+            //     expect(table1.columns['c2'].label).toBe('C30');
             //     // 비교
             //     expect(table1.columns['c2'] !== table2.columns['c2']).toBe(true);
             //     // table2

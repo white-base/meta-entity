@@ -76,6 +76,32 @@ declare class MetaColumn extends BaseColumn {
     setter: (value: ValueType) => void;
 
     /**
+     * The kind of the column.
+     */
+    kind: string[];
+
+    /**
+     * Whether the column is read-only.
+     */
+    readOnly: boolean;
+
+    /**
+     * Whether the column is visible.
+     */
+    visible: boolean;
+
+    /**
+     * Description of the column.
+     */
+    description: string;
+
+    /**
+     * The order of the column.
+     */
+    order: number;
+
+
+    /**
      * The event that occurs when the column value changes.
      * 
      * @event MetaColumn#onChanged

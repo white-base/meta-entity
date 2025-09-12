@@ -1247,7 +1247,7 @@ describe("[target: meta-view.js]", () => {
             it("- read(oSchema, 3) : 스키마 읽기 ", () => {
                 var sch1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
+                        c1: { label: 'C1'},
                     },
                     rows: [
                         { c1: 'R1' },
@@ -1283,8 +1283,8 @@ describe("[target: meta-view.js]", () => {
             it("- read(oSchema, 3) : 존재하는 컬럼의 로우만 읽기", () => {
                 var sch1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 'R1', c2: 'R2', c3: 'R3' },
@@ -1702,7 +1702,7 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('E1');        // 일반 뷰
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C1';
+                view1.columns['c2'].label = 'C1';
                 // var row = view1.newRow();
                 // row['c1'] = 'R1';
                 // row['c2'] = 'R2';
@@ -1715,15 +1715,15 @@ describe("[target: meta-view.js]", () => {
                 view2.columns.add('c3');                  // 신규 속성명
                 view2.columns.addValue('c4', 'V4');       // 신규 속성명 + value
                 view2.columns.add('c5', view3.columns);     // 참조로 등록
-                view2.columns['c2'].caption = 'C2';
-                view2.columns['c3'].caption = 'C3';
+                view2.columns['c2'].label = 'C2';
+                view2.columns['c3'].label = 'C3';
         
                 // view1
                 expect(view1.viewName).toBe('E1');
                 expect(view1.columns.count).toBe(4);
                 // expect(view1.rows.count).toBe(1);
-                expect(view1.columns['c2'].caption).toBe('C2');
-                expect(view1.columns['c3'].caption).toBe('C3');
+                expect(view1.columns['c2'].label).toBe('C2');
+                expect(view1.columns['c3'].label).toBe('C3');
                 expect(view1.columns['c4'].value).toBe('V4');
                 expect(view1.columns._baseCollection).toBe(undefined);
                 expect(view1.columns['c1']._entity._name).toBe('E1');
@@ -1734,8 +1734,8 @@ describe("[target: meta-view.js]", () => {
                 var aa = view2.columns._refEntities
                 expect(view2.columns._refEntities[0]._name).toBe('E1');
                 expect(view2.columns._refEntities[1]._name).toBe('T3');
-                expect(view2.columns['c2'].caption).toBe('C2');
-                expect(view2.columns['c3'].caption).toBe('C3');
+                expect(view2.columns['c2'].label).toBe('C2');
+                expect(view2.columns['c3'].label).toBe('C3');
                 expect(view2.columns['c4'].value).toBe('V4');
                 expect(view2._baseEntity._name).toBe('E1');
                 expect(view2.viewName).toBe('T2');
@@ -1751,7 +1751,7 @@ describe("[target: meta-view.js]", () => {
                 const v1 = new MetaView('V1');
                 v1.columns.add('a1');
                 v1.columns.add('a2');
-                v1.columns['a2'].caption = 'C1';
+                v1.columns['a2'].label = 'C1';
                 const v2 = new MetaView('V2')
                 v2.columns.add(v1.columns['a2']);   // 참조로 추가
                 v2.columns.add('a3');
@@ -1769,7 +1769,7 @@ describe("[target: meta-view.js]", () => {
                 // expect(obj.columns._elem[0]._type).toBe('Meta.Entity.MetaColumn');
                 // expect(obj.columns._elem[0].name).toBe('a2');
                 // expect(obj.columns._elem[0].columnName).toBe('a2');
-                // expect(obj.columns._elem[0].caption).toBe('C1');
+                // expect(obj.columns._elem[0].label).toBe('C1');
                 // expect(obj.columns._elem[1]._type).toBe('Meta.Entity.MetaColumn');
                 // expect(obj.columns._elem[1].name).toBe('a3');
                 // expect(obj.columns._elem[1].columnName).toBe('a3');
@@ -2137,7 +2137,7 @@ describe("[target: meta-view.js]", () => {
                 const v1 = new MetaView('V1');
                 v1.columns.add('a1');
                 v1.columns.add('a2');
-                v1.columns['a2'].caption = 'C1';
+                v1.columns['a2'].label = 'C1';
                 const v2 = new MetaView('V2')
                 v2.columns.add(v1.columns['a2']);   // 참조로 추가
                 v2.columns.add('a3');
@@ -2192,7 +2192,7 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('E1');
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C1';
+                view1.columns['c2'].label = 'C1';
                 var row = view1.newRow();
                 row['c1'] = 'R1';
                 row['c2'] = 'R2';
@@ -2203,14 +2203,14 @@ describe("[target: meta-view.js]", () => {
                 expect(view1.viewName).toBe('E1');
                 expect(view1.columns.count).toBe(2);
                 expect(view1.rows.count).toBe(1);
-                expect(view1.columns['c2'].caption).toBe('C1');
+                expect(view1.columns['c2'].label).toBe('C1');
                 expect(view1.rows[0]['c1']).toBe('R1');
                 expect(view1.rows[0]['c2']).toBe('R2');
                 // view2
                 expect(view2.viewName).toBe('E1');
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(1);
-                expect(view2.columns['c2'].caption).toBe('C1');
+                expect(view2.columns['c2'].label).toBe('C1');
                 expect(view2.rows[0]['c1']).toBe('R1');
                 expect(view2.rows[0]['c2']).toBe('R2');
                 // 비교
@@ -2226,8 +2226,8 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 1, c2: 2 },
@@ -2239,8 +2239,8 @@ describe("[target: meta-view.js]", () => {
     
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(2);
-                expect(view2.columns['c1'].caption).toBe('C1');
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c1'].label).toBe('C1');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.rows[0]['c1']).toBe(1);
                 expect(view2.rows[0]['c2']).toBe(2);
                 expect(view2.rows[1]['c1']).toBe(10);
@@ -2255,8 +2255,8 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 1, c2: 2 },
@@ -2268,8 +2268,8 @@ describe("[target: meta-view.js]", () => {
     
                 expect(view2.columns.count).toBe(2);
                 expect(view2.rows.count).toBe(1);
-                expect(view2.columns['c1'].caption).toBe('C1');
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c1'].label).toBe('C1');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.rows[0]['c1']).toBe(1);
                 expect(view2.rows[0]['c2']).toBe(2);
             });
@@ -2277,8 +2277,8 @@ describe("[target: meta-view.js]", () => {
                 var view1 = new MetaView('V1');
                 var json1 = { 
                     columns: {
-                        c1: { caption: 'C1'},
-                        c2: { caption: 'C2'},
+                        c1: { label: 'C1'},
+                        c2: { label: 'C2'},
                     },
                     rows: [
                         { c1: 1, c2: 2 },
@@ -2290,7 +2290,7 @@ describe("[target: meta-view.js]", () => {
     
                 expect(view2.columns.count).toBe(1);
                 expect(view2.rows.count).toBe(2);
-                expect(view2.columns['c1'].caption).toBe('C1');
+                expect(view2.columns['c1'].label).toBe('C1');
                 expect(view2.rows[0]['c1']).toBe(1);
                 expect(view2.rows[1]['c1']).toBe(10);
             });
@@ -2418,27 +2418,27 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const view2 = view1.clone();
 
                 expect(view2._name).toBe('V1');
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
             });
             it("- getObject(), setObject() ", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const obj1 = view1.getObject();
                 const view2 = new MetaView('V2');
                 view2.setObject(obj1);
 
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
             });
         });
@@ -2448,19 +2448,19 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1', view0);
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const view2 = view1.clone();
 
                 // view0
                 expect(view0.viewName).toBe('V1');  
                 expect(view0.columns.count).toBe(2);
-                expect(view0.columns['c2'].caption).toBe('C2');
+                expect(view0.columns['c2'].label).toBe('C2');
                 expect(view0.equal(view1)).toBe(true);
                 // view2
                 expect(view2._name).toBe('V1');
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });
@@ -2469,7 +2469,7 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1', view0);
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const obj1 = view1.getObject();
                 const view2 = new MetaView('V2');
                 view2.setObject(obj1);
@@ -2477,13 +2477,13 @@ describe("[target: meta-view.js]", () => {
                 // view0
                 expect(view0.viewName).toBe('V1');  
                 expect(view0.columns.count).toBe(2);
-                expect(view0.columns['c2'].caption).toBe('C2');
+                expect(view0.columns['c2'].label).toBe('C2');
                 expect(view0.equal(view1)).toBe(true);
                 // view2
                 expect(view2._name).toBe('V1'); // 이름 바뀜
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });
@@ -2494,13 +2494,13 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.add('c1');
                 view1.columns.add('c2', view0.columns);
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const view2 = view1.clone();
 
                 // view0
                 expect(view0.viewName).toBe('V1');  
                 expect(view0.columns.count).toBe(1);
-                expect(view0.columns['c2'].caption).toBe('C2');
+                expect(view0.columns['c2'].label).toBe('C2');
                 expect(view0.equal(view1)).toBe(false);
                 expect(view0.columns['c2'].equal(view1.columns['c2'])).toBe(true);
                 expect(view0.columns['c2'] === view1.columns['c2']).toBe(true);
@@ -2508,7 +2508,7 @@ describe("[target: meta-view.js]", () => {
                 expect(view2._name).toBe('V1');
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });
@@ -2517,7 +2517,7 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1');
                 view1.columns.add('c1');
                 view1.columns.add('c2', view0.columns);
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const obj1 = view1.getObject();
                 const view2 = new MetaView('V2');
                 view2.setObject(obj1);
@@ -2525,7 +2525,7 @@ describe("[target: meta-view.js]", () => {
                 expect(view2._name).toBe('V1'); // 이름 바뀜
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });
@@ -2537,24 +2537,24 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1', view0);
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const view2 = view1.clone();
 
                 // view1 VS view3
                 expect(view3.viewName).toBe('V1');  
                 expect(view3.columns.count).toBe(2);
-                expect(view3.columns['c2'].caption).toBe('C2');
+                expect(view3.columns['c2'].label).toBe('C2');
                 expect(view3.equal(view1)).toBe(true);
                 // view1 VS view0
                 expect(view0.viewName).toBe('V1');  
                 expect(view0.columns.count).toBe(2);
-                expect(view0.columns['c2'].caption).toBe('C2');
+                expect(view0.columns['c2'].label).toBe('C2');
                 expect(view0.equal(view1)).toBe(true);
                 // view1 VS view2
                 expect(view2._name).toBe('V1');
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });
@@ -2564,7 +2564,7 @@ describe("[target: meta-view.js]", () => {
                 const view1 = new MetaView('V1', view0);
                 view1.columns.add('c1');
                 view1.columns.add('c2');
-                view1.columns['c2'].caption = 'C2';
+                view1.columns['c2'].label = 'C2';
                 const obj1 = view1.getObject();
                 const view2 = new MetaView('V2');
                 view2.setObject(obj1);
@@ -2572,18 +2572,18 @@ describe("[target: meta-view.js]", () => {
                 // view3
                 expect(view3.viewName).toBe('V1');  
                 expect(view3.columns.count).toBe(2);
-                expect(view3.columns['c2'].caption).toBe('C2');
+                expect(view3.columns['c2'].label).toBe('C2');
                 expect(view3.equal(view1)).toBe(true);
                 // view0
                 expect(view0.viewName).toBe('V1');  
                 expect(view0.columns.count).toBe(2);
-                expect(view0.columns['c2'].caption).toBe('C2');
+                expect(view0.columns['c2'].label).toBe('C2');
                 expect(view0.equal(view1)).toBe(true);
                 // view2
                 expect(view2._name).toBe('V1');
                 expect(view2.viewName).toBe('V1');
                 expect(view2.columns.count).toBe(2);
-                expect(view2.columns['c2'].caption).toBe('C2');
+                expect(view2.columns['c2'].label).toBe('C2');
                 expect(view2.equal(view1)).toBe(true);
                 expect(view2 !== view1).toBe(true);
             });

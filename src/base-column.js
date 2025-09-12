@@ -25,7 +25,7 @@ var BaseColumn  = (function (_super) {
         var _entity         = null;
         var _valueTypes     = this._type._VALUE_TYPE || [];
         var _default        = '';
-        var caption         = '';
+        var label         = '';
 
         /**
          * 이 컬럼의 고유 키를 나타냅니다.
@@ -176,13 +176,13 @@ var BaseColumn  = (function (_super) {
         /**
          * 컬럼 설명
          * 
-         * @member {string} BaseColumn#caption
+         * @member {string} BaseColumn#label
          */
-        Object.defineProperty(this, 'caption', {
-            get: function() { return caption; },
+        Object.defineProperty(this, 'label', {
+            get: function() { return label; },
             set: function(nVal) { 
                 if(typeof nVal !== 'string') throw new ExtendError(/EL05117/, null, [this.constructor.name, typeof nVal]); 
-                caption = nVal; 
+                label = nVal; 
             },
             configurable: false,
             enumerable: true
@@ -259,7 +259,7 @@ var BaseColumn  = (function (_super) {
         }
         obj['columnName'] = this.columnName;
         if (this.default !== '') obj['default'] = this.default;
-        if (this.caption !== '') obj['caption'] = this.caption;            
+        if (this.label !== '') obj['label'] = this.label;            
         if (this.$alias !== null) obj['$alias'] = this.$alias;
         // if (this.__GET$alias(this) !== null) obj['alias'] = this.__GET$alias(this);
         if (this.$value !== null) obj['$value'] = this.$value;
@@ -289,7 +289,7 @@ var BaseColumn  = (function (_super) {
         } 
         this.columnName = p_guidObj['columnName'];
         if (p_guidObj['default']) this.default = p_guidObj['default'];
-        if (p_guidObj['caption']) this.caption = p_guidObj['caption'];
+        if (p_guidObj['label']) this.label = p_guidObj['label'];
         if (p_guidObj['$alias']) this.$alias = p_guidObj['$alias'];
         if (p_guidObj['$value']) this.$value = p_guidObj['$value'];
     };

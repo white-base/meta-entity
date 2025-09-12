@@ -46,7 +46,7 @@ type MetaColumn = {
     /** Default: */
     default?: string | number | boolean,
     /** Description. */
-    caption?: string,
+    label?: string,
     /** Required. */
     required?: boolean,
     /** Constraints. */

@@ -62,7 +62,7 @@ declare abstract class BaseColumn extends MetaElement {
     /**
      * Provides a description of the column.
      */
-    caption: string;
+    label: string;
 
     /**
      * Gets or sets the current value of the column.

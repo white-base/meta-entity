@@ -364,8 +364,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -375,7 +375,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -392,11 +392,11 @@ describe("[target: meta-set.js]", () => {
 
                 expect(set2.tables['T1']).toBeDefined();
                 expect(set2.tables['T1'].columns.count).toBe(2);
-                expect(set2.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set2.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set2.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set2.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set2.views['V1']).toBeDefined();
                 expect(set2.views['V1'].columns.count).toBe(1);
-                expect(set2.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set2.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set2.tables['T1'].rows.count).toBe(1);
                 expect(set2.tables['T1'].rows[0].count).toBe(2);
                 expect(set2.tables['T1'].rows[0]['c1']).toBe('R1');
@@ -435,8 +435,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -446,7 +446,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -470,11 +470,11 @@ describe("[target: meta-set.js]", () => {
                 // expect(load_ns_Cnt).toBe(38);
                 expect(set2.tables['T1']).toBeDefined();
                 expect(set2.tables['T1'].columns.count).toBe(2);
-                expect(set2.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set2.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set2.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set2.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set2.views['V1']).toBeDefined();
                 expect(set2.views['V1'].columns.count).toBe(1);
-                expect(set2.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set2.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set2.tables['T1'].rows.count).toBe(1);
                 expect(set2.tables['T1'].rows[0].count).toBe(2);
                 expect(set2.tables['T1'].rows[0]['c1']).toBe('R1');
@@ -489,8 +489,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -500,7 +500,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -524,11 +524,11 @@ describe("[target: meta-set.js]", () => {
                 // expect(load_ns_Cnt).toBe(38);
                 expect(set2.tables['T1']).toBeDefined();
                 expect(set2.tables['T1'].columns.count).toBe(2);
-                expect(set2.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set2.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set2.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set2.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set2.views['V1']).toBeDefined();
                 expect(set2.views['V1'].columns.count).toBe(1);
-                expect(set2.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set2.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set2.tables['T1'].rows.count).toBe(1);
                 expect(set2.tables['T1'].rows[0].count).toBe(2);
                 expect(set2.tables['T1'].rows[0]['c1']).toBe('R1');
@@ -543,8 +543,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -554,7 +554,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -569,11 +569,11 @@ describe("[target: meta-set.js]", () => {
                 
                 // expect(set2.tables['T1']).toBeDefined();
                 // expect(set2.tables['T1'].columns.count).toBe(2);
-                // expect(set2.tables['T1'].columns['c1'].caption).toBe('C1');
-                // expect(set2.tables['T1'].columns['c2'].caption).toBe('C2');
+                // expect(set2.tables['T1'].columns['c1'].label).toBe('C1');
+                // expect(set2.tables['T1'].columns['c2'].label).toBe('C2');
                 // expect(set2.views['V1']).toBeDefined();
                 // expect(set2.views['V1'].columns.count).toBe(1);
-                // expect(set2.views['V1'].columns['c1'].caption).toBe('C1');
+                // expect(set2.views['V1'].columns['c1'].label).toBe('C1');
                 // expect(set2.tables['T1'].rows.count).toBe(1);
                 // expect(set2.tables['T1'].rows[0].count).toBe(2);
                 // expect(set2.tables['T1'].rows[0]['c1']).toBe('R1');
@@ -589,8 +589,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -600,7 +600,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -631,11 +631,11 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1', 'c2'],
                                 c1: { 
                                     _guid: set2.tables.T1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                                 c2: { 
                                     _guid: set2.tables.T1.columns.c2._guid,
-                                    caption: 'C2'
+                                    label: 'C2'
                                 },
                             },
                             rows: [
@@ -652,7 +652,7 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1'],
                                 c1: { 
                                     _guid: set2.views.V1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                             },
                             rows: [
@@ -676,8 +676,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -687,7 +687,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -700,15 +700,15 @@ describe("[target: meta-set.js]", () => {
                 // table
                 expect(set1.tables['T1']).toBeDefined();
                 expect(set1.tables['T1'].columns.count).toBe(2);
-                expect(set1.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set1.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set1.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set1.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set1.tables['T1'].rows.count).toBe(1);
                 expect(set1.tables['T1'].rows[0]['c1']).toBe('R1');
                 expect(set1.tables['T1'].rows[0]['c2']).toBe('R2');
                 // view
                 expect(set1.views['V1']).toBeDefined();
                 expect(set1.views['V1'].columns.count).toBe(1);
-                expect(set1.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set1.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set1.views['V1'].rows.count).toBe(1);
                 expect(set1.tables['T1'].rows[0]['c1']).toBe('R1');
             });
@@ -719,8 +719,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -730,7 +730,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -745,15 +745,15 @@ describe("[target: meta-set.js]", () => {
                 // table
                 expect(set1.tables['T1']).toBeDefined();
                 expect(set1.tables['T1'].columns.count).toBe(2);
-                expect(set1.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set1.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set1.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set1.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set1.tables['T1'].rows.count).toBe(1);
                 expect(set1.tables['T1'].rows[0]['c1']).toBe('R1');
                 expect(set1.tables['T1'].rows[0]['c2']).toBe('R2');
                 // view
                 expect(set1.views['V1']).toBeDefined();
                 expect(set1.views['V1'].columns.count).toBe(1);
-                expect(set1.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set1.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set1.views['V1'].rows.count).toBe(1);
                 expect(set1.tables['T1'].rows[0]['c1']).toBe('R1');
             });
@@ -914,8 +914,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -925,7 +925,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -938,13 +938,13 @@ describe("[target: meta-set.js]", () => {
                 // table
                 expect(set1.tables['T1']).toBeDefined();
                 expect(set1.tables['T1'].columns.count).toBe(2);
-                expect(set1.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set1.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set1.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set1.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set1.tables['T1'].rows.count).toBe(0);
                 // view
                 expect(set1.views['V1']).toBeDefined();
                 expect(set1.views['V1'].columns.count).toBe(1);
-                expect(set1.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set1.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set1.views['V1'].rows.count).toBe(0);
             });
             it("- readSchema() : getObject()로 읽기 ", () => {
@@ -1019,8 +1019,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -1030,7 +1030,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -1043,11 +1043,11 @@ describe("[target: meta-set.js]", () => {
                 set1.readSchema(json1);
                 expect(set1.tables['T1']).toBeDefined();
                 expect(set1.tables['T1'].columns.count).toBe(2);
-                expect(set1.tables['T1'].columns['c1'].caption).toBe('C1');
-                expect(set1.tables['T1'].columns['c2'].caption).toBe('C2');
+                expect(set1.tables['T1'].columns['c1'].label).toBe('C1');
+                expect(set1.tables['T1'].columns['c2'].label).toBe('C2');
                 expect(set1.views['V1']).toBeDefined();
                 expect(set1.views['V1'].columns.count).toBe(1);
-                expect(set1.views['V1'].columns['c1'].caption).toBe('C1');
+                expect(set1.views['V1'].columns['c1'].label).toBe('C1');
                 expect(set1.tables['T1'].rows.count).toBe(0);
                 expect(set1.views['V1'].rows.count).toBe(0);
                 // data
@@ -1094,8 +1094,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -1105,7 +1105,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -1125,11 +1125,11 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1', 'c2'],
                                 c1: { 
                                     _guid: set1.tables.T1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                                 c2: { 
                                     _guid: set1.tables.T1.columns.c2._guid,
-                                    caption: 'C2'
+                                    label: 'C2'
                                 },
                             },
                             rows: [
@@ -1145,7 +1145,7 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1'],
                                 c1: { 
                                     _guid: set1.views.V1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                             },
                             rows: [
@@ -1206,8 +1206,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -1217,7 +1217,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },
@@ -1237,11 +1237,11 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1', 'c2'],
                                 c1: { 
                                     _guid: set1.tables.T1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                                 c2: { 
                                     _guid: set1.tables.T1.columns.c2._guid,
-                                    caption: 'C2'
+                                    label: 'C2'
                                 },
                             },
                             rows: []
@@ -1256,7 +1256,7 @@ describe("[target: meta-set.js]", () => {
                                 $key: ['c1'],
                                 c1: { 
                                     _guid: set1.views.V1.columns.c1._guid,
-                                    caption: 'C1'
+                                    label: 'C1'
                                 },
                             },
                             rows: []
@@ -1279,8 +1279,8 @@ describe("[target: meta-set.js]", () => {
                     tables: {
                         T1: {
                             columns: {
-                                c1: { caption: 'C1'},
-                                c2: { caption: 'C2'},
+                                c1: { label: 'C1'},
+                                c2: { label: 'C2'},
                             },
                             rows: [
                                 { c1: 'R1', c2: 'R2' },
@@ -1290,7 +1290,7 @@ describe("[target: meta-set.js]", () => {
                     views: {
                         V1: {
                             columns: {
-                                c1: { caption: 'C1'},
+                                c1: { label: 'C1'},
                             },
                             rows: [
                                 { c1: 'R1' },

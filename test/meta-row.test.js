@@ -81,7 +81,7 @@ describe("[target: meta-row.js]", () => {
                         clone.columnName = rObj.columnName;
                         clone._entity = p_entity ? p_entity : this._entity;
                         if (rObj.default) clone.default = rObj.default;
-                        if (rObj.caption) clone.caption = rObj.caption;
+                        if (rObj.label) clone.label = rObj.label;
                         if (rObj.alias) clone.alias = rObj.alias;
                         if (rObj.value) clone.value = rObj.value;
                         return clone;

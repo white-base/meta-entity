@@ -29,11 +29,18 @@ var MetaColumn  = (function (_super) {
         _super.call(this, p_name, p_entity);
 
         var $event          = new EventEmitter(this);
-        var required       = false;
+        var required        = false;
         // var optional      = false;
         var constraints     = [];
         var getter          = null;
         var setter          = null;
+        var kind            = [];
+        var readOnly        = false;
+        var visible         = true;
+        var description     = '';
+        var order           = 0;
+        var displayFormat   = null;
+        var codeRule        = null;   // codeRule 객체
 
         /** 
          * 이벤트 객체
@@ -168,6 +175,98 @@ var MetaColumn  = (function (_super) {
         });
 
         /**
+         * 컬럼의 종류
+         * 
+         * @member {array<string>} MetaColumn#kind
+         */
+        Object.defineProperty(this, 'kind', {
+            get: function() { return kind; },
+            set: function(nVal) { 
+                var list = [];
+                if (Array.isArray(nVal))  list = nVal;
+                else list.push(nVal);
+                for(var i = 0; list.length > i; i++) {
+                    if (!( typeof list[i] === 'string')) {
+                        throw new ExtendError(/EL05132/, null, [this.constructor.name, i, typeof list[i]]);
+                    }
+                }
+                kind = list;
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
+         * 읽기 전용 여부
+         * @member {boolean} MetaColumn#readOnly
+         */
+        Object.defineProperty(this, 'readOnly', {
+            get: function() { return readOnly; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'boolean') throw new ExtendError(/EL0513B/, null, [this.constructor.name, typeof nVal]);
+                readOnly = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
+         * 화면 표시 여부
+         * @member {boolean} MetaColumn#visible
+         */
+        Object.defineProperty(this, 'visible', {
+            get: function() { return visible; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'boolean') throw new ExtendError(/EL0513C/, null, [this.constructor.name, typeof nVal]);
+                visible = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
+         * 컬럼 설명
+         * @member {string} MetaColumn#description
+         */
+        Object.defineProperty(this, 'description', {
+            get: function() { return description; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'string') throw new ExtendError(/EL0513D/, null, [this.constructor.name, typeof nVal]);
+                description = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
+         * 화면 표시 순서
+         * @member {number} MetaColumn#order
+         */
+        Object.defineProperty(this, 'order', {
+            get: function() { return order; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'number') throw new ExtendError(/EL0513E/, null, [this.constructor.name, typeof nVal]);
+                order = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
+         * 화면 표시 형식 함수
+         * @member {function} MetaColumn#displayFormat
+         */
+        Object.defineProperty(this, 'displayFormat', {
+            get: function() { return displayFormat; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'function') throw new ExtendError(/EL0513F/, null, [this.constructor.name, typeof nVal]);
+                displayFormat = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
          * 변경 이벤트 
          * 
          * @event MetaColumn#onChanged 
@@ -219,8 +318,10 @@ var MetaColumn  = (function (_super) {
             for(var prop in p_property) {
                 // if (p_property.hasOwnProperty(prop) &&
                 if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
-                ['_valueTypes', 'alias', 'default', 'caption', 'value', 
-                    'required', 'constraints', 'getter', 'setter'].indexOf(prop) > -1) {
+                ['_valueTypes', 'alias', 'default', 'label', 'value', 
+                    'required', 'constraints', 'getter', 'setter', 'kind',
+                    'readOnly', 'visible', 'description', 'order'
+                ].indexOf(prop) > -1) {
                     this[prop] = p_property[prop];
                 }
             }
@@ -259,6 +360,11 @@ var MetaColumn  = (function (_super) {
         if (this.constraints.length > 0) obj['constraints'] = Util.deepCopy(this.constraints);
         if (this.getter !== null) obj['getter'] = this.getter;
         if (this.setter !== null) obj['setter'] = this.setter;
+        if (this.kind.length > 0) obj['kind'] = Util.deepCopy(this.kind);
+        if (this.readOnly !== false) obj['readOnly'] = this.readOnly;
+        if (this.visible !== true) obj['visible'] = this.visible;
+        if (this.description !== '') obj['description'] = this.description;
+        if (this.order !== 0) obj['order'] = this.order;
         // if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
         return obj;                        
     };
@@ -287,6 +393,12 @@ var MetaColumn  = (function (_super) {
         if (p_guidObj['constraints']) this.constraints = p_guidObj['constraints'];
         if (p_guidObj['getter']) this.getter = p_guidObj['getter'];
         if (p_guidObj['setter']) this.setter = p_guidObj['setter'];
+        if (p_guidObj['kind']) this.kind = p_guidObj['kind'];
+        if (p_guidObj['readOnly']) this.readOnly = p_guidObj['readOnly'];
+        if (p_guidObj['visible'] === false) this.visible = p_guidObj['visible'];
+        if (p_guidObj['description']) this.description = p_guidObj['description'];
+        if (p_guidObj['order']) this.order = p_guidObj['order'];
+        // value 는 오버라이딩 되지 않도록 제거
         // if (p_guidObj['value']) this.value = p_guidObj['value'];
     };
     Object.defineProperty(MetaColumn.prototype, 'setObject', {
@@ -308,7 +420,7 @@ var MetaColumn  = (function (_super) {
         
         // BaseColumn
         if (this['default'] !== '') clone.default = this['default'];
-        if (this['caption'] !== '') clone.caption = this['caption'];
+        if (this['label'] !== '') clone.label = this['label'];
         if (this['$alias'] !== null) clone.$alias = this['$alias'];
         if (this['$value'] !== null) clone.$value = this['$value'];
         
@@ -319,6 +431,11 @@ var MetaColumn  = (function (_super) {
         // REVIEW: 함수 깊은 복사 확인 필요
         if (this['getter']) clone.getter = this['getter'];
         if (this['setter']) clone.setter = this['setter'];
+        if (this['kind']) clone.kind = this['kind'];
+        if (this['readOnly']) clone.readOnly = this['readOnly'];
+        if (this['visible'] === false) clone.visible = this['visible'];
+        if (this['description']) clone.description = this['description'];
+        if (this['order']) clone.order = this['order'];
         
         return clone;
     };
@@ -425,6 +542,31 @@ var MetaColumn  = (function (_super) {
         return undefined;
     };
     Object.defineProperty(MetaColumn.prototype, 'valid', {
+        enumerable: false
+    });
+
+    MetaColumn.prototype.codeText = function (p_value) {
+        var text = p_value;
+        if (this.codeRule && typeof this.codeRule.codeText === 'function') {
+            text = this.codeRule.codeText(p_value);
+        }
+        return text;
+    };
+    Object.defineProperty(MetaColumn.prototype, 'codeText', {
+        enumerable: false
+    });
+
+    MetaColumn.prototype.toDisplay = function (value, opts) {
+    var v = value;
+    // 1) normalize
+    if (v == null) v = '';
+    // 2) code 매핑
+    if (this.codeRule) v = this.codeText(v);
+    // 3) 포맷 적용
+    if (typeof this.displayFormat === 'function') v = this.displayFormat.call(this, v, this, opts);
+    return String(v);
+    };
+    Object.defineProperty(MetaColumn.prototype, 'toDisplay', {
         enumerable: false
     });
 

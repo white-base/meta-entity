@@ -76,6 +76,31 @@ declare class MetaColumn extends BaseColumn {
     setter: (value: ValueType) => void;
 
     /**
+     * 컬럼의 종류를 나타내는 문자열 배열입니다.
+     */
+    kind: string[];
+
+    /**
+     * 읽기 전용 여부
+     */
+    readOnly: boolean;
+
+    /**
+     * 표시 여부
+     */
+    visible: boolean;
+
+    /**
+     * 컬럼에 대한 설명
+     */
+    description: string;
+
+    /**
+     * 컬럼의 정렬 순서
+     */
+    order: number;
+
+    /**
      * 컬럼 값이 변경될 때 발생하는 이벤트입니다.
      * 
      * @event MetaColumn#onChanged

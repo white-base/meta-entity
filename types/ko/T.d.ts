@@ -45,7 +45,7 @@ type MetaColumn = {
     /** 기본값 입니다. */
     default?: string | number | boolean,
     /** 설명입니다. */
-    caption?: string,
+    label?: string,
     /** 필수 여부입니다. */
     required?: boolean,
     /** 제약조건 입니다. */

@@ -59,7 +59,7 @@ declare abstract class BaseColumn extends MetaElement {
     /**
      * 컬럼 설명입니다.
      */
-    caption: string;
+    label: string;
 
     /**
      * 컬럼의 현재 값을 가져오거나 설정합니다.

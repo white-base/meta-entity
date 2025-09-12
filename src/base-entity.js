@@ -156,7 +156,7 @@ var BaseEntity  = (function (_super) {
                     } 
                     if (typeof column._guid !== 'undefined') obj[key]._guid = column['_guid'];
                     if (typeof column.default !== 'undefined') obj[key].default = column['default'];
-                    if (typeof column.caption !== 'undefined') obj[key].caption = column['caption'];            
+                    if (typeof column.label !== 'undefined') obj[key].label = column['label'];            
                     if (typeof column.required !== 'undefined') obj[key].required = column['required'];
                     // if (column.optional) obj[key].optional = column['optional'];
                     if (Array.isArray(column.constraints)) {

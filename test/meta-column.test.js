@@ -16,6 +16,7 @@ import { MetaRow }              from '../src/meta-row';
 import { BaseColumn }           from '../src/base-column';
 import { MetaColumn }           from '../src/meta-column';
 import { Message }              from '../src/message-wrap';
+import e from 'express';
 
 //==============================================================
 // test
@@ -42,7 +43,7 @@ describe("[target: meta-column.js ]", () => {
                     // type: 'text',
                     // size: 100,
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },         // true : 충족조건
@@ -56,7 +57,7 @@ describe("[target: meta-column.js ]", () => {
                 // expect(item1.type).toBe('text');
                 // expect(item1.size).toBe(100);
                 expect(item1.default).toBe('D1');
-                expect(item1.caption).toBe('C1');
+                expect(item1.label).toBe('C1');
                 expect(item1.required).toBe(true);
                 expect(item1.constraints.length).toBe(2);
                 // expect(item1.order).toBe(1000);
@@ -206,7 +207,82 @@ describe("[target: meta-column.js ]", () => {
                 expect(item_value).toBe('V11');
             });
         });
-        
+        describe("this.kind ", () => {
+            it("- kind : kind 배열로 설정 ", () => {
+                var item1 = new MetaColumn('c1');
+                item1.kind = ['K1'];
+
+                expect(item1.kind).toStrictEqual(['K1']);
+            });
+            it("- kind : kind 배열로 설정 ", () => {
+                var t1 = new MetaTable('T1');
+                t1.columns.add('c1');
+                t1.columns.add('c2');
+                t1.columns.add('c3');
+                t1.columns['c1'].kind = ['K1', 'K2'];
+                t1.columns['c2'].kind = ['K1'];
+                t1.columns['c3'].kind = ['K3'];
+                var r1 = t1.columns.filter(e => e.kind.indexOf('K1') > -1);
+                var r2 = t1.columns.filter(e => e.kind.indexOf('K2') > -1);
+                var r3 = t1.columns.filter(e => e.kind.indexOf('K3') > -1);
+
+                expect(r1).toEqual([t1.columns['c1'], t1.columns['c2']]);
+                expect(r2).toEqual([t1.columns['c1']]);
+                expect(r3).toEqual([t1.columns['c3']]);
+            });
+            it("- kind : 예외 처리 ", () => {
+                var item1 = new MetaColumn('c1');
+                expect(()=> item1.kind = 10).toThrow(/EL05132/);
+            });
+        });
+        describe("this.readOnly", () => {
+            it("- readOnly 설정 ", () => {
+                var item1 = new MetaColumn('c1');
+                item1.readOnly = true;
+
+                expect(item1.readOnly).toBe(true);
+            });
+            it("- readOnly : 예외 처리 ", () => {
+                var item1 = new MetaColumn('c1');
+                expect(()=> item1.readOnly = 10).toThrow(/EL0513B/);
+            });
+        });
+        describe("this.visible", () => {
+            it("- visible 설정 ", () => {
+                var item1 = new MetaColumn('c1');
+                item1.visible = true;
+
+                expect(item1.visible).toBe(true);
+            });
+            it("- visible : 예외 처리 ", () => {
+                var item1 = new MetaColumn('c1');
+                expect(()=> item1.visible = 10).toThrow(/EL0513C/);
+            });
+        });
+        describe("this.description", () => {
+            it("- description 설정 ", () => {
+                var item1 = new MetaColumn('c1');
+                item1.description = '컬럼 설명';
+
+                expect(item1.description).toBe('컬럼 설명');
+            });
+            it("- description : 예외 처리 ", () => {
+                var item1 = new MetaColumn('c1');
+                expect(()=> item1.description = 10).toThrow(/EL0513D/);
+            });
+        });
+        describe("this.order", () => {
+            it("- order 설정 ", () => {
+                var item1 = new MetaColumn('c1');
+                item1.order = 1;
+
+                expect(item1.order).toBe(1);
+            });
+            it("- order : 예외 처리 ", () => {
+                var item1 = new MetaColumn('c1');
+                expect(()=> item1.order = '1').toThrow(/EL0513E/);
+            });
+        });
         
         describe("MetaObject.equal() <객체 비교>", () => {
             it("- equal() : $event ", () => {
@@ -260,22 +336,24 @@ describe("[target: meta-column.js ]", () => {
             it("- equal() : 속성들 비교 ", () => {
                 var prop1 = {
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
+                    kind: [ 'K1', 'K2' ],
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
                 var prop2 = {   // default 빠짐
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
+                    kind: [ 'K1', 'K2' ],
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
                     value: 'V1'
                 };
-                var prop3 = {   // caption 빠짐
+                var prop3 = {   // label 빠짐
                     default: 'D1',
                     required: true,
                     constraints: [
@@ -285,7 +363,7 @@ describe("[target: meta-column.js ]", () => {
                 };
                 var prop4 = {   // required 빠짐
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
@@ -293,7 +371,7 @@ describe("[target: meta-column.js ]", () => {
                 };
                 var prop5 = {   // constraints 대문자
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     constraints: [
                         { regex: /\D/, msg: 'MESSAGE', code: 'C1', match: true },  // 다른 위치
@@ -302,7 +380,7 @@ describe("[target: meta-column.js ]", () => {
                 };
                 var prop6 = {   // value 빠짐
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
@@ -365,8 +443,9 @@ describe("[target: meta-column.js ]", () => {
             it("- getObject(1 | 2) : 직렬화 객체 얻기 ", () => {
                 const prop1 = {
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
+                    kind: [ 'K1', 'K2' ],
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
@@ -379,11 +458,12 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1).toEqual(obj2);
                 expect(obj1._guid).toBe(c1._guid);
                 expect(obj1._type).toBe('Meta.Entity.MetaColumn');
-                expect(obj1.caption).toBe('C1');
+                expect(obj1.label).toBe('C1');
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
                 expect(obj1.required).toBe(true);
+                expect(obj1.kind).toEqual(['K1', 'K2']);
                 expect(obj1.name).toBe('c1');
                 expect(obj1.$value).toBe('V1');
                 expect(obj1._entity).toBe(undefined);
@@ -397,7 +477,7 @@ describe("[target: meta-column.js ]", () => {
                 const t1 = new MetaTable('T1')
                 const prop1 = {
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
@@ -411,7 +491,7 @@ describe("[target: meta-column.js ]", () => {
                 expect(obj1).toEqual(obj2);
                 expect(obj1._guid).toBe(c1._guid);
                 expect(obj1._type).toBe('Meta.Entity.MetaColumn');
-                expect(obj1.caption).toBe('C1');
+                expect(obj1.label).toBe('C1');
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
@@ -428,7 +508,7 @@ describe("[target: meta-column.js ]", () => {
                 const t1 = new MetaTable('T1')
                 const prop1 = {
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
@@ -439,7 +519,7 @@ describe("[target: meta-column.js ]", () => {
                 const obj1 = c1.getObject(2);
 
                 expect(obj1._type).toBe('Meta.Entity.MetaColumn');
-                expect(obj1.caption).toBe('C1');
+                expect(obj1.label).toBe('C1');
                 expect(obj1.columnName).toBe('c1');
                 expect(obj1.constraints).toEqual(prop1.constraints);
                 expect(obj1.default).toBe('D1');
@@ -459,9 +539,10 @@ describe("[target: meta-column.js ]", () => {
                 const fun2 = function() { /** */}
                 const prop1 = {
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     alias: 'cc1',
                     required: true,
+                    kind: [ 'K1', 'K2' ],
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
@@ -483,12 +564,13 @@ describe("[target: meta-column.js ]", () => {
                 expect(()=>cc2.setObject(obj2)).toThrow(/EL05118/);
                 expect(cc1.equal(c1)).toBe(true);
                 expect(cc1._type).toBe(c1._type);
-                expect(cc1.caption).toBe(c1.caption);
+                expect(cc1.label).toBe(c1.label);
                 expect(cc1.alias).toBe(c1.alias);
                 expect(cc1.columnName).toBe(c1.columnName);
                 expect(cc1.constraints).toEqual(c1.constraints);
                 expect(cc1.default).toBe(c1.default);
                 expect(cc1.required).toBe(c1.required);
+                expect(cc1.kind).toEqual(c1.kind);
                 // expect(cc1.optional).toBe(c1.optional);
                 expect(cc1.name).toBe(c1.name);
                 expect(cc1.value).toBe(c1.value);
@@ -512,7 +594,7 @@ describe("[target: meta-column.js ]", () => {
                     // type: 'text',
                     // size: 100,
                     default: 'D1',
-                    caption: 'C1',
+                    label: 'C1',
                     required: true,
                     // optional: true,
                     constraints: [
@@ -530,7 +612,7 @@ describe("[target: meta-column.js ]", () => {
                 // item1
                 expect(item1._entity.tableName).toBe('T1');
                 expect(item1.default).toBe('D1');
-                expect(item1.caption).toBe('C1');
+                expect(item1.label).toBe('C1');
                 expect(item1.required).toBe(true);
                 // expect(item1.optional).toBe(false);
                 expect(item1.constraints.length).toBe(2);
@@ -538,7 +620,7 @@ describe("[target: meta-column.js ]", () => {
                 // item2
                 expect(item2._entity.tableName).toBe('T1');
                 expect(item2.default).toBe('D1');
-                expect(item2.caption).toBe('C1');
+                expect(item2.label).toBe('C1');
                 expect(item2.required).toBe(true);
                 expect(item2.constraints.length).toBe(2);
                 expect(item2.value).toBe('F1');

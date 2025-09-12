@@ -39,7 +39,7 @@
             EL05114: 'Could not set columnName because $1.alias \'$2\' already exists',
             EL05115: '$1.alias is of type \'string\'. typeofalias = \'$2\'',
             EL05116: 'Existing $1.alias \'$2\'',
-            EL05117: '$1.caption is of type \'string\'. typeofcaption = \'$2\'',
+            EL05117: '$1.label is of type \'string\'. typeoflabel = \'$2\'',
             EL05118: 'setObject(oGuid, origin); oGuid.[\'_entity\'] guid not found. name = $1, guid = $2',
             EL05119: 'clone() is an abstract method. It must be inherited and implemented.',
             // ObjectColumn
@@ -231,7 +231,7 @@
             EL05114: '기존에 $1.alias \'$2\'이 존재하여 columnName 을 설정할 수 없습니다.',
             EL05115: '$1.alias 는 \'string\' 타입입니다. typeof alias = \'$2\'',
             EL05116: '기존에 $1.alias \'$2\'이 존재합니다.',
-            EL05117: '$1.caption 는 \'string\' 타입입니다. typeof caption = \'$2\'',
+            EL05117: '$1.label 는 \'string\' 타입입니다. typeof label = \'$2\'',
             EL05118: 'setObject(oGuid, origin); oGuid.[\'_entity\'] guid 를 찾을 수 없습니다. name = $1, guid = $2' ,
             EL05119: 'clone() 은 추상메소드 입니다. 상속해서 구현해야 합니다.',
             // ObjectColumn

@@ -16,7 +16,7 @@ var ObjectColumn  = (function (_super) {
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
      * @param {object} [p_property] 
      * @param {object} p_property.default 기본값
-     * @param {string} p_property.caption 설명
+     * @param {string} p_property.label 설명
      * @param {object} p_property.value value 값
      * @param {string} p_property.alias 별칭
      */
@@ -44,7 +44,7 @@ var ObjectColumn  = (function (_super) {
             for(var prop in p_prop) {
                 // if (p_property.hasOwnProperty(prop) &&
                 if (Object.prototype.hasOwnProperty.call(p_prop, prop) &&
-                    ['default', 'caption', 'value', 'alias'].indexOf(prop) > -1) {
+                    ['default', 'label', 'value', 'alias'].indexOf(prop) > -1) {
                     this[prop] = p_prop[prop];
                 }
             }
@@ -154,7 +154,7 @@ var ObjectColumn  = (function (_super) {
         if (this['$value']) clone.$value = this.$value;
         if (this['$alias']) clone.$alias = this['$alias'];
         if (this['default']) clone.default = this['default'];
-        if (this['caption']) clone.caption = this['caption'];
+        if (this['label']) clone.label = this['label'];
 
         return clone;
     };
