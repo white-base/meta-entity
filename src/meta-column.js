@@ -6,6 +6,8 @@ import { Util }                 from 'logic-core';
 import { EventEmitter }         from 'logic-core';
 import { BaseColumn }           from './base-column.js';
 import { Message }              from './message-wrap.js';
+import { CodeRuleRegistry }    from './code-rule-registry.js';
+import { CodeRuleEngine }      from './code-rule-engine.js';
 
 var MetaColumn  = (function (_super) {
     /**
@@ -41,6 +43,7 @@ var MetaColumn  = (function (_super) {
         var order           = 0;
         var displayFormat   = null;
         var codeRule        = null;   // codeRule 객체
+        var _engine         = new CodeRuleEngine();   // codeRuleEngine 객체
 
         /** 
          * 이벤트 객체
@@ -50,6 +53,17 @@ var MetaColumn  = (function (_super) {
          */
         Object.defineProperty(this, '$event', {
             get: function() { return $event; },
+            configurable: false,
+            enumerable: false,
+        });
+
+        /** 
+         * codeRuleEngine 객체
+         * @private
+         * @member {EventEmitter} MetaColumn#_engine  
+         */
+        Object.defineProperty(this, '_engine', {
+            get: function() { return _engine; },
             configurable: false,
             enumerable: false,
         });
@@ -267,6 +281,22 @@ var MetaColumn  = (function (_super) {
         });
 
         /**
+         * 코드룰 함수
+         * @member {function | object[] | object} MetaColumn#codeRule
+         */
+        Object.defineProperty(this, 'codeRule', {
+            get: function() { return codeRule; },
+            set: function(nVal) { 
+                if(typeof nVal !== 'string' && !Array.isArray(nVal) && typeof nVal !== 'object') {
+                    throw new ExtendError(/EL0513G/, null, [this.constructor.name, typeof nVal]);
+                }
+                codeRule = nVal; 
+            },
+            configurable: false,
+            enumerable: true
+        });
+
+        /**
          * 변경 이벤트 
          * 
          * @event MetaColumn#onChanged 
@@ -320,7 +350,8 @@ var MetaColumn  = (function (_super) {
                 if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
                 ['_valueTypes', 'alias', 'default', 'label', 'value', 
                     'required', 'constraints', 'getter', 'setter', 'kind',
-                    'readOnly', 'visible', 'description', 'order'
+                    'readOnly', 'visible', 'description', 'order', 'codeRule',
+                    'displayFormat'
                 ].indexOf(prop) > -1) {
                     this[prop] = p_property[prop];
                 }
@@ -365,6 +396,9 @@ var MetaColumn  = (function (_super) {
         if (this.visible !== true) obj['visible'] = this.visible;
         if (this.description !== '') obj['description'] = this.description;
         if (this.order !== 0) obj['order'] = this.order;
+        if (this.codeRule !== null) obj['codeRule'] = this.codeRule;
+        if (this.displayFormat !== null) obj['displayFormat'] = this.displayFormat;
+        // value 는 오버라이딩 되지 않도록 제거
         // if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
         return obj;                        
     };
@@ -398,6 +432,8 @@ var MetaColumn  = (function (_super) {
         if (p_guidObj['visible'] === false) this.visible = p_guidObj['visible'];
         if (p_guidObj['description']) this.description = p_guidObj['description'];
         if (p_guidObj['order']) this.order = p_guidObj['order'];
+        if (p_guidObj['codeRule']) this.codeRule = p_guidObj['codeRule'];
+        if (p_guidObj['displayFormat']) this.displayFormat = p_guidObj['displayFormat'];
         // value 는 오버라이딩 되지 않도록 제거
         // if (p_guidObj['value']) this.value = p_guidObj['value'];
     };
@@ -436,6 +472,8 @@ var MetaColumn  = (function (_super) {
         if (this['visible'] === false) clone.visible = this['visible'];
         if (this['description']) clone.description = this['description'];
         if (this['order']) clone.order = this['order'];
+        if (this['codeRule']) clone.codeRule = this['codeRule'];
+        if (this['displayFormat']) clone.displayFormat = this['displayFormat'];
         
         return clone;
     };
@@ -545,25 +583,35 @@ var MetaColumn  = (function (_super) {
         enumerable: false
     });
 
-    MetaColumn.prototype.codeText = function (p_value) {
-        var text = p_value;
-        if (this.codeRule && typeof this.codeRule.codeText === 'function') {
-            text = this.codeRule.codeText(p_value);
-        }
-        return text;
+    MetaColumn.prototype.toCodeText = function (p_value) {
+        var text = p_value || this.value;
+        var rule = this.codeRule;
+        if (typeof rule === 'string') rule = CodeRuleRegistry.find(rule);
+        if (Array.isArray(rule) || _isObject(rule))  text = this._engine.describe(rule, text);
+        return text === null ? '' : String(text);
     };
-    Object.defineProperty(MetaColumn.prototype, 'codeText', {
+    Object.defineProperty(MetaColumn.prototype, 'toCodeText', {
+        enumerable: false
+    });
+
+    MetaColumn.prototype.toCodeList = function (p_options) {
+        var rule = this.codeRule;
+        if (typeof rule === 'string') rule = CodeRuleRegistry.find(rule);
+        if (Array.isArray(rule) || _isObject(rule))  return this._engine.getCodeList(rule, p_options);
+        return [];  // 코드룰이 없으면 빈배열 리턴
+    };
+    Object.defineProperty(MetaColumn.prototype, 'toCodeText', {
         enumerable: false
     });
 
     MetaColumn.prototype.toDisplay = function (value, opts) {
-    var v = value;
+    var v = value || this.value;
     // 1) normalize
     if (v == null) v = '';
     // 2) code 매핑
-    if (this.codeRule) v = this.codeText(v);
+    if (this.codeRule) v = this.toCodeText(v);
     // 3) 포맷 적용
-    if (typeof this.displayFormat === 'function') v = this.displayFormat.call(this, v, this, opts);
+    if (typeof this.displayFormat === 'function') v = this.displayFormat.call(this, v, opts, this);
     return String(v);
     };
     Object.defineProperty(MetaColumn.prototype, 'toDisplay', {

@@ -1,10 +1,9 @@
 /**** code-rule-registry.js | MetaRegistry ****/
 //==============================================================
 // import Message from './message.js';    
-import ExtendError          from './extend-error.js';    
-import Util                 from './util.js';
-import NamespaceManager     from './namespace-manager.js';
-import { PropertyCollection } from 'logic-core';       
+import { ExtendError }          from 'logic-core';
+// import Util                 from './util.js';
+import { PropertyCollection } from 'logic-core';
 
 var CodeRuleRegistry = (function () {
     /**
@@ -15,19 +14,14 @@ var CodeRuleRegistry = (function () {
      */
     function CodeRuleRegistry() { 
     }
-
     CodeRuleRegistry._NS = 'Meta.Entity';    // namespace
 
-    // var define
-    var 
-    // var _list = [];
-    // var namespace = new CodeRuleRegistry();
     var _storage = new PropertyCollection();
 
     /**
-     * List of meta objects.  
+     * Internal storage for registered meta objects.  
      * 
-     * @member {any[]} CodeRuleRegistry#_list
+     * @member {PropertyCollection} CodeRuleRegistry#_storage
      * @readonly
      */
     Object.defineProperty(CodeRuleRegistry, '_storage', {
@@ -39,28 +33,16 @@ var CodeRuleRegistry = (function () {
     });
 
     /**
-     * Total number of currently registered meta objects.  
+     * Number of registered meta objects.  
      * 
-     * @member {number} MetaRegistry#count
+     * @member {Number} CodeRuleRegistry#count
      * @readonly
      */
-    Object.defineProperty(MetaRegistry, 'count', {
+    Object.defineProperty(CodeRuleRegistry, 'count', {
         get: function() { return _storage.count(); },
         configurable: false,
         enumerable: true,
-    });        
-
-    // /**
-    //  * Namespace manager for meta objects.  
-    //  * 
-    //  * @member {NamespaceManager} MetaRegistry#instance
-    //  * @readonly
-    //  */
-    // Object.defineProperty(MetaRegistry, 'instance', {
-    //     get: function() { return namespace; },
-    //     configurable: false,
-    //     enumerable: true,
-    // });
+    });
 
     // local function
     function _isObject(obj) {    // 객체 여부
@@ -74,18 +56,17 @@ var CodeRuleRegistry = (function () {
     }
 
     /**
-     * Initializes registered meta objects and namespaces.  
+     * initialize the registry by clearing all registered code rules.
      */
     CodeRuleRegistry.init = function() {
         _storage.clear();
     };
 
     /**
-     * Register the meta object and register the creator in the namespace.  
-     * An exception occurs if an object is already registered.   
-     * Register if there is no creator in the Namespace.  
-     * 
-     * @param {MetaObject} p_meta Meta object to register
+     * Register code rules in the registry.
+     * @param {*} p_ns Namespace string or an object containing multiple namespace-rule pairs.
+     * @param {*} p_rules Array of code rules if p_ns is a string.
+     * @returns 
      */
     CodeRuleRegistry.register = function(p_ns, p_rules) {
 
@@ -99,14 +80,19 @@ var CodeRuleRegistry = (function () {
         }
 
         if (!_isString(p_ns)) {
-            throw new ExtendError(/EL03210/, null, [typeof p_ns]);  // TODO:
+            throw new ExtendError(/EL05461/, null, [typeof p_ns]);
         }
         if (!_isObject(p_rules) || !(p_rules instanceof Array)) {
-            throw new ExtendError(/EL04323/, null, [typeof p_rules]); // TODO:
+            throw new ExtendError(/EL05462/, null, [typeof p_rules]);
         }
         _storage.add(p_ns, p_rules);
     };
 
+    /**
+     * Release code rules from the registry.
+     * @param {*} p_ns Namespace string to release.
+     * @returns {Boolean} True if the namespace was found and released, false otherwise.
+     */
     CodeRuleRegistry.release = function(p_ns) {
         if (!_isString(p_ns)) return false;
         var idx = _storage.keyToIndex(p_ns);
@@ -116,12 +102,22 @@ var CodeRuleRegistry = (function () {
     };
 
 
+    /**
+     * Check if a namespace is registered.
+     * @param {*} p_ns Namespace string to check.
+     * @returns {Boolean} True if the namespace is registered, false otherwise.
+     */
     CodeRuleRegistry.has = function(p_ns) {
         if (!_isString(p_ns)) return false;
         return _storage.keyToIndex(p_ns) >= 0;
     };
     
 
+    /**
+     * Find code rules by namespace.
+     * @param {*} p_ns Namespace string to find.
+     * @returns {Array|undefined} Array of code rules if found, undefined otherwise.
+     */
     CodeRuleRegistry.find = function(p_ns) {
         if (!_isString(p_ns)) return undefined;
         var idx = _storage.keyToIndex(p_ns);

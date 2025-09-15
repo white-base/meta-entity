@@ -16,6 +16,7 @@ import { MetaRow }              from '../src/meta-row';
 import { BaseColumn }           from '../src/base-column';
 import { MetaColumn }           from '../src/meta-column';
 import { Message }              from '../src/message-wrap';
+import { CodeRuleRegistry }   from '../src/code-rule-registry.js';
 import e from 'express';
 
 //==============================================================
@@ -449,7 +450,8 @@ describe("[target: meta-column.js ]", () => {
                     constraints: [
                         { regex: /\D/, msg: 'message', code: 'C1', match: true },
                     ],   
-                    value: 'V1'
+                    value: 'V1',
+                    codeRule: 'CR1'
                 };
                 const c1 = new MetaColumn('c1', null, prop1);
                 const obj1 = c1.getObject();
@@ -548,7 +550,7 @@ describe("[target: meta-column.js ]", () => {
                     ],   
                     value: 'V1',
                     getter: fun1,
-                    setter: fun2,
+                    setter: fun2
                 };
                 const c1 = new MetaColumn('c1', null, prop1);
                 var aa = c1.$value;
@@ -791,6 +793,95 @@ describe("[target: meta-column.js ]", () => {
             });
 
         });
+
+        describe("MetaColumn.toCodeText(value) 코드 값으로 변환", () => {
+            it("- toCodeText(value) : 코드 값으로 변환 ", () => {
+                var c1 = new MetaColumn('c1');
+                c1.codeRule =  [
+                    { match: 'M', desc: '남성' },
+                    { match: 'W', desc: '여성' }
+                ];
+                expect(c1.toCodeText('M')).toBe('남성');
+                expect(c1.toCodeText('W')).toBe('여성');
+                expect(c1.toCodeText('X')).toBe('');
+                expect(c1.toCodeText('')).toBe('');
+                expect(c1.toCodeText(null)).toBe('');
+                expect(c1.toCodeText(undefined)).toBe('');
+                /**
+                 * MEMO:
+                 * - 값이 없을시 그대로 리턴
+                 * - 매칭되는게 없으면, 값 그대로 리턴
+                 */
+            });
+
+            it("- toCodeText(value) : 네임스페이스 이용 ", () => {
+                var c1 = new MetaColumn('c1');
+                CodeRuleRegistry.register('aa.gender', [
+                    { match: 'M', desc: '남성' },
+                    { match: 'W', desc: '여성' }
+                ]);
+                c1.codeRule = 'aa.gender';
+
+                expect(c1.toCodeText('M')).toBe('남성');
+                expect(c1.toCodeText('W')).toBe('여성');
+                expect(c1.toCodeText('X')).toBe('');
+                expect(c1.toCodeText('')).toBe('');
+                expect(c1.toCodeText(null)).toBe('');
+                expect(c1.toCodeText(undefined)).toBe('');
+            });
+        });
+
+        describe("MetaColumn.toCodeList(value) 코드 목록", () => {
+            it("- toCodeList(value) : 코드 목록 출력 ", () => {
+                var c1 = new MetaColumn('c1');
+                c1.codeRule =  [
+                    { match: 'M', desc: '남성' },
+                    { match: 'W', desc: '여성' }
+                ];
+                expect(c1.toCodeList().length).toBe(2);
+                expect(c1.toCodeList()[0].match).toBe('M');
+                expect(c1.toCodeList()[0].desc).toBe('남성');
+                expect(c1.toCodeList()[1].match).toBe('W');
+                expect(c1.toCodeList()[1].desc).toBe('여성');
+            });
+        });
+
+        describe("MetaColumn.toDisplay(value) UI 출력", () => {
+            it("- toDisplay(value) : 코드 대체 출력 ", () => {
+                var c1 = new MetaColumn('c1');
+                c1.displayFormat = function(v) {
+                    if (v === 'M') return '남성';
+                    else if (v === 'W') return '여성';
+                    else return '';
+                }
+                c1.value = 'M';
+                expect(c1.toDisplay()).toBe('남성');
+                c1.value = 'W';
+                expect(c1.toDisplay()).toBe('여성');
+                c1.value = 'X';
+                expect(c1.toDisplay()).toBe('');
+                c1.value = '';
+            });
+            it("- toDisplay(value) : 콤마 ", () => {
+                var c1 = new MetaColumn('c1');
+                c1.displayFormat = function(v) {
+                    var text = v;
+                    var num = Number(v);
+                    if (!isNaN(num)) {
+                        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                    return text;
+                }
+                c1.value = 1000;
+                expect(c1.toDisplay()).toBe('1,000');
+                c1.value = 1000000;
+                expect(c1.toDisplay()).toBe('1,000,000');
+                c1.value = 'A1000';
+                expect(c1.toDisplay()).toBe('A1000');
+                c1.value = '';
+            });
+        });
+
         describe("커버리지 및 예외 ", () => {
             it("- 예외", () => {   
                 const c1 = new MetaColumn('c1');
@@ -835,6 +926,8 @@ describe("[target: meta-column.js ]", () => {
 
             });
         });
+
+        
 
     });
     

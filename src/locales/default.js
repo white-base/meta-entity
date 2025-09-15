@@ -42,9 +42,10 @@ export default {
   "EL0513A": "valid(value); regular expression constraint failed. Column name = '$1', msg = '$2'",
   "EL0513B": "$1.readOnly is type 'boolean'. type of readOnly = '$2'",
   "EL0513C": "$1.visible is type 'boolean'. type of visible = '$2'",
-  "EL0513D": "$1.description 는 'string' 타입입니다. typeof description = '$2'",
+  "EL0513D": "$1.description 는 'string' type. typeof description = '$2'",
   "EL0513E": "$1.order is type 'number'. type of order = '$2'",
-  "EL0513F": "$1.displayFormat 는 'function' 타입입니다. typeof displayFormat = '$2'",
+  "EL0513F": "$1.displayFormat is a 'function' type. typeof displayFormat = '$2'",
+  "EL0513G": "$1.codeRule is of type 'string | Object [] | Object'. CodeRule type = '$2'",
 
   "EL05140": "---- BaseColumnCollection ----",
   "EL05141": "$1._baseType is of type 'function', type of getter = '$2'",
@@ -165,5 +166,8 @@ export default {
   "EL05458": "readSchema(obj, isCreate); obj is not of type 'object' (except null) type of obj = '$1'",
   "EL05459": "readSchema(obj, isCreate); obj is not a schema object. obj = {tables: $1, views: $2}",
   "EL0545A": "readData(obj); obj is not of type 'object' (except null) type of obj = '$1'",
-  "EL0545B": "readData(obj); obj is not a schema object."
+  "EL0545B": "readData(obj); obj is not a schema object.",
+  "EL05460": "---- CodeRuleRegistry ----",
+  "EL05461": "CodeRuleRegistry.register(ns, rule); ns is the type 'string' = '$1'",
+  "EL05462": "CodeRuleRegistry.register(ns, rule); rule is of type 'object'. typeof rule = '$1'"
 }

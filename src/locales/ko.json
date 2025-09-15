@@ -44,6 +44,7 @@
   "EL0513D": "$1.description 는 'string' 타입입니다. typeof description = '$2'",
   "EL0513E": "$1.order 는 'number' 타입입니다. typeof order = '$2'",
   "EL0513F": "$1.displayFormat 는 'function' 타입입니다. typeof displayFormat = '$2'",
+  "EL0513G": "$1.codeRule 는 'string | object[] | object' 타입입니다. typeof codeRule = '$2'",
 
   "EL05140": "---- BaseColumnCollection ----",
   "EL05141": "$1._baseType 는 'function' 타입입니다. typeof getter = '$2'",
@@ -164,5 +165,9 @@
   "EL05458": "readSchema(obj, isCreate); obj 가 'object' 타입이 아닙니다.(null제외) typeof obj = '$1'",
   "EL05459": "readSchema(obj, isCreate); obj 는 스키마 객체가 아닙니다. obj = {tables: $1, views: $2}",
   "EL0545A": "readData(obj); obj 가 'object' 타입이 아닙니다.(null제외) typeof obj = '$1'",
-  "EL0545B": "readData(obj); obj 는 스키마 객체가 아닙니다. obj = {tables: $1, views: $2}"
+  "EL0545B": "readData(obj); obj 는 스키마 객체가 아닙니다. obj = {tables: $1, views: $2}",
+  "EL05460": "---- CodeRuleRegistry ----",
+  "EL05461": "CodeRuleRegistry.register(ns, rule);  ns 는 'string' 타입입니다. typeof ns = '$1'",
+  "EL05462": "CodeRuleRegistry.register(ns, rule);  rule 는 'object' 타입입니다. typeof rule = '$1'"
+
 }
