@@ -611,7 +611,7 @@ var MetaColumn  = (function (_super) {
     // 2) code 매핑
     if (this.codeRule) v = this.toCodeText(v);
     // 3) 포맷 적용
-    if (typeof this.displayFormat === 'function') v = this.displayFormat.call(this, v, opts, this);
+    if (typeof this.displayFormat === 'function') v = this.displayFormat.call(this, v, this, opts);
     return String(v);
     };
     Object.defineProperty(MetaColumn.prototype, 'toDisplay', {
