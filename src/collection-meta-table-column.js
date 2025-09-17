@@ -40,7 +40,7 @@ var MetaTableColumnCollection  = (function (_super) {
 
         if (typeof p_column === 'string') {      
             key  = p_column;
-            if (this._ownerIsEntity()) column = new this._baseType(key, this._owner);
+            if (this._ownerIsEntity()) column = new this._baseType(key, this._owner, p_property);
             else column = new this._baseType(key, this._owner, p_property);
             
         } else if (p_column instanceof BaseColumn) {
