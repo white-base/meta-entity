@@ -207,7 +207,7 @@ describe("[target: meta-view.js]", () => {
                 const view2 = new MetaView('V2', view1); // 전체 참조
                 view2.columns.add('c2');
                 const view3 = new MetaView('V3');
-                view3.columns.add('c3', view2.columns); // 일부 참조
+                view3.columns.add('c3', {}, view2.columns); // 일부 참조
                 view1.rows.add(view1.newRow());     // row 추가 
                 view2.rows.add(view2.newRow());
                 view3.rows.add(view3.newRow());
@@ -244,7 +244,7 @@ describe("[target: meta-view.js]", () => {
                 const view2 = new MetaView('V2', view1); // 전체 참조
                 view2.columns.add('c2');
                 const view3 = new MetaView('V3');
-                view3.columns.add('c3', view2.columns); // 일부 참조
+                view3.columns.add('c3', {}, view2.columns); // 일부 참조
                 view1.rows.add(view1.newRow()); // row 추가
                 view2.rows.add(view2.newRow());
                 view3.rows.add(view3.newRow());
@@ -271,7 +271,7 @@ describe("[target: meta-view.js]", () => {
                 const view2 = new MetaView('V2', view1); // 전체 참조
                 view2.columns.add('c2');
                 const view3 = new MetaView('V3');
-                view3.columns.add('c3', view2.columns); // 일부 참조
+                view3.columns.add('c3', {}, view2.columns); // 일부 참조
                 view1.rows.add(view1.newRow()); // row 추가
                 view2.rows.add(view2.newRow());
                 view3.rows.add(view3.newRow());
@@ -295,7 +295,7 @@ describe("[target: meta-view.js]", () => {
                 const view2 = new MetaView('V2', view1); // 전체 참조
                 view2.columns.add('c2');
                 const view3 = new MetaView('V3');
-                view3.columns.add('c3', view2.columns); // 일부 참조
+                view3.columns.add('c3', {}, view2.columns); // 일부 참조
                 view1.rows.add(view1.newRow()); // row 추가
                 view2.rows.add(view2.newRow());
                 view3.rows.add(view3.newRow());
@@ -330,7 +330,7 @@ describe("[target: meta-view.js]", () => {
                 const view2 = new MetaView('V2', view1); // 전체 참조
                 view2.columns.add('c2');
                 const view3 = new MetaView('V3');
-                view3.columns.add('c3', view2.columns); // 일부 참조
+                view3.columns.add('c3', {}, view2.columns); // 일부 참조
                 view1.rows.add(view1.newRow()); // row 추가
                 view2.rows.add(view2.newRow());
                 view3.rows.add(view3.newRow());

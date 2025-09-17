@@ -95,15 +95,26 @@ var MetaViewColumnCollection  = (function (_super) {
      * - collection에 컬럼이 없을 경우 : 컬렉션에 entity를 설정한다.(참조 재귀호출시 최상위만 등록됨)  
      * 
      * @param {string | MetaColumn} p_column 컬럼
+     * @param {object | BaseColumnCollection} [p_property] 속성 또는 참조컬렉션
      * @param {BaseColumnCollection} [p_refCollection] 참조컬렉션
      * @return {number} 등록한 index
      */
-    MetaViewColumnCollection.prototype.add  = function(p_column, p_refCollection) {
+    MetaViewColumnCollection.prototype.add  = function(p_column, p_property, p_refCollection) {
         var collection;
         var key;
         var column;
+        var refCollection = null;
+        var property = p_property || {};
 
-        if (p_refCollection && !(p_refCollection instanceof BaseColumnCollection)) {
+        // refCollection = p_refCollection;
+        if (p_property instanceof BaseColumnCollection) {
+            property = {};
+            refCollection = p_property;
+        } else if (p_refCollection) {
+            refCollection = p_refCollection;
+        }
+
+        if (refCollection && !(refCollection instanceof BaseColumnCollection)) {
             throw new ExtendError(/EL05161/, null, []);
         }
 
@@ -112,13 +123,13 @@ var MetaViewColumnCollection  = (function (_super) {
             column = p_column;
         } else if (typeof p_column === 'string') {
             key = p_column;
-            column = new this._baseType(key, this._owner);
+            column = new this._baseType(key, this._owner, property);
         } else throw new ExtendError(/EL05162/, null, [typeof p_column]);
 
         // baseCollection & refCollection 존재하는 경우
-        if (p_refCollection instanceof BaseColumnCollection) {                                  
-            collection = p_refCollection;
-        } else if (this._owner && this._owner._baseEntity && this._owner._baseEntity.columns) { 
+        if (refCollection instanceof BaseColumnCollection) {
+            collection = refCollection;
+        } else if (this._owner && this._owner._baseEntity && this._owner._baseEntity.columns) {
             collection = this._owner._baseEntity.columns;
         }
         
@@ -126,8 +137,8 @@ var MetaViewColumnCollection  = (function (_super) {
         if (collection) {
             if (collection.contains(collection[key])) {
                 column = collection[key];   // 기존에 존재하면 참조 가져옴
-            } else {                                                
-                collection.add(p_column);      // 없으면 컬렉션에 추가(owner 설정됨)
+            } else {
+                collection.add(p_column, property);      // 없으면 컬렉션에 추가(owner 설정됨)
                 column = collection[key];
             }
         }

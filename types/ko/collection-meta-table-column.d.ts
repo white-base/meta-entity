@@ -13,13 +13,14 @@ type MetaTableColumnCollection<T> = {
      * 컬럼은 컬럼명 또는 `BaseColumn` 객체일 수 있습니다.  
      * 
      * @param column - 추가할 컬럼 또는 컬럼명
+     * @param property - 컬럼 속성 (선택 사항, `column`이 문자열일 때만 사용)
      * @returns 추가된 컬럼의 인덱스입니다.
      * 
      * @example
      * const index = collection.add("user_id"); // 문자열(컬럼명)으로 추가
      * const index = collection.add(new BaseColumn("user_name", entity)); // BaseColumn 객체로 추가
      */
-    add(column: string | BaseColumn): number;
+    add(column: string | BaseColumn, property?: object): number;
 
     /**
      * 이름과 값을 사용하여 컬렉션에 새 컬럼을 추가합니다. 컬럼은 내부에서 생성됩니다.

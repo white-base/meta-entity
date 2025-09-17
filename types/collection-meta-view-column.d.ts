@@ -41,14 +41,15 @@ type MetaViewColumnCollection<T> = {
      * - If there is no column in the collection: Set 'entity' in the collection; only the top is registered when a reference recursive call is made.  
      * 
      * @param column - The column to be added. You can receive the 'MetaColumn' object or column name (string).
+     * @param property - Column properties or reference collection.
      * @param refCollection - Reference collection. Object of type 'BaseColumnCollection'.
      * @returns The index of the added column. The index represents the location of the column within the collection.
      * 
      * @example
-     * const index = collection.add(new MetaColumn("price"), refCollection); // `MetaColumn` 객체로 컬럼 추가
+     * const index = collection.add(new MetaColumn("price"), property); // `MetaColumn` 객체로 컬럼 추가
      * const index = collection.add("quantity", refCollection); // Add column with string (column name)
      */
-    add(column: MetaColumn | string, refCollection: BaseColumnCollection<BaseColumn>): number;
+    add(column: MetaColumn | string, property?: object | BaseColumnCollection<BaseColumn>, refCollection?: BaseColumnCollection<BaseColumn>): number;
     
     /**
      * Creates a new column with a name and value and adds it to the collection.

@@ -197,6 +197,15 @@ describe("[target: column-collection.js]", () => {
                 expect(extColumns.c1._entity).toBe(null);
                 expect(extColumns.c2._entity).toBe(null);
             });
+            it("- add(name, prop) : MetaTableColumnCollection 에서 추가  ", () => {
+                var extColumns = new MetaTableColumnCollection();
+                extColumns.add('c1', { value: 10, label: 'C1' });
+    
+                expect(extColumns.count).toBe(1);
+                expect(extColumns.c1 instanceof MetaColumn).toBe(true);
+                expect(extColumns.c1.value).toBe(10);
+                expect(extColumns.c1.label).toBe('C1');
+            });
             it("- add(item) : 아이템 객체로 추가 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.add(new MetaColumn('c1'));
@@ -406,8 +415,8 @@ describe("[target: column-collection.js]", () => {
             it("- add(?, ?) : 예외 ", () => {
                 var view1 = new MetaView('T1');
 
-                expect(()=> view1.columns.add('c2', {})).toThrow(/EL05161/)
-                expect(()=> view1.columns.add('c2', 10)).toThrow(/EL05161/)
+                // expect(()=> view1.columns.add('c2', {})).toThrow(/EL05161/)
+                expect(()=> view1.columns.add('c2', {}, 10)).toThrow(/EL05161/)
                 expect(()=> view1.columns.add(10)).toThrow(/EL05162/)
                 expect(()=> view1.columns.add({})).toThrow(/EL05162/)
             });

@@ -13,13 +13,14 @@ type MetaTableColumnCollection<T> = {
      * The column can be the column name or the object 'BaseColumn'.  
      * 
      * @param column - This column is to be added. You can receive an object of the type string (column name) or 'Base Column'.
+     * @param property - Column properties (optional, only used when `column` is a string)
      * @returns Index of the added column.
      * 
      * @example
      * const index = collection.add("user_id"); // add as string (column name)
      * const index = collection.add(new BaseColumn("user_name", entity)); // BaseColumn 객체로 추가
      */
-    add(column: string | BaseColumn): number;
+    add(column: string | BaseColumn, property?: object): number;
 
     /**
      * Add a new column to the collection using the name and value. The column is created internally.

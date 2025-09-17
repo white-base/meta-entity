@@ -31,16 +31,17 @@ var MetaTableColumnCollection  = (function (_super) {
      * 테이블 컬렉션에 컬럼 추가
      * 
      * @param {string | BaseColumn} p_column 컬럼명, 매타컬럼
+     * @param {object} [p_property] 속성
      * @returns {number} 등록한 index
      */
-    MetaTableColumnCollection.prototype.add  = function(p_column) {
+    MetaTableColumnCollection.prototype.add  = function(p_column, p_property) {
         var column;
         var key;
 
         if (typeof p_column === 'string') {      
             key  = p_column;
             if (this._ownerIsEntity()) column = new this._baseType(key, this._owner);
-            else column = new this._baseType(key);
+            else column = new this._baseType(key, this._owner, p_property);
             
         } else if (p_column instanceof BaseColumn) {
             key  = p_column.columnName;

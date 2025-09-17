@@ -40,6 +40,7 @@ type MetaViewColumnCollection<T> = {
      * - 컬렉션에 컬럼이 없을 경우: 컬렉션에 `entity`를 설정합니다. 참조 재귀 호출 시 최상위만 등록됩니다.  
      * 
      * @param column - 추가할 컬럼 객체 또는 컬럼명
+     * @param property - 컬럼 속성 또는 참조 컬렉션
      * @param refCollection - 참조 컬렉션
      * @returns 추가된 컬럼의 인덱스입니다. 인덱스는 컬렉션 내에서 컬럼의 위치를 나타냅니다.
      * 
@@ -47,7 +48,7 @@ type MetaViewColumnCollection<T> = {
      * const index = collection.add(new MetaColumn("price"), refCollection); // `MetaColumn` 객체로 컬럼 추가
      * const index = collection.add("quantity", refCollection); // 문자열(컬럼명)으로 컬럼 추가
      */
-    add(column: MetaColumn | string, refCollection?: BaseColumnCollection<BaseColumn>): number;
+    add(column: MetaColumn | string, property?: object | BaseColumnCollection<BaseColumn>, refCollection?: BaseColumnCollection<BaseColumn>): number;
 
     /**
      * 이름과 값으로 새 컬럼을 생성하고 컬렉션에 추가합니다.

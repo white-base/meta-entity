@@ -48,7 +48,7 @@ var MetaTable  = (function (_super) {
                 if (this.rows.count > 0) throw new ExtendError(/EL05413/, null, [this.constructor.name, this.rows.count]);
                 columns = nVal;
             },
-            configurable: false,
+            configurable: true,
             enumerable: true
         });
         
