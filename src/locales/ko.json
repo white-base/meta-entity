@@ -25,7 +25,7 @@
   "EL05118": "setObject(oGuid, origin); oGuid.['_entity'] guid 를 찾을 수 없습니다. name = '$1', guid = '$2'",
   "EL05119": "clone() 은 추상메소드 입니다. 상속해서 구현해야 합니다.",
   "EL05120": "---- ObjectColumn ----",
-  "EL05121": "_load(prop); prop 는 'object' 타입입니다. typeof prop = '$2'",
+  "EL05121": "_load(prop); prop 는 'object' 타입입니다. typeof prop = '$2'",  
   "EL05122": "setObject(oGuid, origin); oGuid.['default'] guid 를 찾을 수 없습니다. guid = '$1'",
   "EL05123": "setObject(oGuid, origin); oGuid.['value'] guid 를 찾을 수 없습니다. guid = '$1'",
   "EL05130": "---- MetaColumn ----",

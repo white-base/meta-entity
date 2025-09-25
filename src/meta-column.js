@@ -28,7 +28,7 @@ var MetaColumn  = (function (_super) {
      * @param {function} [p_property.onChanged] 변경 이벤트 바인딩
       */
     function MetaColumn(p_name, p_entity, p_property) {
-        _super.call(this, p_name, p_entity);
+        _super.call(this, p_name, p_entity, p_property);
 
         var $event          = new EventEmitter(this);
         var required        = false;
@@ -313,13 +313,36 @@ var MetaColumn  = (function (_super) {
             enumerable: false,
         });
         
-        if (p_property) this._load(p_property);
+        if (p_property) _load(this, p_property);
     }
     Util.inherits(MetaColumn, _super);
 
     MetaColumn._NS = 'Meta.Entity';                                 // namespace
     MetaColumn._PARAMS = ['columnName', '_entity'];    // creator parameter    // 
     MetaColumn._VALUE_TYPE = [String, Number, Boolean];
+
+
+    function _load(p_column, p_property) {
+        var prop = p_property;
+        var col = p_column;
+
+        if (typeof prop === 'object') { 
+            if (prop['required']) col.required = prop['required'];
+            if (prop['constraints']) col.constraints = prop['constraints'];
+            if (prop['getter']) col.getter = prop['getter'];
+            if (prop['setter']) col.setter = prop['setter'];
+            if (prop['kind']) col.kind = prop['kind'];
+            if (prop['readOnly']) col.readOnly = prop['readOnly'];
+            if (prop['visible'] === false) col.visible = prop['visible'];
+            if (prop['description']) col.description = prop['description'];
+            if (prop['order']) col.order = prop['order'];
+            if (prop['codeRule']) col.codeRule = prop['codeRule'];
+            if (prop['displayFormat']) col.displayFormat = prop['displayFormat'];
+        }
+        if (['number', 'string', 'boolean'].indexOf(typeof p_property) > -1) {  
+            col['value'] = p_property; 
+        }
+    }
 
     /**
      * onChanged 이벤트를 발생합니다.
@@ -337,33 +360,34 @@ var MetaColumn  = (function (_super) {
         enumerable: false
     });
     
-    /**
-     * 프로퍼티 객체로 속성 로드
-     * 
-     * @protected
-     * @param {object} p_property 
-     */
-    MetaColumn.prototype._load = function(p_property) {
-        if (typeof p_property === 'object' ) {
-            for(var prop in p_property) {
-                // if (p_property.hasOwnProperty(prop) &&
-                if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
-                ['_valueTypes', 'alias', 'default', 'label', 'value', 
-                    'required', 'constraints', 'getter', 'setter', 'kind',
-                    'readOnly', 'visible', 'description', 'order', 'codeRule',
-                    'displayFormat'
-                ].indexOf(prop) > -1) {
-                    this[prop] = p_property[prop];
-                }
-            }
-        }
-        if (['number', 'string', 'boolean'].indexOf(typeof p_property) > -1) {  
-            this['value'] = p_property; 
-        }
-    };
-    Object.defineProperty(MetaColumn.prototype, '_load', {
-        enumerable: false
-    });
+
+    // /**
+    //  * 프로퍼티 객체로 속성 로드
+    //  * 
+    //  * @protected
+    //  * @param {object} p_property 
+    //  */
+    // MetaColumn.prototype._load = function(p_property) {
+    //     if (typeof p_property === 'object' ) {
+    //         for(var prop in p_property) {
+    //             // if (p_property.hasOwnProperty(prop) &&
+    //             if (Object.prototype.hasOwnProperty.call(p_property, prop) &&
+    //             ['_valueTypes', 'alias', 'default', 'label', 'value', 
+    //                 'required', 'constraints', 'getter', 'setter', 'kind',
+    //                 'readOnly', 'visible', 'description', 'order', 'codeRule',
+    //                 'displayFormat'
+    //             ].indexOf(prop) > -1) {
+    //                 this[prop] = p_property[prop];
+    //             }
+    //         }
+    //     }
+    //     if (['number', 'string', 'boolean'].indexOf(typeof p_property) > -1) {  
+    //         this['value'] = p_property; 
+    //     }
+    // };
+    // Object.defineProperty(MetaColumn.prototype, '_load', {
+    //     enumerable: false
+    // });
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  

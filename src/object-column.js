@@ -21,9 +21,9 @@ var ObjectColumn  = (function (_super) {
      * @param {string} p_property.alias 별칭
      */
     function ObjectColumn(p_name, p_entity, p_property) {
-        _super.call(this, p_name, p_entity);
+        _super.call(this, p_name, p_entity, p_property);
 
-        if (p_property) this._load(p_property);
+        if (p_property) _load(this, p_property);
     }
     Util.inherits(ObjectColumn, _super);
 
@@ -31,28 +31,31 @@ var ObjectColumn  = (function (_super) {
     ObjectColumn._PARAMS = ['columnName', '_entity', '_property'];    // creator parameter
     ObjectColumn._VALUE_TYPE = [{}];    // union type
 
+    function _load(col, prop) {
+        if (typeof prop !== 'object' ) throw new ExtendError(/EL05121/, null, ['p_prop', 'object']);
+    }
 
-    /**
-     *  프로퍼티 객체로 속성 로드
-     * 
-     * @param {object} p_prop 속성
-     * @throws {ExtendError} p_prop가 객체가 아닌 경우
-     * @protected
-     */
-    ObjectColumn.prototype._load = function(p_prop) {
-        if (typeof p_prop === 'object' ) {
-            for(var prop in p_prop) {
-                // if (p_property.hasOwnProperty(prop) &&
-                if (Object.prototype.hasOwnProperty.call(p_prop, prop) &&
-                    ['default', 'label', 'value', 'alias'].indexOf(prop) > -1) {
-                    this[prop] = p_prop[prop];
-                }
-            }
-        } else throw new ExtendError(/EL05121/, null, ['p_prop', 'object']);
-    };
-    Object.defineProperty(ObjectColumn.prototype, '_load', {
-        enumerable: false
-    });
+    // /**
+    //  *  프로퍼티 객체로 속성 로드
+    //  * 
+    //  * @param {object} p_prop 속성
+    //  * @throws {ExtendError} p_prop가 객체가 아닌 경우
+    //  * @protected
+    //  */
+    // ObjectColumn.prototype._load = function(p_prop) {
+    //     if (typeof p_prop === 'object' ) {
+    //         for(var prop in p_prop) {
+    //             // if (p_property.hasOwnProperty(prop) &&
+    //             if (Object.prototype.hasOwnProperty.call(p_prop, prop) &&
+    //                 ['default', 'label', 'value', 'alias'].indexOf(prop) > -1) {
+    //                 this[prop] = p_prop[prop];
+    //             }
+    //         }
+    //     } else throw new ExtendError(/EL05121/, null, ['p_prop', 'object']);
+    // };
+    // Object.defineProperty(ObjectColumn.prototype, '_load', {
+    //     enumerable: false
+    // });
 
     /**
      * 현재 객체의 guid 타입의 객체를 가져옵니다.  

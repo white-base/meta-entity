@@ -30,7 +30,7 @@ describe("[target: code-rule-engine.js]", () => {
 
                 var cr = new CodeRuleEngine();
                 var rule = [
-                    { match: 'M', desc: '남성' },
+                    { match: /M/, desc: '남성' },
                     { match: 'W', desc: '여성' }
                 ]
 

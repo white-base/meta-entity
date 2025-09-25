@@ -15,8 +15,9 @@ var BaseColumn  = (function (_super) {
      * @extends MetaElement
      * @param {string} p_name 아이템명
      * @param {BaseEntity} [p_entity] 소유 BaseEntity
+     * @param {object} [p_property] 프로퍼티 객체 (alias, default, label, _valueTypes)
      */
-    function BaseColumn(p_name, p_entity) {
+    function BaseColumn(p_name, p_entity, p_property) {
         _super.call(this, p_name);
 
         var $key            = p_name;
@@ -218,6 +219,7 @@ var BaseColumn  = (function (_super) {
         });
 
         if (p_entity) _entity = p_entity;
+        if (p_property) _load(this, p_property);
     }
     Util.inherits(BaseColumn, _super);
 
@@ -226,7 +228,21 @@ var BaseColumn  = (function (_super) {
     BaseColumn._KIND = 'abstract';
     BaseColumn._VALUE_TYPE = [];
 
-    // local funciton
+    function _load(col, prop) {
+        if (typeof prop === 'object') { 
+            if (prop['_valueTypes']) col._valueTypes = prop['_valueTypes'];
+            if (prop['columnName']) col.columnName = prop['columnName'];
+            if (prop['alias']) col.alias = prop['alias'];
+            if (prop['default']) col.default = prop['default'];
+            if (prop['label']) col.label = prop['label'];
+            if (prop['value']) col.value = prop['value'];
+        }
+        // if (['number', 'string', 'boolean'].indexOf(typeof prop) > -1) {  
+        //     col['value'] = prop; 
+        // }
+    }
+
+    // local function
     // function _isObject(obj) {    // 객체 여부
     //     if (typeof obj === 'object' && obj !== null) return true;
     //     return false;
