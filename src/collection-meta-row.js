@@ -25,6 +25,12 @@ var MetaRowCollection  = (function (_super) {
     MetaRowCollection._NS = 'Meta.Entity';    // namespace
     MetaRowCollection._PARAMS = ['_owner'];  // creator parameter
 
+    // local funciton
+    function _isObject(obj) {    // 객체 여부
+        if (typeof obj === 'object' && obj !== null) return true;
+        return false;
+    }
+
     /**
      * 프로퍼티 기술자 설정
      * 
@@ -75,21 +81,35 @@ var MetaRowCollection  = (function (_super) {
     MetaRowCollection.prototype.insertAt  = function(p_pos, p_row, p_isCheck) {
         var isCheck = p_isCheck || false;
         var result;
-        var entity = p_row._entity;
+        var entity;
+        var row;
 
-        if (!(p_row instanceof MetaRow )) throw new ExtendError(/EL05222/, null, []);
+        if (p_row instanceof MetaRow) {
+            row = p_row;
+            entity = p_row._entity;
+        } else if (_isObject(p_row)) {
+            row = new MetaRow(this._owner);
+            for (const key in p_row) {
+                if (Object.prototype.hasOwnProperty.call(p_row, key)) {
+                    row[key] = p_row[key];
+                }
+            }
+            entity = row._entity;
+        }
+        
+        if (!(row instanceof MetaRow )) throw new ExtendError(/EL05222/, null, []);
         if (entity._guid !== this._owner._guid) throw new ExtendError(/EL05223/, null, [this.constructor.name]);
         
         // valid 검사
         if (isCheck === true) {
-            for (let i = 0; i < p_row.count; i++) {
-                result = entity.columns[i].valid(p_row[i]);     // TODO: try 조건으로 변경 하면 하위 메세지 호출함
+            for (let i = 0; i < row.count; i++) {
+                result = entity.columns[i].valid(row[i]);     // TODO: try 조건으로 변경 하면 하위 메세지 호출함
                 if(result) {
                     throw new ExtendError(/EL05224/, null, [i, result.msg]);
                 }
             }
         }
-        return _super.prototype.insertAt.call(this, p_pos, p_row);
+        return _super.prototype.insertAt.call(this, p_pos, row);
     };
     Object.defineProperty(MetaRowCollection.prototype, 'insertAt', {
         enumerable: false

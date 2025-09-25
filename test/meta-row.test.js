@@ -516,6 +516,18 @@ describe("[target: meta-row.js]", () => {
                 expect(table1.rows[0]['c2']).toBe('R2');
                 expect(table1.rows[0]['c3']).toBe(undefined);
             });
+            it("- add(row) : 객체로 삽입 ", () => {
+                var table1 = new MetaTable('T1');
+                table1.columns.add('c1');
+                table1.columns.add('c2');
+                table1.rows.add({c1:'R1', c2:'R2'});
+
+                expect(table1.rows.count).toBe(1);
+                expect(table1.rows[0].count).toBe(2);
+                expect(table1.rows[0]['c1']).toBe('R1');
+                expect(table1.rows[0]['c2']).toBe('R2');
+                expect(table1.rows[0]['c3']).toBe(undefined);   
+            });
             it("- add(row, true) : 유효성 검사 ", () => {
                 var table1 = new MetaTable('T1');
                 table1.columns.addValue('c1', '');
