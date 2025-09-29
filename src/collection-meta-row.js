@@ -90,7 +90,7 @@ var MetaRowCollection  = (function (_super) {
         } else if (_isObject(p_row)) {
             row = new MetaRow(this._owner);
             for (const key in p_row) {
-                if (Object.prototype.hasOwnProperty.call(p_row, key)) {
+                if (Object.prototype.hasOwnProperty.call(p_row, key) && p_row[key] !== null) {
                     row[key] = p_row[key];
                 }
             }
