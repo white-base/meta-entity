@@ -45,6 +45,7 @@
   "EL0513E": "$1.order 는 'number' 타입입니다. typeof order = '$2'",
   "EL0513F": "$1.displayFormat 는 'function' 타입입니다. typeof displayFormat = '$2'",
   "EL0513G": "$1.codeRule 는 'string | object[] | object' 타입입니다. typeof codeRule = '$2'",
+  "EL0513H": "$1.placeholder 는 'string' 타입입니다. typeof placeholder = '$2'",
 
   "EL05140": "---- BaseColumnCollection ----",
   "EL05141": "$1._baseType 는 'function' 타입입니다. typeof getter = '$2'",

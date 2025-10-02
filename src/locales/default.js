@@ -46,6 +46,7 @@ export default {
   "EL0513E": "$1.order is type 'number'. type of order = '$2'",
   "EL0513F": "$1.displayFormat is a 'function' type. typeof displayFormat = '$2'",
   "EL0513G": "$1.codeRule is of type 'string | Object [] | Object'. CodeRule type = '$2'",
+  "EL0513H": "$1.placeholder is of type 'string'. typeof placeholder = '$2'",
 
   "EL05140": "---- BaseColumnCollection ----",
   "EL05141": "$1._baseType is of type 'function', type of getter = '$2'",

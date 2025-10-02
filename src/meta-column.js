@@ -44,6 +44,7 @@ var MetaColumn  = (function (_super) {
         var displayFormat   = null;
         var codeRule        = null;   // codeRule 객체
         var _engine         = new CodeRuleEngine();   // codeRuleEngine 객체
+        var placeholder     = null;
 
         /** 
          * 이벤트 객체
@@ -296,6 +297,18 @@ var MetaColumn  = (function (_super) {
             enumerable: true
         });
 
+        Object.defineProperty(this, 'placeholder', {
+        get: function() { return placeholder; },
+        set: function(nVal) { 
+            if (nVal !== null && nVal !== undefined && typeof nVal !== 'string') {
+                throw new ExtendError(/EL0PLH01/, null, [this.constructor.name, typeof nVal]);  // TODO: 메시지
+            }
+            placeholder = nVal;
+        },
+        configurable: false,
+        enumerable: true
+        });
+
         /**
          * 변경 이벤트 
          * 
@@ -338,6 +351,7 @@ var MetaColumn  = (function (_super) {
             if (prop['order']) col.order = prop['order'];
             if (prop['codeRule']) col.codeRule = prop['codeRule'];
             if (prop['displayFormat']) col.displayFormat = prop['displayFormat'];
+            if (p_property['placeholder']) this.placeholder = p_property['placeholder'];
         }
         if (['number', 'string', 'boolean'].indexOf(typeof p_property) > -1) {  
             col['value'] = p_property; 
@@ -422,6 +436,7 @@ var MetaColumn  = (function (_super) {
         if (this.order !== 0) obj['order'] = this.order;
         if (this.codeRule !== null) obj['codeRule'] = this.codeRule;
         if (this.displayFormat !== null) obj['displayFormat'] = this.displayFormat;
+        if (this.placeholder !== null) obj['placeholder'] = this.placeholder;
         // value 는 오버라이딩 되지 않도록 제거
         // if (this.value !== null) obj['value'] = this.value;    // 오버라이딩
         return obj;                        
@@ -458,6 +473,8 @@ var MetaColumn  = (function (_super) {
         if (p_guidObj['order']) this.order = p_guidObj['order'];
         if (p_guidObj['codeRule']) this.codeRule = p_guidObj['codeRule'];
         if (p_guidObj['displayFormat']) this.displayFormat = p_guidObj['displayFormat'];
+        if (p_guidObj['placeholder']) this.placeholder = p_guidObj['placeholder'];
+
         // value 는 오버라이딩 되지 않도록 제거
         // if (p_guidObj['value']) this.value = p_guidObj['value'];
     };
@@ -498,6 +515,7 @@ var MetaColumn  = (function (_super) {
         if (this['order']) clone.order = this['order'];
         if (this['codeRule']) clone.codeRule = this['codeRule'];
         if (this['displayFormat']) clone.displayFormat = this['displayFormat'];
+        if (this['placeholder']) clone.placeholder = this['placeholder'];
         
         return clone;
     };
