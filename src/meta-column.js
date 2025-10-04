@@ -351,7 +351,7 @@ var MetaColumn  = (function (_super) {
             if (prop['order']) col.order = prop['order'];
             if (prop['codeRule']) col.codeRule = prop['codeRule'];
             if (prop['displayFormat']) col.displayFormat = prop['displayFormat'];
-            if (p_property['placeholder']) this.placeholder = p_property['placeholder'];
+            if (p_property['placeholder']) col.placeholder = p_property['placeholder'];
         }
         if (['number', 'string', 'boolean'].indexOf(typeof p_property) > -1) {  
             col['value'] = p_property; 
